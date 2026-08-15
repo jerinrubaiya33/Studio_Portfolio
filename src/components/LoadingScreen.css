@@ -1,0 +1,411 @@
+/* Loading Screen Container */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Sky Gradient - Overcast gray sky */
+.sky-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    #5a6a7a 0%, 
+    #7a8a9a 20%,
+    #9aa5b0 40%,
+    #b0b8c0 60%,
+    #c8cdd2 80%,
+    #dde1e5 100%
+  );
+}
+
+/* Clear Blue Sky Reveal */
+.clear-sky-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    #1a365d 0%, 
+    #2b6cb0 25%,
+    #4299e1 50%,
+    #63b3ed 70%,
+    #90cdf4 85%,
+    #bee3f8 100%
+  );
+  transition: opacity 0.4s ease;
+}
+
+/* Cloud Layers Container */
+.clouds-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+/* Base SVG Cloud Styling */
+.cloud-svg {
+  position: absolute;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Far clouds - smaller, more blurred, slower */
+.cloud-far {
+  opacity: 0.7;
+  filter: blur(3px) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
+.cloud-far-1 {
+  width: 250px;
+  top: 10%;
+  left: 5%;
+  animation: drift-cloud-right 80s linear infinite;
+}
+
+.cloud-far-2 {
+  width: 200px;
+  top: 20%;
+  right: 10%;
+  animation: drift-cloud-left 90s linear infinite;
+}
+
+.cloud-far-3 {
+  width: 220px;
+  top: 35%;
+  left: 15%;
+  animation: drift-cloud-right 100s linear infinite;
+  animation-delay: -20s;
+}
+
+/* Mid clouds - medium size, moderate blur */
+.cloud-mid {
+  opacity: 0.85;
+  filter: blur(1.5px) drop-shadow(0 3px 6px rgba(0, 0, 0, 0.1));
+}
+
+.cloud-mid-1 {
+  width: 320px;
+  top: 15%;
+  left: 20%;
+  animation: drift-cloud-right 60s linear infinite;
+}
+
+.cloud-mid-2 {
+  width: 280px;
+  top: 40%;
+  right: 5%;
+  animation: drift-cloud-left 70s linear infinite;
+  animation-delay: -15s;
+}
+
+.cloud-mid-3 {
+  width: 300px;
+  top: 55%;
+  left: 10%;
+  animation: drift-cloud-right 75s linear infinite;
+  animation-delay: -30s;
+}
+
+/* Near clouds - larger, sharper, faster */
+.cloud-near {
+  opacity: 1;
+  filter: blur(0.5px) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.12));
+}
+
+.cloud-near-1 {
+  width: 400px;
+  top: 5%;
+  left: -5%;
+  animation: drift-cloud-right 45s linear infinite;
+}
+
+.cloud-near-2 {
+  width: 380px;
+  top: 30%;
+  right: -8%;
+  animation: drift-cloud-left 50s linear infinite;
+  animation-delay: -10s;
+}
+
+.cloud-near-3 {
+  width: 350px;
+  top: 60%;
+  left: 25%;
+  animation: drift-cloud-right 55s linear infinite;
+  animation-delay: -25s;
+}
+
+.cloud-near-4 {
+  width: 300px;
+  top: 75%;
+  right: 15%;
+  animation: drift-cloud-left 48s linear infinite;
+  animation-delay: -35s;
+}
+
+/* Fog Layers - Horizontal mist bands */
+.fog-layer {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.fog-1 {
+  top: 45%;
+  height: 250px;
+  background: linear-gradient(90deg,
+    rgba(180, 190, 200, 0) 0%,
+    rgba(180, 190, 200, 0.5) 15%,
+    rgba(190, 200, 210, 0.7) 30%,
+    rgba(185, 195, 205, 0.6) 50%,
+    rgba(190, 200, 210, 0.7) 70%,
+    rgba(180, 190, 200, 0.5) 85%,
+    rgba(180, 190, 200, 0) 100%
+  );
+  filter: blur(20px);
+  animation: drift-fog 30s ease-in-out infinite;
+}
+
+.fog-2 {
+  top: 60%;
+  height: 200px;
+  background: linear-gradient(90deg,
+    rgba(190, 200, 210, 0) 0%,
+    rgba(190, 200, 210, 0.4) 20%,
+    rgba(200, 210, 220, 0.6) 40%,
+    rgba(195, 205, 215, 0.55) 60%,
+    rgba(200, 210, 220, 0.6) 80%,
+    rgba(190, 200, 210, 0) 100%
+  );
+  filter: blur(25px);
+  animation: drift-fog-reverse 35s ease-in-out infinite;
+  animation-delay: -10s;
+}
+
+.fog-3 {
+  top: 75%;
+  height: 180px;
+  background: linear-gradient(90deg,
+    rgba(200, 210, 220, 0) 0%,
+    rgba(200, 210, 220, 0.35) 25%,
+    rgba(210, 215, 225, 0.5) 50%,
+    rgba(200, 210, 220, 0.35) 75%,
+    rgba(200, 210, 220, 0) 100%
+  );
+  filter: blur(30px);
+  animation: drift-fog 40s ease-in-out infinite;
+  animation-delay: -20s;
+}
+
+/* Atmospheric Haze - Overall soft overlay */
+.atmospheric-haze {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse 120% 80% at 50% 50%, 
+    rgba(200, 210, 220, 0.4) 0%, 
+    transparent 70%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Progress Ring Container */
+.progress-container {
+  position: relative;
+  z-index: 100;
+}
+
+.progress-ring-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.progress-ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 6;
+}
+
+.progress-ring-progress {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.95);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 339.292;
+  transition: stroke-dashoffset 0.2s ease;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
+.progress-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-number {
+  display: block;
+  font-size: 3.2rem;
+  font-weight: 200;
+  color: white;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.4);
+  line-height: 1;
+}
+
+.progress-percent {
+  display: block;
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 5px;
+}
+
+/* Loading Text */
+.loading-text {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+/* Cloud Drift Animations */
+@keyframes drift-cloud-right {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes drift-cloud-left {
+  0% {
+    transform: translateX(120vw);
+  }
+  100% {
+    transform: translateX(-120%);
+  }
+}
+
+/* Fog Drift Animations */
+@keyframes drift-fog {
+  0%, 100% {
+    transform: translateX(-8%) scaleX(1);
+  }
+  50% {
+    transform: translateX(8%) scaleX(1.08);
+  }
+}
+
+@keyframes drift-fog-reverse {
+  0%, 100% {
+    transform: translateX(8%) scaleX(1.08);
+  }
+  50% {
+    transform: translateX(-8%) scaleX(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cloud-far-1, .cloud-far-2, .cloud-far-3,
+  .cloud-mid-1, .cloud-mid-2, .cloud-mid-3,
+  .cloud-near-1, .cloud-near-2, .cloud-near-3, .cloud-near-4 {
+    transform: scale(0.6);
+  }
+  
+  .progress-ring-wrapper {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .progress-number {
+    font-size: 2.5rem;
+  }
+  
+  .progress-percent {
+    font-size: 0.85rem;
+  }
+  
+  .loading-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .cloud-far-1, .cloud-far-2, .cloud-far-3,
+  .cloud-mid-1, .cloud-mid-2, .cloud-mid-3,
+  .cloud-near-1, .cloud-near-2, .cloud-near-3, .cloud-near-4 {
+    transform: scale(0.4);
+  }
+  
+  .progress-ring-wrapper {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .progress-number {
+    font-size: 2rem;
+  }
+  
+  .progress-percent {
+    font-size: 0.75rem;
+  }
+}
+
+/* Accessibility - Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cloud-svg,
+  .fog-layer {
+    animation: none;
+  }
+  
+  .progress-ring-progress {
+    transition: none;
+  }
+  
+  .clear-sky-reveal,
+  .fog-layer,
+  .atmospheric-haze,
+  .loading-text {
+    transition: none;
+  }
+}
