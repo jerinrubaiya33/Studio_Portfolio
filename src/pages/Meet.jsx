@@ -195,8 +195,15 @@ const Meet = () => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     const adminEmail = "jujuba338788@gmail.com";
 
-    if (!serviceId || !templateId || !publicKey) {
-      throw new Error("Email service environment variables are missing.");
+    const missingVars = [];
+    if (!serviceId) missingVars.push("VITE_EMAILJS_SERVICE_ID");
+    if (!templateId) missingVars.push("VITE_EMAILJS_TEMPLATE_ID");
+    if (!publicKey) missingVars.push("VITE_EMAILJS_PUBLIC_KEY");
+
+    if (missingVars.length > 0) {
+      throw new Error(
+        `Email service environment variables are missing: ${missingVars.join(", ")}`
+      );
     }
 
     await Promise.all([
@@ -426,22 +433,22 @@ const Meet = () => {
 
   return (
     <section
-      className="relative  w-full min-h-screen bg-cover  bg-center bg-no-repeat text-neutral-900 font-mono flex items-center justify-center py-16 px-4 sm:px-8 lg:px-12"
+      className="relative  w-full bg-cover  bg-center bg-no-repeat text-neutral-900 font-mono flex items-center justify-center sm:min-h-screen py-10 sm:py-16 px-4 sm:px-8 lg:px-12"
       style={{ backgroundImage: `url(${aboutBg})` }}
     >
       {/* Background Darkening Overlay */}
       <div className="absolute  inset-0 backdrop-blur-[10px]" />
 
       {/* Main Container */}
-      <div className="relative z-10 w-full max-w-[2400px] space-y-8 lg:space-y-10  mb-10 lg:mb-30">
+      <div className="relative z-10 w-full max-w-[2400px] space-y-6 lg:space-y-10  mb-6 lg:mb-30">
 
         {/* Main Heading */}
         <div className="space-y-2 lg:ml-275 lg:-mb-200">
           {/* <div className="space-y-2"> */}
-          <h1 className="text-4xl lg:mt-50 mt-10 sm:text-5xl md:text-6xl font-mono font-normal text-neutral-800 tracking-tight">
+          <h1 className="text-4xl lg:mt-50 mt-4 sm:text-5xl md:text-6xl font-mono font-normal text-neutral-800 tracking-tight">
             Have a project?
           </h1>
-          <h2 className="text-5xl lg:mb-30 mb-15 sm:text-6xl md:text-7xl font-mono font-bold text-neutral-950 tracking-tight">
+          <h2 className="text-5xl lg:mb-30 mb-6 sm:text-6xl md:text-7xl font-mono font-bold text-neutral-950 tracking-tight">
             Let's discuss
           </h2>
         </div>
@@ -451,14 +458,14 @@ const Meet = () => {
 
           {/* Left Side: Wider Card with Extra Large Fonts */}
           <div id="left-form-section" className="order-2  lg:order-none lg:col-span-7 lg:ml-15 lg:mr-25 bg-white/95 backdrop-blur-md 
-          rounded-[40px] p-8 sm:p-20 md:p-12 lg:p-16 shadow-2xl border border-white/60 flex flex-col justify-between lg:mt-150">
+          rounded-[40px] px-6 py-4 sm:px-20 sm:py-12 md:px-12 md:py-8 lg:px-16 lg:py-10 shadow-2xl border border-white/60 flex flex-col justify-between lg:mt-150">
 
             {!isBooked && !pendingBooking ? (
-              <form onSubmit={handleBookingSubmit} className="space-y-5 sm:space-y-5">
+              <form onSubmit={handleBookingSubmit} className="space-y-4 sm:space-y-5">
 
                 {/* Consultation Heading */}
                 <div>
-                  <h3 className="text-2xl sm:text-3xl md:text-3xl mb-6 lg:mb-20 -ml-1 font-semibold font-mono tracking-tight">
+                  <h3 className="text-xl sm:text-3xl md:text-3xl mb-6 lg:mb-10 -ml-1 font-semibold font-mono tracking-tight">
                     <span className="text-neutral-500 font-normal">Consultation with </span>
                     <span className="text-[#5b7fc7]">{confirmedArchitect.name}</span>
                   </h3>
@@ -475,7 +482,7 @@ const Meet = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full pb-4 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-[18px] font-medium"
+                      className="w-full pb-3 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-sm sm:text-[18px] font-medium"
                     />
                   </div>
 
@@ -488,7 +495,7 @@ const Meet = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full pb-4 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-[18px] font-medium"
+                      className="w-full pb-3 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-sm sm:text-[18px] font-medium"
                     />
                   </div>
                 </div>
@@ -502,12 +509,12 @@ const Meet = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, project: e.target.value })
                     }
-                    className="w-full pb-0 mb-3 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors resize-none text-[18px] font-medium leading-none block"
+                    className="w-full pb-0 mb-2 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors resize-none text-sm sm:text-[18px] font-medium leading-none block"
                   />
                 </div>
                 {/* Date Picker */}
                 <div className="space-y-3 pt-2">
-                  <label className="block text-xs sm:text-lg font-semibold font-serif uppercase tracking-wider text-neutral-800">
+                  <label className="block text-xs sm:text-lg font-semibold font-mono  tracking-wider text-neutral-800">
                     Select Date
                   </label>
                   <div className="relative">
@@ -528,7 +535,7 @@ const Meet = () => {
                       minDate={getMinDate()}
                       dateFormat="MM/dd/yyyy"
                       placeholderText="mm/dd/yyyy"
-                      className="!pr-12 w-full p-4 bg-white border border-gray-300 rounded-lg text-gray-700 text-lg font-normal focus:outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7]/30 cursor-pointer placeholder:text-gray-400"
+                      className="!pr-12 w-full p-3 sm:p-4 bg-white border border-gray-300 rounded-lg text-gray-700 text-sm sm:text-lg font-normal focus:outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7]/30 cursor-pointer placeholder:text-gray-400"
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
                       <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -539,8 +546,8 @@ const Meet = () => {
                 </div>
 
                 {/* Time Slots */}
-                <div className="space-y-4">
-                  <label className="block text-sm sm:text-lg font-semibold font-serif mb-4 sm:mb-6 mt-5 sm:mt-10 uppercase tracking-wider text-neutral-800">
+                <div className="space-y-3">
+                  <label className="block text-xs sm:text-lg font-semibold font-mono mb-3 sm:mb-6 mt-3 sm:mt-10  tracking-wider text-neutral-800">
                     Available Time Slots
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
@@ -580,22 +587,26 @@ const Meet = () => {
                 <button
                   type="submit"
                   disabled={isSendingCode}
-                  className="w-full py-3.5 sm:py-5 rounded-2xl bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-bold font-serif text-base sm:text-xl tracking-wide transition-all duration-200 shadow-xl cursor-pointer"
+                  className="group relative overflow-hidden w-full lg:w-[420px] lg:mx-auto flex items-center justify-center gap-3 py-2.5 lg:py-3.5 text-lg font-black tracking-[0.05em]
+                  text-white bg-[#5b7fc7] border-2 border-[#5b7fc7] rounded-full shadow-md hover:shadow-xl hover:border-white transition-all duration-500 cursor-pointer disabled:opacity-60"
                 >
-                  {isSendingCode ? "Sending Code…" : "Confirm & Send Code →"}
+                  <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-[#5b7fc7]">
+                    {isSendingCode ? "Sending Code…" : "Confirm & Send Code →"}
+                  </span>
                 </button>
               </form>
             ) : pendingBooking ? (
               /* Verification Step */
-              <form onSubmit={handleVerificationSubmit} className="space-y-6 my-auto text-center py-8">
+              <form onSubmit={handleVerificationSubmit} className="space-y-4 my-auto text-center py-6">
                 <div className="space-y-3">
                   <span className="text-sm font-bold uppercase tracking-widest text-[#5b7fc7] bg-blue-50 px-4 py-2 rounded-full">
                     Verification Required
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-mono font-extrabold text-neutral-900 mt-4">
+                  <h3 className="text-2xl sm:text-4xl font-mono font-extrabold text-neutral-900 mt-4">
                     Enter Verification Code
                   </h3>
-                  <p className="text-lg text-neutral-600">
+                  <p className="text-sm sm:text-lg text-neutral-600">
                     We sent a 6-digit confirmation code to{" "}
                     <strong className="text-neutral-900">{pendingBooking.email}</strong>
                   </p>
@@ -609,7 +620,7 @@ const Meet = () => {
                   {otpDigits.map((digit, i) => (
                     <div
                       key={i}
-                      className={`flex-1 max-w-16 aspect-square flex items-center justify-center border-2 rounded-xl sm:rounded-2xl text-xl sm:text-2xl font-black transition-all duration-200 ${digit
+                      className={`flex-1 max-w-16 aspect-square flex items-center justify-center border-2 rounded-xl sm:rounded-2xl text-base sm:text-2xl font-black transition-all duration-200 ${digit
                           ? "border-[#5b7fc7] bg-[#5b7fc7]/10 text-[#5b7fc7]"
                           : i === verificationInput.length
                             ? "border-[#5b7fc7] bg-white animate-pulse"
@@ -634,7 +645,7 @@ const Meet = () => {
                       e.target.value.replace(/\D/g, "").slice(0, 6)
                     )
                   }
-                  className="w-full max-w-2xl mx-auto p-4 text-center bg-neutral-50 border-2 border-neutral-300 rounded-2xl text-neutral-900 text-xl tracking-widest font-bold focus:outline-none focus:border-[#5b7fc7] focus:ring-2 focus:ring-[#5b7fc7]/20 mx-auto block placeholder:text-neutral-400 placeholder:text-lg"
+                  className="w-full max-w-2xl mx-auto p-3 sm:p-4 text-center bg-neutral-50 border-2 border-neutral-300 rounded-2xl text-neutral-900 text-base sm:text-xl tracking-widest font-bold focus:outline-none focus:border-[#5b7fc7] focus:ring-2 focus:ring-[#5b7fc7]/20 mx-auto block placeholder:text-neutral-400 placeholder:text-base sm:placeholder:text-lg"
                 />
 
                 {verificationError && (
@@ -644,7 +655,7 @@ const Meet = () => {
                 )}
 
                 {verificationNotice && (
-                  <p className="text-lg font-mono font-bold text-[#5b7fc7] bg-blue-50 py-4 px-6 rounded-xl max-w-2xl mx-auto">
+                  <p className="text-sm sm:text-lg font-mono font-bold text-[#5b7fc7] bg-blue-50 py-4 px-6 rounded-xl max-w-2xl mx-auto">
                     {verificationNotice}
                   </p>
                 )}
@@ -653,14 +664,14 @@ const Meet = () => {
                   <button
                     type="button"
                     onClick={() => setPendingBooking(null)}
-                    className="flex-1 whitespace-nowrap p-4 bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold text-lg rounded-2xl transition-all cursor-pointer"
+                    className="flex-1 whitespace-nowrap p-3 sm:p-4 bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold text-sm sm:text-lg rounded-2xl transition-all cursor-pointer"
                   >
                     ← Back to Edit
                   </button>
 
                   <button
                     type="submit"
-                    className="flex-1 whitespace-nowrap p-4 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-lg rounded-2xl transition-all shadow-lg cursor-pointer"
+                    className="flex-1 whitespace-nowrap p-3 sm:p-4 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-sm sm:text-lg rounded-2xl transition-all shadow-lg cursor-pointer"
                   >
                     Verify & Lock Slot
                   </button>
@@ -668,12 +679,12 @@ const Meet = () => {
 
                 {/* Resend Code — styled like the "Book a Consultant" button */}
                 <div className="mt-5 space-y-3">
-                  <p className="text-base text-neutral-500">Didn't receive the code?</p>
+                  <p className="text-sm sm:text-base text-neutral-500">Didn't receive the code?</p>
                   <button
                     type="button"
                     onClick={handleResendCode}
                     disabled={isResending}
-                    className="group relative overflow-hidden w-full max-w-md mx-auto flex items-center justify-center gap-3 py-4 text-lg font-black tracking-[0.05em]
+                    className="group relative overflow-hidden w-full max-w-md mx-auto flex items-center justify-center gap-3 py-4 text-sm sm:text-lg font-black tracking-[0.05em]
                     text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer disabled:opacity-60"
                   >
                     <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
@@ -685,15 +696,15 @@ const Meet = () => {
               </form>
             ) : (
               /* Success Confirmation */
-              <div className="text-center space-y-5 my-auto py-10">
+              <div className="text-center space-y-4 my-auto py-6">
                 <div className="w-20 h-20 bg-[#5b7fc7] text-white rounded-full flex items-center justify-center mx-auto text-4xl font-extrabold shadow-lg">
                   ✓
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-3xl sm:text-4xl font-extrabold text-neutral-900">
+                  <h3 className="text-2xl sm:text-4xl font-extrabold text-neutral-900">
                     Call Successfully Scheduled!
                   </h3>
-                  <p className="text-xl text-neutral-600 max-w-lg mx-auto">
+                  <p className="text-sm sm:text-xl text-neutral-600 max-w-lg mx-auto">
                     Your appointment with <strong>{confirmedArchitect.name}</strong> is locked for{" "}
                     <strong className="text-neutral-900">{selectedDate}</strong> at{" "}
                     <strong className="text-neutral-900">{selectedTime}</strong>.
@@ -703,7 +714,7 @@ const Meet = () => {
                 <button
                   type="button"
                   onClick={handleResetForm}
-                  className="py-4 px-8 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-xl rounded-2xl transition-all cursor-pointer shadow-lg"
+                  className="py-4 px-8 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-sm sm:text-xl rounded-2xl transition-all cursor-pointer shadow-lg"
                 >
                   Schedule Another Consultation
                 </button>
@@ -711,12 +722,12 @@ const Meet = () => {
             )}
 
             {/* Prefer Email Section */}
-            <div className="pt-5 sm:pt-6 mt-5 sm:mt-6 border-t border-neutral-200 space-y-3">
-              <p className="text-lg font-bold text-neutral-700">
+            <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-neutral-200 space-y-3">
+              <p className="text-sm sm:text-lg font-bold text-neutral-700">
                 Prefer email?
               </p>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-lg sm:text-xl font-serif text-neutral-500 font-semibold">
+                <span className="text-sm sm:text-xl font-serif text-neutral-500 font-semibold">
                   hello@studioDNA.design
                 </span>
                 <button
@@ -733,10 +744,10 @@ const Meet = () => {
 
           {/* Right Side: Shorter Height, Wider Card & Large Text */}
           <div className="order-1 lg:order-none lg:col-span-5 lg:mt-200 bg-white/95 backdrop-blur-md rounded-[40px]
-           p-5 sm:p-8 lg:p-10 shadow-2xl border border-white/60 flex flex-col justify-between space-y-5">
+           p-4 sm:p-8 lg:p-10 shadow-2xl border border-white/60 flex flex-col justify-between space-y-4 sm:space-y-5">
 
             {/* Header & Controls */}
-            <div className="flex items-center justify-between pb-3 sm:pb-5 border-b border-neutral-200">
+            <div className="flex items-center justify-between pb-2 sm:pb-5 border-b border-neutral-200">
               <span className="text-sm font-extrabold uppercase tracking-widest text-neutral-400 font-mono">
                 Architect ({currentArchitectIndex + 1} / {architects.length})
               </span>
@@ -763,7 +774,7 @@ const Meet = () => {
             </div>
 
             {/* Profile Details with Increased Typography */}
-            <div className="space-y-5 lg:space-y-8">
+            <div className="space-y-4 lg:space-y-8">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
                 <img
                   src={selectedArchitect.image}
@@ -786,11 +797,11 @@ const Meet = () => {
             </div>
 
             {/* Book a Consultant Button */}
-            <div className="pt-3 -ml-0 sm:-ml-10">
+            <div className="pt-3">
               <button
                 type="button"
                 onClick={handleScrollToForm}
-                className="group relative overflow-hidden w-full lg:w-[420px] lg:ml-40 flex items-center justify-center gap-3 py-4 lg:py-5 text-lg font-black tracking-[0.05em]
+                className="group relative overflow-hidden w-full lg:w-[420px] lg:mx-auto flex items-center justify-center gap-3 py-4 lg:py-5 text-lg font-black tracking-[0.05em]
                 text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
               >
                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />

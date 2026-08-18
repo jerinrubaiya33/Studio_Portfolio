@@ -64,6 +64,32 @@ const GENERAL_TEAM = [
     role: "Landscape Specialist",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
   },
+  {
+    name: "Alexandra Triantafyllidou",
+    role: "Senior Interior Architect",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Alex Duro",
+    role: "Project Manager",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Alexander Lehmann",
+    role: "BIM & Technical Lead",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Alexander Schwarz",
+    role: "Sustainability Director",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    name: "Aria Chen",
+    role: "Landscape Specialist",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
+  },
+  
 ];
 
 /* Scroll-reveal Helper */
@@ -232,7 +258,7 @@ const Studio = () => {
           <div className="max-w-[1000px] ml-auto text-right">
             <Reveal delay={120}>
               <div className="flex justify-end">
-                <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-mono font-bold text-gray-900 leading-tight max-w-3xl lg:max-w-7xl">
+                <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl lg:text-4xl font-mono font-bold text-gray-900 leading-tight max-w-3xl lg:max-w-7xl">
                   Creating Places That Stand The Test Of Time.
                 </h1>
               </div>
@@ -240,7 +266,7 @@ const Studio = () => {
 
             <Reveal delay={240}>
               <div className="flex justify-end">
-                <p className="mt-6 text-md sm:text-xl md:text-2xl lg:text-3xl font-mono font-medium text-gray-800 leading-snug max-w-[1300px]">
+                <p className="mt-6 text-md sm:text-xl md:text-2xl lg:text-2xl font-mono font-medium text-gray-800 leading-snug max-w-[1300px]">
                   Studio DNA is the focused design branch of Outline Architects. Backed by the rich heritage and foundation of Outline Architects, we combine boutique attention to detail with deep architectural capability. From bespoke residential sanctuaries to tailored commercial environments, our team transforms visions into lived experiences.
                 </p>
               </div>
@@ -259,8 +285,8 @@ const Studio = () => {
                 <div className="flex items-baseline gap-3 -ml-8">
                   <span className="text-2xl md:text-4xl font-mono font-bold text-gray-900">30+</span>
                   <div className="text-right">
-                    <span className="block sm:text-xl text-md mr-10 font-mono font-bold uppercase tracking-wider text-[#5b7fc7]">Projects</span>
-                    <span className="sm:text-xl text-md mr-5 sm:mr-4 font-mono uppercase tracking-widest text-gray-500">Delivered</span>
+                    <span className="block sm:text-xl text-md mr-18 font-mono font-bold uppercase tracking-wider text-[#5b7fc7]">Projects</span>
+                    <span className="sm:text-xl text-md mr-14 sm:mr-4 font-mono uppercase tracking-widest text-gray-500">Delivered</span>
                   </div>
                 </div>
               </div>
@@ -268,77 +294,9 @@ const Studio = () => {
           </div>
         </section>
 
-        {/* ================= 3. DESIGN • BUILD • SUPPLY ================= */}
-        {/* <section className="relative w-full border-y border-gray-100 py-20 md:py-32 overflow-hidden">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${aboutBg})` }}
-        />
-        <div className="absolute inset-0 z-0 bg-white/50 backdrop-blur-[2px]" />
-
-        <div className="relative z-10 max-w-[1800px] mx-auto px-6 sm:px-12 md:px-16 lg:px-21">
-          <Reveal>
-            <div className="mb-12 md:mb-20">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-mono font-bold text-gray-900 leading-tight">
-                  Our Services
-                </h2>
-
-                <p className="text-base sm:text-lg md:text-3xl font-mono font-bold  text-[#5b7fc7] max-w-md md:text-right leading-snug">
-                  Design · Build · Supply
-                </p>
-              </div>
-
-              <div className="mt-8 w-full border-t border-gray-300"></div>
-            </div>
-          </Reveal>
-
-          <div className="divide-y divide-gray-300/80 border-t border-b border-gray-300/80">
-            {corePillars.map((item, idx) => (
-              <Reveal key={item.title} delay={idx * 150}>
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-16 md:py-24">
-                  
-                  <div className="lg:col-span-4 flex flex-col justify-center text-left">
-                    <h3 className="text-5xl sm:text-6xl lg:text-7xl font-sans font-extrabold text-[#5b7fc7] tracking-tight">
-                      {item.title}
-                    </h3>
-                    <p className="mt-6 text-lg sm:text-xl md:text-2xl font-mono font-medium text-gray-800 leading-relaxed max-w-sm">
-                      {item.subtitle}
-                    </p>
-                  </div>
-
-                  <div className="lg:col-span-4 flex justify-center items-center">
-                    <div className="relative w-full grayscale-70 -ml-50 max-w-md h-64 sm:h-80 overflow-hidden rounded-none shadow-sm border border-gray-200/80 bg-gray-100">
-                      <img
-                        src={item.image}
-                        alt={`${item.title} service visual`}
-                        className="w-full h-full object-cover filter grayscale-[30%] hover:grayscale-0 transition-all duration-500 ease-out"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-4">
-                    <ul className="divide-y divide-gray-300/80 border-t border-b border-gray-300/80">
-                      {item.items.map((sub, subIdx) => (
-                        <li 
-                          key={subIdx} 
-                          className="py-4 font-mono text-base sm:text-lg md:text-2xl text-gray-900 uppercase font-semibold tracking-wide"
-                        >
-                          {sub.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-        {/* ================= 4. STUDIO CULTURE, WORKFORCE & EVENTS ================= */}
-        <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 md:py-28">
+        {/*  4. STUDIO CULTURE, WORKFORCE & EVENTS  */}
+        <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white px-4 sm:px-8 md:px-12
+         lg:px-40 py-12 sm:py-20 md:py-28 sm:-mt-20 mt-0">
           <div className="w-full max-w-[1920px] mx-auto space-y-16 sm:space-y-24 md:space-y-32">
 
             <Reveal>
@@ -415,7 +373,7 @@ const Studio = () => {
               <Reveal>
                 <div className="mb-6 sm:mb-8">
                   <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#5b7fc7] font-bold">
-                    03 / Inside the Studio & On Site
+                     Inside the Studio & On Site
                   </span>
                   <h3 className="mt-1 sm:mt-2 text-xl sm:text-3xl md:text-4xl font-mono font-bold text-gray-900">
                     Everyday Moments of Creation
@@ -439,14 +397,14 @@ const Studio = () => {
             </div>
 
             {/* ================= CATEGORIZED TEAM SECTION (COMPACT IMAGES & PERFECT PADDING) ================= */}
-            <div className="pt-10 sm:pt-12 border-t border-gray-200 space-y-16 sm:space-y-20">
+            <div className="pt-10 sm:pt-32 sm:p-30 p-5 border-t border-gray-200 space-y-16 sm:space-y-20">
 
               {/* SECTION TITLE & OVERVIEW */}
               <Reveal>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
                   <div>
                     <span className="text-sm sm:text-base font-mono uppercase tracking-widest text-[#5b7fc7] font-bold">
-                      04 / Leadership & Talent
+                       Leadership & Talent
                     </span>
                     <h3 className="mt-1 sm:mt-2 text-2xl sm:text-4xl lg:text-5xl font-mono font-bold text-gray-900">
                       Our People
@@ -471,7 +429,7 @@ const Studio = () => {
                   </div>
                 </Reveal>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-3 sm:gap-x-4 
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-x-3 sm:gap-x-4 
                 lg:gap-x-0 gap-y-10 sm:gap-y-12">
                   {PARTNERS.map((member, idx) => (
                     <Reveal key={member.name} delay={idx * 100} className="w-full">
@@ -539,7 +497,7 @@ const Studio = () => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
                   <div>
                     <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#5b7fc7] font-bold">
-                      05 / Out In The Field
+                       Out In The Field
                     </span>
                     <h3 className="mt-1 sm:mt-2 text-xl sm:text-3xl lg:text-4xl font-mono font-bold text-gray-900">
                       Fests, Campaigns & News

@@ -187,18 +187,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-12 items-center">
             {/* Details */}
             <div className="sm:col-span-6  sm:pl-16 sm:pt-8 order-2 sm:order-1 flex flex-col justify-end">
-              <div className="flex items-baseline gap-2">
-                <span
-                  className="text-base font-bold tracking-[0.2em] text-gray-600"
-                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                >
-                  01
-                </span>
-                <span className="h-px w-8 bg-gray-400" />
-                <h3 className="text-lg sm:text-xl font-bold tracking-[0.2em] text-gray-700 font-serif">
-                  STUDIO DNA
-                </h3>
-              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold tracking-[0.2em] text-[#5b7fc7]  font-sans">
+                STUDIO DNA
+              </h3>
 
               <ul className="mt-5 space-y-4 font-mono text-base sm:text-lg text-gray-700">
                 <li className="flex gap-3 items-start">
@@ -214,7 +205,7 @@ export default function Footer() {
                   <Phone size={20} className="shrink-0 text-gray-500" />
                   <a
                     href="tel:+8801711000000"
-                    className="transition-colors hover:text-[#e97100]"
+                    className="transition-colors hover:text-[#5b7fc7]"
                   >
                     +880 1711-000 000
                   </a>
@@ -224,7 +215,7 @@ export default function Footer() {
                   <Mail size={20} className="shrink-0 text-gray-500" />
                   <a
                     href="mailto:info@studiodna.com"
-                    className="transition-colors hover:text-[#e97100]"
+                    className="transition-colors hover:text-[#5b7fc7]"
                   >
                     info@studiodna.com
                   </a>
@@ -239,7 +230,7 @@ export default function Footer() {
                   src={officeImage}
                   alt="Inside the Studio DNA office"
                   loading="lazy"
-                  className="h-[130px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="h-[130px] w-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -249,7 +240,7 @@ export default function Footer() {
                     className="text-xs sm:text-sm tracking-[0.15em] font-medium text-white/90"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
-                    — THE STUDIO / BARIDHARA
+                    — THE STUDIO
                   </p>
 
                   <p
@@ -269,7 +260,7 @@ export default function Footer() {
                   height="130"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="block h-[130px] w-full transition-all duration-500 hover:grayscale-0"
+                  className="block h-[130px] w-full grayscale transition-all duration-500 hover:grayscale-0"
                   style={{ border: 0 }}
                 />
               </div>
@@ -280,20 +271,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-12 items-center">
             {/* Details */}
             <div className="sm:col-span-6 sm:pl-6 sm:pt-12 order-2 sm:order-1 flex flex-col justify-end">
-              <div className="flex items-baseline gap-2">
-                <span
-                  className="text-base font-bold tracking-[0.2em] text-gray-600"
-                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                >
-                  02
-                </span>
-
-                <span className="h-px w-8 bg-gray-400" />
-
-                <h3 className="text-lg sm:text-xl font-bold tracking-[0.2em] text-gray-700 font-serif">
-                  OUTLINE ARCHITECTS
-                </h3>
-              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold tracking-[0.2em] text-[#5b7fc7]  font-sans">
+                OUTLINE ARCHITECTS
+              </h3>
 
               <ul className="mt-5 space-y-4 font-mono text-base sm:text-lg text-gray-700">
                 <li className="flex gap-3 items-start">
@@ -334,7 +314,7 @@ export default function Footer() {
                   src={office2Image}
                   alt="Inside the Outline Architects office"
                   loading="lazy"
-                  className="h-[130px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="h-[130px] w-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -344,7 +324,7 @@ export default function Footer() {
                     className="text-xs sm:text-sm tracking-[0.15em] font-medium text-white/90"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
-                    — HQ / CHATTOGRAM
+                    — HQ
                   </p>
 
                   <p
@@ -364,7 +344,7 @@ export default function Footer() {
                   height="130"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="block h-[130px] w-full transition-all duration-500 hover:grayscale-0"
+                  className="block h-[130px] w-full grayscale transition-all duration-500 hover:grayscale-0"
                   style={{ border: 0 }}
                 />
               </div>
@@ -383,7 +363,7 @@ export default function Footer() {
             <br />© {year} ALL RIGHTS RESERVED.
           </p>
 
-          <button
+          {/* <button
             onClick={handleBackToTop}
             className="group flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-gray-600 transition-colors hover:text-[#5b7fc7] self-end sm:self-auto"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
@@ -392,7 +372,7 @@ export default function Footer() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-400 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[#5b7fc7]">
               <ArrowUp size={14} />
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -400,8 +380,8 @@ export default function Footer() {
       <div className="relative z-10 w-full px-4 py-6 select-none overflow-hidden border-t border-gray-300/20">
         <div className="w-full">
           <h1
-            className="text-lg sm:text-xl md:text-2xl font-light tracking-widest text-gray-500 text-center uppercase"
-            style={{ fontFamily: "'serif'" }}
+            className="text-lg sm:text-xl md:text-3xl font-light tracking-widest text-gray-500 text-center uppercase"
+            style={{ fontFamily: "'mono'" }}
           >
             Let's Build Together.
           </h1>

@@ -1,6 +1,42 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUpRight, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  ArrowUpRight, ArrowRight, ChevronDown, ChevronUp,
+  Compass, Sun, Shield, Pencil, LayoutGrid, Box,
+  Wind, Lightbulb, Thermometer, Calculator, TrendingUp, ShieldCheck,
+  ClipboardCheck, Calendar, FileCheck, Search, Truck, HardHat,
+  BarChart3, CheckCircle, Palette, Wrench, DollarSign, Building2, Sofa, KeyRound,
+} from "lucide-react";
+
+const pointIcons = {
+  compass: Compass,
+  sun: Sun,
+  shield: Shield,
+  pencil: Pencil,
+  layout: LayoutGrid,
+  box: Box,
+  wind: Wind,
+  lightbulb: Lightbulb,
+  thermometer: Thermometer,
+  calculator: Calculator,
+  trending: TrendingUp,
+  "shield-check": ShieldCheck,
+  clipboard: ClipboardCheck,
+  calendar: Calendar,
+  "file-check": FileCheck,
+  handshake: Shield,
+  search: Search,
+  truck: Truck,
+  hardhat: HardHat,
+  barchart: BarChart3,
+  checkcircle: CheckCircle,
+  palette: Palette,
+  wrench: Wrench,
+  dollar: DollarSign,
+  building: Building2,
+  sofa: Sofa,
+  key: KeyRound,
+};
 
 import Footer from "./Footer";
 
@@ -107,58 +143,127 @@ const corePillars = [
   },
 ];
 
-/* ============ FULL SERVICE INDEX ============ */
+/*  FULL SERVICE INDEX  */
 const serviceIndex = [
-  { num: "01", title: "Planning", image: architectureImg, description: "Strategic site and program analysis to inform the design process, ensuring optimal spatial and functional outcomes." },
-  { num: "02", title: "Feasibility Study", image: landscapeImg, description: "Evaluating financial, regulatory, and spatial parameters to determine project viability before investment." },
-  { num: "03", title: "Site Analysis", image: architectureImg, description: "In-depth contextual and environmental study to align building designs seamlessly with their surroundings." },
-  { num: "04", title: "Cost Estimating", image: landscapeImg, description: "Detailed bill of quantities and financial forecasting to maintain budget integrity across phases." },
-  { num: "05", title: "Masterplans", image: interiorImg, description: "Comprehensive long-term development strategies for large-scale residential, commercial, and mixed-use sites." },
-  { num: "06", title: "Space Planning", image: interiorImg, description: "Optimizing interior layout and flow to maximize usability, circulation, and spatial experience." },
-  { num: "07", title: "Conceptual Design", image: architectureImg, description: "Crafting foundational architectural visions using 3D massing, preliminary sketches, and material concepts." },
-  { num: "08", title: "Residential Architecture", image: landscapeImg, description: "Bespoke single-family homes and luxury villas engineered for comfort, light, and timeless living." },
-  { num: "09", title: "Commercial Architecture", image: productImg, description: "High-performance office complexes, retail centers, and mixed-use commercial destinations." },
-  { num: "10", title: "Multifamily Architecture", image: architectureImg, description: "Dense, sustainable apartment buildings and community-centric housing developments." },
-  { num: "11", title: "Storage Facilities", image: landscapeImg, description: "Efficient, secure industrial warehouse and self-storage facility architectural design." },
-  { num: "12", title: "Civic Architecture", image: productImg, description: "Public infrastructure, government facilities, and community centers designed for civic pride." },
-  { num: "13", title: "Project Management", image: architectureImg, description: "End-to-end administration, procurement supervision, and timeline management for building delivery." },
-  { num: "14", title: "Code Analysis", image: productImg, description: "Ensuring all architectural proposals strictly comply with local building codes, zoning, and safety standards." },
-  { num: "15", title: "Interior Design", image: interiorImg, description: "Curated interior environments balancing warm textures, custom joinery, and lighting atmospheres." },
-  { num: "16", title: "FF&E", image: productImg, description: "Bespoke furniture procurement, custom fixture specification, and turn-key FF&E integration." },
-  { num: "17", title: "Archviz Renders & Animations", image: architectureImg, description: "Photorealistic 3D architectural renders, VR walkthroughs, and cinema-grade marketing films." },
+  { num: "01", title: "Planning", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80", description: "Strategic site and program analysis to inform the design process, ensuring optimal spatial and functional outcomes." },
+  { num: "02", title: "Feasibility Study", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80", description: "Evaluating financial, regulatory, and spatial parameters to determine project viability before investment." },
+  { num: "03", title: "Site Analysis", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80", description: "In-depth contextual and environmental study to align building designs seamlessly with their surroundings." },
+  { num: "04", title: "Cost Estimating", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80", description: "Detailed bill of quantities and financial forecasting to maintain budget integrity across phases." },
+  { num: "05", title: "Masterplans", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80", description: "Comprehensive long-term development strategies for large-scale residential, commercial, and mixed-use sites." },
+  { num: "06", title: "Space Planning", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80", description: "Optimizing interior layout and flow to maximize usability, circulation, and spatial experience." },
+  { num: "07", title: "Conceptual Design", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80", description: "Crafting foundational architectural visions using 3D massing, preliminary sketches, and material concepts." },
+  { num: "08", title: "Residential Architecture", image: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1200&q=80", description: "Bespoke single-family homes and luxury villas engineered for comfort, light, and timeless living." },
+  { num: "09", title: "Commercial Architecture", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80", description: "High-performance office complexes, retail centers, and mixed-use commercial destinations." },
+  { num: "10", title: "Multifamily Architecture", image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80", description: "Dense, sustainable apartment buildings and community-centric housing developments." },
+  { num: "11", title: "Storage Facilities", image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80", description: "Efficient, secure industrial warehouse and self-storage facility architectural design." },
+  { num: "12", title: "Civic Architecture", image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80", description: "Public infrastructure, government facilities, and community centers designed for civic pride." },
+  { num: "13", title: "Project Management", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80", description: "End-to-end administration, procurement supervision, and timeline management for building delivery." },
+  { num: "14", title: "Code Analysis", image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRTarCAI6vIuVbrFof2EhyLPO7PmCrRWtNGHpW3Gc5-tGI7hACnh8RJiuba6Tm0-WebsLTX3ULnjk5sBAk", description: "Ensuring all architectural proposals strictly comply with local building codes, zoning, and safety standards." },
+  { num: "15", title: "Interior Design", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80", description: "Curated interior environments balancing warm textures, custom joinery, and lighting atmospheres." },
+  { num: "16", title: "FF&E", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80", description: "Bespoke furniture procurement, custom fixture specification, and turn-key FF&E integration." },
+  { num: "17", title: "Archviz Renders & Animations", image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80", description: "Photorealistic 3D architectural renders, VR walkthroughs, and cinema-grade marketing films." },
 ];
 
-/* ============ HOW WE BUILD STEPS ============ */
-const howWeBuildSteps = [
+/*  HOW WE BUILD STEPS (same steps & points as About page)  */
+const constructionProcess = [
   {
     num: "01",
-    title: "Discovery & Site Strategy",
-    description: "Establishing client goals, site limits, structural constraints, and municipal approval pathways.",
-    points: ["Feasibility Review", "Site Audit", "Zoning Compliance"],
+    title: "Space Analysis",
+    description:
+      "We start with nothing but ground. Soil, orientation, sun path, wind direction, neighbouring mass, access roads and local zoning are all surveyed so every later decision rests on facts, not guesses.",
+    points: [
+      { name: "Site survey & soil check", icon: "compass" },
+      { name: "Sun path + wind mapping", icon: "sun" },
+      { name: "Zoning & legal limits", icon: "shield" },
+    ],
   },
   {
     num: "02",
-    title: "Architectural & Technical Design",
-    description: "Developing synchronized architectural blueprints, structural calculations, and mechanical specifications.",
-    points: ["3D BIM Modeling", "Structural & MEP", "Interior Joinery"],
+    title: "Turning constraints into form",
+    description:
+      "Your brief becomes plans, sections and 3D massing. We test multiple layouts against your lifestyle or business flow until the proportions, circulation and daylight feel effortless.",
+    points: [
+      { name: "Concept & massing studies", icon: "pencil" },
+      { name: "Floor plans & elevations", icon: "layout" },
+      { name: "3D walkthrough review", icon: "box" },
+    ],
   },
   {
     num: "03",
-    title: "Procurement & Material Selection",
-    description: "Sourcing premium construction materials and custom interior components directly through global and local supply networks.",
-    points: ["Direct Import", "Quality Control", "Budget Forecasting"],
+    title: "Air, light & comfort simulation",
+    description:
+      "Before a single brick is ordered we simulate how the building breathes — cross ventilation, daylight penetration, shading, acoustics and thermal performance — so the space stays comfortable year-round.",
+    points: [
+      { name: "Airflow & ventilation study", icon: "wind" },
+      { name: "Daylight + shading analysis", icon: "lightbulb" },
+      { name: "Thermal & acoustic comfort", icon: "thermometer" },
+    ],
   },
   {
     num: "04",
-    title: "Turnkey Execution & Supervision",
-    description: "On-site construction and fit-out managed by dedicated project engineers with rigorous quality audits.",
-    points: ["On-Site Management", "Safety Protocol", "Milestone Audits"],
+    title: "A budget that holds",
+    description:
+      "A transparent bill of quantities, item-by-item rates and a phase-wise cash-flow plan. You see exactly where every unit of budget goes — no hidden lines, no mid-project surprises.",
+    points: [
+      { name: "Detailed BOQ", icon: "calculator" },
+      { name: "Phase-wise cash flow", icon: "trending" },
+      { name: "Contingency planning", icon: "shield-check" },
+    ],
   },
   {
     num: "05",
-    title: "Handover & Post-Occupancy",
-    description: "Final walkthroughs, building commissioning, regulatory sign-offs, and operational handovers.",
-    points: ["Authority Clearances", "Commissioning", "Warranty Care"],
+    title: "One clear master timeline",
+    description:
+      "Design, cost and schedule are locked into a single approved package. You sign off once on a complete picture: drawings, finishes, milestones and delivery date.",
+    points: [
+      { name: "Approved drawing set", icon: "clipboard" },
+      { name: "Milestone schedule", icon: "calendar" },
+      { name: "Single-point approval", icon: "file-check" },
+    ],
+  },
+  {
+    num: "06",
+    title: "Sourcing & procurement",
+    description:
+      "We buy on your behalf from vetted suppliers — steel, cement, stone, timber, glazing and fixtures — with quality testing, samples for approval and logistics handled end to end.",
+    points: [
+      { name: "Vetted supplier network", icon: "handshake" },
+      { name: "Sample approval & QC", icon: "search" },
+      { name: "Delivery logistics", icon: "truck" },
+    ],
+  },
+  {
+    num: "07",
+    title: "Construction",
+    description:
+      "Foundation, frame, envelope, MEP roughing and finishing — executed by our supervised teams with weekly site reports, photo updates and strict safety and quality checkpoints.",
+    points: [
+      { name: "Supervised site execution", icon: "hardhat" },
+      { name: "Weekly progress reports", icon: "barchart" },
+      { name: "Stage-wise quality checks", icon: "checkcircle" },
+    ],
+  },
+  {
+    num: "08",
+    title: "Client Customization",
+    description:
+      "Layout tweaks, finish swaps, joinery details or smart-home additions — we build in flexible decision windows so you can personalise without derailing cost or schedule.",
+    points: [
+      { name: "Finish & material swaps", icon: "palette" },
+      { name: "Custom joinery options", icon: "wrench" },
+      { name: "Cost-impact shown upfront", icon: "dollar" },
+    ],
+  },
+  {
+    num: "09",
+    title: "Handover, fully finished",
+    description:
+      "Façade, landscape and lighting outside; furniture, fixtures and styling inside. We close out snag lists, hand over warranties and give you the keys to a space ready to live in.",
+    points: [
+      { name: "Façade & landscape", icon: "building" },
+      { name: "FF&E and styling", icon: "sofa" },
+      { name: "Snag-free handover", icon: "key" },
+    ],
   },
 ];
 
@@ -179,11 +284,12 @@ const Services = () => {
 
   const isTouchDevice =
     typeof window !== "undefined" &&
-    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(hover: none)").matches;
 
   const displayedProcess = showMoreProcess
-    ? howWeBuildSteps
-    : howWeBuildSteps.slice(0, 3);
+    ? constructionProcess
+    : constructionProcess.slice(0, 5);
 
   const displayedServices = showMoreServices
     ? serviceIndex
@@ -197,28 +303,56 @@ const Services = () => {
     });
   };
 
+  // Custom Smooth Scroll Helper (Scrolls ~250px ABOVE the section ref)
+  const scrollToRefWithOffset = (ref, offset = 250) => {
+    if (ref.current) {
+      const elementPosition = ref.current.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const handleStepClick = (idx) => {
+    if (!isTouchDevice) return;
     setOpenStep((prev) => (prev === idx ? null : idx));
   };
 
+
   const handleProcessToggle = () => {
     setShowMoreProcess((prev) => !prev);
+    scrollToRefWithOffset(processRef, 250);
   };
 
   const handleServicesToggle = () => {
     setShowMoreServices((prev) => !prev);
   };
 
+  // Close the expanded step panel when clicking anywhere outside the rows
+  useEffect(() => {
+    const closeOnOutsideClick = (e) => {
+      if (!e.target.closest("[data-process-row]")) {
+        setOpenStep(null);
+      }
+    };
+    document.addEventListener("click", closeOnOutsideClick);
+    return () => document.removeEventListener("click", closeOnOutsideClick);
+  }, []);
+
   return (
     <>
       <main className="relative z-10 w-full min-h-screen bg-white text-gray-900 font-sans overflow-hidden">
 
         {/*  1. INTRO STATEMENT  */}
-        <section className="relative w-full bg-white px-5 sm:px-10 md:px-16 lg:px-24 py-12 sm:py-20 md:py-28 mt-12 sm:mt-0">
+        <section className="relative w-full bg-white px-5 sm:px-10 md:px-16 lg:px-24 py-12 sm:py-20 md:py-28 mt-12 sm:mt-20">
           <div className="max-w-[1600px] mx-auto">
             <Reveal>
               <div className="mb-6">
-                <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-gray-900 leading-tight sm:max-w-4xl max-w-4xl">
+                <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-gray-900 
+                leading-tight sm:max-w-4xl max-w-4xl">
                   One Studio. Three Disciplines. <h1>End-To-End Delivery.</h1>
                 </h2>
               </div>
@@ -263,17 +397,17 @@ const Services = () => {
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${heroBg})` }}
           />
-          <div className="absolute inset-0 z-0 bg-white/50 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 z-0" />
 
           <div className="relative z-10 max-w-[1800px] mx-auto px-6 sm:px-12 md:px-16 lg:px-38">
             <Reveal>
-              <div className="mb-12 md:mb-20">
+              <div className="-mb-5 md:mb-20">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                   <h2 className="text-2xl sm:text-5xl text-[#5b7fc7] lg:text-5xl font-mono font-bold  leading-tight">
                     Design · Build · Supply
                   </h2>
 
-                  <p className="ml-auto text-base sm:text-lg md:text-xl font-mono text-gray-700 max-w-md text-left leading-snug">
+                  <p className="ml-auto text-base mr-5 sm:text-lg md:text-xl font-mono text-gray-700 max-w-md text-left leading-snug">
                     From architecture and engineering to construction, fit-out and sourcing.
                   </p>
                 </div>
@@ -327,14 +461,14 @@ const Services = () => {
         </section>
 
         {/*  4. FULL SERVICE INDEX  */}
-        <section className="relative w-full bg-white px-5 sm:px-10 md:px-16 lg:px-24 py-16 sm:py-24 md:py-32">
+        <section className="relative w-full bg-white px-5 sm:px-10 md:px-16 lg:px-70 py-16 sm:py-24 md:py-32">
           <div className="w-full max-w-[1920px] mx-auto">
             <Reveal>
               <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                 <div>
-                  <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.3em] text-[#5b7fc7]">
+                  {/* <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.3em] text-[#5b7fc7]">
                     — Complete Service Index
-                  </span>
+                  </span> */}
                   <h2 className="mt-2 text-2xl sm:text-4xl lg:text-5xl font-mono font-bold text-gray-900 leading-tight">
                     Everything Under One Roof
                   </h2>
@@ -473,18 +607,14 @@ const Services = () => {
               </button>
             </div>
 
-            {/*  HOW WE BUILD SECTION  */}
+            {/*  HOW WE BUILD SECTION (same layout & steps as About page)  */}
             <div
               ref={processRef}
-              className="mt-14 md:mt-24 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start 
-              pt-12 border-t border-gray-200"
+              className="mt-14 md:mt-24 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start"
             >
               {/* Left Header */}
-              <div className="lg:col-span-4 sticky top-28 pt-4">
-                <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.3em] text-[#5b7fc7]">
-                  — How We Build
-                </span>
-                <h2 className="mt-2 text-2xl sm:text-4xl lg:text-5xl font-mono font-bold text-gray-900 leading-tight">
+              <div className="lg:col-span-4 sticky top-28 pt-8">
+                <h2 className="inline-block text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:ml-5 uppercase tracking-[0.1em] text-gray-900 font-bold font-mono">
                   How We Build
                 </h2>
               </div>
@@ -503,26 +633,27 @@ const Services = () => {
                       onMouseLeave={() => setHoveredProcess(null)}
                       onClick={() => handleStepClick(idx)}
                       data-process-row={idx}
-                      className="border-b border-gray-300 py-4 md:py-6 cursor-pointer transition-colors duration-300 group"
+                      className="border-b border-gray-300 py-5 md:py-7 cursor-pointer transition-colors duration-300 group"
                     >
                       {/* Title Container with Blue Number */}
                       <div className="flex items-center justify-between gap-3 md:gap-6 w-full">
                         <div className="flex items-baseline gap-3 md:gap-6 min-w-0">
-                          <span className="text-sm sm:text-lg font-mono font-extrabold tracking-wider text-[#5b7fc7] mr-2 sm:mr-6 shrink-0">
+                          <span className="text-sm sm:text-base md:text-lg lg:text-xl font-mono font-normal text-gray-500 mr-3 sm:mr-8 shrink-0">
                             Step: {item.num}
                           </span>
                           <h3
-                            className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl font-mono font-medium transition-all duration-300 ${isHovered
+                            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-mono tracking-tight transition-all duration-300 ${
+                              isHovered
                                 ? "text-gray-950 font-semibold"
-                                : "text-gray-800 group-hover:text-gray-950"
-                              }`}
+                                : "text-gray-800 font-medium group-hover:text-gray-950"
+                            }`}
                           >
                             {item.title}
                           </h3>
                         </div>
 
                         <ArrowUpRight
-                          size={18}
+                          size={16}
                           onClick={(e) => {
                             e.stopPropagation();
                             handleStepClick(idx);
@@ -534,27 +665,36 @@ const Services = () => {
                       {/* Expandable Description Directly Under Title */}
                       <div
                         onClick={(e) => e.stopPropagation()}
-                        className={`grid transition-all duration-500 ease-in-out ${isHovered || (isTouchDevice && openStep === idx)
-                            ? "grid-rows-[1fr] opacity-100 pt-3 md:pt-5"
+                        className={`grid transition-all duration-500 ease-in-out ${
+                          isHovered || (isTouchDevice && openStep === idx)
+                            ? "grid-rows-[1fr] opacity-100 pt-4 md:pt-6 md:ml-10"
                             : "grid-rows-[0fr] opacity-0"
-                          }`}
+                        }`}
                       >
-                        <div className="overflow-hidden sm:ml-34 ml-22">
-                          <p className="text-sm sm:text-2xl font-mono leading-relaxed text-gray-700 max-w-3xl mb-3 md:mb-5">
+                        <div className="overflow-hidden ml-22 sm:ml-25">
+                          <p className="text-base sm:text-lg md:text-xl font-mono leading-relaxed text-gray-900 max-w-4xl mb-4 md:mb-6">
                             {item.description}
                           </p>
 
-                          <ul className="flex flex-wrap gap-x-4 gap-y-2 pt-3 border-t border-gray-200">
-                            {item.points.map((pt, pIdx) => (
-                              <li
-                                key={pIdx}
-                                className="text-sm sm:text-base font-mono font-semibold text-gray-600 uppercase tracking-wider flex items-center gap-2"
-                              >
-                                <span className="h-1.5 w-1.5 rounded-full bg-[#5b7fc7]" />
-                                {pt}
-                              </li>
-                            ))}
-                          </ul>
+                          <div className="pt-4 border-t border-gray-200">
+                            {item.points.map((pt, pIdx) => {
+                              const Icon = pointIcons[pt.icon];
+                              return (
+                                <div
+                                  key={pIdx}
+                                  className="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-b-0"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#5b7fc7] shrink-0" />
+                                    <span className="text-sm sm:text-base md:text-lg font-mono font-semibold text-gray-700 uppercase tracking-wider">
+                                      {pt.name}
+                                    </span>
+                                  </div>
+                                  {/* {Icon && <Icon size={18} className="text-gray-400 shrink-0" />} */}
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -565,12 +705,10 @@ const Services = () => {
                 <div className="mt-8 flex justify-start">
                   <button
                     onClick={handleProcessToggle}
-                    className="group relative overflow-hidden flex items-center gap-3 text-xs sm:text-sm font-bold tracking-[0.15em]
-                     text-gray-900 uppercase font-mono bg-white border border-gray-400 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full
-                      shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer"
+                    className="group relative overflow-hidden flex items-center gap-3 text-xs sm:text-sm font-bold
+                     tracking-[0.15em] text-gray-900 uppercase font-mono bg-white border border-gray-400 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer"
                   >
-                    <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 
-                    group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+                    <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
 
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                       {showMoreProcess ? "Show Less" : "See More Steps"}
@@ -616,7 +754,8 @@ const Services = () => {
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center">
                 <a
                   href="tel:+8801711000000"
-                  className="group relative overflow-hidden inline-flex items-center gap-3 px-6 sm:px-7 py-4 bg-[#333333] text-white rounded-none border border-[#333333] transition-all duration-500 hover:bg-transparent hover:text-[#333333]"
+                  className="group relative overflow-hidden inline-flex items-center gap-3 px-6 sm:px-7 py-4 bg-[#333333] text-white
+                   rounded-none border border-[#333333] transition-all duration-500 hover:bg-transparent hover:text-[#333333]"
                 >
                   <span className="relative z-10 text-xs sm:text-sm font-mono font-bold tracking-[0.15em] uppercase">
                     Discuss Your Project

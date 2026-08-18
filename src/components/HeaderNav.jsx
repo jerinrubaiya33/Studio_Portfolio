@@ -1,17 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logoImage from "/src/assets/studioDNA_logo_black.png";
-import whiteLogo from "/src/assets/studioDNA_logo.png";
 import menuBg from "/src/assets/menu_bg.png";
 
 function HeaderNav() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // The Services page hero is dark, so the header uses the white logo there;
-  // the Studio page and home/projects use the black logo.
-  const activeLogo =
-    location.pathname === "/services" ? whiteLogo : logoImage;
+  const activeLogo = logoImage;
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -72,8 +68,8 @@ function HeaderNav() {
     { label: "Studio", href: "/studio" },
     // { label: "About", href: "#about" },
     { label: "Services", href: "/services" },
-    { label: "Who We Are", href: "#who-we-are" },
-    { label: "Contact", href: "#contact" },
+    { label: "News", href: "#news" },
+    { label: "Contact", href: "/contact" },
   ];
 
   // Section to scroll to after navigating to the home page (cross-page anchor click)
@@ -168,7 +164,7 @@ function HeaderNav() {
               className={`w-auto object-contain ml-4 sm:ml-8 md:ml-20 transition-all duration-300 ease-in-out ${
                 isScrolled
                   ? "h-10 sm:h-14 md:h-22"
-                  : "h-20 sm:h-16 md:h-28"
+                  : "h-20 sm:h-16 md:h-26"
               }`}
             />
           </a>

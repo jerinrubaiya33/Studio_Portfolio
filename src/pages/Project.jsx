@@ -14,21 +14,13 @@ import AKM from "../assets/akm.png";
 import ProjectsBg from "../assets/projectsbg.png";
 
 const allProjects = [
-  {
-    id: "kindergarten-madrassa",
-    title: "Kindergarten Madrassa",
-    location: "Purbachal, Dhaka",
-    area: "22 Bigha",
-    timeline: "2022–2024",
-    image: Kindergarten,
-  },
-  {
-    id: "simin-complex",
-    title: "Simin Complex",
-    location: "Nokla, Sherpur",
-    area: "10 Katha",
-    timeline: "2024",
-    image: Simin,
+    {
+    id: "bashanta-bilash",
+    title: "Bashanta Bilash",
+    location: "Tarabo, Kachpur, Narayangonj",
+    area: "35 Bigha +",
+    timeline: "2020–Present",
+    image: Bashanta,
   },
   {
     id: "bangladesh-eye-hospital",
@@ -37,6 +29,14 @@ const allProjects = [
     area: "1.5 Acre",
     timeline: "2023",
     image: HospitalImg,
+  },
+  {
+    id: "simin-complex",
+    title: "Simin Complex",
+    location: "Nokla, Sherpur",
+    area: "10 Katha",
+    timeline: "2024",
+    image: Simin,
   },
   {
     id: "jb-apartment",
@@ -62,14 +62,7 @@ const allProjects = [
     timeline: "2021–Present",
     image: bashantaInte,
   },
-  {
-    id: "bashanta-bilash",
-    title: "Bashanta Bilash",
-    location: "Tarabo, Kachpur, Narayangonj",
-    area: "35 Bigha +",
-    timeline: "2020–Present",
-    image: Bashanta,
-  },
+
   {
     id: "akm-restaurant",
     title: "AKM Restaurant & Convention Center",
@@ -77,6 +70,14 @@ const allProjects = [
     area: "4,500 Sqft",
     timeline: "2023",
     image: AKM,
+  },
+   {
+    id: "kindergarten-madrassa",
+    title: "Kindergarten Madrassa",
+    location: "Purbachal, Dhaka",
+    area: "22 Bigha",
+    timeline: "2022–2024",
+    image: Kindergarten,
   },
 ];
 

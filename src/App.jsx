@@ -120,6 +120,7 @@ import LoadingScreen from './components/LoadingScreen';
 import News from './pages/News';
 import Studio from './pages/Studio';
 import Services from './pages/Services';
+import ContactPage from './pages/ContactPage';
 
 // Catches any runtime error in the app so the user never sees a blank page
 class ErrorBoundary extends Component {
@@ -238,12 +239,15 @@ function AppContent() {
   const isProjectDetailsPage = location.pathname.startsWith('/projects/');
   const isStudioPage = location.pathname === '/studio';
   const isServicesPage = location.pathname === '/services';
+  const isContactPage = location.pathname === '/contact';
 
   return (
     <ErrorBoundary>
       <ScrollToTop />
       {!isProjectDetailsPage && <HeaderNav />}
-      {!isFullProjectPage && !isStudioPage && !isServicesPage && <Navbar />}
+      {!isFullProjectPage && !isStudioPage && !isServicesPage && !isContactPage && (
+        <Navbar />
+      )}
 
       <Routes>
         <Route path="/" element={<MainLandingPage />} />
@@ -251,6 +255,7 @@ function AppContent() {
         <Route path="/projects/:id" element={<ProjectDetails />} />
         <Route path="/studio" element={<Studio />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/exterior-portfolio" element={<ExteriorPortfolio />} />
         <Route path="/interior-portfolio" element={<InteriorPortfolio />} />
       </Routes>
