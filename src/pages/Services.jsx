@@ -461,19 +461,19 @@ const Services = () => {
         </section>
 
         {/*  4. FULL SERVICE INDEX  */}
-        <section className="relative w-full bg-white px-5 sm:px-10 md:px-16 lg:px-70 py-16 sm:py-24 md:py-32">
+        <section className="relative w-full bg-white px-4 sm:px-8 md:px-12 lg:px-60 py-12 sm:py-16 md:py-24">
           <div className="w-full max-w-[1920px] mx-auto">
             <Reveal>
-              <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                 <div>
-                  {/* <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.3em] text-[#5b7fc7]">
+                  {/* <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-[#5b7fc7]">
                     — Complete Service Index
                   </span> */}
-                  <h2 className="mt-2 text-2xl sm:text-4xl lg:text-5xl font-mono font-bold text-gray-900 leading-tight">
+                  <h2 className="mt-2 text-lg sm:text-2xl lg:text-3xl font-mono font-bold text-gray-900 leading-tight">
                     Everything Under One Roof
                   </h2>
                 </div>
-                <p className="text-sm sm:text-base font-mono text-gray-600 max-w-md md:text-right">
+                <p className="text-[11px] sm:text-xs font-mono text-gray-600 max-w-sm md:text-right">
                   Tap or hover over a service to preview what it covers. Every line of work is delivered by the same studio that designed it.
                 </p>
               </div>
@@ -505,10 +505,10 @@ const Services = () => {
                           : "hover:bg-gray-100 text-gray-900"
                         }`}
                     >
-                      <div className="flex items-center justify-between py-5 sm:py-6 md:py-7 px-3 sm:px-5">
-                        <div className="flex items-center gap-4 sm:gap-8 md:gap-10 z-10">
+                      <div className="flex items-center justify-between py-3.5 sm:py-4 md:py-5 px-2 sm:px-4">
+                        <div className="flex items-center gap-3 sm:gap-6 md:gap-8 z-10">
                           <span
-                            className={`text-sm sm:text-lg font-mono font-extrabold tracking-wider transition-colors duration-300 ${isHovered || activeServiceIndex === index
+                            className={`text-[11px] sm:text-xs md:text-sm font-mono font-extrabold tracking-wider transition-colors duration-300 ${isHovered || activeServiceIndex === index
                                 ? "text-white/90"
                                 : "text-gray-400"
                               }`}
@@ -516,8 +516,8 @@ const Services = () => {
                             {item.num}
                           </span>
                           <h3
-                            className={`text-lg sm:text-2xl md:text-3xl lg:text-4xl font-mono font-medium transition-transform duration-500 ease-out ${isHovered || activeServiceIndex === index
-                                ? "translate-x-3 sm:translate-x-5 font-semibold"
+                            className={`text-sm sm:text-lg md:text-xl lg:text-2xl font-mono font-medium transition-transform duration-500 ease-out ${isHovered || activeServiceIndex === index
+                                ? "translate-x-2 sm:translate-x-4 font-semibold"
                                 : "text-gray-900"
                               }`}
                           >
@@ -526,7 +526,7 @@ const Services = () => {
                         </div>
 
                         <ArrowUpRight
-                          size={22}
+                          size={18}
                           className={`z-10 shrink-0 transition-all duration-300 ${isHovered || activeServiceIndex === index
                               ? "rotate-45 scale-110 opacity-100 text-white"
                               : "text-gray-400 opacity-60 group-hover:opacity-100"
@@ -541,9 +541,9 @@ const Services = () => {
                             : "grid-rows-[0fr] opacity-0"
                           }`}
                       >
-                        <div className="overflow-hidden px-3 sm:px-5">
-                          <div className="pb-5 sm:pb-6 pt-1 border-t border-white/20">
-                            <p className="text-sm sm:text-base font-mono leading-relaxed text-white/90 font-medium">
+                        <div className="overflow-hidden px-2 sm:px-4">
+                          <div className="pb-4 sm:pb-5 pt-1 border-t border-white/20">
+                            <p className="text-[11px] sm:text-xs font-mono leading-relaxed text-white/90 font-medium">
                               {item.description}
                             </p>
                           </div>
@@ -556,7 +556,7 @@ const Services = () => {
                             top: `${hoverPos.y}px`,
                             left: `${hoverPos.x}px`,
                           }}
-                          className="hidden lg:flex -mt-52 absolute z-30 h-[300px] w-[560px] shadow-2xl overflow-hidden border border-white/60 pointer-events-none transition-all duration-150 ease-out bg-white/95 backdrop-blur-md"
+                          className="hidden lg:flex -mt-44 absolute z-30 h-[240px] w-[460px] shadow-2xl overflow-hidden border border-white/60 pointer-events-none transition-all duration-150 ease-out bg-white/95 backdrop-blur-md"
                         >
                           <div className="w-1/2 h-full overflow-hidden">
                             <img
@@ -565,8 +565,8 @@ const Services = () => {
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <div className="w-1/2 h-full p-6 flex flex-col justify-center text-left">
-                            <p className="text-base font-mono leading-relaxed text-gray-800 font-medium">
+                          <div className="w-1/2 h-full p-4 flex flex-col justify-center text-left">
+                            <p className="text-[11px] sm:text-xs font-mono leading-relaxed text-gray-800 font-medium">
                               {item.description}
                             </p>
                           </div>
@@ -579,13 +579,13 @@ const Services = () => {
             </Reveal>
 
             {/* See More Services Button */}
-            <div className="mt-8 flex justify-start">
+            <div className="mt-6 flex justify-start">
               <button
                 onClick={handleServicesToggle}
-                className="group relative overflow-hidden flex items-center gap-3 text-xs sm:text-sm font-bold
-                 tracking-[0.15em] text-gray-900 uppercase font-mono bg-white border border-gray-400 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer"
+                className="group relative overflow-hidden flex items-center gap-2 text-[9px] sm:text-[10px] font-bold
+                  tracking-[0.15em] text-gray-900 uppercase font-mono bg-white border border-gray-400 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer"
               >
-                <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+                <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-12 h-12 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
 
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                   {showMoreServices ? "Show Less" : "See More Services"}
@@ -594,13 +594,13 @@ const Services = () => {
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                   {showMoreServices ? (
                     <ChevronUp
-                      size={16}
-                      className="transition-transform duration-300 group-hover:-translate-y-1"
+                      size={14}
+                      className="transition-transform duration-300 group-hover:-translate-y-0.5"
                     />
                   ) : (
                     <ChevronDown
-                      size={16}
-                      className="transition-transform duration-300 group-hover:translate-y-1"
+                      size={14}
+                      className="transition-transform duration-300 group-hover:translate-y-0.5"
                     />
                   )}
                 </span>
@@ -610,11 +610,11 @@ const Services = () => {
             {/*  HOW WE BUILD SECTION (same layout & steps as About page)  */}
             <div
               ref={processRef}
-              className="mt-14 md:mt-24 w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start"
+              className="mt-10 md:mt-16 w-full grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start"
             >
               {/* Left Header */}
-              <div className="lg:col-span-4 sticky top-28 pt-8">
-                <h2 className="inline-block text-2xl sm:text-3xl md:text-4xl lg:text-5xl lg:ml-5 uppercase tracking-[0.1em] text-gray-900 font-bold font-mono">
+              <div className="lg:col-span-4 sticky top-24 pt-6">
+                <h2 className="inline-block text-lg sm:text-xl md:text-2xl lg:text-3xl lg:ml-4 uppercase tracking-[0.1em] text-gray-900 font-bold font-mono">
                   How We Build
                 </h2>
               </div>
@@ -633,16 +633,16 @@ const Services = () => {
                       onMouseLeave={() => setHoveredProcess(null)}
                       onClick={() => handleStepClick(idx)}
                       data-process-row={idx}
-                      className="border-b border-gray-300 py-5 md:py-7 cursor-pointer transition-colors duration-300 group"
+                      className="border-b border-gray-300 py-3.5 md:py-5 cursor-pointer transition-colors duration-300 group"
                     >
                       {/* Title Container with Blue Number */}
-                      <div className="flex items-center justify-between gap-3 md:gap-6 w-full">
-                        <div className="flex items-baseline gap-3 md:gap-6 min-w-0">
-                          <span className="text-sm sm:text-base md:text-lg lg:text-xl font-mono font-normal text-gray-500 mr-3 sm:mr-8 shrink-0">
+                      <div className="flex items-center justify-between gap-3 md:gap-5 w-full">
+                        <div className="flex items-baseline gap-2.5 md:gap-5 min-w-0">
+                          <span className="text-[10px] sm:text-xs md:text-sm font-mono font-normal text-gray-500 mr-2 sm:mr-6 shrink-0">
                             Step: {item.num}
                           </span>
                           <h3
-                            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-mono tracking-tight transition-all duration-300 ${
+                            className={`text-sm sm:text-lg md:text-xl lg:text-2xl font-mono tracking-tight transition-all duration-300 ${
                               isHovered
                                 ? "text-gray-950 font-semibold"
                                 : "text-gray-800 font-medium group-hover:text-gray-950"
@@ -653,7 +653,7 @@ const Services = () => {
                         </div>
 
                         <ArrowUpRight
-                          size={16}
+                          size={14}
                           onClick={(e) => {
                             e.stopPropagation();
                             handleStepClick(idx);
@@ -667,30 +667,31 @@ const Services = () => {
                         onClick={(e) => e.stopPropagation()}
                         className={`grid transition-all duration-500 ease-in-out ${
                           isHovered || (isTouchDevice && openStep === idx)
-                            ? "grid-rows-[1fr] opacity-100 pt-4 md:pt-6 md:ml-10"
+                            ? "grid-rows-[1fr] opacity-100 pt-3 md:pt-4 md:ml-5"
                             : "grid-rows-[0fr] opacity-0"
                         }`}
                       >
-                        <div className="overflow-hidden ml-22 sm:ml-25">
-                          <p className="text-base sm:text-lg md:text-xl font-mono leading-relaxed text-gray-900 max-w-4xl mb-4 md:mb-6">
+                        <div className="overflow-hidden ml-[4.5rem] sm:ml-[5.5rem]">
+                          <p className="text-[11px] sm:text-xs md:text-sm font-mono leading-relaxed text-gray-900 max-w-3xl
+                           mb-3 md:mb-4">
                             {item.description}
                           </p>
 
-                          <div className="pt-4 border-t border-gray-200">
+                          <div className="pt-3 border-t border-gray-200">
                             {item.points.map((pt, pIdx) => {
                               const Icon = pointIcons[pt.icon];
                               return (
                                 <div
                                   key={pIdx}
-                                  className="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-b-0"
+                                  className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
                                 >
                                   <div className="flex items-center gap-2">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-[#5b7fc7] shrink-0" />
-                                    <span className="text-sm sm:text-base md:text-lg font-mono font-semibold text-gray-700 uppercase tracking-wider">
+                                    <span className="h-1 w-1 rounded-full bg-[#5b7fc7] shrink-0" />
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-mono font-semibold text-gray-700 uppercase tracking-wider">
                                       {pt.name}
                                     </span>
                                   </div>
-                                  {/* {Icon && <Icon size={18} className="text-gray-400 shrink-0" />} */}
+                                  {/* {Icon && <Icon size={16} className="text-gray-400 shrink-0" />} */}
                                 </div>
                               );
                             })}
@@ -702,13 +703,13 @@ const Services = () => {
                 })}
 
                 {/* See More Steps Button */}
-                <div className="mt-8 flex justify-start">
+                <div className="mt-6 flex justify-start">
                   <button
                     onClick={handleProcessToggle}
-                    className="group relative overflow-hidden flex items-center gap-3 text-xs sm:text-sm font-bold
-                     tracking-[0.15em] text-gray-900 uppercase font-mono bg-white border border-gray-400 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer"
+                    className="group relative overflow-hidden flex items-center gap-2 text-[9px] sm:text-[10px] font-bold
+                      tracking-[0.15em] text-gray-900 uppercase font-mono bg-white border border-gray-400 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer"
                   >
-                    <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+                    <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-12 h-12 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
 
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                       {showMoreProcess ? "Show Less" : "See More Steps"}
@@ -717,13 +718,13 @@ const Services = () => {
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                       {showMoreProcess ? (
                         <ChevronUp
-                          size={16}
-                          className="transition-transform duration-300 group-hover:-translate-y-1"
+                          size={14}
+                          className="transition-transform duration-300 group-hover:-translate-y-0.5"
                         />
                       ) : (
                         <ChevronDown
-                          size={16}
-                          className="transition-transform duration-300 group-hover:translate-y-1"
+                          size={14}
+                          className="transition-transform duration-300 group-hover:translate-y-0.5"
                         />
                       )}
                     </span>

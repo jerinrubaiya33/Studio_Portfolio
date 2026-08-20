@@ -403,14 +403,14 @@ const Studio = () => {
               <Reveal>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
                   <div>
-                    <span className="text-sm sm:text-base font-mono uppercase tracking-widest text-[#5b7fc7] font-bold">
+                    {/* <span className="text-sm sm:text-base font-mono uppercase tracking-widest text-[#5b7fc7] font-bold">
                        Leadership & Talent
-                    </span>
+                    </span> */}
                     <h3 className="mt-1 sm:mt-2 text-2xl sm:text-4xl lg:text-5xl font-mono font-bold text-gray-900">
                       Our People
                     </h3>
                   </div>
-                  <p className="text-base sm:text-lg font-mono text-gray-600 max-w-lg">
+                  <p className="text-base sm:text-lg mb-0 sm:-mb-1 font-mono text-gray-600 max-w-lg">
                     A collective of dedicated architects, structural experts, and visionaries driving design excellence.
                   </p>
                 </div>
@@ -429,8 +429,7 @@ const Studio = () => {
                   </div>
                 </Reveal>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 gap-x-3 sm:gap-x-4 
-                lg:gap-x-0 gap-y-10 sm:gap-y-12">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:gap-x-6 gap-y-10 sm:gap-y-12">
                   {PARTNERS.map((member, idx) => (
                     <Reveal key={member.name} delay={idx * 100} className="w-full">
                       <div className="flex flex-col group w-full max-w-[140px] sm:max-w-[250px]">

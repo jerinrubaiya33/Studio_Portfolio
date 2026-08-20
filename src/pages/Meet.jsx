@@ -433,7 +433,8 @@ const Meet = () => {
 
   return (
     <section
-      className="relative  w-full bg-cover  bg-center bg-no-repeat text-neutral-900 font-mono flex items-center justify-center sm:min-h-screen py-10 sm:py-16 px-4 sm:px-8 lg:px-12"
+      className="relative  w-full bg-cover  bg-center bg-no-repeat text-neutral-900 font-mono flex items-center
+       justify-center sm:min-h-screen py-10 sm:py-16 px-4 sm:px-8 lg:px-12"
       style={{ backgroundImage: `url(${aboutBg})` }}
     >
       {/* Background Darkening Overlay */}
@@ -443,12 +444,12 @@ const Meet = () => {
       <div className="relative z-10 w-full max-w-[2400px] space-y-6 lg:space-y-10  mb-6 lg:mb-30">
 
         {/* Main Heading */}
-        <div className="space-y-2 lg:ml-275 lg:-mb-200">
+        <div className="space-y-2 lg:ml-195 lg:-mb-200">
           {/* <div className="space-y-2"> */}
-          <h1 className="text-4xl lg:mt-50 mt-4 sm:text-5xl md:text-6xl font-mono font-normal text-neutral-800 tracking-tight">
+          <h1 className="text-4xl lg:mt-20 mt-4 sm:text-5xl md:text-5xl font-mono font-normal text-neutral-800 tracking-tight">
             Have a project?
           </h1>
-          <h2 className="text-5xl lg:mb-30 mb-6 sm:text-6xl md:text-7xl font-mono font-bold text-neutral-950 tracking-tight">
+          <h2 className="text-5xl lg:mb-30 mb-6 sm:text-6xl md:text-5xl font-mono font-bold text-neutral-950 tracking-tight">
             Let's discuss
           </h2>
         </div>
@@ -457,24 +458,24 @@ const Meet = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
           {/* Left Side: Wider Card with Extra Large Fonts */}
-          <div id="left-form-section" className="order-2  lg:order-none lg:col-span-7 lg:ml-15 lg:mr-25 bg-white/95 backdrop-blur-md 
-          rounded-[40px] px-6 py-4 sm:px-20 sm:py-12 md:px-12 md:py-8 lg:px-16 lg:py-10 shadow-2xl border border-white/60 flex flex-col justify-between lg:mt-150">
+          <div id="left-form-section" className="order-2 lg:order-none lg:col-span-7 lg:ml-10 lg:mr-16 bg-white/95 backdrop-blur-md
+        rounded-[28px] px-8 py-6 sm:px-12 sm:py-8 md:px-8 md:py-6 lg:px-10 lg:py-6 shadow-xl border border-white/60 flex flex-col
+         justify-between lg:mt-200 max-w-2xl mx-auto">
 
             {!isBooked && !pendingBooking ? (
-              <form onSubmit={handleBookingSubmit} className="space-y-4 sm:space-y-5">
+              <form onSubmit={handleBookingSubmit} className="space-y-3 sm:space-y-4">
 
                 {/* Consultation Heading */}
                 <div>
-                  <h3 className="text-xl sm:text-3xl md:text-3xl mb-6 lg:mb-10 -ml-1 font-semibold font-mono tracking-tight">
+                  <h3 className="text-lg sm:text-2xl md:text-2xl mb-4 lg:mb-6 -ml-1 font-semibold font-mono tracking-tight">
                     <span className="text-neutral-500 font-normal">Consultation with </span>
                     <span className="text-[#5b7fc7]">{confirmedArchitect.name}</span>
                   </h3>
                 </div>
 
                 {/* Name and Email Inputs */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                  <div className="space-y-3">
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
                     <input
                       type="text"
                       placeholder="Your Name"
@@ -482,12 +483,11 @@ const Meet = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full pb-3 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-sm sm:text-[18px] font-medium"
+                      className="w-full pb-2 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-xs sm:text-base font-medium"
                     />
                   </div>
 
-                  <div className="space-y-3">
-
+                  <div className="space-y-2">
                     <input
                       type="email"
                       placeholder="Example@mail.com"
@@ -495,26 +495,27 @@ const Meet = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full pb-3 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-sm sm:text-[18px] font-medium"
+                      className="w-full pb-2 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors text-xs sm:text-base font-medium"
                     />
                   </div>
                 </div>
 
                 {/* Project Details Input */}
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <textarea
-                    rows={3}
+                    rows={2}
                     placeholder="Tell us about your timeline, scope, or design ideas..."
                     value={formData.project}
                     onChange={(e) =>
                       setFormData({ ...formData, project: e.target.value })
                     }
-                    className="w-full pb-0 mb-2 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors resize-none text-sm sm:text-[18px] font-medium leading-none block"
+                    className="w-full pb-0 mb-1 border-b-2 border-neutral-300 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-[#5b7fc7] transition-colors resize-none text-xs sm:text-base font-medium leading-normal block"
                   />
                 </div>
+
                 {/* Date Picker */}
-                <div className="space-y-3 pt-2">
-                  <label className="block text-xs sm:text-lg font-semibold font-mono  tracking-wider text-neutral-800">
+                <div className="space-y-2 pt-1">
+                  <label className="block text-xs sm:text-sm font-semibold font-mono tracking-wider text-neutral-800">
                     Select Date
                   </label>
                   <div className="relative">
@@ -535,10 +536,10 @@ const Meet = () => {
                       minDate={getMinDate()}
                       dateFormat="MM/dd/yyyy"
                       placeholderText="mm/dd/yyyy"
-                      className="!pr-12 w-full p-3 sm:p-4 bg-white border border-gray-300 rounded-lg text-gray-700 text-sm sm:text-lg font-normal focus:outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7]/30 cursor-pointer placeholder:text-gray-400"
+                      className="!pr-10 w-full p-2.5 sm:p-3 bg-white border border-gray-300 rounded-lg text-gray-700 text-xs sm:text-base font-normal focus:outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7]/30 cursor-pointer placeholder:text-gray-400"
                     />
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
@@ -546,11 +547,11 @@ const Meet = () => {
                 </div>
 
                 {/* Time Slots */}
-                <div className="space-y-3">
-                  <label className="block text-xs sm:text-lg font-semibold font-mono mb-3 sm:mb-6 mt-3 sm:mt-10  tracking-wider text-neutral-800">
+                <div className="space-y-2">
+                  <label className="block text-xs sm:text-sm font-semibold font-mono mb-2 sm:mb-3 mt-2 sm:mt-4 tracking-wider text-neutral-800">
                     Available Time Slots
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                     {timeSlots.map((time) => {
                       const taken = selectedDate
                         ? isSlotTaken(confirmedArchitect.id, selectedDate, time)
@@ -563,7 +564,7 @@ const Meet = () => {
                           type="button"
                           disabled={taken}
                           onClick={() => setSelectedTime(time)}
-                          className={`pb-3 pt-2 text-xs tracking-tight sm:text-lg sm:tracking-normal font-normal transition-all cursor-pointer text-center focus:outline-none border-b-2 ${taken
+                          className={`pb-2 pt-1 text-xs sm:text-sm tracking-tight sm:tracking-normal font-normal transition-all cursor-pointer text-center focus:outline-none border-b-2 ${taken
                             ? "text-neutral-300 border-neutral-200 line-through cursor-not-allowed"
                             : active
                               ? "text-[#5b7fc7] border-[#5b7fc7] font-black"
@@ -576,9 +577,10 @@ const Meet = () => {
                     })}
                   </div>
                 </div>
+
                 {/* Error Banner */}
                 {formError && (
-                  <p className="text-sm font-bold text-red-600 bg-red-50 p-4 rounded-2xl border border-red-200">
+                  <p className="text-xs font-bold text-red-600 bg-red-50 p-3 rounded-xl border border-red-200">
                     {formError}
                   </p>
                 )}
@@ -587,8 +589,8 @@ const Meet = () => {
                 <button
                   type="submit"
                   disabled={isSendingCode}
-                  className="group relative overflow-hidden w-full lg:w-[420px] lg:mx-auto flex items-center justify-center gap-3 py-2.5 lg:py-3.5 text-lg font-black tracking-[0.05em]
-                  text-white bg-[#5b7fc7] border-2 border-[#5b7fc7] rounded-full shadow-md hover:shadow-xl hover:border-white transition-all duration-500 cursor-pointer disabled:opacity-60"
+                  className="group relative overflow-hidden w-full lg:w-[320px] lg:mx-auto flex items-center justify-center gap-2 py-2 lg:py-2.5 text-base font-black tracking-[0.05em]
+                  text-white bg-[#5b7fc7] border-2 border-[#5b7fc7] rounded-full shadow-md hover:shadow-lg hover:border-white transition-all duration-500 cursor-pointer disabled:opacity-60"
                 >
                   <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-[#5b7fc7]">
@@ -598,15 +600,15 @@ const Meet = () => {
               </form>
             ) : pendingBooking ? (
               /* Verification Step */
-              <form onSubmit={handleVerificationSubmit} className="space-y-4 my-auto text-center py-6">
-                <div className="space-y-3">
-                  <span className="text-sm font-bold uppercase tracking-widest text-[#5b7fc7] bg-blue-50 px-4 py-2 rounded-full">
+              <form onSubmit={handleVerificationSubmit} className="space-y-3 my-auto text-center py-4">
+                <div className="space-y-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#5b7fc7] bg-blue-50 px-3 py-1 rounded-full">
                     Verification Required
                   </span>
-                  <h3 className="text-2xl sm:text-4xl font-mono font-extrabold text-neutral-900 mt-4">
+                  <h3 className="text-xl sm:text-2xl font-mono font-extrabold text-neutral-900 mt-2">
                     Enter Verification Code
                   </h3>
-                  <p className="text-sm sm:text-lg text-neutral-600">
+                  <p className="text-xs sm:text-sm text-neutral-600">
                     We sent a 6-digit confirmation code to{" "}
                     <strong className="text-neutral-900">{pendingBooking.email}</strong>
                   </p>
@@ -614,17 +616,17 @@ const Meet = () => {
 
                 {/* OTP Box Display */}
                 <div
-                  className="flex justify-center gap-2 sm:gap-3 my-4 sm:my-5 cursor-text w-full max-w-xl mx-auto"
+                  className="flex justify-center gap-2 my-3 cursor-text w-full max-w-md mx-auto"
                   onClick={() => document.getElementById('otp-input').focus()}
                 >
                   {otpDigits.map((digit, i) => (
                     <div
                       key={i}
-                      className={`flex-1 max-w-16 aspect-square flex items-center justify-center border-2 rounded-xl sm:rounded-2xl text-base sm:text-2xl font-black transition-all duration-200 ${digit
-                          ? "border-[#5b7fc7] bg-[#5b7fc7]/10 text-[#5b7fc7]"
-                          : i === verificationInput.length
-                            ? "border-[#5b7fc7] bg-white animate-pulse"
-                            : "border-neutral-300 bg-neutral-50 text-neutral-900"
+                      className={`flex-1 max-w-12 aspect-square flex items-center justify-center border-2 rounded-lg text-sm sm:text-lg font-black transition-all duration-200 ${digit
+                        ? "border-[#5b7fc7] bg-[#5b7fc7]/10 text-[#5b7fc7]"
+                        : i === verificationInput.length
+                          ? "border-[#5b7fc7] bg-white animate-pulse"
+                          : "border-neutral-300 bg-neutral-50 text-neutral-900"
                         }`}
                     >
                       {digit || "·"}
@@ -645,47 +647,47 @@ const Meet = () => {
                       e.target.value.replace(/\D/g, "").slice(0, 6)
                     )
                   }
-                  className="w-full max-w-2xl mx-auto p-3 sm:p-4 text-center bg-neutral-50 border-2 border-neutral-300 rounded-2xl text-neutral-900 text-base sm:text-xl tracking-widest font-bold focus:outline-none focus:border-[#5b7fc7] focus:ring-2 focus:ring-[#5b7fc7]/20 mx-auto block placeholder:text-neutral-400 placeholder:text-base sm:placeholder:text-lg"
+                  className="w-full max-w-md mx-auto p-2.5 text-center bg-neutral-50 border-2 border-neutral-300 rounded-xl text-neutral-900 text-sm sm:text-base tracking-widest font-bold focus:outline-none focus:border-[#5b7fc7] focus:ring-2 focus:ring-[#5b7fc7]/20 block placeholder:text-neutral-400 placeholder:text-xs sm:placeholder:text-sm"
                 />
 
                 {verificationError && (
-                  <p className="text-sm font-bold text-red-600 bg-red-50 p-3 rounded-xl max-w-2xl mx-auto">
+                  <p className="text-xs font-bold text-red-600 bg-red-50 p-2.5 rounded-lg max-w-md mx-auto">
                     {verificationError}
                   </p>
                 )}
 
                 {verificationNotice && (
-                  <p className="text-sm sm:text-lg font-mono font-bold text-[#5b7fc7] bg-blue-50 py-4 px-6 rounded-xl max-w-2xl mx-auto">
+                  <p className="text-xs sm:text-sm font-mono font-bold text-[#5b7fc7] bg-blue-50 py-3 px-4 rounded-lg max-w-md mx-auto">
                     {verificationNotice}
                   </p>
                 )}
 
-                <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto">
+                <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
                   <button
                     type="button"
                     onClick={() => setPendingBooking(null)}
-                    className="flex-1 whitespace-nowrap p-3 sm:p-4 bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold text-sm sm:text-lg rounded-2xl transition-all cursor-pointer"
+                    className="flex-1 whitespace-nowrap p-2.5 bg-neutral-200 hover:bg-neutral-300 text-neutral-900 font-bold text-xs sm:text-sm rounded-xl transition-all cursor-pointer"
                   >
                     ← Back to Edit
                   </button>
 
                   <button
                     type="submit"
-                    className="flex-1 whitespace-nowrap p-3 sm:p-4 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-sm sm:text-lg rounded-2xl transition-all shadow-lg cursor-pointer"
+                    className="flex-1 whitespace-nowrap p-2.5 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-xs sm:text-sm rounded-xl transition-all shadow-md cursor-pointer"
                   >
                     Verify & Lock Slot
                   </button>
                 </div>
 
-                {/* Resend Code — styled like the "Book a Consultant" button */}
-                <div className="mt-5 space-y-3">
-                  <p className="text-sm sm:text-base text-neutral-500">Didn't receive the code?</p>
+                {/* Resend Code */}
+                <div className="mt-4 space-y-2">
+                  <p className="text-xs sm:text-sm text-neutral-500">Didn't receive the code?</p>
                   <button
                     type="button"
                     onClick={handleResendCode}
                     disabled={isResending}
-                    className="group relative overflow-hidden w-full max-w-md mx-auto flex items-center justify-center gap-3 py-4 text-sm sm:text-lg font-black tracking-[0.05em]
-                    text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer disabled:opacity-60"
+                    className="group relative overflow-hidden w-full max-w-xs mx-auto flex items-center justify-center gap-2 py-2.5 text-xs sm:text-sm font-black tracking-[0.05em]
+                    text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer disabled:opacity-60"
                   >
                     <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
@@ -696,15 +698,15 @@ const Meet = () => {
               </form>
             ) : (
               /* Success Confirmation */
-              <div className="text-center space-y-4 my-auto py-6">
-                <div className="w-20 h-20 bg-[#5b7fc7] text-white rounded-full flex items-center justify-center mx-auto text-4xl font-extrabold shadow-lg">
+              <div className="text-center space-y-3 my-auto py-4">
+                <div className="w-14 h-14 bg-[#5b7fc7] text-white rounded-full flex items-center justify-center mx-auto text-2xl font-extrabold shadow-md">
                   ✓
                 </div>
-                <div className="space-y-3">
-                  <h3 className="text-2xl sm:text-4xl font-extrabold text-neutral-900">
+                <div className="space-y-2">
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-neutral-900">
                     Call Successfully Scheduled!
                   </h3>
-                  <p className="text-sm sm:text-xl text-neutral-600 max-w-lg mx-auto">
+                  <p className="text-xs sm:text-base text-neutral-600 max-w-md mx-auto">
                     Your appointment with <strong>{confirmedArchitect.name}</strong> is locked for{" "}
                     <strong className="text-neutral-900">{selectedDate}</strong> at{" "}
                     <strong className="text-neutral-900">{selectedTime}</strong>.
@@ -714,7 +716,7 @@ const Meet = () => {
                 <button
                   type="button"
                   onClick={handleResetForm}
-                  className="py-4 px-8 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-sm sm:text-xl rounded-2xl transition-all cursor-pointer shadow-lg"
+                  className="py-2.5 px-6 bg-[#5b7fc7] hover:bg-[#4c6eb6] text-white font-black text-xs sm:text-base rounded-xl transition-all cursor-pointer shadow-md"
                 >
                   Schedule Another Consultation
                 </button>
@@ -722,18 +724,18 @@ const Meet = () => {
             )}
 
             {/* Prefer Email Section */}
-            <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-neutral-200 space-y-3">
-              <p className="text-sm sm:text-lg font-bold text-neutral-700">
+            <div className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-neutral-200 space-y-2">
+              <p className="text-xs sm:text-sm font-bold text-neutral-700">
                 Prefer email?
               </p>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-sm sm:text-xl font-serif text-neutral-500 font-semibold">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs sm:text-base font-serif text-neutral-500 font-semibold">
                   hello@studioDNA.design
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="px-4 py-1.5 text-sm font-serif bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-bold rounded-full transition-colors cursor-pointer"
+                  className="px-3 py-1 text-xs font-serif bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-bold rounded-full transition-colors cursor-pointer"
                 >
                   {copiedEmail ? "Copied!" : "Copy"}
                 </button>
@@ -741,24 +743,23 @@ const Meet = () => {
             </div>
 
           </div>
-
-          {/* Right Side: Shorter Height, Wider Card & Large Text */}
-          <div className="order-1 lg:order-none lg:col-span-5 lg:mt-200 bg-white/95 backdrop-blur-md rounded-[40px]
-           p-4 sm:p-8 lg:p-10 shadow-2xl border border-white/60 flex flex-col justify-between space-y-4 sm:space-y-5">
+          {/* Right Side: Compact Architect Profile Card */}
+          <div className="order-1 lg:order-none lg:col-span-5 lg:mt-192 bg-white/95 backdrop-blur-md rounded-[28px]
+ p-4 sm:p-6 lg:p-6 shadow-xl border border-white/60 flex flex-col justify-between space-y-3 sm:space-y-4 max-w-xl mx-auto">
 
             {/* Header & Controls */}
-            <div className="flex items-center justify-between pb-2 sm:pb-5 border-b border-neutral-200">
-              <span className="text-sm font-extrabold uppercase tracking-widest text-neutral-400 font-mono">
+            <div className="flex items-center justify-between pb-2 sm:pb-3 border-b border-neutral-200">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-neutral-400 font-mono">
                 Architect ({currentArchitectIndex + 1} / {architects.length})
               </span>
 
               {/* Carousel Arrows */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={handlePrevArchitect}
                   aria-label="Previous Architect"
-                  className="w-11 h-11 rounded-full bg-neutral-100 hover:bg-[#5b7fc7] hover:text-white flex items-center justify-center text-neutral-900 font-black text-lg transition-all cursor-pointer shadow-sm"
+                  className="w-9 h-9 rounded-full bg-neutral-100 hover:bg-[#5b7fc7] hover:text-white flex items-center justify-center text-neutral-900 font-black text-base transition-all cursor-pointer shadow-sm"
                 >
                   ←
                 </button>
@@ -766,43 +767,43 @@ const Meet = () => {
                   type="button"
                   onClick={handleNextArchitect}
                   aria-label="Next Architect"
-                  className="w-11 h-11 rounded-full bg-neutral-100 hover:bg-[#5b7fc7] hover:text-white flex items-center justify-center text-neutral-900 font-black text-lg transition-all cursor-pointer shadow-sm"
+                  className="w-9 h-9 rounded-full bg-neutral-100 hover:bg-[#5b7fc7] hover:text-white flex items-center justify-center text-neutral-900 font-black text-base transition-all cursor-pointer shadow-sm"
                 >
                   →
                 </button>
               </div>
             </div>
 
-            {/* Profile Details with Increased Typography */}
-            <div className="space-y-4 lg:space-y-8">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            {/* Profile Details with Scaled-Down Typography */}
+            <div className="space-y-3 lg:space-y-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <img
                   src={selectedArchitect.image}
                   alt={selectedArchitect.name}
-                  className="w-32 h-32 sm:w-40 sm:h-52 rounded-3xl object-cover shadow-xl border-2 border-neutral-100"
+                  className="w-24 h-24 sm:w-28 sm:h-36 rounded-2xl object-cover shadow-lg border border-neutral-100"
                 />
-                <div className="space-y-2">
-                  <h4 className="text-xl sm:text-2xl font-extrabold text-neutral-900 leading-tight">
+                <div className="space-y-1">
+                  <h4 className="text-lg sm:text-xl font-extrabold text-neutral-900 leading-tight">
                     {selectedArchitect.name}
                   </h4>
-                  <p className="text-sm sm:text-lg font-bold text-[#5b7fc7]">
+                  <p className="text-xs sm:text-sm font-bold text-[#5b7fc7]">
                     {selectedArchitect.role}
                   </p>
                 </div>
               </div>
 
-              <p className="text-lg text-neutral-700 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-neutral-700 leading-relaxed font-normal">
                 "{selectedArchitect.bio}"
               </p>
             </div>
 
             {/* Book a Consultant Button */}
-            <div className="pt-3">
+            <div className="pt-2">
               <button
                 type="button"
                 onClick={handleScrollToForm}
-                className="group relative overflow-hidden w-full lg:w-[420px] lg:mx-auto flex items-center justify-center gap-3 py-4 lg:py-5 text-lg font-black tracking-[0.05em]
-                text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
+                className="group relative overflow-hidden w-full lg:w-[320px] lg:mx-auto flex items-center justify-center gap-2 py-2.5 lg:py-3 text-sm sm:text-base font-black tracking-[0.05em]
+      text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer"
               >
                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">

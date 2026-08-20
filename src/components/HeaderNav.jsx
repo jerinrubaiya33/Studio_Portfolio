@@ -161,10 +161,10 @@ function HeaderNav() {
             <img
               src={activeLogo}
               alt="Studio DNA Logo"
-              className={`w-auto object-contain ml-4 sm:ml-8 md:ml-20 transition-all duration-300 ease-in-out ${
+              className={`w-auto object-contain ml-4 sm:ml-8 md:ml-14 transition-all duration-300 ease-in-out ${
                 isScrolled
                   ? "h-10 sm:h-14 md:h-22"
-                  : "h-20 sm:h-16 md:h-26"
+                  : "h-20 sm:h-16 md:h-20"
               }`}
             />
           </a>
@@ -173,7 +173,8 @@ function HeaderNav() {
           <button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open Navigation Menu"
-            className="group relative overflow-hidden flex items-center mr-8 sm:mr-8 md:mr-18 gap-2 sm:gap-2.5 px-3.5 py-2 md:px-4 md:py-2 bg-white text-black rounded-sm border-2 border-transparent group-hover:border-white transition-all duration-500 hover:scale-[1.03] active:scale-95 focus:outline-none touch-manipulation"
+            className="group relative overflow-hidden  flex items-center mr-8 sm:mr-8 md:mr-18 gap-2 sm:gap-2.5 px-3.5 py-2 md:px-4 md:py-2 bg-white text-black rounded-sm border-1
+             group-hover:border-white transition-all duration-500 hover:scale-[1.03] active:scale-95 focus:outline-none touch-manipulation"
           >
             {/* Animated Expanding Circle from Bottom Center */}
             <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-900 ease-out pointer-events-none" />
