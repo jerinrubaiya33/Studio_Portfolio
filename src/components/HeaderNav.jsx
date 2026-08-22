@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import logoImage from "/src/assets/studioDNA_logo_black.png";
+import logoImage from "/src/assets/studioDNA_logo.png";
 import menuBg from "/src/assets/menu_bg.png";
 
 function HeaderNav() {
@@ -152,7 +152,7 @@ function HeaderNav() {
         } ${
           isScrolled
             ? "bg-transparent py-1 border-b border-white/10 shadow-sm"
-            : "bg-transparent py-2.5 sm:py-3 md:py-4 border-b border-white/10"
+            : "bg-transparent py-2.5 sm:py-3 md:py-4 border-b border-transparent"
         }`}
       >
         <div className="w-full max-w-full flex items-center justify-between px-0">
@@ -163,8 +163,8 @@ function HeaderNav() {
               alt="Studio DNA Logo"
               className={`w-auto object-contain ml-4 sm:ml-8 md:ml-14 transition-all duration-300 ease-in-out ${
                 isScrolled
-                  ? "h-10 sm:h-14 md:h-22"
-                  : "h-20 sm:h-16 md:h-20"
+                  ? "h-18 sm:h-14 md:h-22"
+                  : "h-20 sm:h-16 md:h-24"
               }`}
             />
           </a>
@@ -173,7 +173,7 @@ function HeaderNav() {
           <button
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open Navigation Menu"
-            className="group relative overflow-hidden  flex items-center mr-8 sm:mr-8 md:mr-18 gap-2 sm:gap-2.5 px-3.5 py-2 md:px-4 md:py-2 bg-white text-black rounded-sm border-1
+            className="group relative overflow-hidden  flex items-center mr-8 sm:mr-8 md:mr-18 gap-2 sm:gap-2.5 px-3.5 py-2 md:px-4 md:py-2 bg-white text-black rounded-sm 
              group-hover:border-white transition-all duration-500 hover:scale-[1.03] active:scale-95 focus:outline-none touch-manipulation"
           >
             {/* Animated Expanding Circle from Bottom Center */}
@@ -187,7 +187,8 @@ function HeaderNav() {
 
             {/* Menu Text */}
             <span
-              className="relative z-10 text-[11px] sm:text-[12px] md:text-[13px] font-bold tracking-widest uppercase transition-colors duration-500 group-hover:text-white"
+              className="relative z-10 text-[11px] sm:text-[12px] md:text-[13px] font-bold tracking-widest uppercase
+              transition-colors duration-500 group-hover:text-white"
               style={{ fontFamily: "'serif', sans-serif" }}
             >
               Menu
