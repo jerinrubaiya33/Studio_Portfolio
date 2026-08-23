@@ -6,6 +6,21 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+/* Hero Slider Continuous Scroll */
+@keyframes hero-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-slider-track {
+  animation: hero-scroll 45s linear infinite;
+  will-change: transform;
+}
+
 /* Compact Professional & Classy Date Picker */
 .react-datepicker-wrapper {
   width: 100%;

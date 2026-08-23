@@ -438,75 +438,6 @@
 
 
 
-import React from "react";
-import { motion } from "framer-motion";
-
-const images = [
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1080&q=75",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1080&q=75",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1080&q=75",
-  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1080&q=75",
-];
-
-function HeroSlider() {
-  const duplicatedImages = [...images, ...images];
-
-  return (
-    <div className="relative z-0 w-full h-[100dvh] overflow-hidden flex items-center bg-black">
-      {/* Top Gradient Overlay */}
-      <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
-
-      {/* Hardware-Accelerated Continuous Track */}
-      <motion.div
-        className="flex w-max will-change-transform items-center"
-        style={{ transform: "translateZ(0)" }}
-        animate={{
-          x: ["0%", "-50%"],
-        }}
-        transition={{
-          duration: 50, // Calibrated slow panning speed for large full-height slides
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop",
-        }}
-      >
-        {duplicatedImages.map((src, index) => (
-          <div
-            key={index}
-            // Mobile: w-[150dvh] + h-[100dvh] guarantees maximum screen height while keeping exact 3:2 uncropped image ratio
-            className="w-[150dvh] h-[100dvh] md:w-[100vw] md:h-screen flex-none relative overflow-hidden"
-          >
-            <img
-              src={src}
-              alt={`Slide ${(index % images.length) + 1}`}
-              className="w-full h-full object-cover transform-gpu"
-              loading={index < 2 ? "eager" : "lazy"}
-              decoding="async"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-export default HeroSlider;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React from "react";
 // import { motion } from "framer-motion";
 
@@ -521,19 +452,18 @@ export default HeroSlider;
 //   const duplicatedImages = [...images, ...images];
 
 //   return (
-//     <div className="relative z-0 w-full overflow-hidden flex items-center bg-black">
+//     <div className="relative z-0 w-full h-[100dvh] overflow-hidden flex items-center bg-black">
 //       {/* Top Gradient Overlay */}
 //       <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
 
-//       {/* Hardware-Accelerated Track */}
+//       {/* Hardware-Accelerated Continuous Track */}
 //       <motion.div
 //         className="flex w-max will-change-transform items-center"
-//         style={{ transform: "translateZ(0)" }}
 //         animate={{
 //           x: ["0%", "-50%"],
 //         }}
 //         transition={{
-//           duration: 45, // Smooth, slow pan across wide full-height slides
+//           duration: 50, // Calibrated slow panning speed for large full-height slides
 //           ease: "linear",
 //           repeat: Infinity,
 //           repeatType: "loop",
@@ -542,8 +472,8 @@ export default HeroSlider;
 //         {duplicatedImages.map((src, index) => (
 //           <div
 //             key={index}
-//             // Mobile: 210vw width + 140vw height (or 95dvh) maxes out screen height with 100% uncropped 3:2 images
-//             className="w-[210vw] h-[140vw] sm:h-[95dvh] md:w-[100vw] md:h-screen flex-none relative overflow-hidden"
+//             // Mobile: w-[150dvh] + h-[100dvh] guarantees maximum screen height while keeping exact 3:2 uncropped image ratio
+//             className="w-[150dvh] h-[100dvh] md:w-[100vw] md:h-screen flex-none relative overflow-hidden"
 //           >
 //             <img
 //               src={src}
@@ -560,3 +490,61 @@ export default HeroSlider;
 // }
 
 // export default HeroSlider;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React from "react";
+
+const images = [
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1080&q=75",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1080&q=75",
+  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1080&q=75",
+  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1080&q=75",
+];
+
+function HeroSlider() {
+  const duplicatedImages = [...images, ...images];
+
+  return (
+    <div className="relative z-0 w-full overflow-hidden flex items-center bg-black">
+      {/* Top Gradient Overlay */}
+      <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
+
+      {/* Hardware-Accelerated Track — CSS animation runs on compositor thread, no mobile freeze */}
+      <div
+        className="flex w-max items-center hero-slider-track"
+      >
+        {duplicatedImages.map((src, index) => (
+          <div
+            key={index}
+            // Mobile: 210vw width + 140vw height (or 95dvh) maxes out screen height with 100% uncropped 3:2 images
+            className="w-[210vw] h-[140vw] sm:h-[95dvh] md:w-[100vw] md:h-screen flex-none relative overflow-hidden"
+          >
+            <img
+              src={src}
+              alt={`Slide ${(index % images.length) + 1}`}
+              className="w-full h-full object-cover transform-gpu"
+              loading={index < 2 ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default HeroSlider;
