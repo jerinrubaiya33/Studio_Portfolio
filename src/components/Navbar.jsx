@@ -1,547 +1,144 @@
-// import React from "react";
-// import landingImage from "/src/assets/Torfi_Agnarsson.jpg";
-// import mobileLandingImage from "/src/assets/landing11_mobile.jpg";
-
-// function Navbar() {
-//   return (
-//     <div className="sticky top-0 z-0 w-full h-screen h-[100dvh] overflow-hidden">
-//       {/* Image */}
-//       <picture className="w-full h-full block">
-//         <source
-//           media="(max-width: 639px)"
-//           srcSet={mobileLandingImage}
-//         />
-
-//         <img
-//           src={landingImage}
-//           alt="Studio DNA Landing Page"
-//           className="w-full h-full object-cover grayscale-90 object-center"
-//         />
-//       </picture>
-
-//       {/* Bottom black gradient */}
-//       <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black via-black/75 to-transparent pointer-events-none" />
-
-//       {/* Hero Title */}
-//       <div className="absolute bottom-8 left-6 right-6 sm:bottom-12 sm:left-12 sm:right-12 md:bottom-16 md:left-16 lg:bottom-20 lg:left-24">
-//         <h1 className="max-w-6xl font-mono text-4xl sm:text-xl md:text-5xl lg:text-5xl xl:text-5xl font-light leading-[0.95] tracking-tight text-white">
-//           Architecture that{" "}
-//           <span className="italic font-normal">Connects People</span>
-//           <br />
-//           with Place, Light and Material
-//         </h1>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import landingImage from "/src/assets/Torfi_Agnarsson.jpg";
-// import mobileLandingImage from "/src/assets/Torfi_Agnarsson.jpg";
-
-// function Navbar() {
-//   return (
-//     <div className="w-full">
-//       {/* Title Section */}
-//       <section className="w-full min-h-[45vh] flex items-end sm:mt-0 -mt-20 px-6 pb-10 sm:px-12 sm:pb-12 md:px-16 md:pb-16 lg:px-24 lg:pb-20">
-//         <h1 className="max-w-6xl font-mono text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-light leading-[0.95]
-//          tracking-tight text-black">
-//           Architecture that Connects People
-//           <br />
-//           with Place, Light and Material<span className="text-[#0077B5]">.</span>
-//         </h1>
-//       </section>
-
-//       {/* Image Section */}
-//       <section className="w-full h-[55vh] md:h-[95vh] overflow-hidden">
-//         <picture className="w-full h-full block">
-//           <source
-//             media="(max-width: 639px)"
-//             srcSet={mobileLandingImage}
-//           />
-
-//           <img
-//             src={landingImage}
-//             alt="Studio DNA Architecture"
-//             className="w-full h-full object-cover grayscale object-center"
-//           />
-//         </picture>
-//       </section>
-//     </div>
-//   );
-// }
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-
-// // Distinct images for testing contrast between slides
-// const carouselItems = [
-//   {
-//     desktop:
-//       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
-//     mobile:
-//       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-//     alt: "Modern Concrete Villa",
-//   },
-//   {
-//     desktop:
-//       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
-//     mobile:
-//       "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-//     alt: "Minimalist Architectural Interior",
-//   },
-//   {
-//     desktop:
-//       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
-//     mobile:
-//       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-//     alt: "Modern Glass Architecture",
-//   },
-// ];
-
-// function Navbar() {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   // Auto-switch images every 4 seconds
-//   useEffect(() => {
-//     const timer = setInterval(() => {
-//       setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselItems.length);
-//     }, 4000);
-
-//     return () => clearInterval(timer);
-//   }, []);
-
-//   return (
-//     <div className="sticky top-0 z-0 w-full h-screen h-[100dvh] overflow-hidden bg-black">
-//       {/* Background Carousel */}
-//       <AnimatePresence mode="popLayout">
-//         <motion.div
-//           key={currentIndex}
-//           initial={{ opacity: 0, scale: 1.05 }}
-//           animate={{ opacity: 1, scale: 1 }}
-//           exit={{ opacity: 0 }}
-//           transition={{ duration: 1.2, ease: "easeInOut" }}
-//           className="absolute inset-0 w-full h-full"
-//         >
-//           <picture className="w-full h-full block">
-//             <source
-//               media="(max-width: 639px)"
-//               srcSet={carouselItems[currentIndex].mobile}
-//             />
-//             <img
-//               src={carouselItems[currentIndex].desktop}
-//               alt={carouselItems[currentIndex].alt}
-//               className="w-full h-full object-cover  object-center"
-//             />
-//           </picture>
-//         </motion.div>
-//       </AnimatePresence>
-
-//       {/* Bottom black gradient */}
-//       <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black via-black/75 to-transparent pointer-events-none z-10" />
-
-//       {/* Hero Title */}
-//       <div className="absolute bottom-8 left-6 right-6 sm:bottom-12 sm:left-12 sm:right-12 md:bottom-16 md:left-16 lg:bottom-20 lg:left-24 z-20">
-//         <h1 className="max-w-6xl font-mono text-4xl sm:text-xl md:text-5xl lg:text-5xl xl:text-5xl font-light leading-[0.95] tracking-tight text-white">
-//           Architecture that{" "}
-//           <span className="italic font-normal">Connects People</span>
-//           <br />
-//           with Place, Light and Material
-//         </h1>
-
-//         {/* Carousel Indicators */}
-//         <div className="flex gap-2 mt-6">
-//           {carouselItems.map((_, index) => (
-//             <button
-//               key={index}
-//               onClick={() => setCurrentIndex(index)}
-//               className={`h-1 transition-all duration-500 rounded-full ${
-//                 index === currentIndex ? "w-8 bg-white" : "w-2 bg-white/40"
-//               }`}
-//               aria-label={`Go to slide ${index + 1}`}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect } from "react";
-// import { motion, useMotionValue, animate } from "framer-motion";
-
-// const images = [
-//   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
-//   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
-//   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
-//   "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1920&q=80",
-// ];
-
-// function Navbar() {
-//   const x = useMotionValue(0);
-
-//   useEffect(() => {
-//     // Total distance across 4 slides
-//     const totalDistance = -3 * window.innerWidth;
-    
-//     // Increased duration to 36 seconds for a much slower, seamless crawl
-//     const duration = 36;
-
-//     const controls = animate(x, totalDistance, {
-//       ease: "linear",
-//       duration: duration,
-//       repeat: Infinity,
-//       repeatType: "loop",
-//       repeatDelay: 0,
-//     });
-
-//     return () => controls.stop();
-//   }, [x]);
-
-//   return (
-//     <div className="sticky top-0 z-0 w-full h-screen h-[100dvh] overflow-hidden">
-//       {/* Horizontal Continuous Track */}
-//       <motion.div
-//         style={{ x }}
-//         className="flex w-[400vw] h-full"
-//       >
-//         {/* SLIDE 1: First 80% crop of Image 1 */}
-//         <div className="w-[100vw] h-full flex-shrink-0 relative overflow-hidden">
-//           <img
-//             src={images[0]}
-//             alt="Image 1 (0-80%)"
-//             className="absolute top-0 left-0 h-full max-w-none w-[125%] object-cover"
-//             style={{ objectPosition: "0% center" }}
-//           />
-//         </div>
-
-//         {/* SLIDE 2: Image 1 Rest (20%) + Image 2 First 80% */}
-//         <div className="w-[100vw] h-full flex flex-shrink-0">
-//           <div className="w-[20%] h-full overflow-hidden relative">
-//             <img
-//               src={images[0]}
-//               alt="Image 1 (80-100%)"
-//               className="absolute top-0 right-0 h-full max-w-none w-[500%] object-cover"
-//               style={{ objectPosition: "100% center" }}
-//             />
-//           </div>
-//           <div className="w-[80%] h-full overflow-hidden relative">
-//             <img
-//               src={images[1]}
-//               alt="Image 2 (0-80%)"
-//               className="absolute top-0 left-0 h-full max-w-none w-[125%] object-cover"
-//               style={{ objectPosition: "0% center" }}
-//             />
-//           </div>
-//         </div>
-
-//         {/* SLIDE 3: Image 2 Rest (20%) + Image 3 First 80% */}
-//         <div className="w-[100vw] h-full flex flex-shrink-0">
-//           <div className="w-[20%] h-full overflow-hidden relative">
-//             <img
-//               src={images[1]}
-//               alt="Image 2 (80-100%)"
-//               className="absolute top-0 right-0 h-full max-w-none w-[500%] object-cover"
-//               style={{ objectPosition: "100% center" }}
-//             />
-//           </div>
-//           <div className="w-[80%] h-full overflow-hidden relative">
-//             <img
-//               src={images[2]}
-//               alt="Image 3 (0-80%)"
-//               className="absolute top-0 left-0 h-full max-w-none w-[125%] object-cover"
-//               style={{ objectPosition: "0% center" }}
-//             />
-//           </div>
-//         </div>
-
-//         {/* SLIDE 4: Image 3 Rest (20%) + Image 4 First 80% */}
-//         <div className="w-[100vw] h-full flex flex-shrink-0">
-//           <div className="w-[20%] h-full overflow-hidden relative">
-//             <img
-//               src={images[2]}
-//               alt="Image 3 (80-100%)"
-//               className="absolute top-0 right-0 h-full max-w-none w-[500%] object-cover"
-//               style={{ objectPosition: "100% center" }}
-//             />
-//           </div>
-//           <div className="w-[80%] h-full overflow-hidden relative">
-//             <img
-//               src={images[3]}
-//               alt="Image 4 (0-80%)"
-//               className="absolute top-0 left-0 h-full max-w-none w-[125%] object-cover"
-//               style={{ objectPosition: "0% center" }}
-//             />
-//           </div>
-//         </div>
-//       </motion.div>
-
-//       {/* Hero Overlay & Text Content */}
-//       <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
-
-//       <div className="absolute bottom-8 left-6 right-6 sm:bottom-12 sm:left-12 sm:right-12 md:bottom-16 md:left-16 lg:bottom-20 lg:left-24 z-20 pointer-events-none">
-//         <h1 className="max-w-6xl font-mono text-4xl sm:text-xl md:text-5xl lg:text-5xl xl:text-5xl font-light leading-[0.95] tracking-tight text-white drop-shadow-md">
-//           Architecture that{" "}
-//           <span className="italic font-normal">Connects People</span>
-//           <br />
-//           with Place, Light and Material
-//         </h1>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Navbar;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { motion } from "framer-motion";
-
-// const images = [
-//   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
-//   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80",
-//   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80",
-//   "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1920&q=80",
-// ];
-
-// function HeroSlider() {
-//   const duplicatedImages = [...images, ...images];
-
-//   return (
-//     <div className="relative z-0 w-full h-[100dvh] overflow-hidden bg-black">
-//       {/* Top Gradient Overlay */}
-//       <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-black/50 to-transparent z-10 pointer-events-none" />
-
-//       {/* Horizontal Continuous Track */}
-//       <motion.div
-//         className="flex h-full w-max"
-//         animate={{ x: ["0%", "-50%"] }}
-//         transition={{
-//           ease: "linear",
-//           duration: 36,
-//           repeat: Infinity,
-//           repeatType: "loop",
-//         }}
-//       >
-//         {duplicatedImages.map((src, index) => (
-//           <div
-//             key={index}
-//             className="w-[100vw] h-full flex-none relative overflow-hidden"
-//           >
-//             <img
-//               src={src}
-//               alt={`Slide ${(index % images.length) + 1}`}
-//               className="w-full h-full object-cover object-center"
-//               loading={index < 2 ? "eager" : "lazy"}
-//             />
-//           </div>
-//         ))}
-//       </motion.div>
-//     </div>
-//   );
-// }
-
-// export default HeroSlider;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { motion } from "framer-motion";
-
-// const images = [
-//   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1080&q=75",
-//   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1080&q=75",
-//   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1080&q=75",
-//   "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1080&q=75",
-// ];
-
-// function HeroSlider() {
-//   const duplicatedImages = [...images, ...images];
-
-//   return (
-//     <div className="relative z-0 w-full h-[100dvh] overflow-hidden flex items-center bg-black">
-//       {/* Top Gradient Overlay */}
-//       <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
-
-//       {/* Hardware-Accelerated Continuous Track */}
-//       <motion.div
-//         className="flex w-max will-change-transform items-center"
-//         animate={{
-//           x: ["0%", "-50%"],
-//         }}
-//         transition={{
-//           duration: 50, // Calibrated slow panning speed for large full-height slides
-//           ease: "linear",
-//           repeat: Infinity,
-//           repeatType: "loop",
-//         }}
-//       >
-//         {duplicatedImages.map((src, index) => (
-//           <div
-//             key={index}
-//             // Mobile: w-[150dvh] + h-[100dvh] guarantees maximum screen height while keeping exact 3:2 uncropped image ratio
-//             className="w-[150dvh] h-[100dvh] md:w-[100vw] md:h-screen flex-none relative overflow-hidden"
-//           >
-//             <img
-//               src={src}
-//               alt={`Slide ${(index % images.length) + 1}`}
-//               className="w-full h-full object-cover transform-gpu"
-//               loading={index < 2 ? "eager" : "lazy"}
-//               decoding="async"
-//             />
-//           </div>
-//         ))}
-//       </motion.div>
-//     </div>
-//   );
-// }
-
-// export default HeroSlider;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React from "react";
-
-const images = [
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1080&q=75",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1080&q=75",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1080&q=75",
-  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1080&q=75",
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, animate, AnimatePresence } from "framer-motion";
+
+const projects = [
+  {
+    id: 1,
+    title: "Modern Minimalist Villa",
+    category: "Architecture / Interior",
+    location: "Zurich, Switzerland",
+    year: "2024",
+    imgUrl: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2560&q=90",
+  },
+  {
+    id: 2,
+    title: "Monochrome Penthouse",
+    category: "Residential Design",
+    location: "Tokyo, Japan",
+    year: "2023",
+    imgUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2560&q=90",
+  },
+  {
+    id: 3,
+    title: "The Glass Pavilion",
+    category: "Commercial Space",
+    location: "Oslo, Norway",
+    year: "2024",
+    imgUrl: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=2560&q=90",
+  },
+  {
+    id: 4,
+    title: "Urban Horizon Tower",
+    category: "Exterior Architecture",
+    location: "New York, USA",
+    year: "2023",
+    imgUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2560&q=90",
+  },
 ];
 
+const getSrcSet = (baseUrl) => {
+  const cleanUrl = baseUrl.split("?")[0];
+  return [1200, 1920, 2560, 3840]
+    .map((w) => `${cleanUrl}?auto=format&fit=crop&w=${w}&q=85 ${w}w`)
+    .join(", ");
+};
+
 function HeroSlider() {
-  const duplicatedImages = [...images, ...images];
+  const x = useMotionValue(0);
+  const trackRef = useRef(null);
+
+  const [activeProject, setActiveProject] = useState(projects[0]);
+
+  const duplicatedProjects = [...projects, ...projects];
+
+  useEffect(() => {
+    if (!trackRef.current) return;
+
+    const singleSetWidth = trackRef.current.scrollWidth / 2;
+    const duration = 45;
+
+    const controls = animate(x, -singleSetWidth, {
+      ease: "linear",
+      duration: duration,
+      repeat: Infinity,
+      repeatType: "loop",
+      repeatDelay: 0,
+      onUpdate: (latestX) => {
+        const firstSlide = trackRef.current?.children[0];
+        const slideWidth = firstSlide ? firstSlide.offsetWidth : window.innerWidth * 1.5;
+
+        const currentPos = Math.abs(latestX);
+        const currentIndex = Math.floor(currentPos / slideWidth) % projects.length;
+        const progressInSlide = currentPos % slideWidth;
+
+        if (progressInSlide >= slideWidth * 0.7) {
+          setActiveProject(null);
+        } else {
+          setActiveProject(projects[currentIndex]);
+        }
+      },
+    });
+
+    return () => controls.stop();
+  }, [x]);
 
   return (
-    <div className="relative z-0 w-full overflow-hidden flex items-center bg-black">
+    <div className="relative z-0 min-h-[100dvh] w-full overflow-hidden bg-black">
       {/* Top Gradient Overlay */}
-      <div className="absolute top-0 left-0 right-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none" />
+      <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-black/50 to-transparent sm:h-32 md:h-40" />
 
-      {/* Hardware-Accelerated Track — CSS animation runs on compositor thread, no mobile freeze */}
-      <div
-        className="flex w-max items-center hero-slider-track"
+      {/* Panoramic Continuous Motion Track */}
+      <motion.div
+        ref={trackRef}
+        style={{ x }}
+        className="flex h-[100dvh] w-max"
       >
-        {duplicatedImages.map((src, index) => (
+        {duplicatedProjects.map((project, index) => (
           <div
-            key={index}
-            // Mobile: 210vw width + 140vw height (or 95dvh) maxes out screen height with 100% uncropped 3:2 images
-            className="w-[210vw] h-[140vw] sm:h-[95dvh] md:w-[100vw] md:h-screen flex-none relative overflow-hidden"
+            key={`${project.id}-${index}`}
+            className="relative flex h-full w-[max(150vw,150dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
           >
+            {/* Slide Image */}
             <img
-              src={src}
-              alt={`Slide ${(index % images.length) + 1}`}
-              className="w-full h-full object-cover transform-gpu"
+              src={project.imgUrl}
+              srcSet={getSrcSet(project.imgUrl)}
+              sizes="max(150vw, 150dvh)"
+              alt={project.title}
+              className="block h-full w-full transform-gpu object-cover object-center"
               loading={index < 2 ? "eager" : "lazy"}
               decoding="async"
             />
           </div>
         ))}
+      </motion.div>
+
+      {/* Fixed Bottom Gradient Overlay */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-black via-gray-950/60 to-transparent sm:h-1/2" />
+
+      {/* Fixed Description Overlay */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:p-10 md:p-16">
+        <AnimatePresence mode="wait">
+          {activeProject && (
+            <motion.div
+              key={activeProject.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="max-w-xl space-y-1 sm:space-y-2"
+            >
+              <span className="font-mono text-xs font-extrabold uppercase tracking-widest text-gray-300 sm:text-sm">
+                {activeProject.category}
+              </span>
+              <h2 className="font-sans text-2xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+                {activeProject.title}
+              </h2>
+              <p className="font-mono text-xs font-extrabold text-gray-300 sm:text-base">
+                {activeProject.location} &bull; {activeProject.year}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
