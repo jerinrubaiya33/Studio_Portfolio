@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, ArrowUp } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import officeImage from "../assets/akm.png";
 import office2Image from "../assets/sushi.png";
 import logo from "/src/assets/studioDNA_logo_black.png";
@@ -23,23 +23,6 @@ const SocialIcon = ({ children, label, href, activeColor }) => (
 
 export default function Footer() {
   const year = new Date().getFullYear();
-
-  // Scroll to the top of whichever element actually scrolls the page.
-  const handleBackToTop = (e) => {
-    let node = e.currentTarget.parentElement;
-    while (node) {
-      const overflowY = window.getComputedStyle(node).overflowY;
-      if (
-        /(auto|scroll|overlay)/.test(overflowY) &&
-        node.scrollHeight > node.clientHeight
-      ) {
-        node.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
-      node = node.parentElement;
-    }
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <footer
@@ -375,17 +358,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Floating Back to Top */}
-      <button
-        onClick={handleBackToTop}
-        aria-label="Back to top"
-        className="group fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#5b7fc7] text-white shadow-md transition-all duration-300 hover:h-9 hover:w-9 hover:shadow-lg cursor-pointer"
-      >
-        <ArrowUp
-          size={16}
-          className="opacity-100 scale-100 transition-all duration-300 sm:opacity-0 sm:scale-50 sm:group-hover:opacity-100 sm:group-hover:scale-100"
-        />
-      </button>
+
     </footer>
   );
 }

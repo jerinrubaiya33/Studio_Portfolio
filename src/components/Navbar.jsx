@@ -43,6 +43,7 @@ const getSrcSet = (baseUrl) => {
     .join(", ");
 };
 
+
 function HeroSlider() {
   const x = useMotionValue(0);
   const trackRef = useRef(null);
@@ -71,7 +72,7 @@ function HeroSlider() {
         const currentIndex = Math.floor(currentPos / slideWidth) % projects.length;
         const progressInSlide = currentPos % slideWidth;
 
-        if (progressInSlide >= slideWidth * 0.7) {
+        if (progressInSlide >= slideWidth * 0.5) {
           setActiveProject(null);
         } else {
           setActiveProject(projects[currentIndex]);
@@ -98,7 +99,6 @@ function HeroSlider() {
             key={`${project.id}-${index}`}
             className="relative flex h-full w-[max(150vw,150dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
           >
-            {/* Slide Image */}
             <img
               src={project.imgUrl}
               srcSet={getSrcSet(project.imgUrl)}
@@ -121,21 +121,42 @@ function HeroSlider() {
           {activeProject && (
             <motion.div
               key={activeProject.id}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-xl space-y-1 sm:space-y-2"
             >
-              <span className="font-mono text-xs font-extrabold uppercase tracking-widest text-gray-300 sm:text-sm">
+              <motion.span
+                className="block font-mono text-xs font-extrabold uppercase tracking-widest text-gray-300 sm:text-sm"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+              >
                 {activeProject.category}
-              </span>
-              <h2 className="font-sans text-2xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+              </motion.span>
+
+              <motion.h2
+                className="font-sans text-2xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl"
+                initial={{ opacity: 0, y: 30, rotateX: -40 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, y: -30, rotateX: 40 }}
+                transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformPerspective: 800 }}
+              >
                 {activeProject.title}
-              </h2>
-              <p className="font-mono text-xs font-extrabold text-gray-300 sm:text-base">
+              </motion.h2>
+
+              <motion.p
+                className="font-mono text-xs font-extrabold text-gray-300 sm:text-base"
+                initial={{ opacity: 0, x: -30, letterSpacing: '0.3em' }}
+                animate={{ opacity: 1, x: 0, letterSpacing: '0em' }}
+                exit={{ opacity: 0, x: 30, letterSpacing: '0.3em' }}
+                transition={{ duration: 0.45, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              >
                 {activeProject.location} &bull; {activeProject.year}
-              </p>
+              </motion.p>
             </motion.div>
           )}
         </AnimatePresence>

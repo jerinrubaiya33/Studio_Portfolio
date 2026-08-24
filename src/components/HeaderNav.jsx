@@ -161,10 +161,10 @@ function HeaderNav() {
             <img
               src={activeLogo}
               alt="Studio DNA Logo"
-              className={`w-auto object-contain ml-4 sm:ml-8 md:ml-14 transition-all duration-300 ease-in-out ${
+              className={`w-auto object-contain -ml-4 sm:ml-8 md:ml-14 transition-all duration-300 ease-in-out ${
                 isScrolled
                   ? "h-18 sm:h-14 md:h-22"
-                  : "h-20 sm:h-16 md:h-24"
+                  : "h-22 sm:h-16 md:h-24"
               }`}
             />
           </a>
