@@ -172,7 +172,7 @@ function Project() {
   return (
     <section
       id="projects"
-      className="relative z-0 w-full sm:mt-40 px-6 sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20
+      className="relative z-0 w-full sm:mt-10 mt-1x 0 px-6 sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20
        bg-cover bg-center bg-no-repeat overflow-hidden"
     >
       {/* HERO HEADER */}
