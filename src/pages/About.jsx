@@ -1,25 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUp, ChevronDown, Play, Pause } from "lucide-react";
@@ -62,7 +40,7 @@ const useIsTablet = () => {
 
 const corePillars = [
   {
-    num: "01",  
+    num: "01",
     title: "Design",
     subtitle:
       "Architecture and specialist design coordinated as one system — from first sketch to approval.",
@@ -93,7 +71,7 @@ const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
 const About = () => {
   const sectionRef = useRef(null);
   const videoSectionRef = useRef(null);
-  
+
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
 
@@ -121,13 +99,13 @@ const About = () => {
     if (videoSec) {
       const rect = videoSec.getBoundingClientRect();
       const winHeight = window.innerHeight;
-      
+
       // On mobile, reduce distance needed to reach full size (0.35 of screen height vs 0.85 on desktop)
       const maxDistance = isMobile ? winHeight * 0.35 : winHeight * 0.85;
       const initialScale = isMobile ? 0.45 : 0.3;
 
       const progress = clamp01((winHeight - rect.top) / maxDistance);
-      
+
       const currentScale = lerp(initialScale, 1.0, progress);
       setVideoScale(currentScale);
     }
@@ -175,17 +153,17 @@ const About = () => {
   // Responsive final staggered positions after scroll
   const FINAL_POSITIONS = isMobile
     ? [
-        { left: 2, top: 12 },
-        { left: 18, top: 40 },
-        { left: 2, top: 70 },
-      ]
+      { left: 2, top: 12 },
+      { left: 18, top: 40 },
+      { left: 2, top: 70 },
+    ]
     : isTablet
-    ? [
+      ? [
         { left: 3, top: 30 },
         { left: 35, top: 58 },
         { left: 3, top: 86 },
       ]
-    : [
+      : [
         { left: 5, top: 32 },
         { left: 50, top: 62 },
         { left: 5, top: 92 },
@@ -238,11 +216,10 @@ const About = () => {
                   return (
                     <div
                       key={item.title}
-                      className={`absolute flex items-center transition-colors duration-300 ${
-                        isUnfolded
+                      className={`absolute flex items-center transition-colors duration-300 ${isUnfolded
                           ? "border-b border-gray-300/80"
                           : "border-b border-transparent"
-                      }`}
+                        }`}
                       style={{
                         top: `${top}%`,
                         left: `${left}%`,
@@ -262,7 +239,7 @@ const About = () => {
                         >
                           {/* Title & Subtitle Container */}
                           <div className="flex flex-col justify-center">
-                            <h3 className="font-mono text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-medium tracking-tight text-[#1c1c1c] whitespace-nowrap m-0">
+                            <h3 className="font-mono text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-5xl font-medium tracking-tight text-[#1c1c1c] whitespace-nowrap m-0">
                               {item.title}
                             </h3>
 
@@ -302,12 +279,11 @@ const About = () => {
 
               {/* Detail Services Button */}
               <div
-                className="absolute -bottom-10 sm:-bottom-28 md:-bottom-35 left-0 w-full flex justify-center"
+                className="absolute -bottom-10 sm:-bottom-28 md:-bottom-38 left-0 w-full flex justify-center"
                 style={{
                   opacity: overallProgress >= 0.95 ? 1 : 0,
-                  transform: `translateY(${
-                    overallProgress >= 0.95 ? 0 : 20
-                  }px)`,
+                  transform: `translateY(${overallProgress >= 0.95 ? 0 : 20
+                    }px)`,
                   transition: "opacity 0.5s ease, transform 0.5s ease",
                   pointerEvents: overallProgress >= 0.95 ? "auto" : "none",
                 }}
@@ -316,7 +292,7 @@ const About = () => {
                   to="/services"
                   className="group relative overflow-hidden inline-flex items-center justify-center gap-3 text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] sm:tracking-[0.2em] text-gray-900 uppercase font-mono bg-white/90 border-2 border-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
                 >
-                  <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+                  <span className="absolute left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
                     Our Detail Services
                   </span>
@@ -333,14 +309,15 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= FAST RESPONSIVE VIDEO SECTION ================= */}
-      <section 
-        ref={videoSectionRef} 
-        className="relative w-full bg-white mt-8 sm:mt-0 md:mt-0 py-4 sm:py-20 md:py-24 overflow-hidden"
+      {/*  FAST RESPONSIVE VIDEO SECTION  */}
+      <section
+        ref={videoSectionRef}
+        className="relative w-full bg-white mt-8 sm:mt-0 md:mt-10 py-18 sm:py-20 md:py-24 overflow-hidden"
       >
-        <div className="mx-auto max-w-[1500px] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28">
-          <div 
-            className="relative w-full lg:max-w-5xl xl:max-w-4xl mx-auto aspect-video overflow-hidden rounded-2xl sm:rounded-2xl  sm:shadow-2xl bg-black transition-transform duration-150 ease-out origin-center"
+        <div className="mx-auto max-w-[1500px] px-2 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+          <div
+            className="relative w-full lg:max-w-5xl xl:max-w-7xl mx-auto aspect-video overflow-hidden rounded-2xl sm:rounded-2xl  
+            sm:shadow-2xl bg-black transition-transform duration-150 ease-out origin-center"
             style={{
               transform: `scale(${videoScale})`,
               willChange: "transform",
@@ -362,9 +339,8 @@ const About = () => {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#5b7fc7] text-white shadow-md cursor-pointer ${
-          showTopBtn ? "block" : "hidden"
-        }`}
+        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#5b7fc7] text-white shadow-md cursor-pointer ${showTopBtn ? "block" : "hidden"
+          }`}
       >
         <ArrowUp size={14} />
       </button>
