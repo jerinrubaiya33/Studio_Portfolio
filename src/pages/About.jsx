@@ -75,23 +75,28 @@ const About = () => {
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
 
-  const [showTopBtn, setShowTopBtn] = useState(false);
-  const [overallProgress, setOverallProgress] = useState(0);
-  const [videoScale, setVideoScale] = useState(0.4);
+  const [scrollState, setScrollState] = useState({ showTopBtn: false, overallProgress: 0, videoScale: 0.4 });
   const hasScrolledRef = useRef(false);
+  const rafRef = useRef(null);
 
   // On mobile, delay animation start until user has scrolled past a threshold
   const canAnimate = isMobile ? hasScrolledRef.current : true;
 
+  const containerRef = useRef(null);
+  const [containerSize, setContainerSize] = useState({ w: 1, h: 1 });
+
   const recompute = useCallback(() => {
+    let overallProgress = 0;
+    let videoScale = 0.4;
+    let showTopBtn = false;
+
     // 1. Stack section calculation
     const section = sectionRef.current;
     if (section) {
       const rect = section.getBoundingClientRect();
       const total = rect.height - window.innerHeight;
       const distanceScrolled = -rect.top;
-      const progress = total > 0 ? clamp01(distanceScrolled / total) : 0;
-      setOverallProgress(progress);
+      overallProgress = total > 0 ? clamp01(distanceScrolled / total) : 0;
     }
 
     // 2. Video section scale calculation
@@ -106,33 +111,54 @@ const About = () => {
 
       const progress = clamp01((winHeight - rect.top) / maxDistance);
 
-      const currentScale = lerp(initialScale, 1.0, progress);
-      setVideoScale(currentScale);
+      videoScale = lerp(initialScale, 1.0, progress);
     }
 
     // 3. Top button toggle
     const scrolled = window.scrollY;
     const totalHeight =
       document.documentElement.scrollHeight - window.innerHeight;
-    setShowTopBtn(totalHeight > 0 && scrolled > totalHeight * 0.3);
+    showTopBtn = totalHeight > 0 && scrolled > totalHeight * 0.3;
+
+    // Single batched state update — 1 render per frame instead of 3
+    setScrollState({ showTopBtn, overallProgress, videoScale });
   }, [isMobile]);
+
+  // Measure container size for transform-based positioning
+  useEffect(() => {
+    const measure = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setContainerSize({ w: rect.width, h: rect.height });
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
-      if (!hasScrolledRef.current && window.scrollY > 80) {
-        hasScrolledRef.current = true;
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        if (!hasScrolledRef.current && window.scrollY > 80) {
+          hasScrolledRef.current = true;
+        }
         recompute();
-      }
-      recompute();
+        rafRef.current = null;
+      });
     };
     recompute();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", recompute);
     return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", recompute);
     };
   }, [recompute]);
+
+  const { showTopBtn, overallProgress, videoScale } = scrollState;
 
   const stageSize = 1 / corePillars.length;
   const getItemProgress = useCallback(
@@ -199,7 +225,7 @@ const About = () => {
             className="relative"
           >
             <div className={`sticky flex h-[100dvh] w-full items-start px-4 sm:px-8 md:px-12 lg:px-20 ${isMobile ? 'justify-center' : ''}`}>
-              <div className={`relative w-full ${isMobile ? 'h-[90%] mt-[2vh]' : 'h-[85%] mt-[3vh] sm:mt-[4vh] lg:mt-[5vh]'}`}>
+              <div ref={containerRef} className={`relative w-full overflow-hidden ${isMobile ? 'h-[90%] mt-[2vh]' : 'h-[85%] mt-[3vh] sm:mt-[4vh] lg:mt-[5vh]'}`}>
                 {corePillars.map((item, i) => {
                   const progress = getItemProgress(i);
 
@@ -221,12 +247,15 @@ const About = () => {
                           : "border-b border-transparent"
                         }`}
                       style={{
-                        top: `${top}%`,
-                        left: `${left}%`,
-                        width: `${width}%`,
+                        top: 0,
+                        left: 0,
+                        width: "100%",
                         height: ITEM_HEIGHT,
+                        transform: `translate(${(left / 100) * containerSize.w}px, ${(top / 100) * containerSize.h}px)`,
+                        width: `${width}%`,
+                        willChange: "transform",
                         transition:
-                          "top 0.18s cubic-bezier(0.25, 1, 0.5, 1), left 0.18s cubic-bezier(0.25, 1, 0.5, 1), width 0.18s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease",
+                          "transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), width 0.18s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease",
                       }}
                     >
                       <div className="w-full px-2 sm:px-4 md:px-8 lg:px-16">
