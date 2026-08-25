@@ -1,13 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logoImage from "/src/assets/studioDNA_logo.png";
+import logoBlack from "/src/assets/studioDNA_logo_black.png";
 import menuBg from "/src/assets/menu_bg.png";
 
 function HeaderNav() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const activeLogo = logoImage;
+  const activeLogo =
+    location.pathname === "/services" || location.pathname === "/projects"
+      ? logoBlack
+      : logoImage;
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);

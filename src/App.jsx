@@ -19,6 +19,8 @@ import News from './pages/News';
 import Studio from './pages/Studio';
 import Services from './pages/Services';
 import ContactPage from './pages/ContactPage';
+import CTASection from './pages/CTA';
+import CTA_Full from './pages/CTA_Full';
 
 // Catches any runtime error in the app so the user never sees a blank page
 class ErrorBoundary extends Component {
@@ -119,8 +121,9 @@ const MainLandingPage = () => (
     <div id="project" className="scroll-mt-0">
       <Project />
     </div>
-    <News />
-    <Meet />
+        <CTASection/>
+    {/* <News /> */}
+    {/* <Meet /> */}
     {/* <Choose /> */}
     {/* <div id="who-we-are" className="scroll-mt-0">
       <People />
@@ -138,12 +141,13 @@ function AppContent() {
   const isStudioPage = location.pathname === '/studio';
   const isServicesPage = location.pathname === '/services';
   const isContactPage = location.pathname === '/contact';
+  const isCTA_FullPage = location.pathname === '/cta';
 
   return (
     <ErrorBoundary>
       <ScrollToTop />
       {!isProjectDetailsPage && <HeaderNav />}
-      {!isFullProjectPage && !isStudioPage && !isServicesPage && !isContactPage && (
+      {!isFullProjectPage && !isStudioPage && !isServicesPage && !isContactPage && !isCTA_FullPage && (
         <Navbar />
       )}
 
@@ -156,6 +160,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/exterior-portfolio" element={<ExteriorPortfolio />} />
         <Route path="/interior-portfolio" element={<InteriorPortfolio />} />
+        <Route path="/cta" element={<CTA_Full />} />
       </Routes>
     </ErrorBoundary>
   );

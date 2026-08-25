@@ -940,13 +940,13 @@ const Services = () => {
 
       {/* ================= THREE CORE SERVICES ================= */}
 
-      <section className="relative w-full border-y border-gray-100 py-8 sm:py-16 md:py-24 lg:py-36">
+      <section className="relative w-full border-y border-gray-100 py-8 sm:py-16 md:py-24 lg:py-36  px-4 sm:px-6 md:px-14 lg:px-16">
 
         {/* Background */}
-        <div
+        {/* <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroBg})` }}
-        />
+        /> */}
 
         <div className="absolute inset-0 z-0 bg-white/10" />
 
@@ -962,7 +962,7 @@ const Services = () => {
                 {/* Back Button - Relative on mobile/tablet, absolutely positioned only on large screens */}
                 <button
                   onClick={() => navigate(-1)}
-                  className="group relative md:absolute mt-20 mb-7 sm:-mt-10 sm:mb-0  md:-left-32 lg:-left-21 md:top-1/2 z-20 flex md:-translate-y-1/2 
+                  className="group relative md:absolute mt-20 mb-7 sm:-mt-10 sm:mb-0  md:-left-32 lg:-left-37 md:top-1/2 z-20 flex md:-translate-y-1/2 
                   items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em]
                    text-gray-500 transition-all duration-300 hover:text-gray-900"
                 >
@@ -982,15 +982,15 @@ const Services = () => {
                   </span>
                 </button>
 
-                <h2 className="font-mono text-xl sm:mt-20 sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-extrabold leading-tight
+                <h2 className="font-mono text-xl sm:mt-20 sm:text-2xl md:text-3xl lg:text-3xl xl:text-3xl font-extrabold leading-tight
                  text-[#5b7fc7]">
                   Design · Build · Supply
                 </h2>
-
-                <p className="max-w-md text-left font-mono text-xs sm:text-sm md:text-base leading-relaxed text-gray-700">
+{/* 
+                <p className="max-w-md text-left font-mono -mb-3 text-xs sm:text-sm md:text-base leading-relaxed text-gray-700">
                   From architecture and engineering to construction,
                   fit-out and sourcing.
-                </p>
+                </p> */}
 
               </div>
 

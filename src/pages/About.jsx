@@ -182,17 +182,16 @@ const About = () => {
       { left: 2, top: 12 },
       { left: 18, top: 40 },
       { left: 2, top: 70 },
-    ]
-    : isTablet
-      ? [
-        { left: 3, top: 30 },
-        { left: 35, top: 58 },
-        { left: 3, top: 86 },
-      ]
+    ]      : isTablet
+        ? [
+          { left: 3, top: 30 },
+          { left: 35, top: 58 },
+          { left: 3, top: 86 },
+        ]
       : [
         { left: 5, top: 32 },
         { left: 50, top: 62 },
-        { left: 5, top: 92 },
+        { left: 5, top: 90 },
       ];
 
   return (
@@ -225,7 +224,7 @@ const About = () => {
             className="relative"
           >
             <div className={`sticky flex h-[100dvh] w-full items-start px-4 sm:px-8 md:px-12 lg:px-20 ${isMobile ? 'justify-center' : ''}`}>
-              <div ref={containerRef} className={`relative w-full overflow-hidden ${isMobile ? 'h-[90%] mt-[2vh]' : 'h-[85%] mt-[3vh] sm:mt-[4vh] lg:mt-[5vh]'}`}>
+              <div ref={containerRef} className={`relative w-full ${isMobile ? 'h-[90%] mt-[2vh]' : 'h-[85%] mt-[3vh] sm:mt-[4vh] lg:mt-[5vh]'}`}>
                 {corePillars.map((item, i) => {
                   const progress = getItemProgress(i);
 
@@ -272,17 +271,10 @@ const About = () => {
                               {item.title}
                             </h3>
 
-                            {/* Subtitle - Always visible under title after scroll */}
+                            {/* Subtitle - visible under title after scroll */}
                             {isUnfolded && (
                               <p
                                 className="font-mono text-[10px] sm:text-xs md:text-sm lg:text-base font-medium leading-relaxed text-gray-800 text-left max-w-md w-full mt-1 sm:mt-2 pb-1 sm:pb-2"
-                                style={{
-                                  opacity: 1,
-                                  maxHeight: "150px",
-                                  overflow: "hidden",
-                                  transition:
-                                    "opacity 0.4s ease, max-height 0.4s ease",
-                                }}
                               >
                                 {item.subtitle}
                               </p>
