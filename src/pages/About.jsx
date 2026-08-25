@@ -312,9 +312,9 @@ const About = () => {
       {/*  FAST RESPONSIVE VIDEO SECTION  */}
       <section
         ref={videoSectionRef}
-        className="relative w-full bg-white mt-8 sm:mt-0 md:mt-10 py-18 sm:py-20 md:py-24 overflow-hidden"
+        className="relative w-full bg-white mt-4 sm:mt-0 md:mt-10 py-18 sm:py-20 md:py-24 overflow-hidden"
       >
-        <div className="mx-auto max-w-[1500px] px-2 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+        <div className="mx-auto max-w-[1500px] px-5 sm:px-8 md:px-12 lg:px-20 xl:px-48">
           <div
             className="relative w-full lg:max-w-5xl xl:max-w-7xl mx-auto aspect-video overflow-hidden rounded-2xl sm:rounded-2xl  
             sm:shadow-2xl bg-black transition-transform duration-150 ease-out origin-center"
