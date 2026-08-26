@@ -29,7 +29,7 @@ function CTASection() {
         >
           {/* LEFT COLUMN: TITLE */}
           <div className="text-left">
-            <h2 className="text-3xl sm:mb-0 -mb-2 sm:text-6xl md:text-6xl font-mono font-normal tracking-tight uppercase leading-[0.95] text-white drop-shadow-md">
+            <h2 className="text-2xl sm:mb-0 -mb-4 sm:text-6xl md:text-6xl font-mono font-normal tracking-tight uppercase leading-[0.95] text-white drop-shadow-md">
               Have a Project 
               in Mind?
             </h2>
@@ -39,7 +39,8 @@ function CTASection() {
           <div>
             <Link
               to="/cta"
-              className="group inline-flex items-center gap-3 text-xs sm:text-sm font-bold tracking-[0.15em] text-gray-900 uppercase bg-white px-8 py-4 transition-all duration-300 hover:bg-neutral-200"
+              className="group inline-flex items-center gap-3 text-xs sm:text-sm font-bold tracking-[0.15em] text-gray-900
+              uppercase bg-white px-6 py-2 sm:px-8 sm:py-4 transition-all duration-300 hover:bg-neutral-200"
             >
               Get in Touch
               <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
