@@ -9,7 +9,7 @@ function HeaderNav() {
   const location = useLocation();
 
   const activeLogo =
-    location.pathname === "/services" || location.pathname === "/projects"
+    location.pathname === "/services" || location.pathname === "/projects" || location.pathname === "/cta"
       ? logoBlack
       : logoImage;
 
