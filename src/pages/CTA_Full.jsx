@@ -927,7 +927,7 @@ const CTA_Full = () => {
             className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16 lg:pb-20 text-center"
           >
             <h2 className="text-xl sm:text-3xl lg:text-4xl font-mono font-normal uppercase tracking-tight text-white 
-            leading-[1.1] sm:leading-[1.05] -mb-29">
+            leading-[1.1] sm:leading-[1.05] -mb-9">
               Then, we'll start construction.
             </h2>
           </motion.div>
