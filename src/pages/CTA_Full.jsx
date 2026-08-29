@@ -79,13 +79,13 @@ const CTA_Full = () => {
           </button>
         </div>
         {/* ================= 01 — HERO IMAGE (FULL WIDTH) ================= */}
-        <section className="relative w-full h-[20vh] mt-30 sm:-mt-0 sm:h-[60vh] lg:h-[90vh] bg-gray-100 overflow-hidden">
+        {/* <section className="relative w-full h-[20vh] mt-30 sm:-mt-0 sm:h-[60vh] lg:h-[90vh] bg-gray-100 overflow-hidden">
           <img
             src={storyHeroImage}
             alt="Hero visualization"
             className="w-full h-full object-cover"
           />
-        </section>
+        </section> */}
 
         {/* ================= 02 — YOU CAME HERE WITH AN IDEA (IMAGE AFTER TITLE ONLY ON MOBILE) ================= */}
         <section className="relative w-full border-b border-gray-100 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16 lg:py-24">
@@ -104,7 +104,7 @@ const CTA_Full = () => {
               </h1>
 
               {/* Mobile Image: Appears immediately after the title on mobile */}
-              <div className="block lg:hidden my-6 relative w-full h-[180px] sm:h-[280px] overflow-hidden rounded-sm">
+              <div className="block lg:hidden my-6 relative w-full h-[150px] sm:h-[280px] overflow-hidden rounded-sm">
                 <img
                   src={idea}
                   alt="Idea visualization"
@@ -412,7 +412,7 @@ const CTA_Full = () => {
             className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16 lg:pb-20 text-center"
           >
             <h2 className="text-xl sm:text-3xl lg:text-4xl font-mono font-normal uppercase tracking-tight text-white 
-            leading-[1.1] sm:leading-[1.05] sm:-mb-9 -mb-8">
+            leading-[1.1] sm:leading-[1.05] sm:-mb-9 -mb-2">
               Then, we'll start construction.
             </h2>
           </motion.div>
