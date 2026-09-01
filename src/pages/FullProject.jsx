@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 import Bashanta from "../assets/bashanta.png";
 import Kindergarten from "../assets/kindergarten.png";
@@ -17,6 +18,7 @@ import Alibaba from "../assets/alibaba-day.jpg";
 import bgImage from "../assets/projectsbg.png";
 import Footer from "./Footer";
 import Meet from "./Meet";
+import CTASection from "./CTA";
 
 export const fullProjects = [
   {
@@ -151,6 +153,8 @@ export const fullProjects = [
 function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -173,17 +177,17 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-transparent border-b border-neutral-300 pb-1.5 px-1 text-base text-neutral-900 cursor-pointer transition-all duration-300 ease-in-out hover:border-[#5b7fc7] focus:outline-none"
+        className={`w-full flex items-center justify-between border-b pb-1.5 px-1 text-base cursor-pointer transition-all duration-300 ease-in-out focus:outline-none ${selectedValue !== "All" ? "fp-filter-active hover:border-[#5b7fc7]" : `bg-transparent border-neutral-300 hover:border-[#5b7fc7] ${isDark ? 'text-white' : 'text-neutral-900'}`}`}
       >
         <span className="truncate">
           {selectedValue === "All" ? `All ${label}` : selectedValue}
         </span>
-        <span className="text-xs text-[#5b7fc7] ml-2">▼</span>
+        <span className="text-xs ml-2 text-[#5b7fc7]">▼</span>
       </button>
 
       {/* Dropdown Options List */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-xl z-50 overflow-hidden flex flex-col gap-1 p-1.5">
+        <div className={`absolute top-full left-0 mt-2 w-full backdrop-blur-md rounded-lg shadow-xl z-50 overflow-hidden flex flex-col gap-1 p-1.5 ${isDark ? 'bg-[#2a2a2a]/95 border border-white/10' : 'bg-white/95 border border-neutral-200'}`}>
           {options.map((option) => {
             const isSelected = selectedValue === option.value;
 
@@ -197,7 +201,7 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
                 }}
                 className={`w-full text-left px-3 py-2 text-sm rounded-md font-mono transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#5b7fc7] hover:text-white ${isSelected
                     ? "bg-[#5b7fc7] text-white font-semibold"
-                    : "text-neutral-900 bg-transparent"
+                    : isDark ? 'text-white bg-transparent' : 'text-neutral-900 bg-transparent'
                   }`}
               >
                 {option.label}
@@ -212,6 +216,8 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
 
 function FullProject() {
   const navigate = useNavigate();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const [viewMode, setViewMode] = useState("grid"); // 'grid' | 'list'
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDiscipline, setSelectedDiscipline] = useState("All");
@@ -279,22 +285,22 @@ function FullProject() {
   }, [searchQuery, selectedDiscipline, selectedTypology, selectedStatus, selectedLocation]);
 
   return (
-    <div className="relative min-h-screen text-neutral-900 font-sans selection:bg-[#5b7fc7] selection:text-white">
+    <div className="relative min-h-screen text-theme-primary font-sans selection:bg-[#5b7fc7] selection:text-white transition-colors duration-500 fp-text-soft">
       {/* Background Image Wrapper */}
       <div
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        // style={{ backgroundImage: `url(${bgImage})` }}
       >
         {/* Soft overlay ensuring high text readability */}
-        <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-theme-primary/50 backdrop-blur-[1px] transition-colors duration-500" />
       </div>
 
       <main className="relative z-10 w-full min-h-screen pt-20 sm:pt-24 md:pt-28 pb-20">
         {/* Back Button */}
-        <div className="px-6 sm:px-12 md:px-16 lg:px-20 pt-4">
+        <div className="px-6 sm:px-12 md:px-16 lg:px-24 pt-4">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-neutral-600 hover:text-[#5b7fc7] transition-colors duration-200 text-sm font-semibold font-mono"
+            className="flex items-center gap-2 text-neutral-600 hover:text-[#5b7fc7] transition-colors duration-200 text-sm font-semibold font-mono fp-back-light"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -315,8 +321,8 @@ function FullProject() {
         </div>
 
         {/* Editorial Title Block */}
-        <header className="w-full max-w-5xl mb-8 pt-6 px-6 sm:px-12 md:px-16 lg:px-20">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-light leading-snug text-neutral-900 tracking-tight">
+        <header className="w-full max-w-5xl mb-8 pt-6 px-6 sm:px-12 md:px-16 lg:px-24">
+          <h1 className={`text-2xl sm:text-3xl md:text-4xl font-light leading-snug tracking-tight ${isDark ? 'text-white' : 'text-neutral-900'}`}>
             <span className="text-[#5b7fc7] font-normal mr-3 font-mono">Projects...</span>
             Every project begins with a question: how can this be better? Through design, we explore new possibilities
             and create spaces that respond to real people and real needs.
@@ -324,7 +330,7 @@ function FullProject() {
         </header>
 
         {/* Filter & Control Section */}
-        <section className="w-full pt-2 pb-6 px-6 sm:px-12 md:px-16 lg:px-20">
+        <section className="w-full pt-2 pb-6 px-6 sm:px-12 md:px-16 lg:px-24">
           {/* Top Control Bar: View Switcher & Search */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-neutral-300/80">
             {/* View Mode Switcher */}
@@ -363,7 +369,7 @@ function FullProject() {
                 placeholder="Search Projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-sm placeholder-neutral-400 focus:outline-none text-neutral-900 font-normal"
+                className={`w-full bg-transparent text-sm placeholder-neutral-400 focus:outline-none font-normal ${isDark ? 'text-white' : 'text-neutral-900'}`}
               />
               <span className="text-[#5b7fc7] text-base font-light ml-2">🔎︎</span>
             </div>
@@ -436,7 +442,7 @@ function FullProject() {
                 >
                   {/* Image Container */}
                   <div
-                    className={`w-full bg-neutral-100 overflow-hidden ${isSecondRowTall
+                    className={`w-full overflow-hidden ${isDark ? 'bg-[#2a2a2a]' : 'bg-neutral-100'} ${isSecondRowTall
                         ? "h-[380px] sm:h-[420px]"
                         : "h-[280px] sm:h-[320px]"
                       }`}
@@ -447,21 +453,19 @@ function FullProject() {
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
-                  </div>
-
-                  {/* Grid Titles & Summaries */}
-                  <div className="flex flex-col gap-3.5 pt-1">
-                    {/* Title and Summary Inline Flow */}
-                    <div className="text-lg sm:text-xl text-neutral-600 font-light leading-relaxed">
-                      <span className="font-semibold font-mono text-xl sm:text-2xl text-neutral-900 font-mono tracking-wide mr-2.5 inline">
-                        {project.title}
-                      </span>
-                      <span className="inline text-xl sm:text-2xl">{project.summary}</span>
-                    </div>
+                  </div>                    {/* Grid Titles & Summaries */}
+                    <div className="flex flex-col gap-3.5 pt-1">
+                      {/* Title and Summary Inline Flow */}
+                      <div className={`text-lg sm:text-xl font-light leading-relaxed ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
+                        <span className={`font-semibold font-mono text-xl sm:text-xl font-mono tracking-wide mr-2.5 inline ${isDark ? 'text-white' : 'text-neutral-900'}`}>
+                          {project.title}
+                        </span>
+                        <span className="inline text-xl sm:text-xl fp-summary-light">{project.summary}</span>
+                      </div>
 
                     {/* Category & Year Metadata */}
                     <div className="flex items-center justify-between text-sm sm:text-base font-mono pt-1">
-                      <span className="text-neutral-600 font-semibold">
+                      <span className={`${isDark ? 'text-neutral-400' : 'text-neutral-600'} font-semibold fp-category-light`}>
                         {project.type}, {project.category}
                       </span>
                       <span className="text-[#5b7fc7] font-semibold">
@@ -497,15 +501,14 @@ function FullProject() {
                     }}
                     className={`group relative border-b border-gray-300 w-full transition-all duration-300 ${isHovered
                         ? "bg-[#5b7fc7] text-white"
-                        : "hover:bg-gray-200/40 text-gray-900"
+                        : isDark ? "hover:bg-white/5 text-white" : "hover:bg-gray-200/40 text-gray-900"
                       }`}
                   >
                     {/* Row Header */}
                     <div className="flex items-center justify-between py-5 px-4 cursor-pointer w-full">
                       {/* Index & Title */}
                       <div className="flex items-center gap-6 md:gap-10 z-10">
-                        <span
-                          className={`text-base md:text-lg font-bold font-mono tracking-wider transition-colors duration-300 ${isHovered ? "text-white" : "text-gray-900"
+                        <span                              className={`text-base md:text-lg font-bold font-mono tracking-wider transition-colors duration-300 ${isHovered ? "text-white" : "text-gray-900"
                             }`}
                         >
                           {formattedNum}
@@ -553,10 +556,10 @@ function FullProject() {
                     {isMobile && isExpanded && (
                       <div
                         onClick={(e) => e.stopPropagation()}
-                        className="lg:hidden bg-white/70 backdrop-blur-sm border-t border-gray-200 px-4 pt-4 pb-5"
+                        className={`lg:hidden backdrop-blur-sm border-t border-gray-200 px-4 pt-4 pb-5 ${isDark ? 'bg-[#2a2a2a]/70' : 'bg-white/70'}`}
                       >
                         <div className="flex items-stretch gap-4">
-                          <div className="w-2/5 shrink-0 rounded-lg overflow-hidden bg-neutral-100">
+                          <div className={`w-2/5 shrink-0 rounded-lg overflow-hidden ${isDark ? 'bg-[#2a2a2a]' : 'bg-neutral-100'}`}>
                             <img
                               src={project.image}
                               alt={project.title}
@@ -565,10 +568,10 @@ function FullProject() {
                             />
                           </div>
                           <div className="flex-1 min-w-0 flex flex-col justify-center text-left">
-                            <p className="text-sm leading-relaxed text-gray-800 font-normal">
+                            <p className={`text-sm leading-relaxed font-normal ${isDark ? 'text-neutral-300' : 'text-gray-800'}`}>
                               {project.summary}
                             </p>
-                            <div className="mt-3 pt-2 border-t border-gray-200 flex flex-col gap-0.5 text-[11px] text-gray-600">
+                            <div className={`mt-3 pt-2 border-t border-gray-200 flex flex-col gap-0.5 text-[11px] ${isDark ? 'text-neutral-400' : 'text-gray-600'}`}>
                               <span>{project.type} • {project.category}</span>
                               <span className="truncate">{project.location}</span>
                               <span className="text-[#5b7fc7] font-bold">{project.year}</span>
@@ -582,7 +585,7 @@ function FullProject() {
                             e.stopPropagation();
                             navigate(`/projects/${project.id}`);
                           }}
-                          className="mt-4 w-full flex items-center justify-center gap-2 bg-[#5b7fc7] text-white font-mono text-sm font-semibold tracking-wide px-6 py-3 rounded-full transition-colors duration-300 hover:bg-[#4a6db5] cursor-pointer"
+                          className="mt-4 w-full flex items-center justify-center gap-2 bg-[#5b7fc7] text-white font-mono text-sm font-semibold tracking-wide px-6 py-3 rounded-md transition-colors duration-300 hover:bg-[#4a6db5] cursor-pointer"
                         >
                           View More Details
                           <ArrowUpRight size={16} className="shrink-0" />
@@ -597,7 +600,7 @@ function FullProject() {
                           top: `${hoverPos.y}px`,
                           left: `${hoverPos.x}px`,
                         }}
-                        className="hidden lg:flex -mt-40 absolute z-30 h-[380px] w-[650px] shadow-2xl rounded-xl overflow-hidden border border-white/60 pointer-events-none transition-all duration-150 ease-out backdrop-blur-md bg-white/95"
+                        className={`hidden lg:flex -mt-40 absolute z-30 h-[380px] w-[650px] shadow-2xl rounded-xl overflow-hidden border pointer-events-none transition-all duration-150 ease-out backdrop-blur-md ${isDark ? 'bg-[#2a2a2a]/95 border-white/10' : 'bg-white/95 border-white/60'}`}
                       >
                         <div className="w-1/2 h-full overflow-hidden">
                           <img
@@ -607,10 +610,10 @@ function FullProject() {
                           />
                         </div>
                         <div className="w-1/2 h-full p-6 flex flex-col justify-center text-left font-mono">
-                          <p className="text-sm md:text-xl leading-relaxed text-gray-800 font-normal">
+                          <p className={`text-sm md:text-xl leading-relaxed font-normal ${isDark ? 'text-neutral-300' : 'text-gray-800'}`}>
                             {project.summary}
                           </p>
-                          <div className="mt-4 pt-3 border-t border-gray-200 flex flex-col gap-1 text-xs text-gray-600">
+                          <div className={`mt-4 pt-3 border-t border-gray-200 flex flex-col gap-1 text-xs ${isDark ? 'text-neutral-400' : 'text-gray-600'}`}>
                             <span>{project.type} • {project.category}</span>
                             <span>{project.location}</span>
                             <span className="text-[#5b7fc7] font-bold mt-1">{project.year}</span>
@@ -627,8 +630,9 @@ function FullProject() {
       </main>
 
       {/* Footer Block */}
-      <div className="relative z-10 w-screen border-t border-neutral-300 pt-12 bg-white/70 backdrop-blur-md">
-        <Meet />
+      <div className="relative z-10 w-screen border-t border-theme pt-12 backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
+        {/* <Meet /> */}
+        <CTASection/>
         <Footer />
       </div>
     </div>

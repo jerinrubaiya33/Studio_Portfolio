@@ -54,7 +54,7 @@ const CTA_Full = () => {
 
   return (
     <>
-      <main className="relative w-full bg-white text-gray-900 font-mono overflow-hidden pt-28 sm:pt-24 md:pt-32">
+      <main className="relative w-full bg-theme-primary text-theme-primary font-mono overflow-hidden pt-28 sm:pt-24 md:pt-32 transition-colors duration-500">
         {/* Back Button — right below the logo */}
         <div className="px-4 sm:px-8 md:px-20 lg:px-24">
           <button
@@ -639,7 +639,7 @@ const CTA_Full = () => {
         />
       </button>
 
-      <div className="relative z-10 w-full border-t border-neutral-300 bg-white/70 backdrop-blur-md">
+      <div className="relative z-10 w-full border-t border-theme backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
         <Footer />
       </div>
     </>

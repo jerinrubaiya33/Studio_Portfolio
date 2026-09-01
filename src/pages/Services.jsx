@@ -853,7 +853,7 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-1000 ease-out ${
+      className={`transition-all duration-[2000ms] ease-out ${
         visible
           ? "translate-y-0 opacity-100"
           : "translate-y-8 opacity-0"
@@ -936,11 +936,11 @@ const Services = () => {
   }, []);
 
   return (
-    <main className="relative z-10 min-h-screen w-full overflow-hidden bg-white font-sans text-gray-900">
+    <main className="relative z-10 min-h-screen w-full overflow-hidden bg-theme-primary font-sans text-theme-primary transition-colors duration-500">
 
       {/* ================= THREE CORE SERVICES ================= */}
 
-      <section className="relative w-full border-y border-gray-100 py-8 sm:py-16 md:py-24 lg:py-36  px-4 sm:px-6 md:px-14 lg:px-16">
+      <section className="relative w-full border-y border-gray-100 py-4 sm:py-16 md:py-24 lg:py-36  px-4 sm:px-6 md:px-14 lg:px-16">
 
         {/* Background */}
         {/* <div
@@ -962,7 +962,7 @@ const Services = () => {
                 {/* Back Button - Relative on mobile/tablet, absolutely positioned only on large screens */}
                 <button
                   onClick={() => navigate(-1)}
-                  className="group relative md:absolute mt-20 mb-7 sm:-mt-10 sm:mb-0  md:-left-32 lg:-left-37 md:top-1/2 z-20 flex md:-translate-y-1/2 
+                  className="group relative md:absolute mt-8 mb-4 sm:-mt-10 sm:mb-0  md:-left-32 lg:-left-37 md:top-1/2 z-20 flex md:-translate-y-1/2 
                   items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em]
                    text-gray-500 transition-all duration-300 hover:text-gray-900"
                 >
@@ -982,7 +982,7 @@ const Services = () => {
                   </span>
                 </button>
 
-                <h2 className="font-mono text-xl sm:mt-20 sm:text-2xl md:text-3xl lg:text-3xl xl:text-3xl font-extrabold leading-tight
+                <h2 className="font-mono text-base sm:text-xl sm:mt-20 md:text-3xl lg:text-3xl xl:text-3xl font-extrabold leading-tight whitespace-nowrap
                  text-[#5b7fc7]">
                   Design · Build · Supply
                 </h2>
@@ -1002,7 +1002,7 @@ const Services = () => {
           <div className="divide-y divide-gray-300/80 border-b border-t border-gray-300/80">
 
             {corePillars.map((item, idx) => (
-              <Reveal key={item.title} delay={idx * 150}>
+              <Reveal key={item.title} delay={idx * 1200}>
 
                 <div className="grid grid-cols-1 items-start md:items-center gap-8 py-8 sm:py-12 md:py-16 lg:grid-cols-12 lg:gap-16 lg:py-28 px-0 sm:px-4 md:px-8 lg:px-20">
 
@@ -1024,7 +1024,7 @@ const Services = () => {
 
                   <div className="flex items-center justify-center lg:col-span-4 w-full">
 
-                    <div className="relative h-48 sm:h-56 md:h-64 lg:h-60 w-full max-w-md overflow-hidden border border-gray-200/80 bg-gray-100 shadow-sm">
+                    <div className="relative h-36 sm:h-56 md:h-64 lg:h-60 w-full max-w-md overflow-hidden border border-gray-200/80 bg-gray-100 shadow-sm">
 
                       <img
                         src={item.image}
@@ -1045,7 +1045,7 @@ const Services = () => {
                       {item.items.map((service, serviceIndex) => (
                         <li
                           key={`${item.num}-${serviceIndex}`}
-                          className="py-2.5 sm:py-3 px-1 sm:px-2 font-mono text-[11px] sm:text-xs md:text-sm font-semibold uppercase tracking-wide text-gray-900"
+                          className="py-2.5 sm:py-3 px-1 sm:px-2 font-mono text-[11px] sm:text-xs md:text-base font-semibold uppercase tracking-wide text-gray-900"
                         >
                           {service}
                         </li>

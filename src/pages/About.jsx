@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUp, ChevronDown, Play, Pause } from "lucide-react";
+import { ArrowUp, ArrowRight } from "lucide-react";
 import archVideo from "../assets/arch.mp4";
+import { useTheme } from "../contexts/ThemeContext";
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(
@@ -17,51 +18,21 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const useIsTablet = () => {
-  const [isTablet, setIsTablet] = useState(
-    typeof window !== "undefined"
-      ? window.innerWidth >= 768 && window.innerWidth < 1024
-      : false
-  );
-  useEffect(() => {
-    const mqMin = window.matchMedia("(min-width: 768px)");
-    const mqMax = window.matchMedia("(max-width: 1023px)");
-    const handler = () => setIsTablet(mqMin.matches && mqMax.matches);
-    handler();
-    mqMin.addEventListener("change", handler);
-    mqMax.addEventListener("change", handler);
-    return () => {
-      mqMin.removeEventListener("change", handler);
-      mqMax.removeEventListener("change", handler);
-    };
-  }, []);
-  return isTablet;
-};
-
 const corePillars = [
   {
-    num: "01",
     title: "Design",
     subtitle:
       "Architecture and specialist design coordinated as one system — from first sketch to approval.",
-    image:
-      "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRYEf2Kb9Xn4qNj4O3jH5NQgNppcPtd7gGbJrG4fgwYl5CK0FhYUwXTQ20o8eTzQkBFlbzuoQFvnLZPeV0",
   },
   {
-    num: "02",
     title: "Build",
     subtitle:
       "Construction, fit-out and delivery executed across varied structural systems with rigorous supervision.",
-    image:
-      "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQFqBSF4FthDSM5VVzagfCoQGjo6yAWYg_PAWF2coupudcqSDGEgEk8FToVyTjJfFDdb0DGxWFTK5RbSsw",
   },
   {
-    num: "03",
     title: "Supply",
     subtitle:
       "Material and product sourcing connected directly to project delivery — local and imported.",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -71,26 +42,23 @@ const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
 const About = () => {
   const sectionRef = useRef(null);
   const videoSectionRef = useRef(null);
-
   const isMobile = useIsMobile();
-  const isTablet = useIsTablet();
 
-  const [scrollState, setScrollState] = useState({ showTopBtn: false, overallProgress: 0, videoScale: 0.4 });
-  const hasScrolledRef = useRef(false);
+  const [activePillarIndex, setActivePillarIndex] = useState(2);
+  const { theme } = useTheme();
+  const [scrollState, setScrollState] = useState({
+    showTopBtn: false,
+    overallProgress: 0,
+    videoScale: 0.4,
+  });
+
   const rafRef = useRef(null);
-
-  // On mobile, delay animation start until user has scrolled past a threshold
-  const canAnimate = isMobile ? hasScrolledRef.current : true;
-
-  const containerRef = useRef(null);
-  const [containerSize, setContainerSize] = useState({ w: 1, h: 1 });
 
   const recompute = useCallback(() => {
     let overallProgress = 0;
     let videoScale = 0.4;
     let showTopBtn = false;
 
-    // 1. Stack section calculation
     const section = sectionRef.current;
     if (section) {
       const rect = section.getBoundingClientRect();
@@ -99,51 +67,36 @@ const About = () => {
       overallProgress = total > 0 ? clamp01(distanceScrolled / total) : 0;
     }
 
-    // 2. Video section scale calculation
     const videoSec = videoSectionRef.current;
     if (videoSec) {
       const rect = videoSec.getBoundingClientRect();
       const winHeight = window.innerHeight;
-
-      // On mobile, reduce distance needed to reach full size (0.35 of screen height vs 0.85 on desktop)
       const maxDistance = isMobile ? winHeight * 0.35 : winHeight * 0.85;
-      const initialScale = isMobile ? 0.45 : 0.3;
-
+      const initialScale = isMobile ? 0.25 : 0.15;
       const progress = clamp01((winHeight - rect.top) / maxDistance);
-
-      videoScale = lerp(initialScale, 1.0, progress);
+      videoScale = lerp(initialScale, 1.45, progress);
     }
 
-    // 3. Top button toggle
     const scrolled = window.scrollY;
     const totalHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     showTopBtn = totalHeight > 0 && scrolled > totalHeight * 0.3;
 
-    // Single batched state update — 1 render per frame instead of 3
     setScrollState({ showTopBtn, overallProgress, videoScale });
-  }, [isMobile]);
 
-  // Measure container size for transform-based positioning
-  useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setContainerSize({ w: rect.width, h: rect.height });
-      }
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
+    if (overallProgress < 0.42) {
+      setActivePillarIndex(0);
+    } else if (overallProgress < 0.75) {
+      setActivePillarIndex(1);
+    } else {
+      setActivePillarIndex(2);
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     const onScroll = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
-        if (!hasScrolledRef.current && window.scrollY > 80) {
-          hasScrolledRef.current = true;
-        }
         recompute();
         rafRef.current = null;
       });
@@ -158,41 +111,8 @@ const About = () => {
     };
   }, [recompute]);
 
-  const { showTopBtn, overallProgress, videoScale } = scrollState;
-
-  const stageSize = 1 / corePillars.length;
-  const getItemProgress = useCallback(
-    (i) => {
-      if (!canAnimate) return 0;
-      const start = i * stageSize;
-      const end = start + stageSize;
-      return clamp01((overallProgress - start) / (end - start));
-    },
-    [overallProgress, stageSize, canAnimate]
-  );
-
-  // Responsive layout constants
-  const STACK_TOP_STEP = isMobile ? 25 : isTablet ? 18 : 25;
-  const ITEM_WIDTH = isMobile ? 85 : isTablet ? 60 : 48;
-  const ITEM_HEIGHT = isMobile ? '30%' : '25%';
-
-  // Responsive final staggered positions after scroll
-  const FINAL_POSITIONS = isMobile
-    ? [
-      { left: 2, top: 12 },
-      { left: 18, top: 40 },
-      { left: 2, top: 70 },
-    ]      : isTablet
-        ? [
-          { left: 3, top: 30 },
-          { left: 35, top: 58 },
-          { left: 3, top: 86 },
-        ]
-      : [
-        { left: 5, top: 32 },
-        { left: 50, top: 62 },
-        { left: 5, top: 90 },
-      ];
+  const { showTopBtn, videoScale } = scrollState;
+  const active = corePillars[activePillarIndex];
 
   return (
     <>
@@ -206,164 +126,150 @@ const About = () => {
         }
       `}</style>
 
-      <section className="relative w-full border-t border-gray-100">
-        <div className="absolute inset-0 z-0 bg-white/10" />
-
-        <div className="relative z-10 mx-auto max-w-[1500px] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28">
-          <div className="pt-32 sm:pt-14 md:pt-16 lg:pt-16 xl:pt-48 mb-2 sm:mb-12 md:mb-18 text-left flex justify-start pl-2 sm:pl-4 md:pl-8">
-            <h2 className="font-mono text-xl px-0 sm:px-20 sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl ml-2 sm:ml-5 font-semibold leading-tight text-[#5b7fc7] max-w-4xl">
-              From architecture and engineering to construction, fit-out and
-              sourcing.
+      {/* ===== TITLE BLOCK SECTION ===== */}
+      <section
+        ref={sectionRef}
+        className="relative w-full min-h-[70vh] sm:min-h-[90vh] bg-[#F9F9F9] text-theme-primary font-mono px-6 sm:px-12
+        lg:px-24 py-4 pb-1 sm:py-14 transition-colors duration-500 about-page-section"
+      >
+        <div className="max-w-auto mx-auto w-full mt-15 flex flex-col h-auto lg:h-screen lg:sticky lg:top-0 justify-start">
+          
+          {/* Services Title (Top Left) & Statement Block */}
+          <div className="relative w-full mt-8 sm:mt-14 lg:mt-30 mb-6 lg:mb-8">
+            <h2
+              className={`static lg:absolute top-2 left-40 text-2xl sm:text-3xl font-light uppercase leading-snug mb-5 lg:mb-0 ${
+                theme === "dark" ? "text-[#FFFFFF]" : "text-[#1c1c1c]"
+              }`}
+            >
+              Our Services
             </h2>
+            <div className="max-w-full lg:max-w-auto lg:ml-170 w-full lg:w-2/5">
+              <p
+                className={`text-base sm:text-xl font-light font-mono text-left lg:text-right leading-snug ${
+                  theme === "dark" ? "text-neutral-300" : "text-[#1c1c1c]"
+                }`}
+              >
+                One connected practice, coordinating ideas, engineering,
+                execution and sourcing.
+              </p>
+            </div>
           </div>
 
-          {/* ================= SCROLL-PINNED STACK ================= */}
-          <div
-            ref={sectionRef}
-            style={{ height: `${corePillars.length * (isMobile ? 35 : isTablet ? 42 : 40)}vh` }}
-            className="relative"
-          >
-            <div className={`sticky flex h-[100dvh] w-full items-start px-4 sm:px-8 md:px-12 lg:px-20 ${isMobile ? 'justify-center' : ''}`}>
-              <div ref={containerRef} className={`relative w-full ${isMobile ? 'h-[90%] mt-[2vh]' : 'h-[85%] mt-[3vh] sm:mt-[4vh] lg:mt-[5vh]'}`}>
-                {corePillars.map((item, i) => {
-                  const progress = getItemProgress(i);
-
-                  const top = lerp(
-                    i * STACK_TOP_STEP,
-                    FINAL_POSITIONS[i].top,
-                    progress
-                  );
-                  const left = lerp(0, FINAL_POSITIONS[i].left, progress);
-                  const width = lerp(100, ITEM_WIDTH, progress);
-
-                  const isUnfolded = progress > 0.6;
-
-                  return (
-                    <div
-                      key={item.title}
-                      className={`absolute flex items-center transition-colors duration-300 ${isUnfolded
-                          ? "border-b border-gray-300/80"
-                          : "border-b border-transparent"
-                        }`}
-                      style={{
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: ITEM_HEIGHT,
-                        transform: `translate(${(left / 100) * containerSize.w}px, ${(top / 100) * containerSize.h}px)`,
-                        width: `${width}%`,
-                        willChange: "transform",
-                        transition:
-                          "transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), width 0.18s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease",
-                      }}
+          {/* Row of three */}
+          <div className="mt-10 sm:mt-14 lg:mt-14 flex flex-col justify-start">
+            <div className="border-t border-b border-[#A0A0A0]/15 py-9 sm:py-14 lg:py-20 flex flex-nowrap items-center justify-center gap-3 sm:gap-8 lg:gap-10">
+              {corePillars.map((pillar, idx) => {
+                const isActive = activePillarIndex === idx;
+                return (
+                  <React.Fragment key={pillar.title}>
+                    <button
+                      onClick={() => setActivePillarIndex(idx)}
+                      onMouseEnter={() => setActivePillarIndex(idx)}
+                      className={`whitespace-nowrap text-2xl sm:text-4xl md:text-5xl font-extrabold font-sans tracking-tight transition-colors 
+                      duration-300 ${
+                        isActive
+                          ? theme === "dark"
+                            ? "text-[#ffffff]"
+                            : "text-[#5b7fc7]"
+                          : theme === "dark"
+                          ? "text-[#5b7fc7] hover:text-[#5b7fc7]"
+                          : "text-[#1c1c1c] hover:text-[#1c1c1c]"
+                      }`}
                     >
-                      <div className="w-full px-2 sm:px-4 md:px-8 lg:px-16">
-                        <div className="w-full grid gap-3 sm:gap-4 md:gap-6 lg:gap-12 xl:gap-16 items-center transition-all duration-500"
-                          style={{
-                            gridTemplateColumns: isUnfolded
-                              ? "1fr"
-                              : "40% 1fr",
-                          }}
-                        >
-                          {/* Title & Subtitle Container */}
-                          <div className="flex flex-col justify-center">
-                            <h3 className="font-mono text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-5xl font-medium tracking-tight text-[#1c1c1c] whitespace-nowrap m-0">
-                              {item.title}
-                            </h3>
+                      {pillar.title}
+                    </button>
 
-                            {/* Subtitle - visible under title after scroll */}
-                            {isUnfolded && (
-                              <p
-                                className="font-mono text-[10px] sm:text-xs md:text-sm lg:text-base font-medium leading-relaxed text-gray-800 text-left max-w-md w-full mt-1 sm:mt-2 pb-1 sm:pb-2"
-                              >
-                                {item.subtitle}
-                              </p>
-                            )}
-                          </div>
+                    {idx < corePillars.length - 1 && (
+                      <span className="text-xl sm:text-5xl md:text-6xl text-[#5b7fc7]/40 font-light select-none">
+                        +
+                      </span>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
 
-                          {/* Image Beside Title - Shows before scroll */}
-                          {!isUnfolded && (
-                            <div className="w-full flex items-center justify-start overflow-hidden">
-                              <img
-                                src={item.image}
-                                alt={item.title}
-                                className="h-28 sm:h-28 md:h-32 lg:h-32 xl:h-36 w-auto object-cover rounded-md shadow-sm border border-gray-100 transition-opacity duration-300"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Detail Services Button */}
-              <div
-                className="absolute -bottom-10 sm:-bottom-28 md:-bottom-38 left-0 w-full flex justify-center"
-                style={{
-                  opacity: overallProgress >= 0.95 ? 1 : 0,
-                  transform: `translateY(${overallProgress >= 0.95 ? 0 : 20
-                    }px)`,
-                  transition: "opacity 0.5s ease, transform 0.5s ease",
-                  pointerEvents: overallProgress >= 0.95 ? "auto" : "none",
-                }}
+            {/* Subtitle & Underlined CTA Row */}
+            <div className="mt-10 sm:mt-14 lg:mt-16 w-full lg:w-3/4 lg:ml-42 flex flex-col md:flex-row items-start md:items-center justify-between gap-7 pb-14 lg:pb-0">
+              <p
+                className={`text-base sm:text-xl font-mono leading-snug text-left transition-opacity duration-300 max-w-xl ${
+                  theme === "dark" ? "text-neutral-300" : "text-[#1c1c1c]"
+                }`}
               >
-                <Link
-                  to="/services"
-                  className="group relative overflow-hidden inline-flex items-center justify-center gap-3 text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] sm:tracking-[0.2em] text-gray-900 uppercase font-mono bg-white/90 border-2 border-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
-                >
-                  <span className="absolute left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                    Our Detail Services
-                  </span>
-                  <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                    <ChevronDown
-                      size={18}
-                      className="transition-transform duration-300 group-hover:translate-y-1"
-                    />
-                  </span>
-                </Link>
-              </div>
+                {active.subtitle}
+              </p>
+
+              <Link
+                to="/services"
+                className="group relative shrink-0 inline-flex items-center justify-center lg:-mr-10 gap-2 text-xs sm:text-sm font-semibold
+                tracking-wide text-white bg-neutral-900 px-5 py-2.5 rounded-md shadow-md hover:shadow-xl transition-all 
+                duration-500 cursor-pointer overflow-hidden"
+              >
+                <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0
+                  group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-white font-mono">
+                  See Full Services
+                </span>
+                <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                  <ArrowRight
+                    size={14}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </span>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/*  FAST RESPONSIVE VIDEO SECTION  */}
+      {/* ===== PLATE / VIDEO SECTION ===== */}
       <section
         ref={videoSectionRef}
-        className="relative w-full bg-white mt-4 sm:mt-0 md:mt-10 py-18 sm:py-20 md:py-24 overflow-hidden"
+        className="relative w-full bg-[#F9F9F9] pt-0 pb-20 sm:pt-10 sm:pb-48 font-mono transition-colors duration-500 about-page-section"
       >
-        <div className="mx-auto max-w-[1500px] px-5 sm:px-8 md:px-12 lg:px-20 xl:px-48">
-          <div
-            className="relative w-full lg:max-w-5xl xl:max-w-7xl mx-auto aspect-video overflow-hidden rounded-2xl sm:rounded-2xl  
-            sm:shadow-2xl bg-black transition-transform duration-150 ease-out origin-center"
-            style={{
-              transform: `scale(${videoScale})`,
-              willChange: "transform",
-            }}
-          >
-            <video
-              src={archVideo}
-              loop
-              muted
-              playsInline
-              autoPlay
-              className="w-full h-full object-cover"
-            />
+        <div className="mx-auto max-w-[1500px] px-5 sm:px-8 md:px-12 lg:px-20 xl:px-32">
+          <div className="relative max-w-4xl mx-auto">
+            <div
+              className="relative w-full max-w-[280px] sm:max-w-lg md:max-w-4xl mx-auto aspect-video overflow-hidden rounded-2xl transition-transform duration-150 
+              ease-out origin-center shadow-xl"
+              style={{ transform: `scale(${videoScale})`, willChange: "transform" }}
+            >
+              <video
+                src={archVideo}
+                loop
+                muted
+                playsInline
+                autoPlay
+                className="w-full h-full object-cover"
+              />
+
+              {/* corner registration marks */}
+              {[
+                "top-3 left-3 border-t border-l",
+                "top-3 right-3 border-t border-r",
+                "bottom-3 left-3 border-b border-l",
+                "bottom-3 right-3 border-b border-r",
+              ].map((pos) => (
+                <span
+                  key={pos}
+                  className={`pointer-events-none absolute h-4 w-4 sm:h-5 sm:w-5 border-[#FFFFFF]/50 ${pos}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Floating Back to Top */}
+      {/* Back to top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#5b7fc7] text-white shadow-md cursor-pointer ${showTopBtn ? "block" : "hidden"
-          }`}
+        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-10 w-10 items-center justify-center rounded-full
+            border border-theme bg-theme-secondary text-[#5b7fc7] shadow-sm transition-opacity duration-300 font-mono ${
+              showTopBtn ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
       >
-        <ArrowUp size={14} />
+        <ArrowUp size={16} />
       </button>
     </>
   );
@@ -382,9 +288,282 @@ export default About;
 
 
 
+// import React, { useEffect, useRef, useState, useCallback } from "react";
+// import { Link } from "react-router-dom";
+// import { ArrowUp, ArrowRight } from "lucide-react";
+// import archVideo from "../assets/arch.mp4";
+// import { useTheme } from "../contexts/ThemeContext";
 
+// const useIsMobile = () => {
+//   const [isMobile, setIsMobile] = useState(
+//     typeof window !== "undefined" ? window.innerWidth < 768 : false
+//   );
+//   useEffect(() => {
+//     const mq = window.matchMedia("(max-width: 767px)");
+//     const handler = (e) => setIsMobile(e.matches);
+//     mq.addEventListener("change", handler);
+//     setIsMobile(mq.matches);
+//     return () => mq.removeEventListener("change", handler);
+//   }, []);
+//   return isMobile;
+// };
 
+// const corePillars = [
+//   {
+//     title: "Design",
+//     subtitle:
+//       "Architecture and specialist design coordinated as one system — from first sketch to approval.",
+//   },
+//   {
+//     title: "Build",
+//     subtitle:
+//       "Construction, fit-out and delivery executed across varied structural systems with rigorous supervision.",
+//   },
+//   {
+//     title: "Supply",
+//     subtitle:
+//       "Material and product sourcing connected directly to project delivery — local and imported.",
+//   },
+// ];
 
+// const lerp = (a, b, t) => a + (b - a) * t;
+// const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
+
+// const About = () => {
+//   const sectionRef = useRef(null);
+//   const videoSectionRef = useRef(null);
+//   const isMobile = useIsMobile();
+
+//   const [activePillarIndex, setActivePillarIndex] = useState(2);
+//   const { theme } = useTheme();
+//   const [scrollState, setScrollState] = useState({
+//     showTopBtn: false,
+//     overallProgress: 0,
+//     videoScale: 0.4,
+//   });
+
+//   const rafRef = useRef(null);
+
+//   const recompute = useCallback(() => {
+//     let overallProgress = 0;
+//     let videoScale = 0.4;
+//     let showTopBtn = false;
+
+//     const section = sectionRef.current;
+//     if (section) {
+//       const rect = section.getBoundingClientRect();
+//       const total = rect.height - window.innerHeight;
+//       const distanceScrolled = -rect.top;
+//       overallProgress = total > 0 ? clamp01(distanceScrolled / total) : 0;
+//     }
+
+//     const videoSec = videoSectionRef.current;
+//     if (videoSec) {
+//       const rect = videoSec.getBoundingClientRect();
+//       const winHeight = window.innerHeight;
+//       const maxDistance = isMobile ? winHeight * 0.35 : winHeight * 0.85;
+//       const initialScale = isMobile ? 0.25 : 0.15;
+//       const progress = clamp01((winHeight - rect.top) / maxDistance);
+//       videoScale = lerp(initialScale, 1.45, progress);
+//     }
+
+//     const scrolled = window.scrollY;
+//     const totalHeight =
+//       document.documentElement.scrollHeight - window.innerHeight;
+//     showTopBtn = totalHeight > 0 && scrolled > totalHeight * 0.3;
+
+//     setScrollState({ showTopBtn, overallProgress, videoScale });
+
+//     if (overallProgress < 0.42) {
+//       setActivePillarIndex(0);
+//     } else if (overallProgress < 0.75) {
+//       setActivePillarIndex(1);
+//     } else {
+//       setActivePillarIndex(2);
+//     }
+//   }, [isMobile]);
+
+//   useEffect(() => {
+//     const onScroll = () => {
+//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+//       rafRef.current = requestAnimationFrame(() => {
+//         recompute();
+//         rafRef.current = null;
+//       });
+//     };
+//     recompute();
+//     window.addEventListener("scroll", onScroll, { passive: true });
+//     window.addEventListener("resize", recompute);
+//     return () => {
+//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+//       window.removeEventListener("scroll", onScroll);
+//       window.removeEventListener("resize", recompute);
+//     };
+//   }, [recompute]);
+
+//   const { showTopBtn, videoScale } = scrollState;
+//   const active = corePillars[activePillarIndex];
+
+//   return (
+//     <>
+//       <style>{`
+//         html, body {
+//           scrollbar-width: none;
+//           -ms-overflow-style: none;
+//         }
+//         html::-webkit-scrollbar, body::-webkit-scrollbar {
+//           display: none;
+//         }
+//       `}</style>
+
+//       {/* ===== TITLE BLOCK SECTION ===== */}        <section
+//         ref={sectionRef}
+//         className="relative w-full min-h-[100vh] sm:min-h-[90vh] bg-theme-primary text-theme-primary font-mono px-6 sm:px-12
+//           lg:px-24 py-16 transition-colors duration-500 about-page-section">
+//         <div className="max-w-auto mx-auto w-full flex flex-col h-screen sticky top-0">
+//           {/* Services Title (Top Left) & Statement Block */}
+//           <div className="relative w-full mt-14 sm:mt-42">
+//             <h2
+//               className={`absolute top-4 left-40 text-base sm:text-3xl font-light uppercase leading-snug ${
+//                 theme === "dark" ? "text-[#FFFFFF]" : "text-[#1c1c1c]"
+//               }`}
+//             >
+//               Our Services
+//             </h2>
+//             <div className="max-w-auto ml-170 w-2/5">
+//               <p
+//                 className={`text-base sm:text-xl font-light  font-mono text-right  leading-snug ${
+//                   theme === "dark" ? "text-neutral-300" : "text-[#1c1c1c]"
+//                 }`}
+//               >
+//                 One connected practice, coordinating ideas, engineering,
+//                 execution and sourcing.
+//               </p>
+//             </div>
+//           </div>
+
+//           {/* Row of three */}
+//           <div className="mt-8 sm:mt-12 flex flex-col justify-start">
+//             <div className="border-t border-b border-[#A0A0A0]/15 py-8 sm:py-20 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+//               {corePillars.map((pillar, idx) => {
+//                 const isActive = activePillarIndex === idx;
+//                 return (
+//                   <React.Fragment key={pillar.title}>
+//                     <button
+//                       onClick={() => setActivePillarIndex(idx)}
+//                       onMouseEnter={() => setActivePillarIndex(idx)}
+//                       className={`text-3xl sm:text-5xl md:text-5xl font-extrabold font-sans tracking-tight transition-colors 
+//                       duration-300 ${
+//                         isActive
+//                           ? theme === "dark"
+//                             ? "text-[#ffffff]"
+//                             : "text-[#5b7fc7]"
+//                           : theme === "dark"
+//                           ? "text-[#5b7fc7] hover:text-[#5b7fc7]"
+//                           : "text-[#1c1c1c] hover:text-[#1c1c1c]"
+//                       }`}
+//                     >
+//                       {pillar.title}
+//                     </button>
+
+//                     {idx < corePillars.length - 1 && (
+//                       <span className="text-3xl sm:text-5xl md:text-6xl text-[#5b7fc7]/40 font-light select-none">
+//                         +
+//                       </span>
+//                     )}
+//                   </React.Fragment>
+//                 );
+//               })}
+//             </div>
+
+//             {/* Subtitle & Underlined CTA Row */}
+//             <div className="mt-12 sm:mt-16 w-full sm:w-3/4 sm:ml-42 flex flex-col md:flex-row items-start md:items-center 
+//             justify-between gap-6">
+//               <p
+//                 className={`text-base sm:text-xl font-mono leading-snug text-left transition-opacity duration-300 max-w-xl ${
+//                   theme === "dark" ? "text-neutral-300" : "text-[#1c1c1c]"
+//                 }`}
+//               >
+//                 {active.subtitle}
+//               </p>
+
+//               <Link
+//                 to="/services"
+//                 className="group relative shrink-0 inline-flex items-center justify-center -mr-10 gap-2 text-xs sm:text-sm font-semibold
+//                 tracking-wide text-white bg-neutral-900 px-5 py-2.5 rounded-md shadow-md hover:shadow-xl transition-all 
+//                 duration-500 cursor-pointer overflow-hidden"
+//               >
+//                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0
+//                   group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+//                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white font-mono">
+//                   See Full Services
+//                 </span>
+//                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+//                   <ArrowRight
+//                     size={14}
+//                     className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+//                   />
+//                 </span>
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* ===== PLATE / VIDEO SECTION ===== */}      
+//       <section
+//         ref={videoSectionRef}
+//         className="relative w-full bg-theme-primary pt-6 pb-20 sm:pt-10 sm:pb-48 font-mono transition-colors duration-500
+//          about-page-section">
+//         <div className="mx-auto max-w-[1500px] px-5 sm:px-8 md:px-12 lg:px-20 xl:px-32">
+//           <div className="relative max-w-4xl mx-auto">
+//             <div
+//               className="relative w-full aspect-video overflow-hidden rounded-2xl transition-transform duration-150 
+//               ease-out origin-center shadow-xl"
+//               style={{ transform: `scale(${videoScale})`, willChange: "transform" }}
+//             >
+//               <video
+//                 src={archVideo}
+//                 loop
+//                 muted
+//                 playsInline
+//                 autoPlay
+//                 className="w-full h-full object-cover"
+//               />
+
+//               {/* corner registration marks */}
+//               {[
+//                 "top-3 left-3 border-t border-l",
+//                 "top-3 right-3 border-t border-r",
+//                 "bottom-3 left-3 border-b border-l",
+//                 "bottom-3 right-3 border-b border-r",
+//               ].map((pos) => (
+//                 <span
+//                   key={pos}
+//                   className={`pointer-events-none absolute h-4 w-4 sm:h-5 sm:w-5 border-[#FFFFFF]/50 ${pos}`}
+//                 />
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Back to top */}
+//       <button
+//         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+//         aria-label="Back to top"
+//         className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-10 w-10 items-center justify-center rounded-full
+//             border border-theme bg-theme-secondary text-[#5b7fc7] shadow-sm transition-opacity duration-300 font-mono ${
+//               showTopBtn ? "opacity-100" : "opacity-0 pointer-events-none"
+//             }`}
+//       >
+//         <ArrowUp size={16} />
+//       </button>
+//     </>
+//   );
+// };
+
+// export default About;
 
 
 
@@ -542,6 +721,380 @@ export default About;
 
 
 
+
+
+// import React, { useEffect, useRef, useState, useCallback } from "react";
+// import { Link } from "react-router-dom";
+// import { ArrowUp, ChevronDown, Play, Pause } from "lucide-react";
+// import archVideo from "../assets/arch.mp4";
+
+// const useIsMobile = () => {
+//   const [isMobile, setIsMobile] = useState(
+//     typeof window !== "undefined" ? window.innerWidth < 768 : false
+//   );
+//   useEffect(() => {
+//     const mq = window.matchMedia("(max-width: 767px)");
+//     const handler = (e) => setIsMobile(e.matches);
+//     mq.addEventListener("change", handler);
+//     setIsMobile(mq.matches);
+//     return () => mq.removeEventListener("change", handler);
+//   }, []);
+//   return isMobile;
+// };
+
+// const useIsTablet = () => {
+//   const [isTablet, setIsTablet] = useState(
+//     typeof window !== "undefined"
+//       ? window.innerWidth >= 768 && window.innerWidth < 1024
+//       : false
+//   );
+//   useEffect(() => {
+//     const mqMin = window.matchMedia("(min-width: 768px)");
+//     const mqMax = window.matchMedia("(max-width: 1023px)");
+//     const handler = () => setIsTablet(mqMin.matches && mqMax.matches);
+//     handler();
+//     mqMin.addEventListener("change", handler);
+//     mqMax.addEventListener("change", handler);
+//     return () => {
+//       mqMin.removeEventListener("change", handler);
+//       mqMax.removeEventListener("change", handler);
+//     };
+//   }, []);
+//   return isTablet;
+// };
+
+// const corePillars = [
+//   {
+//     num: "01",
+//     title: "Design",
+//     subtitle:
+//       "Architecture and specialist design coordinated as one system — from first sketch to approval.",
+//     image:
+//       "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRYEf2Kb9Xn4qNj4O3jH5NQgNppcPtd7gGbJrG4fgwYl5CK0FhYUwXTQ20o8eTzQkBFlbzuoQFvnLZPeV0",
+//   },
+//   {
+//     num: "02",
+//     title: "Build",
+//     subtitle:
+//       "Construction, fit-out and delivery executed across varied structural systems with rigorous supervision.",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQFqBSF4FthDSM5VVzagfCoQGjo6yAWYg_PAWF2coupudcqSDGEgEk8FToVyTjJfFDdb0DGxWFTK5RbSsw",
+//   },
+//   {
+//     num: "03",
+//     title: "Supply",
+//     subtitle:
+//       "Material and product sourcing connected directly to project delivery — local and imported.",
+//     image:
+//       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+//   },
+// ];
+
+// const lerp = (a, b, t) => a + (b - a) * t;
+// const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
+
+// const About = () => {
+//   const sectionRef = useRef(null);
+//   const videoSectionRef = useRef(null);
+
+//   const isMobile = useIsMobile();
+//   const isTablet = useIsTablet();
+
+//   const [scrollState, setScrollState] = useState({ showTopBtn: false, overallProgress: 0, videoScale: 0.4 });
+//   const hasScrolledRef = useRef(false);
+//   const rafRef = useRef(null);
+
+//   // On mobile, delay animation start until user has scrolled past a threshold
+//   const canAnimate = isMobile ? hasScrolledRef.current : true;
+
+//   const containerRef = useRef(null);
+//   const [containerSize, setContainerSize] = useState({ w: 1, h: 1 });
+
+//   const recompute = useCallback(() => {
+//     let overallProgress = 0;
+//     let videoScale = 0.4;
+//     let showTopBtn = false;
+
+//     // 1. Stack section calculation
+//     const section = sectionRef.current;
+//     if (section) {
+//       const rect = section.getBoundingClientRect();
+//       const total = rect.height - window.innerHeight;
+//       const distanceScrolled = -rect.top;
+//       overallProgress = total > 0 ? clamp01(distanceScrolled / total) : 0;
+//     }
+
+//     // 2. Video section scale calculation
+//     const videoSec = videoSectionRef.current;
+//     if (videoSec) {
+//       const rect = videoSec.getBoundingClientRect();
+//       const winHeight = window.innerHeight;
+
+//       // On mobile, reduce distance needed to reach full size (0.35 of screen height vs 0.85 on desktop)
+//       const maxDistance = isMobile ? winHeight * 0.35 : winHeight * 0.85;
+//       const initialScale = isMobile ? 0.45 : 0.3;
+
+//       const progress = clamp01((winHeight - rect.top) / maxDistance);
+
+//       videoScale = lerp(initialScale, 1.0, progress);
+//     }
+
+//     // 3. Top button toggle
+//     const scrolled = window.scrollY;
+//     const totalHeight =
+//       document.documentElement.scrollHeight - window.innerHeight;
+//     showTopBtn = totalHeight > 0 && scrolled > totalHeight * 0.3;
+
+//     // Single batched state update — 1 render per frame instead of 3
+//     setScrollState({ showTopBtn, overallProgress, videoScale });
+//   }, [isMobile]);
+
+//   // Measure container size for transform-based positioning
+//   useEffect(() => {
+//     const measure = () => {
+//       if (containerRef.current) {
+//         const rect = containerRef.current.getBoundingClientRect();
+//         setContainerSize({ w: rect.width, h: rect.height });
+//       }
+//     };
+//     measure();
+//     window.addEventListener("resize", measure);
+//     return () => window.removeEventListener("resize", measure);
+//   }, []);
+
+//   useEffect(() => {
+//     const onScroll = () => {
+//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+//       rafRef.current = requestAnimationFrame(() => {
+//         if (!hasScrolledRef.current && window.scrollY > 80) {
+//           hasScrolledRef.current = true;
+//         }
+//         recompute();
+//         rafRef.current = null;
+//       });
+//     };
+//     recompute();
+//     window.addEventListener("scroll", onScroll, { passive: true });
+//     window.addEventListener("resize", recompute);
+//     return () => {
+//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+//       window.removeEventListener("scroll", onScroll);
+//       window.removeEventListener("resize", recompute);
+//     };
+//   }, [recompute]);
+
+//   const { showTopBtn, overallProgress, videoScale } = scrollState;
+
+//   const stageSize = 1 / corePillars.length;
+//   const getItemProgress = useCallback(
+//     (i) => {
+//       if (!canAnimate) return 0;
+//       const start = i * stageSize;
+//       const end = start + stageSize;
+//       return clamp01((overallProgress - start) / (end - start));
+//     },
+//     [overallProgress, stageSize, canAnimate]
+//   );
+
+//   // Responsive layout constants
+//   const STACK_TOP_STEP = isMobile ? 25 : isTablet ? 18 : 25;
+//   const ITEM_WIDTH = isMobile ? 85 : isTablet ? 60 : 48;
+//   const ITEM_HEIGHT = isMobile ? '30%' : '25%';
+
+//   // Responsive final staggered positions after scroll
+//   const FINAL_POSITIONS = isMobile
+//     ? [
+//       { left: 2, top: 12 },
+//       { left: 18, top: 40 },
+//       { left: 2, top: 70 },
+//     ]      : isTablet
+//         ? [
+//           { left: 3, top: 30 },
+//           { left: 35, top: 58 },
+//           { left: 3, top: 86 },
+//         ]
+//       : [
+//         { left: 5, top: 32 },
+//         { left: 50, top: 62 },
+//         { left: 5, top: 90 },
+//       ];
+
+//   return (
+//     <>
+//       <style>{`
+//         html, body {
+//           scrollbar-width: none;
+//           -ms-overflow-style: none;
+//         }
+//         html::-webkit-scrollbar, body::-webkit-scrollbar {
+//           display: none;
+//         }
+//       `}</style>
+
+//       <section className="relative w-full border-t border-gray-100">
+//         <div className="absolute inset-0 z-0 bg-white/10" />
+
+//         <div className="relative z-10 mx-auto max-w-[1500px] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28">
+//           <div className="pt-32 sm:pt-14 md:pt-16 lg:pt-16 xl:pt-48 mb-2 sm:mb-12 md:mb-18 text-left flex justify-start pl-2 sm:pl-4 md:pl-8">
+//             <h2 className="font-mono text-xl px-0 sm:px-20 sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl ml-2 sm:ml-5 font-semibold leading-tight text-[#5b7fc7] max-w-4xl">
+//               From architecture and engineering to construction, fit-out and
+//               sourcing.
+//             </h2>
+//           </div>
+
+//           {/* ================= SCROLL-PINNED STACK ================= */}
+//           <div
+//             ref={sectionRef}
+//             style={{ height: `${corePillars.length * (isMobile ? 35 : isTablet ? 42 : 40)}vh` }}
+//             className="relative"
+//           >
+//             <div className={`sticky flex h-[100dvh] w-full items-start px-4 sm:px-8 md:px-12 lg:px-20 ${isMobile ? 'justify-center' : ''}`}>
+//               <div ref={containerRef} className={`relative w-full ${isMobile ? 'h-[90%] mt-[2vh]' : 'h-[85%] mt-[3vh] sm:mt-[4vh] lg:mt-[5vh]'}`}>
+//                 {corePillars.map((item, i) => {
+//                   const progress = getItemProgress(i);
+
+//                   const top = lerp(
+//                     i * STACK_TOP_STEP,
+//                     FINAL_POSITIONS[i].top,
+//                     progress
+//                   );
+//                   const left = lerp(0, FINAL_POSITIONS[i].left, progress);
+//                   const width = lerp(100, ITEM_WIDTH, progress);
+
+//                   const isUnfolded = progress > 0.6;
+
+//                   return (
+//                     <div
+//                       key={item.title}
+//                       className={`absolute flex items-center transition-colors duration-300 ${isUnfolded
+//                           ? "border-b border-gray-300/80"
+//                           : "border-b border-transparent"
+//                         }`}
+//                       style={{
+//                         top: 0,
+//                         left: 0,
+//                         width: "100%",
+//                         height: ITEM_HEIGHT,
+//                         transform: `translate(${(left / 100) * containerSize.w}px, ${(top / 100) * containerSize.h}px)`,
+//                         width: `${width}%`,
+//                         willChange: "transform",
+//                         transition:
+//                           "transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), width 0.18s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease",
+//                       }}
+//                     >
+//                       <div className="w-full px-2 sm:px-4 md:px-8 lg:px-16">
+//                         <div className="w-full grid gap-3 sm:gap-4 md:gap-6 lg:gap-12 xl:gap-16 items-center transition-all duration-500"
+//                           style={{
+//                             gridTemplateColumns: isUnfolded
+//                               ? "1fr"
+//                               : "40% 1fr",
+//                           }}
+//                         >
+//                           {/* Title & Subtitle Container */}
+//                           <div className="flex flex-col justify-center">
+//                             <h3 className="font-mono text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-5xl font-medium tracking-tight text-[#1c1c1c] whitespace-nowrap m-0">
+//                               {item.title}
+//                             </h3>
+
+//                             {/* Subtitle - visible under title after scroll */}
+//                             {isUnfolded && (
+//                               <p
+//                                 className="font-mono text-[10px] sm:text-xs md:text-sm lg:text-base font-medium leading-relaxed text-gray-800 text-left max-w-md w-full mt-1 sm:mt-2 pb-1 sm:pb-2"
+//                               >
+//                                 {item.subtitle}
+//                               </p>
+//                             )}
+//                           </div>
+
+//                           {/* Image Beside Title - Shows before scroll */}
+//                           {!isUnfolded && (
+//                             <div className="w-full flex items-center justify-start overflow-hidden">
+//                               <img
+//                                 src={item.image}
+//                                 alt={item.title}
+//                                 className="h-28 sm:h-28 md:h-32 lg:h-32 xl:h-36 w-auto object-cover rounded-md shadow-sm border border-gray-100 transition-opacity duration-300"
+//                               />
+//                             </div>
+//                           )}
+//                         </div>
+//                       </div>
+//                     </div>
+//                   );
+//                 })}
+//               </div>
+
+//               {/* Detail Services Button */}
+//               <div
+//                 className="absolute -bottom-10 sm:-bottom-28 md:-bottom-38 left-0 w-full flex justify-center"
+//                 style={{
+//                   opacity: overallProgress >= 0.95 ? 1 : 0,
+//                   transform: `translateY(${overallProgress >= 0.95 ? 0 : 20
+//                     }px)`,
+//                   transition: "opacity 0.5s ease, transform 0.5s ease",
+//                   pointerEvents: overallProgress >= 0.95 ? "auto" : "none",
+//                 }}
+//               >
+//                 <Link
+//                   to="/services"
+//                   className="group relative overflow-hidden inline-flex items-center justify-center gap-3 text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] sm:tracking-[0.2em] text-gray-900 uppercase font-mono bg-white/90 border-2 border-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer"
+//                 >
+//                   <span className="absolute left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+//                   <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+//                     Our Detail Services
+//                   </span>
+//                   <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+//                     <ChevronDown
+//                       size={18}
+//                       className="transition-transform duration-300 group-hover:translate-y-1"
+//                     />
+//                   </span>
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/*  FAST RESPONSIVE VIDEO SECTION  */}
+//       <section
+//         ref={videoSectionRef}
+//         className="relative w-full bg-white mt-4 sm:mt-0 md:mt-10 py-18 sm:py-20 md:py-24 overflow-hidden"
+//       >
+//         <div className="mx-auto max-w-[1500px] px-5 sm:px-8 md:px-12 lg:px-20 xl:px-48">
+//           <div
+//             className="relative w-full lg:max-w-5xl xl:max-w-7xl mx-auto aspect-video overflow-hidden rounded-2xl sm:rounded-2xl  
+//             sm:shadow-2xl bg-black transition-transform duration-150 ease-out origin-center"
+//             style={{
+//               transform: `scale(${videoScale})`,
+//               willChange: "transform",
+//             }}
+//           >
+//             <video
+//               src={archVideo}
+//               loop
+//               muted
+//               playsInline
+//               autoPlay
+//               className="w-full h-full object-cover"
+//             />
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Floating Back to Top */}
+//       <button
+//         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+//         aria-label="Back to top"
+//         className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#5b7fc7] text-white shadow-md cursor-pointer ${showTopBtn ? "block" : "hidden"
+//           }`}
+//       >
+//         <ArrowUp size={14} />
+//       </button>
+//     </>
+//   );
+// };
+
+// export default About;
 
 
 

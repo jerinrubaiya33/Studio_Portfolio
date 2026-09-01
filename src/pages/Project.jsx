@@ -1,3 +1,269 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
+
+import Bashanta from "../assets/bashanta.png";
+import Kindergarten from "../assets/kindergarten.png";
+import Simin from "../assets/simin.png";
+import HospitalImg from "../assets/hospital (1).png";
+import InteriorLobby from "../assets/jb.png";
+import InteriorRestaurant from "../assets/sushi.png";
+import bashantaInte from "../assets/bashantaInte.png";
+import AKM from "../assets/akm.png";
+
+const allProjects = [
+  {
+    id: "bashanta-bilash",
+    title: "Bashanta Bilash",
+    location: "Tarabo, Kachpur, Narayangonj",
+    area: "35 Bigha +",
+    timeline: "2020–Present",
+    image: Bashanta,
+  },
+  {
+    id: "bangladesh-eye-hospital",
+    title: "Bangladesh Eye Hospital",
+    location: "Uttara, Dhaka",
+    area: "1.5 Acre",
+    timeline: "2023",
+    image: HospitalImg,
+  },
+  {
+    id: "simin-complex",
+    title: "Simin Complex",
+    location: "Nokla, Sherpur",
+    area: "10 Katha",
+    timeline: "2024",
+    image: Simin,
+  },
+  {
+    id: "jb-apartment",
+    title: "JB Apartment",
+    location: "Tarabo, Kachpur, Narayangonj",
+    area: "12,000 Sqft",
+    timeline: "2021–Present",
+    image: InteriorLobby,
+  },
+  {
+    id: "sushi-samurai",
+    title: "Sushi Samurai",
+    location: "Gulshan, Dhaka",
+    area: "4,500 Sqft",
+    timeline: "2023",
+    image: InteriorRestaurant,
+  },
+  {
+    id: "bashanta-interior",
+    title: "Bashanta Bilash Interior",
+    location: "Tarabo, Kachpur, Narayangonj",
+    area: "12,000 Sqft",
+    timeline: "2021–Present",
+    image: bashantaInte,
+  },
+  {
+    id: "akm-restaurant",
+    title: "AKM Restaurant & Convention Center",
+    location: "Gulshan, Dhaka",
+    area: "4,500 Sqft",
+    timeline: "2023",
+    image: AKM,
+  },
+  {
+    id: "kindergarten-madrassa",
+    title: "Kindergarten Madrassa",
+    location: "Purbachal, Dhaka",
+    area: "22 Bigha",
+    timeline: "2022–2024",
+    image: Kindergarten,
+  },
+  {
+    id: "bashanta-bilash",
+    title: "Bashanta Bilash",
+    location: "Tarabo, Kachpur, Narayangonj",
+    area: "35 Bigha +",
+    timeline: "2020–Present",
+    image: Bashanta,
+  },
+];
+
+// Sets standard 4/3 aspect ratio for cards, but makes the 2nd card (index 1) tall (3/4 aspect ratio)
+const getLayoutClasses = (index) => {
+  if (index === 1) {
+    return {
+      span: "col-span-1",
+      aspect: "aspect-[4/3] sm:aspect-[3/4]",
+    };
+  }
+  return {
+    span: "col-span-1",
+    aspect: "aspect-[4/3]",
+  };
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+      delay: (i % 3) * 0.1,
+    },
+  }),
+};
+
+function ProjectCard({ project, index, isDark }) {
+  const layout = getLayoutClasses(index);
+
+  return (
+    <motion.div
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={cardVariants}
+      className={`group mb-8 sm:mb-12 md:mb-16 select-none ${layout.span}`}
+    >
+      <Link to={`/projects/${project.id}`} className="relative block z-10 cursor-pointer">
+        {/* IMAGE CONTAINER */}
+        <div className={`w-full z-10 ${layout.aspect} overflow-hidden mb-3 sm:mb-4 relative ${isDark ? "bg-neutral-800" : "bg-neutral-100"}`}>
+          <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+          />
+        </div>
+
+        {/* TITLE & YEAR */}
+        <div className="relative z-10 pb-2 min-h-[28px] sm:min-h-[32px]">
+          <div className="flex items-baseline justify-between gap-2">
+            {/* Reduced Title Size */}
+            <h3 className={`text-sm sm:text-base md:text-lg font-mono font-normal group-hover:text-theme-muted transition-colors duration-700 leading-snug ${isDark ? "text-gray-300" : "text-theme-primary"}`}>
+              {project.title}
+            </h3>
+
+            {/* YEAR */}
+            <span className={`text-xs sm:text-xs md:text-sm font-mono shrink-0 font-medium opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-700 ease-out ${isDark ? "text-gray-500" : "text-neutral-500"}`}>
+              {project.timeline}
+            </span>
+          </div>
+
+          {/* UNDERLINE ANIMATION */}
+          <div className={`absolute bottom-0 left-0 w-0 group-hover:w-full h-[1px] transition-all duration-700 ease-out ${isDark ? "bg-white/15" : "bg-neutral-300"}`} />
+        </div>
+
+        {/* LOCATION & AREA */}
+        <div className="mt-1 flex flex-col xs:flex-row xs:items-center justify-between gap-1 font-mono opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-700 ease-out delay-100">
+          <p className={`font-medium text-xs sm:text-sm md:text-sm line-clamp-1 ${isDark ? "text-gray-400" : "text-neutral-800"}`}>{project.location}</p>
+          <p className={`text-xs sm:text-xs md:text-sm shrink-0 ${isDark ? "text-gray-500" : "text-neutral-500"}`}>{project.area}</p>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+function Project() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const displayedProjects = allProjects.slice(0, 6);
+
+  return (
+    <section
+      id="projects"
+      className={`relative z-0 w-full sm:mt-10 mt-2 px-6 sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20
+       bg-cover bg-center bg-no-repeat overflow-hidden transition-colors duration-500 ${isDark ? "bg-theme-primary" : "bg-[#FFFFFF]"}`}
+    >
+      {/* HERO HEADER */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={`mb-16 sm:mb-24 md:mb-32 mt-0 sm:mt-28 md:mt-0 border-b pb-6 sm:pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 ${isDark ? "border-white/10" : "border-neutral-200"}`}
+      >
+        <div>
+          <h1 className={`text-3xl sm:text-5xl md:text-6xl lg:text-5xl mb-2 sm:mb-4 font-normal font-mono tracking-tight sm:tracking-[0.1rem] leading-none uppercase transition-colors duration-500 ${isDark ? "text-[#b5bac2]" : "text-theme-primary"}`}>
+            Portfolio
+          </h1>
+        </div>
+
+        <p className={`max-w-md uppercase font-mono mt-2 sm:mt-3 text-sm sm:text-base md:text-lg leading-relaxed transition-colors duration-500 ${isDark ? "text-gray-400" : "text-theme-muted"}`}>
+          Architectural forms, spatial interior design, and environmental planning.
+        </p>
+      </motion.div>
+
+      {/* GRID */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 sm:gap-x-8 md:gap-x-30 
+      gap-y-8 sm:gap-y-10 md:gap-y-12 items-start">
+        {displayedProjects.map((p, index) => (
+          <ProjectCard key={p.id} project={p} index={index} isDark={isDark} />
+        ))}
+      </div>
+
+      {/* SEE MORE WORK BUTTON */}
+      <div className="mt-8 sm:mt-16 md:mt-5 flex justify-center items-center">
+        <Link to="/projects" className="w-full sm:w-auto text-center">
+          <button className={`group relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold
+           tracking-wide px-5 py-2.5 rounded-md shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer ${isDark ? "text-gray-200 bg-white/10 hover:bg-white/15" : "text-white bg-neutral-900"}`}>
+            <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0
+            group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-white font-mono">
+              See More Work
+            </span>
+
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+              <ArrowUpRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </span>
+          </button>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+export default Project;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React from "react";
 // import { Link } from "react-router-dom";
 // import { motion } from "framer-motion";
@@ -79,7 +345,7 @@
 //     image: Kindergarten,
 //   },
 //   {
-//     id: "bashanta-bilash",
+//     id: "bashanta-bilash-duplicate",
 //     title: "Bashanta Bilash",
 //     location: "Tarabo, Kachpur, Narayangonj",
 //     area: "35 Bigha +",
@@ -88,16 +354,15 @@
 //   },
 // ];
 
-// // Sets standard 4/3 aspect ratio for cards, but makes the 2nd card (index 1) tall (3/4 aspect ratio)
 // const getLayoutClasses = (index) => {
 //   if (index === 1) {
 //     return {
-//       span: "col-span-1",
-//       aspect: "aspect-[4/3] sm:aspect-[3/4]",
+//       span: "sm:col-span-1",
+//       aspect: "aspect-[4/5]",
 //     };
 //   }
 //   return {
-//     span: "col-span-1",
+//     span: "sm:col-span-1",
 //     aspect: "aspect-[4/3]",
 //   };
 // };
@@ -115,7 +380,7 @@
 //   }),
 // };
 
-// function ProjectCard({ project, index }) {
+// function ProjectCard({ project, index, customWidth, extraClasses = "" }) {
 //   const layout = getLayoutClasses(index);
 
 //   return (
@@ -125,11 +390,11 @@
 //       whileInView="visible"
 //       viewport={{ once: true, margin: "-50px" }}
 //       variants={cardVariants}
-//       className={`group mb-8 sm:mb-12 md:mb-16 select-none ${layout.span}`}
+//       className={`group select-none sm:mb-12 md:mb-16 ${layout.span} ${customWidth || "w-full"} ${extraClasses} sm:w-auto sm:m-0`}
 //     >
 //       <Link to={`/projects/${project.id}`} className="relative block z-10 cursor-pointer">
 //         {/* IMAGE CONTAINER */}
-//         <div className={`w-full z-10 ${layout.aspect} overflow-hidden bg-neutral-100 mb-3 sm:mb-4 relative`}>
+//         <div className={`w-full z-10 ${layout.aspect} overflow-hidden bg-neutral-100 mb-2 sm:mb-4 relative rounded-none`}>
 //           <img
 //             src={project.image}
 //             alt={project.title}
@@ -138,28 +403,32 @@
 //           />
 //         </div>
 
-//         {/* TITLE & YEAR */}
-//         <div className="relative z-10 pb-2 min-h-[28px] sm:min-h-[32px]">
+//         {/* MOBILE: TITLE ONLY */}
+//         <div className="sm:hidden block mt-1.5">
+//           <h3 className="text-xs font-mono text-[#1c1c1c] font-medium uppercase tracking-wide leading-tight">
+//             {project.title}
+//           </h3>
+//         </div>
+
+//         {/* DESKTOP: FULL METADATA (TITLE + YEAR) */}
+//         <div className="hidden sm:block relative z-10 pb-2 min-h-[32px]">
 //           <div className="flex items-baseline justify-between gap-2">
-//             {/* Reduced Title Size */}
-//             <h3 className="text-sm sm:text-base md:text-lg font-mono text-[#1c1c1c] font-normal group-hover:text-neutral-600 transition-colors duration-700 leading-snug">
+//             <h3 className="text-base md:text-lg font-mono text-[#1c1c1c] font-normal group-hover:text-neutral-600 transition-colors duration-700 leading-snug">
 //               {project.title}
 //             </h3>
 
-//             {/* YEAR */}
-//             <span className="text-xs sm:text-xs md:text-sm font-mono text-neutral-500 shrink-0 font-medium opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-700 ease-out">
+//             <span className="text-xs md:text-sm font-mono text-neutral-500 shrink-0 font-medium opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700 ease-out">
 //               {project.timeline}
 //             </span>
 //           </div>
 
-//           {/* UNDERLINE ANIMATION */}
 //           <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-[1px] bg-neutral-300 transition-all duration-700 ease-out" />
 //         </div>
 
-//         {/* LOCATION & AREA */}
-//         <div className="mt-1 flex flex-col xs:flex-row xs:items-center justify-between gap-1 font-mono opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-700 ease-out delay-100">
-//           <p className="font-medium text-xs sm:text-sm md:text-sm text-neutral-800 line-clamp-1">{project.location}</p>
-//           <p className="text-xs sm:text-xs md:text-sm text-neutral-500 shrink-0">{project.area}</p>
+//         {/* DESKTOP: LOCATION & AREA */}
+//         <div className="hidden sm:flex mt-1 flex-col xs:flex-row xs:items-center justify-between gap-1 font-mono opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700 ease-out delay-100">
+//           <p className="font-medium text-sm text-neutral-800 line-clamp-1">{project.location}</p>
+//           <p className="text-xs md:text-sm text-neutral-500 shrink-0">{project.area}</p>
 //         </div>
 //       </Link>
 //     </motion.div>
@@ -172,15 +441,15 @@
 //   return (
 //     <section
 //       id="projects"
-//       className="relative z-0 w-full sm:mt-10 mt-2 px-6 sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20
-//        bg-cover bg-center bg-no-repeat overflow-hidden"
+//       className="relative z-0 w-full sm:mt-10 mt-2 px-10 sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20
+//         bg-cover bg-center bg-no-repeat overflow-hidden"
 //     >
 //       {/* HERO HEADER */}
 //       <motion.div
 //         initial={{ opacity: 0, y: -20 }}
 //         animate={{ opacity: 1, y: 0 }}
 //         transition={{ duration: 0.8, ease: "easeOut" }}
-//         className="mb-16 sm:mb-24 md:mb-32 mt-0 sm:mt-28 md:mt-0 border-b border-neutral-200 pb-6 sm:pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6"
+//         className="mb-12 sm:mb-24 md:mb-32 mt-0 sm:mt-28 md:mt-0 border-b border-neutral-200 pb-6 sm:pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6"
 //       >
 //         <div>
 //           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl mb-2 sm:mb-4 text-[#1c1c1c] font-normal font-mono tracking-tight sm:tracking-[0.1rem] leading-none uppercase">
@@ -193,16 +462,56 @@
 //         </p>
 //       </motion.div>
 
-//       {/* GRID */}
-//       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 sm:gap-x-8 md:gap-x-30 
-//       gap-y-8 sm:gap-y-10 md:gap-y-12 items-start">
-//         {displayedProjects.map((p, index) => (
-//           <ProjectCard key={p.id} project={p} index={index} />
-//         ))}
+//       {/* MOBILE ASYMMETRICAL COLLAGE / DESKTOP CLEAN GRID */}
+//       <div className="flex flex-col gap-y-20 sm:gap-y-0 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-x-8 md:gap-x-30 sm:gap-y-10 md:gap-y-12 items-start relative">
+//         {/* ROW 1: 1st image */}
+//         {displayedProjects[0] && (
+//           <div className="w-full flex justify-start sm:block">
+//             <ProjectCard project={displayedProjects[0]} index={0} customWidth="w-[68%]" />
+//           </div>
+//         )}
+
+//         {/* ROW 2: 2nd image */}
+//         {displayedProjects[1] && (
+//           <div className="w-full flex justify-end sm:block">
+//             <ProjectCard project={displayedProjects[1]} index={1} customWidth="w-[58%]" />
+//           </div>
+//         )}
+
+//         {/* ROW 3: 3rd & 4th images */}
+//         {(displayedProjects[2] || displayedProjects[3]) && (
+//           <div className="w-full grid grid-cols-2 gap-6 items-start sm:contents">
+//             {displayedProjects[2] && (
+//               <ProjectCard project={displayedProjects[2]} index={2} customWidth="w-full" />
+//             )}
+//             {displayedProjects[3] && (
+//               <ProjectCard 
+//                 project={displayedProjects[3]} 
+//                 index={3} 
+//                 customWidth="w-full" 
+//                 extraClasses="mt-14 sm:mt-0" 
+//               />
+//             )}
+//           </div>
+//         )}
+
+//         {/* ROW 4: 5th image */}
+//         {displayedProjects[4] && (
+//           <div className="w-full flex justify-start sm:block">
+//             <ProjectCard project={displayedProjects[4]} index={4} customWidth="w-[68%]" />
+//           </div>
+//         )}
+
+//         {/* ROW 5: 6th image */}
+//         {displayedProjects[5] && (
+//           <div className="w-full flex justify-center sm:block">
+//             <ProjectCard project={displayedProjects[5]} index={5} customWidth="w-[75%]" />
+//           </div>
+//         )}
 //       </div>
 
 //       {/* SEE MORE WORK BUTTON */}
-//       <div className="mt-8 sm:mt-16 md:mt-5 flex justify-center items-center">
+//       <div className="mt-20 sm:mt-16 md:mt-5 flex justify-center items-center">
 //         <Link to="/projects" className="w-full sm:w-auto text-center">
 //           <button className="group relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-3 text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] sm:tracking-[0.2em] text-gray-900 uppercase font-mono bg-white/90 border-2 border-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer">
 //             <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
@@ -225,308 +534,3 @@
 // }
 
 // export default Project;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-
-import Bashanta from "../assets/bashanta.png";
-import Kindergarten from "../assets/kindergarten.png";
-import Simin from "../assets/simin.png";
-import HospitalImg from "../assets/hospital (1).png";
-import InteriorLobby from "../assets/jb.png";
-import InteriorRestaurant from "../assets/sushi.png";
-import bashantaInte from "../assets/bashantaInte.png";
-import AKM from "../assets/akm.png";
-import ProjectsBg from "../assets/projectsbg.png";
-
-const allProjects = [
-  {
-    id: "bashanta-bilash",
-    title: "Bashanta Bilash",
-    location: "Tarabo, Kachpur, Narayangonj",
-    area: "35 Bigha +",
-    timeline: "2020–Present",
-    image: Bashanta,
-  },
-  {
-    id: "bangladesh-eye-hospital",
-    title: "Bangladesh Eye Hospital",
-    location: "Uttara, Dhaka",
-    area: "1.5 Acre",
-    timeline: "2023",
-    image: HospitalImg,
-  },
-  {
-    id: "simin-complex",
-    title: "Simin Complex",
-    location: "Nokla, Sherpur",
-    area: "10 Katha",
-    timeline: "2024",
-    image: Simin,
-  },
-  {
-    id: "jb-apartment",
-    title: "JB Apartment",
-    location: "Tarabo, Kachpur, Narayangonj",
-    area: "12,000 Sqft",
-    timeline: "2021–Present",
-    image: InteriorLobby,
-  },
-  {
-    id: "sushi-samurai",
-    title: "Sushi Samurai",
-    location: "Gulshan, Dhaka",
-    area: "4,500 Sqft",
-    timeline: "2023",
-    image: InteriorRestaurant,
-  },
-  {
-    id: "bashanta-interior",
-    title: "Bashanta Bilash Interior",
-    location: "Tarabo, Kachpur, Narayangonj",
-    area: "12,000 Sqft",
-    timeline: "2021–Present",
-    image: bashantaInte,
-  },
-  {
-    id: "akm-restaurant",
-    title: "AKM Restaurant & Convention Center",
-    location: "Gulshan, Dhaka",
-    area: "4,500 Sqft",
-    timeline: "2023",
-    image: AKM,
-  },
-  {
-    id: "kindergarten-madrassa",
-    title: "Kindergarten Madrassa",
-    location: "Purbachal, Dhaka",
-    area: "22 Bigha",
-    timeline: "2022–2024",
-    image: Kindergarten,
-  },
-  {
-    id: "bashanta-bilash-duplicate",
-    title: "Bashanta Bilash",
-    location: "Tarabo, Kachpur, Narayangonj",
-    area: "35 Bigha +",
-    timeline: "2020–Present",
-    image: Bashanta,
-  },
-];
-
-const getLayoutClasses = (index) => {
-  if (index === 1) {
-    return {
-      span: "sm:col-span-1",
-      aspect: "aspect-[4/5]",
-    };
-  }
-  return {
-    span: "sm:col-span-1",
-    aspect: "aspect-[4/3]",
-  };
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
-      delay: (i % 3) * 0.1,
-    },
-  }),
-};
-
-function ProjectCard({ project, index, customWidth, extraClasses = "" }) {
-  const layout = getLayoutClasses(index);
-
-  return (
-    <motion.div
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={cardVariants}
-      className={`group select-none sm:mb-12 md:mb-16 ${layout.span} ${customWidth || "w-full"} ${extraClasses} sm:w-auto sm:m-0`}
-    >
-      <Link to={`/projects/${project.id}`} className="relative block z-10 cursor-pointer">
-        {/* IMAGE CONTAINER */}
-        <div className={`w-full z-10 ${layout.aspect} overflow-hidden bg-neutral-100 mb-2 sm:mb-4 relative rounded-none`}>
-          <img
-            src={project.image}
-            alt={project.title}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
-          />
-        </div>
-
-        {/* MOBILE: TITLE ONLY */}
-        <div className="sm:hidden block mt-1.5">
-          <h3 className="text-xs font-mono text-[#1c1c1c] font-medium uppercase tracking-wide leading-tight">
-            {project.title}
-          </h3>
-        </div>
-
-        {/* DESKTOP: FULL METADATA (TITLE + YEAR) */}
-        <div className="hidden sm:block relative z-10 pb-2 min-h-[32px]">
-          <div className="flex items-baseline justify-between gap-2">
-            <h3 className="text-base md:text-lg font-mono text-[#1c1c1c] font-normal group-hover:text-neutral-600 transition-colors duration-700 leading-snug">
-              {project.title}
-            </h3>
-
-            <span className="text-xs md:text-sm font-mono text-neutral-500 shrink-0 font-medium opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700 ease-out">
-              {project.timeline}
-            </span>
-          </div>
-
-          <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-[1px] bg-neutral-300 transition-all duration-700 ease-out" />
-        </div>
-
-        {/* DESKTOP: LOCATION & AREA */}
-        <div className="hidden sm:flex mt-1 flex-col xs:flex-row xs:items-center justify-between gap-1 font-mono opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700 ease-out delay-100">
-          <p className="font-medium text-sm text-neutral-800 line-clamp-1">{project.location}</p>
-          <p className="text-xs md:text-sm text-neutral-500 shrink-0">{project.area}</p>
-        </div>
-      </Link>
-    </motion.div>
-  );
-}
-
-function Project() {
-  const displayedProjects = allProjects.slice(0, 6);
-
-  return (
-    <section
-      id="projects"
-      className="relative z-0 w-full sm:mt-10 mt-2 px-10 sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20
-        bg-cover bg-center bg-no-repeat overflow-hidden"
-    >
-      {/* HERO HEADER */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mb-12 sm:mb-24 md:mb-32 mt-0 sm:mt-28 md:mt-0 border-b border-neutral-200 pb-6 sm:pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6"
-      >
-        <div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-5xl mb-2 sm:mb-4 text-[#1c1c1c] font-normal font-mono tracking-tight sm:tracking-[0.1rem] leading-none uppercase">
-            Some Works
-          </h1>
-        </div>
-
-        <p className="max-w-md uppercase font-sans mt-2 sm:mt-3 text-sm sm:text-base md:text-lg text-neutral-600 leading-relaxed">
-          Architectural forms, spatial interior design, and environmental planning.
-        </p>
-      </motion.div>
-
-      {/* MOBILE ASYMMETRICAL COLLAGE / DESKTOP CLEAN GRID */}
-      <div className="flex flex-col gap-y-20 sm:gap-y-0 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:gap-x-8 md:gap-x-30 sm:gap-y-10 md:gap-y-12 items-start relative">
-        {/* ROW 1: 1st image */}
-        {displayedProjects[0] && (
-          <div className="w-full flex justify-start sm:block">
-            <ProjectCard project={displayedProjects[0]} index={0} customWidth="w-[68%]" />
-          </div>
-        )}
-
-        {/* ROW 2: 2nd image */}
-        {displayedProjects[1] && (
-          <div className="w-full flex justify-end sm:block">
-            <ProjectCard project={displayedProjects[1]} index={1} customWidth="w-[58%]" />
-          </div>
-        )}
-
-        {/* ROW 3: 3rd & 4th images */}
-        {(displayedProjects[2] || displayedProjects[3]) && (
-          <div className="w-full grid grid-cols-2 gap-6 items-start sm:contents">
-            {displayedProjects[2] && (
-              <ProjectCard project={displayedProjects[2]} index={2} customWidth="w-full" />
-            )}
-            {displayedProjects[3] && (
-              <ProjectCard 
-                project={displayedProjects[3]} 
-                index={3} 
-                customWidth="w-full" 
-                extraClasses="mt-14 sm:mt-0" 
-              />
-            )}
-          </div>
-        )}
-
-        {/* ROW 4: 5th image */}
-        {displayedProjects[4] && (
-          <div className="w-full flex justify-start sm:block">
-            <ProjectCard project={displayedProjects[4]} index={4} customWidth="w-[68%]" />
-          </div>
-        )}
-
-        {/* ROW 5: 6th image */}
-        {displayedProjects[5] && (
-          <div className="w-full flex justify-center sm:block">
-            <ProjectCard project={displayedProjects[5]} index={5} customWidth="w-[75%]" />
-          </div>
-        )}
-      </div>
-
-      {/* SEE MORE WORK BUTTON */}
-      <div className="mt-20 sm:mt-16 md:mt-5 flex justify-center items-center">
-        <Link to="/projects" className="w-full sm:w-auto text-center">
-          <button className="group relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-3 text-xs sm:text-sm md:text-base font-bold tracking-[0.15em] sm:tracking-[0.2em] text-gray-900 uppercase font-mono bg-white/90 border-2 border-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer">
-            <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
-
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-              See More Work
-            </span>
-
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-              <ChevronDown
-                size={18}
-                className="transition-transform duration-300 group-hover:translate-y-1"
-              />
-            </span>
-          </button>
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-export default Project;

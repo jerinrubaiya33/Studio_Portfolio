@@ -1,6 +1,8 @@
 import { MapPin, Phone, Mail } from "lucide-react";
-import logo from "/src/assets/studioDNA_logo_black.png";
+import logoBlack from "/src/assets/studioDNA_logo_black.png";
+import logoWhite from "/src/assets/studioDNA_logo.png";
 import logo2 from "/src/assets/outline.png";
+import { useTheme } from "../contexts/ThemeContext";
 
 // Social icon button - rendered with vibrant brand colors directly
 const SocialIcon = ({ children, label, href, activeColor }) => (
@@ -20,17 +22,20 @@ const SocialIcon = ({ children, label, href, activeColor }) => (
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { theme } = useTheme();
+  const footerLogo = theme === "dark" ? logoWhite : logoBlack;
 
   return (
     <footer
-      className="relative z-10 w-full overflow-hidden border-t border-gray-300/30 text-gray-800"
+      className="relative z-10 w-full overflow-hidden border-t border-theme text-theme-secondary transition-colors duration-500"
       style={{
         fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif",
+        backgroundColor: 'var(--footer-bg)',
       }}
     >
       {/* Background Image Container with Crisp Overlay */}
    
-      <div className="absolute inset-0 z-0 bg-[#ffffff]/10 backdrop-blur-[32px] pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-theme-primary/10 backdrop-blur-[32px] pointer-events-none transition-colors duration-500" />
 
       {/* Decorative top rule */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent z-10" />
@@ -41,18 +46,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
           {/* Main Studio DNA Info */}
           <div className="lg:col-span-7">
-            {/* Flex container */}
+            {/* Flex container */}  
             <div className="flex flex-wrap items-center gap-2">
               <img
-                src={logo}
+                src={footerLogo}
                 alt="STUDIO DNA Logo"
-                className="h-18 w-auto shrink-0 object-contain sm:h-12  sm:-ml-10 -ml-7 md:h-30 grayscale opacity-80"
+                className="h-18 w-auto -ml-5 sm:-ml-10 shrink-0 object-contain sm:h-12 md:h-30 grayscale opacity-80"
+                style={{ transform: 'translateX(-12px)' }}
               />
             </div>
 
             <p
               className="mt-3 text-xs leading-relaxed text-gray-600 sm:text-sm max-w-2xl"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ fontFamily: "' Mono', monospace" }}
             >
               STUDIO DNA provides comprehensive services in architecture,
               planning & engineering, interior & landscape design for both
@@ -69,7 +75,7 @@ export default function Footer() {
           
           {/* Middle Left: Contact */}
           <div>
-            <h3 className="text-xs sm:text-sm font-bold tracking-[0.15em] text-gray-900 uppercase">
+            <h3 className="text-xs sm:text-sm font-bold tracking-[0.15em] text-theme-primary uppercase transition-colors duration-500">
               CONTACT
             </h3>
 
@@ -143,7 +149,7 @@ export default function Footer() {
 
           {/* Middle Center: Resources */}
           <div>
-            <h3 className="text-xs sm:text-sm font-bold tracking-[0.15em] text-gray-900 uppercase">
+            <h3 className="text-xs sm:text-sm font-bold tracking-[0.15em] text-theme-primary uppercase transition-colors duration-500">
               RESOURCES
             </h3>
 
@@ -162,7 +168,7 @@ export default function Footer() {
 
           {/* Middle Right: Our Services */}
           <div>
-            <h3 className="text-xs sm:text-sm font-bold tracking-[0.15em] text-gray-900 uppercase">
+            <h3 className="text-xs sm:text-sm font-bold tracking-[0.15em] text-theme-primary uppercase transition-colors duration-500">
               OUR SERVICES
             </h3>
 

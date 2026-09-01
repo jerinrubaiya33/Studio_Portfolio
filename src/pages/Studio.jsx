@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowUpRight, Calendar } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 import Footer from "./Footer";
 
 /* Original Local Image Imports */
@@ -207,6 +208,8 @@ const studioEvents = [
 const Studio = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const [pendingSection, setPendingSection] = useState(null);
 
@@ -236,7 +239,7 @@ const Studio = () => {
 
   return (
     <>
-      <main className="relative z-10 w-full min-h-screen bg-white text-gray-900 font-sans overflow-hidden">
+      <main className="relative z-10 w-full min-h-screen bg-theme-primary text-theme-primary font-sans overflow-hidden transition-colors duration-500">
 
         {/* ================= 1. STUDIO HERO IMAGE ================= */}
         <section className="relative w-full h-[65vh] md:h-[80vh] min-h-[450px] overflow-hidden flex items-end">
@@ -247,18 +250,18 @@ const Studio = () => {
           <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#000000] via-[#1c1c1c]/30 to-black/30" />
 
           <div className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-24 pb-8 md:pb-12">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-6xl font-mono font-bold text-white tracking-[0.1rem] uppercase drop-shadow-md">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-4xl font-mono font-bold text-white tracking-[0.1rem] uppercase drop-shadow-md">
               Our Studio
             </h2>
           </div>
         </section>
 
         {/* ================= 2. DESCRIPTION & YEARS / PROJECTS ================= */}
-        <section className="relative w-full bg-white px-6 sm:px-12 md:px-16 lg:px-24 py-16 md:py-44">
+        <section className="relative w-full bg-theme-primary px-6 sm:px-12 md:px-16 lg:px-24 py-16 md:py-44 transition-colors duration-500">
           <div className="max-w-[1000px] ml-auto text-right">
             <Reveal delay={120}>
               <div className="flex justify-end">
-                <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl lg:text-4xl font-mono font-bold text-gray-900 leading-tight max-w-3xl lg:max-w-7xl">
+                <h1 className="mt-3 text-2xl sm:text-4xl md:text-4xl lg:text-3xl font-mono font-bold text-gray-900 leading-tight max-w-3xl lg:max-w-7xl">
                   Creating Places That Stand The Test Of Time.
                 </h1>
               </div>
@@ -266,7 +269,7 @@ const Studio = () => {
 
             <Reveal delay={240}>
               <div className="flex justify-end">
-                <p className="mt-6 text-md sm:text-xl md:text-2xl lg:text-2xl font-mono font-medium text-gray-800 leading-snug max-w-[1300px]">
+                <p className="mt-6 text-md sm:text-xl md:text-2xl lg:text-xl font-mono font-medium text-gray-800 leading-snug max-w-[1300px]">
                   Studio DNA is the focused design branch of Outline Architects. Backed by the rich heritage and foundation of Outline Architects, we combine boutique attention to detail with deep architectural capability. From bespoke residential sanctuaries to tailored commercial environments, our team transforms visions into lived experiences.
                 </p>
               </div>
@@ -295,11 +298,11 @@ const Studio = () => {
         </section>
 
         {/*  4. STUDIO CULTURE, WORKFORCE & EVENTS  */}
-        <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white px-4 sm:px-8 md:px-12
-         lg:px-40 py-12 sm:py-20 md:py-28 sm:-mt-20 mt-0">
+        <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-theme-primary px-4 sm:px-8 md:px-12
+         lg:px-40 py-12 sm:py-20 md:py-28 sm:-mt-20 mt-0 transition-colors duration-500">
           <div className="w-full max-w-[1920px] mx-auto space-y-16 sm:space-y-24 md:space-y-32">
 
-            <Reveal>
+            {/* <Reveal>
               <div className="max-w-3xl">
                 <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[#5b7fc7]">
                   — Studio Culture & Life
@@ -308,9 +311,9 @@ const Studio = () => {
                   Craft, Community & Passion
                 </h2>
               </div>
-            </Reveal>
+            </Reveal> */}
 
-            {/* Block 1 */}
+            {/* Block 1
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="lg:col-span-6">
                 <Reveal>
@@ -337,9 +340,9 @@ const Studio = () => {
                   </p>
                 </Reveal>
               </div>
-            </div>
+            </div> */}
 
-            {/* Block 2 */}
+            {/* Block 2
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
               <div className="lg:col-span-6 order-2 lg:order-1">
                 <Reveal delay={150}>
@@ -366,10 +369,10 @@ const Studio = () => {
                   </div>
                 </Reveal>
               </div>
-            </div>
+            </div> */}
 
             {/* Block 3: Everyday Moments of Creation */}
-            <div>
+            {/* <div>
               <Reveal>
                 <div className="mb-6 sm:mb-8">
                   <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#5b7fc7] font-bold">
@@ -394,7 +397,7 @@ const Studio = () => {
                   </Reveal>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* ================= CATEGORIZED TEAM SECTION (COMPACT IMAGES & PERFECT PADDING) ================= */}
             <div className="pt-10 sm:pt-32 sm:p-30 p-5 border-t border-gray-200 space-y-16 sm:space-y-20">
@@ -491,7 +494,7 @@ const Studio = () => {
             </div>
 
             {/* Block 4: Events, Architect Fests & News Campaigns */}
-            <div className="pt-10 sm:pt-12 border-t border-gray-200">
+            {/* <div className="pt-10 sm:pt-12 border-t border-gray-200">
               <Reveal>
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
                   <div>
@@ -511,7 +514,8 @@ const Studio = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                 {studioEvents.map((event, idx) => (
                   <Reveal key={event.id} delay={idx * 150}>
-                    <div className="bg-gray-50/80 border border-gray-200 rounded-none overflow-hidden hover:border-gray-300 transition-all duration-300 flex flex-col h-full">
+                    <div className={`${isDark ? "bg-[#1a1a1a] border-white/10 hover:border-white/20" : "bg-gray-50/80 border-gray-200 hover:border-gray-300"} border rounded-none overflow-hidden transition-all duration-300 flex flex-col h-full`}
+                    >
                       <div className="relative h-56 sm:h-64 md:h-80 overflow-hidden rounded-none">
                         <img
                           src={event.image}
@@ -525,19 +529,19 @@ const Studio = () => {
 
                       <div className="p-6 sm:p-8 flex flex-col justify-between flex-grow">
                         <div>
-                          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">
+                          <div className={`flex items-center gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-3 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
                             <Calendar size={14} className="text-[#5b7fc7]" />
                             <span>{event.date}</span>
                           </div>
-                          <h4 className="text-lg sm:text-2xl font-mono font-bold text-gray-900 mb-3 sm:mb-4">
+                          <h4 className={`text-lg sm:text-2xl font-mono font-bold mb-3 sm:mb-4 ${isDark ? "text-white" : "text-gray-900"}`}>
                             {event.title}
                           </h4>
-                          <p className="text-xs sm:text-sm md:text-base font-mono text-gray-700 leading-relaxed">
+                          <p className={`text-xs sm:text-sm md:text-base font-mono leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                             {event.description}
                           </p>
                         </div>
 
-                        <div className="mt-6 sm:mt-8 pt-4 border-t border-gray-200 flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-[#5b7fc7] hover:text-gray-900 transition-colors cursor-pointer">
+                        <div className={`mt-6 sm:mt-8 pt-4 border-t flex items-center gap-2 text-xs sm:text-sm font-mono font-bold text-[#5b7fc7] transition-colors cursor-pointer ${isDark ? "border-white/10 hover:text-white" : "border-gray-200 hover:text-gray-900"}`}>
                           <span>Read full event report</span>
                           <ArrowUpRight size={16} />
                         </div>
@@ -546,7 +550,7 @@ const Studio = () => {
                   </Reveal>
                 ))}
               </div>
-            </div>
+            </div> */}
 
           </div>
         </section>
@@ -560,7 +564,7 @@ const Studio = () => {
       </main>
 
       {/* Footer Block */}
-      <div className="relative z-10 w-full border-t border-neutral-300 bg-white/70 backdrop-blur-md">
+      <div className="relative z-10 w-full border-t border-theme backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
         <Footer />
       </div>
     </>

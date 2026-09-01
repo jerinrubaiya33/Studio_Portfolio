@@ -6,6 +6,161 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+/* ===== THEME VARIABLES ===== */
+html.dark {
+  --bg-primary: #323232;
+  --bg-secondary: #3a3a3a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --card-bg: #3a3a3a;
+  --nav-bg: rgba(50, 50, 50, 0.95);
+  --nav-bg-scrolled: rgba(50, 50, 50, 0.85);
+  --footer-bg: #2a2a2a;
+}
+
+html.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #fafafa;
+  --text-primary: #1c1c1c;
+  --text-secondary: #333333;
+  --text-muted: #666666;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.85);
+  --footer-bg: #f9f9f9;
+}
+
+/* Apply theme to body */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Theme-aware utility classes */
+.bg-theme-primary { background-color: var(--bg-primary); }
+.bg-theme-secondary { background-color: var(--bg-secondary); }
+.bg-theme-tertiary { background-color: var(--bg-tertiary); }
+.bg-theme-card { background-color: var(--card-bg); }
+.text-theme-primary { color: var(--text-primary); }
+.text-theme-secondary { color: var(--text-secondary); }
+.text-theme-muted { color: var(--text-muted); }
+.border-theme { border-color: var(--border-color); }
+
+/* ===== DARK MODE: FullProject summary & back button lighter ===== */
+html.dark .fp-summary-light { color: #d5d5d5 !important; }
+html.dark .fp-back-light { color: #d5d5d5 !important; }
+
+/* Dark mode: active filter button keeps dark bg instead of being overridden */
+html.dark .fp-filter-active { background-color: #1a1a1a !important; color: #ffffff !important; border-color: #1a1a1a !important; }
+
+/* Dark mode: category text lighter */
+html.dark .fp-category-light { color: #d5d5d5 !important; }
+
+/* Dark mode: soften white text in FullProject */
+html.dark .fp-text-soft .text-neutral-900, html.dark .fp-text-soft .text-gray-900, html.dark .fp-text-soft .text-theme-primary { color: #dadada !important; }
+
+/* ===== DARK MODE: About page lighter background ===== */
+html.dark .about-page-section {
+  background-color: #525252;
+}
+
+/* ===== CTA: No dark mode changes ===== */
+html.dark .cta-section {
+  color-scheme: light;
+}
+html.dark .cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  z-index: -1;
+}
+
+/* override global dark rules */
+html.dark .cta-section .bg-white { background-color: #ffffff !important; }
+html.dark .cta-section .bg-white\/90 { background-color: rgba(255, 255, 255, 0.9) !important; }
+html.dark .cta-section .bg-neutral-900 { background-color: #171717 !important; color: #ffffff !important; }
+html.dark .cta-section .bg-gray-50 { background-color: #f9fafb !important; }
+html.dark .cta-section .bg-gray-100 { background-color: #f3f4f6 !important; }
+html.dark .cta-section .bg-neutral-50 { background-color: #fafafa !important; }
+html.dark .cta-section .text-black { color: #000000 !important; }
+html.dark .cta-section .text-gray-900 { color: #111827 !important; }
+html.dark .cta-section .text-gray-950 { color: #030712 !important; }
+html.dark .cta-section .text-gray-800 { color: #1f2937 !important; }
+html.dark .cta-section .text-gray-700 { color: #374151 !important; }
+html.dark .cta-section .text-gray-600 { color: #525252 !important; }
+html.dark .cta-section .text-neutral-900 { color: #171717 !important; }
+html.dark .cta-section .text-neutral-950 { color: #0a0a0a !important; }
+html.dark .cta-section .text-slate-900 { color: #0f172a !important; }
+html.dark .cta-section .text-slate-800 { color: #1e293b !important; }
+html.dark .cta-section .border-gray-200 { border-color: #e5e7eb !important; }
+html.dark .cta-section .border-gray-300 { border-color: #d1d5db !important; }
+html.dark .cta-section .border-neutral-300 { border-color: #d4d4d4 !important; }
+html.dark .cta-section .hover\:text-black:hover { color: #000000 !important; }
+html.dark .cta-section .hover\:text-gray-900:hover { color: #111827 !important; }
+html.dark .cta-section .hover\:text-gray-950:hover { color: #030712 !important; }
+html.dark .cta-section .hover\:text-gray-800:hover { color: #1f2937 !important; }
+html.dark .cta-section .hover\:text-neutral-900:hover { color: #171717 !important; }
+html.dark .cta-section .active\:text-black:active { color: #000000 !important; }
+
+/* ===== DARK MODE: Override hardcoded dark text colors ===== */
+html.dark .text-black { color: #ffffff !important; }
+html.dark .text-gray-900 { color: #f0f0f0 !important; }
+html.dark .text-gray-950 { color: #f5f5f5 !important; }
+html.dark .text-gray-800 { color: #e0e0e0 !important; }
+html.dark .text-gray-700 { color: #d0d0d0 !important; }
+html.dark .text-gray-600 { color: #c0c0c0 !important; }
+html.dark .text-neutral-900 { color: #f0f0f0 !important; }
+html.dark .text-neutral-950 { color: #f5f5f5 !important; }
+html.dark .text-slate-900 { color: #f0f0f0 !important; }
+html.dark .text-slate-800 { color: #e0e0e0 !important; }
+
+/* Dark mode hover states for dark text */
+html.dark .hover\:text-black:hover { color: #ffffff !important; }
+html.dark .hover\:text-gray-900:hover { color: #f0f0f0 !important; }
+html.dark .hover\:text-gray-950:hover { color: #f5f5f5 !important; }
+html.dark .hover\:text-gray-800:hover { color: #e0e0e0 !important; }
+html.dark .hover\:text-neutral-900:hover { color: #f0f0f0 !important; }
+
+/* Dark mode: menu hamburger lines white */
+html.dark .bg-\[\#4f5d39\] { background-color: #ffffff !important; }
+
+/* Dark mode active states for dark text */
+html.dark .active\:text-black:active { color: #ffffff !important; }
+
+/* Override bg-white on buttons/elements so they work in dark mode too */
+html.dark .bg-white { background-color: var(--bg-secondary) !important; }
+html.dark .bg-white\/90 { background-color: rgba(58, 58, 58, 0.9) !important; }
+html.dark .bg-gray-50 { background-color: var(--bg-secondary) !important; }
+html.dark .bg-gray-100 { background-color: var(--bg-tertiary) !important; }
+html.dark .bg-neutral-50 { background-color: var(--bg-secondary) !important; }
+html.dark .bg-neutral-900 { background-color: #e0e0e0 !important; }
+
+/* Dark mode: CTA button text matches dark bg color */
+html.dark .bg-neutral-900 { color: #323232 !important; }
+
+/* Dark mode: portfolio card hover text white */
+html.dark #projects .group-hover\:text-theme-muted:hover { color: #5b7fc7 !important; }
+html.dark #projects .text-neutral-500 { color: #ffffff !important; }
+html.dark #projects .text-neutral-800 { color: #ffffff !important; }
+
+
+/* Dark mode borders */
+html.dark .border-gray-200 { border-color: rgba(255, 255, 255, 0.15) !important; }
+html.dark .border-gray-300 { border-color: rgba(255, 255, 255, 0.2) !important; }
+html.dark .border-neutral-300 { border-color: rgba(255, 255, 255, 0.2) !important; }
+
+/* Dark mode placeholder colors */
+html.dark .placeholder-gray-300::placeholder { color: rgba(255, 255, 255, 0.4) !important; }
+html.dark .placeholder-gray-400::placeholder { color: rgba(255, 255, 255, 0.35) !important; }
+html.dark .placeholder-neutral-400::placeholder { color: rgba(255, 255, 255, 0.35) !important; }
+
 /* Hero Slider Continuous Scroll */
 @keyframes hero-scroll {
   from {

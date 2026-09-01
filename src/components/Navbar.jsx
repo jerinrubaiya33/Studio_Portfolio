@@ -84,7 +84,7 @@ function HeroSlider() {
   }, [x]);
 
   return (
-    <div className="relative z-0 min-h-[100dvh] w-full overflow-hidden bg-black">
+    <div className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black">
       {/* Top Gradient Overlay */}
       <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-black/50 to-transparent sm:h-32 md:h-40" />
 
@@ -97,14 +97,14 @@ function HeroSlider() {
         {duplicatedProjects.map((project, index) => (
           <div
             key={`${project.id}-${index}`}
-            className="relative flex h-full w-[max(150vw,150dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
+            className="relative flex h-full w-[max(125vw,125dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
           >
             <img
               src={project.imgUrl}
               srcSet={getSrcSet(project.imgUrl)}
               sizes="max(150vw, 150dvh)"
               alt={project.title}
-              className="block h-full w-full transform-gpu object-cover object-center"
+              className="block h-full w-full object-cover object-center transform-gpu md:h-auto md:object-contain"
               loading={index < 2 ? "eager" : "lazy"}
               decoding="async"
             />
@@ -112,10 +112,10 @@ function HeroSlider() {
         ))}
       </motion.div>
 
-      {/* Fixed Bottom Gradient Overlay */}
+      {/* Bottom Gradient Overlay */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-black via-gray-950/60 to-transparent sm:h-1/2" />
 
-      {/* Fixed Description Overlay */}
+      {/* Description Overlay */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:p-10 md:p-16">
         <AnimatePresence mode="wait">
           {activeProject && (

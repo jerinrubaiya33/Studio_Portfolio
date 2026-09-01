@@ -590,7 +590,7 @@ const Meet = () => {
                   type="submit"
                   disabled={isSendingCode}
                   className="group relative overflow-hidden w-full lg:w-[320px] lg:mx-auto flex items-center justify-center gap-2 py-2 lg:py-2.5 text-base font-black tracking-[0.05em]
-                  text-white bg-[#5b7fc7] border-2 border-[#5b7fc7] rounded-full shadow-md hover:shadow-lg hover:border-white transition-all duration-500 cursor-pointer disabled:opacity-60"
+                  text-white bg-[#5b7fc7] border-2 border-[#5b7fc7] rounded-md shadow-md hover:shadow-lg hover:border-white transition-all duration-500 cursor-pointer disabled:opacity-60"
                 >
                   <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-white rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-[#5b7fc7]">
@@ -687,7 +687,7 @@ const Meet = () => {
                     onClick={handleResendCode}
                     disabled={isResending}
                     className="group relative overflow-hidden w-full max-w-xs mx-auto flex items-center justify-center gap-2 py-2.5 text-xs sm:text-sm font-black tracking-[0.05em]
-                    text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer disabled:opacity-60"
+                    text-gray-900 bg-white/90 border-2 border-white rounded-md shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer disabled:opacity-60"
                   >
                     <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
@@ -803,7 +803,7 @@ const Meet = () => {
                 type="button"
                 onClick={handleScrollToForm}
                 className="group relative overflow-hidden w-full lg:w-[320px] lg:mx-auto flex items-center justify-center gap-2 py-2.5 lg:py-3 text-sm sm:text-base font-black tracking-[0.05em]
-      text-gray-900 bg-white/90 border-2 border-white rounded-full shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer"
+      text-gray-900 bg-white/90 border-2 border-white rounded-md shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer"
               >
                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#5b7fc7] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
                 <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
