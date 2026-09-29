@@ -33,7 +33,7 @@ export default function Choose() {
           </h2>
           <p
             className="text-sm tracking-[0.2em] text-[#dce8cc] uppercase mt-4"
-            style={{ fontFamily: "'serif', serif" }}
+            style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
           >
             Your Space, In Safe Hands. Leave the stress and details to us. From
             the first sketch to the final finish, we handle absolutely
@@ -58,7 +58,7 @@ export default function Choose() {
                     <div className="flex flex-col items-center py-4 px-4 gap-4 w-16 min-w-[64px] select-none">
                       <span
                         className="text-xs font-mono text-[#ff7b00ad]"
-                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        style={{ fontFamily: "'Manrope', sans-serif" }}
                       >
                         {num}
                       </span>
@@ -66,7 +66,7 @@ export default function Choose() {
                       <span
                         className="text-[#ffffff] text-[18px] tracking-[0.2em] uppercase font-medium transition-all duration-300"
                         style={{
-                          fontFamily: "'serif', sans-serif",
+                          fontFamily: "'Source Serif 4', Georgia, serif",
                           writingMode: "vertical-rl",
                           transform: "rotate(180deg)",
                           opacity: isHovered ? 0 : 1,
@@ -96,7 +96,7 @@ export default function Choose() {
                         </span>
                         <span
                           className="text-[#dce8cc] text-2xl "
-                          style={{ fontFamily: "'serif', san-serif" }}
+                          style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
                         >
                           {desc}
                         </span>
@@ -121,14 +121,14 @@ export default function Choose() {
                     {num}
                   </span>
                   <h4
-                    style={{ fontFamily: "'serif'" }}
+                    style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
                     className="text-base tracking-wide text-white font-bold"
                   >
                     {title}
                   </h4>
                 </div>
                 <p
-                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                  style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
                   className="text-[#dce8cc] text-sm leading-relaxed pl-6"
                 >
                   {desc}

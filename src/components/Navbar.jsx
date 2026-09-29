@@ -1,48 +1,54 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, animate, AnimatePresence } from "framer-motion";
+import landscape1 from "../assets/bashanta-bilash-aerial-04.webp";
+import landscape2 from "../assets/sushi.png";
+import landscape3 from "../assets/akm.png";
+import landscape4 from "../assets/jb.png";
 
 const projects = [
   {
     id: 1,
-    title: "Modern Minimalist Villa",
-    category: "Architecture / Interior",
-    location: "Zurich, Switzerland",
-    year: "2024",
-    imgUrl: "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2560&q=90",
+    title: "Bashanta Bilash Resort",
+    category: "Architecture / Exterior",
+    location: "Tarabo, Kachpur, Narayanganj",
+    year: "2020-present",
+    imgUrl: landscape1,
+    isLocal: true,
   },
   {
     id: 2,
-    title: "Monochrome Penthouse",
-    category: "Residential Design",
-    location: "Tokyo, Japan",
-    year: "2023",
-    imgUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2560&q=90",
+    title: "Sushi Samurai",
+    category: "Commercial Space",
+    location: "Banani, Dhaka",
+    year: "2022",
+    imgUrl: landscape2,
   },
   {
     id: 3,
-    title: "The Glass Pavilion",
+    title: "AKM Restaurant & Convention Center",
+    // category: "Residential Design",
     category: "Commercial Space",
-    location: "Oslo, Norway",
-    year: "2024",
-    imgUrl: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=2560&q=90",
+    location: "Gulshan, Dhaka",
+    year: "2022-23",
+    imgUrl: landscape3,
   },
   {
     id: 4,
-    title: "Urban Horizon Tower",
-    category: "Exterior Architecture",
-    location: "New York, USA",
-    year: "2023",
-    imgUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2560&q=90",
+    title: "JB Apartment",
+    category: "Interior Architecture",
+    location: "Madhabdi, Narsingdi",
+    year: "2020",
+    imgUrl: landscape4,
   },
 ];
 
 const getSrcSet = (baseUrl) => {
+  if (!baseUrl.startsWith("http")) return undefined; // Skip local asset for external srcset generator
   const cleanUrl = baseUrl.split("?")[0];
   return [1200, 1920, 2560, 3840]
     .map((w) => `${cleanUrl}?auto=format&fit=crop&w=${w}&q=85 ${w}w`)
     .join(", ");
 };
-
 
 function HeroSlider() {
   const x = useMotionValue(0);
@@ -86,7 +92,7 @@ function HeroSlider() {
   return (
     <div className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black">
       {/* Top Gradient Overlay */}
-      <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-black/50 to-transparent sm:h-32 md:h-40" />
+      <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-transparent to-transparent sm:h-32 md:h-40" />
 
       {/* Panoramic Continuous Motion Track */}
       <motion.div
@@ -101,7 +107,7 @@ function HeroSlider() {
           >
             <img
               src={project.imgUrl}
-              srcSet={getSrcSet(project.imgUrl)}
+              srcSet={project.isLocal ? undefined : getSrcSet(project.imgUrl)}
               sizes="max(150vw, 150dvh)"
               alt={project.title}
               className="block h-full w-full object-cover object-center transform-gpu md:h-auto md:object-contain"
@@ -113,7 +119,7 @@ function HeroSlider() {
       </motion.div>
 
       {/* Bottom Gradient Overlay */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-black via-gray-950/60 to-transparent sm:h-1/2" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-[#2E3133] via-[#2E313339] to-transparent sm:h-1/2" />
 
       {/* Description Overlay */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:p-10 md:p-16">

@@ -1,13 +1,24 @@
 @import "tailwindcss";
 
+/* ===== FONT THEME =====
+ * Manrope        → primary display / headings / technical clarity (also backs font-mono)
+ * Source Serif 4 → editorial emphasis / brand philosophy / long-form text
+ */
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+  --font-mono: "Manrope", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 html, body, #root {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
 
-/* ===== THEME VARIABLES ===== */
-html.dark {
+/* ===== THEME VARIABLES (dark only) ===== */
+:root {
+  color-scheme: dark;
   --bg-primary: #323232;
   --bg-secondary: #3a3a3a;
   --bg-tertiary: #2a2a2a;
@@ -21,25 +32,17 @@ html.dark {
   --footer-bg: #2a2a2a;
 }
 
-html.light {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --bg-tertiary: #fafafa;
-  --text-primary: #1c1c1c;
-  --text-secondary: #333333;
-  --text-muted: #666666;
-  --border-color: rgba(0, 0, 0, 0.1);
-  --card-bg: #ffffff;
-  --nav-bg: rgba(255, 255, 255, 0.95);
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.85);
-  --footer-bg: #f9f9f9;
-}
-
 /* Apply theme to body */
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ===== GLOBAL TEXT SELECTION ===== */
+::selection {
+  background-color: #d9a08b;
+  color: #ffffff;
 }
 
 /* Theme-aware utility classes */
@@ -65,57 +68,14 @@ html.dark .fp-category-light { color: #d5d5d5 !important; }
 /* Dark mode: soften white text in FullProject */
 html.dark .fp-text-soft .text-neutral-900, html.dark .fp-text-soft .text-gray-900, html.dark .fp-text-soft .text-theme-primary { color: #dadada !important; }
 
-/* ===== DARK MODE: About page lighter background ===== */
-html.dark .about-page-section {
-  background-color: #525252;
-}
-
-/* ===== CTA: No dark mode changes ===== */
-html.dark .cta-section {
-  color-scheme: light;
-}
-html.dark .cta-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #ffffff;
-  z-index: -1;
-}
-
-/* override global dark rules */
-html.dark .cta-section .bg-white { background-color: #ffffff !important; }
-html.dark .cta-section .bg-white\/90 { background-color: rgba(255, 255, 255, 0.9) !important; }
-html.dark .cta-section .bg-neutral-900 { background-color: #171717 !important; color: #ffffff !important; }
-html.dark .cta-section .bg-gray-50 { background-color: #f9fafb !important; }
-html.dark .cta-section .bg-gray-100 { background-color: #f3f4f6 !important; }
-html.dark .cta-section .bg-neutral-50 { background-color: #fafafa !important; }
-html.dark .cta-section .text-black { color: #000000 !important; }
-html.dark .cta-section .text-gray-900 { color: #111827 !important; }
-html.dark .cta-section .text-gray-950 { color: #030712 !important; }
-html.dark .cta-section .text-gray-800 { color: #1f2937 !important; }
-html.dark .cta-section .text-gray-700 { color: #374151 !important; }
-html.dark .cta-section .text-gray-600 { color: #525252 !important; }
-html.dark .cta-section .text-neutral-900 { color: #171717 !important; }
-html.dark .cta-section .text-neutral-950 { color: #0a0a0a !important; }
-html.dark .cta-section .text-slate-900 { color: #0f172a !important; }
-html.dark .cta-section .text-slate-800 { color: #1e293b !important; }
-html.dark .cta-section .border-gray-200 { border-color: #e5e7eb !important; }
-html.dark .cta-section .border-gray-300 { border-color: #d1d5db !important; }
-html.dark .cta-section .border-neutral-300 { border-color: #d4d4d4 !important; }
-html.dark .cta-section .hover\:text-black:hover { color: #000000 !important; }
-html.dark .cta-section .hover\:text-gray-900:hover { color: #111827 !important; }
-html.dark .cta-section .hover\:text-gray-950:hover { color: #030712 !important; }
-html.dark .cta-section .hover\:text-gray-800:hover { color: #1f2937 !important; }
-html.dark .cta-section .hover\:text-neutral-900:hover { color: #171717 !important; }
-html.dark .cta-section .active\:text-black:active { color: #000000 !important; }
-
 /* ===== DARK MODE: Override hardcoded dark text colors ===== */
 html.dark .text-black { color: #ffffff !important; }
 html.dark .text-gray-900 { color: #f0f0f0 !important; }
 html.dark .text-gray-950 { color: #f5f5f5 !important; }
 html.dark .text-gray-800 { color: #e0e0e0 !important; }
-html.dark .text-gray-700 { color: #d0d0d0 !important; }
+html.dark .text-gray-700 { color: #e0e0e0 !important; }
 html.dark .text-gray-600 { color: #c0c0c0 !important; }
+html.dark .text-gray-500 { color: #c0c0c0 !important; }
 html.dark .text-neutral-900 { color: #f0f0f0 !important; }
 html.dark .text-neutral-950 { color: #f5f5f5 !important; }
 html.dark .text-slate-900 { color: #f0f0f0 !important; }
@@ -128,8 +88,12 @@ html.dark .hover\:text-gray-950:hover { color: #f5f5f5 !important; }
 html.dark .hover\:text-gray-800:hover { color: #e0e0e0 !important; }
 html.dark .hover\:text-neutral-900:hover { color: #f0f0f0 !important; }
 
-/* Dark mode: menu hamburger lines white */
-html.dark .bg-\[\#4f5d39\] { background-color: #ffffff !important; }
+
+/* Dark mode: CTA back button fully white */
+html.dark .cta-back-light { color: #ffffff !important; }
+html.dark .cta-back-light svg { stroke: #ffffff !important; }
+
+
 
 /* Dark mode active states for dark text */
 html.dark .active\:text-black:active { color: #ffffff !important; }
@@ -141,6 +105,29 @@ html.dark .bg-gray-50 { background-color: var(--bg-secondary) !important; }
 html.dark .bg-gray-100 { background-color: var(--bg-tertiary) !important; }
 html.dark .bg-neutral-50 { background-color: var(--bg-secondary) !important; }
 html.dark .bg-neutral-900 { background-color: #e0e0e0 !important; }
+
+/* Dark mode: keep menu button white bg with dark icon/text, and turn white on hover */
+html.dark .menu-btn { 
+  background-color: #ffffff !important; 
+  color: #000000 !important; 
+}
+
+html.dark .menu-btn .menu-hamburger-line { 
+  background-color: #4f5d39 !important; 
+}
+
+html.dark .menu-btn .menu-text { 
+  color: #000000 !important; 
+}
+
+/* Hover state: turn text and hamburger icon white when hovering over the menu button */
+html.dark .menu-btn:hover .menu-hamburger-line { 
+  background-color: #ffffff !important; 
+}
+
+html.dark .menu-btn:hover .menu-text { 
+  color: #ffffff !important; 
+}
 
 /* Dark mode: CTA button text matches dark bg color */
 html.dark .bg-neutral-900 { color: #323232 !important; }
@@ -184,7 +171,7 @@ html.dark .placeholder-neutral-400::placeholder { color: rgba(255, 255, 255, 0.3
 
 .react-datepicker {
   margin-top: -5rem !important;
-  font-family: "Georgia", "Playfair Display", serif !important;
+  font-family: "Source Serif 4", "Georgia", serif !important;
   border: 1px solid #e2e8f0 !important;
   box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12),
               0 0 1px 1px rgba(15, 23, 42, 0.05) !important;
@@ -241,7 +228,7 @@ html.dark .placeholder-neutral-400::placeholder { color: rgba(255, 255, 255, 0.3
 
 .react-datepicker__day-name {
   color: #64748b !important;
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif !important;
   font-weight: 700 !important;
   width: 52px !important;
   max-width: 52px !important;
@@ -272,7 +259,7 @@ html.dark .placeholder-neutral-400::placeholder { color: rgba(255, 255, 255, 0.3
 
 /* Individual Day Numbers */
 .react-datepicker__day {
-  font-family: serif !important;
+  font-family: "Source Serif 4", Georgia, serif !important;
   width: 48px !important;
   height: 48px !important;
   line-height: 48px !important;

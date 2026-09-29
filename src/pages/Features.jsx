@@ -92,13 +92,13 @@ const Features = () => {
         {/* Compact Header */}
         <div className="flex items-center justify-between mb-8 border-b border-[#718355]/10 pb-2">
           <span
-            style={{ fontFamily: "'Jost', sans-serif" }}
+            style={{ fontFamily: "'Manrope', sans-serif" }}
             className="text-xs tracking-[0.4em] text-[#718355] uppercase font-light"
           >
             Our Pillars
           </span>
           <span
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
             className="text-xs text-[#718355]/60 italic font-light"
           >
             Sequence _ 01-06
@@ -148,13 +148,13 @@ const Features = () => {
                       </div>
                     </div>
                     <h4
-                      style={{ fontFamily: "'serif', sans-serif" }}
+                      style={{ fontFamily: "'Manrope', sans-serif" }}
                       className="text-[18px] lg:text-[20px] font-medium tracking-[0.15em] uppercase text-[#718355]"
                     >
                       {title}
                     </h4>
                     <p
-                      style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                      style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
                       className="text-[#718355] text-[13px] lg:text-[14px] leading-snug line-clamp-2 font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                     >
                       {desc}
@@ -188,7 +188,7 @@ const Features = () => {
 
               {/* Core Header Title */}
               <h4
-                style={{ fontFamily: "'Jost', sans-serif" }}
+                style={{ fontFamily: "'Manrope', sans-serif" }}
                 className="text-xs font-bold tracking-wider uppercase text-[#718355] mb-1 z-10"
               >
                 {title}
@@ -199,7 +199,7 @@ const Features = () => {
 
               {/* Descriptive Copy (Sits snugly underneath the divider) */}
               <p
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
                 className="text-[#718355]/90 text-[11px] leading-tight font-medium pr-1 z-10"
               >
                 {desc}

@@ -21,6 +21,8 @@ import Services from './pages/Services';
 import ContactPage from './pages/ContactPage';
 import CTASection from './pages/CTA';
 import CTA_Full from './pages/CTA_Full';
+import Clients from './pages/Clients';
+import Philosophy from './pages/Philoshopy';
 
 // Catches any runtime error in the app so the user never sees a blank page
 class ErrorBoundary extends Component {
@@ -49,9 +51,9 @@ class ErrorBoundary extends Component {
             justifyContent: 'center',
             padding: '24px',
             textAlign: 'center',
-            fontFamily: 'monospace',
-            backgroundColor: '#f4f1e8',
-            color: '#333',
+            fontFamily: "'Manrope', ui-sans-serif, system-ui, sans-serif",
+            backgroundColor: '#1c1c1c',
+            color: '#e0e0e0',
           }}
         >
           <h1 style={{ fontSize: 28, margin: 0 }}>Something went wrong</h1>
@@ -121,7 +123,10 @@ const MainLandingPage = () => (
     <div id="project" className="scroll-mt-0">
       <Project />
     </div>
+    <Philosophy/>
+    <Clients />
         <CTASection/>
+        {/* <Clients /> */}
     {/* <News /> */}
     {/* <Meet /> */}
     {/* <Choose /> */}

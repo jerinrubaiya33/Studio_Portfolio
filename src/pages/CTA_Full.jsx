@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeContext";
 import { Mail, Phone, MapPin, Send, Check, ArrowUp } from "lucide-react";
 
 import storyHeroImage from "../assets/cta5.jpg";
@@ -18,13 +19,58 @@ const fadeUp = {
 };
 
 const CTA_Full = () => {
+  const { theme } = useTheme();
   const [selectedType, setSelectedType] = useState("");
+  const [processedIdea, setProcessedIdea] = useState(idea);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
   });
+
+  // Process idea image: white with yellow bulb in dark mode
+  useEffect(() => {
+    if (theme !== 'dark') {
+      setProcessedIdea(idea);
+      return;
+    }
+    const img = new Image();
+    img.src = idea;
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const d = imageData.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const r = d[i] / 255, g = d[i + 1] / 255, b = d[i + 2] / 255;
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+        const l = (max + min) / 2;
+        const delta = max - min;
+        let h = 0;
+        if (delta > 0.01) {
+          if (max === r) h = ((g - b) / delta + (g < b ? 6 : 0)) / 6;
+          else if (max === g) h = ((b - r) / delta + 2) / 6;
+          else h = ((r - g) / delta + 4) / 6;
+        }
+        h *= 360;
+        const s = l === 0 ? 0 : delta / (l > 0.5 ? 2 - max - min : max + min);
+        const isYellow = s > 0.15 && h >= 25 && h <= 75 && l > 0.25;
+        if (isYellow) {
+          d[i] = Math.min(255, d[i] * 1.3);
+          d[i + 1] = Math.min(255, d[i + 1] * 1.3);
+          d[i + 2] = Math.min(255, d[i + 2] * 0.7);
+        } else {
+          d[i] = 255; d[i + 1] = 255; d[i + 2] = 255;
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+      setProcessedIdea(canvas.toDataURL());
+    };
+  }, [theme, idea]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -59,7 +105,8 @@ const CTA_Full = () => {
         <div className="px-4 sm:px-8 md:px-20 lg:px-24">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-neutral-600 hover:text-[#5b7fc7] transition-colors duration-200 text-sm font-semibold font-mono"
+            className="flex items-center gap-2 hover:text-[#D9A08B] transition-colors duration-200 text-sm font-semibold font-mono"
+            style={{ color: theme === 'dark' ? '#ffffff' : '#525252' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +135,7 @@ const CTA_Full = () => {
         </section> */}
 
         {/* ================= 02 — YOU CAME HERE WITH AN IDEA (IMAGE AFTER TITLE ONLY ON MOBILE) ================= */}
-        <section className="relative w-full border-b border-gray-100 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16 lg:py-24">
+        <section className="relative w-full border-b border-gray-200 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16 lg:py-24">
           <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Text & Input */}
             <motion.div
@@ -106,7 +153,7 @@ const CTA_Full = () => {
               {/* Mobile Image: Appears immediately after the title on mobile */}
               <div className="block lg:hidden my-6 relative w-full h-[150px] sm:h-[280px] overflow-hidden rounded-sm">
                 <img
-                  src={idea}
+                  src={processedIdea}
                   alt="Idea visualization"
                   className="w-full h-full object-contain"
                 />
@@ -119,7 +166,7 @@ const CTA_Full = () => {
 
               {/* Your Name Input */}
               <div className="mt-8 sm:mt-12 max-w-md flex flex-col gap-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-[#5b7fc7]">
+                <label className="text-xs font-bold uppercase tracking-widest text-[#D9A08B]">
                   Your Name
                 </label>
                 <input
@@ -128,7 +175,7 @@ const CTA_Full = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Enter your name"
-                  className="w-full border-b-2 border-[#5b7fc7] bg-transparent py-2 text-base sm:text-lg lg:text-xl font-mono text-gray-900 placeholder-gray-300 outline-none transition-colors focus:border-[#5b7fc7]"
+                  className="w-full border-b-2 border-[#D9A08B] bg-transparent py-2 text-base sm:text-lg lg:text-xl font-mono text-gray-900 placeholder-gray-300 outline-none transition-colors focus:border-[#D9A08B]"
                 />
               </div>
             </motion.div>
@@ -143,7 +190,7 @@ const CTA_Full = () => {
               className="hidden lg:block relative w-full h-[324px] overflow-hidden rounded-sm order-2 lg:order-1"
             >
               <img
-                src={idea}
+                src={processedIdea}
                 alt="Idea visualization"
                 className="w-full h-full object-contain"
               />
@@ -152,7 +199,7 @@ const CTA_Full = () => {
         </section>
 
         {/* ================= 03 — PROJECT TYPE IMAGE GRID (IN A ROW ON MOBILE) ================= */}
-        <section className="relative w-full border-b border-gray-100 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 lg:py-28">
+        <section className="relative w-full border-b border-gray-200 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 lg:py-28">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
             <motion.div
@@ -185,7 +232,7 @@ const CTA_Full = () => {
                     type="button"
                     onClick={() => setSelectedType(item.id)}
                     className={`group relative h-[160px] sm:h-[320px] lg:h-[400px] w-full overflow-hidden text-left transition-all duration-300 ${
-                      isSelected ? "ring-2 sm:ring-4 ring-[#5b7fc7] ring-offset-1 sm:ring-offset-2" : ""
+                      isSelected ? "ring-2 sm:ring-4 ring-[#D9A08B] ring-offset-1 sm:ring-offset-2" : ""
                     }`}
                   >
                     {/* Background Image */}
@@ -200,7 +247,7 @@ const CTA_Full = () => {
 
                     {/* Active Selected Badge */}
                     {isSelected && (
-                      <div className="absolute top-2 right-2 sm:top-5 sm:right-5 z-10 bg-[#5b7fc7] text-white p-1 sm:p-2 rounded-full">
+                      <div className="absolute top-2 right-2 sm:top-5 sm:right-5 z-10 bg-[#D9A08B] text-white p-1 sm:p-2 rounded-full">
                         <Check size={14} className="sm:w-5 sm:h-5" />
                       </div>
                     )}
@@ -219,7 +266,7 @@ const CTA_Full = () => {
         </section>
 
         {/* ================= 04 — DESIGN FIRST ================= */}
-        <section className="relative w-full border-b border-gray-100 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 lg:py-28">
+        <section className="relative w-full border-b border-gray-200 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 lg:py-28">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Column: Text */}
             <motion.div
@@ -260,7 +307,8 @@ const CTA_Full = () => {
         </section>
 
         {/* ================= 05 — ARCHITECTS START DRAWING ================= */}
-        <section className="relative w-full border-b border-gray-100 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 lg:py-28 bg-gray-50/50">
+        <section className="relative w-full border-b border-gray-200 px-4 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-20 lg:py-28
+         ">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Column: Drawing Visual */}
             <motion.div
@@ -289,12 +337,12 @@ const CTA_Full = () => {
             >
               {/* Mobile: Phone section first */}
               <div className="lg:hidden mb-8 sm:mb-10">
-                <h3 className="text-lg sm:text-xl font-mono font-bold uppercase tracking-tight text-[#5b7fc7] leading-snug mb-4">
+                <h3 className="text-lg sm:text-xl font-mono font-bold uppercase tracking-tight text-[#D9A08B] leading-snug mb-4">
                   Oh Your Number?
                   <br />
                   Let's Talk?
                 </h3>
-                <div className="flex items-center gap-3 border-b-2 border-[#5b7fc7] pb-2">
+                <div className="flex items-center gap-3 border-b-2 border-[#D9A08B] pb-2">
                   <Phone size={16} className="text-gray-400 shrink-0" />
                   <input
                     type="tel"
@@ -310,7 +358,8 @@ const CTA_Full = () => {
                 </p>
               </div>
 
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-mono font-normal uppercase tracking-tight text-gray-900 leading-[1.08]">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-mono font-normal uppercase tracking-tight text-gray-900
+               leading-[1.08]">
                 When you approve,
                 <br />
                 our architects start
@@ -325,7 +374,7 @@ const CTA_Full = () => {
               {/* Desktop: Phone section stays here after the text */}
               <div className="hidden lg:block mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-mono font-bold uppercase tracking-tight text-[#5b7fc7] leading-snug">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-mono font-bold uppercase tracking-tight text-[#D9A08B] leading-snug">
                     Oh Your Number?
                     <br />
                     Let's Talk?
@@ -333,7 +382,7 @@ const CTA_Full = () => {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3 border-b-2 border-[#5b7fc7] pb-2">
+                  <div className="flex items-center gap-3 border-b-2 border-[#D9A08B] pb-2">
                     <Phone size={16} className="text-gray-400 shrink-0" />
                     <input
                       type="tel"
@@ -354,7 +403,7 @@ const CTA_Full = () => {
         </section>
 
         {/* ================= 06 — EMAIL QUESTION ================= */}
-        <section className="relative w-full border-b border-gray-100 px-4 sm:px-8 lg:px-12 py-12 sm:py-20 lg:py-28">
+        <section className="relative w-full border-b border-gray-200 px-4 sm:px-8 lg:px-12 py-12 sm:py-20 lg:py-28">
           <div className="max-w-md mx-auto text-center">
             <motion.div
               initial="hidden"
@@ -363,9 +412,9 @@ const CTA_Full = () => {
               variants={fadeUp}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-xl sm:text-3xl lg:text-4xl font-mono uppercase tracking-tight text-[#5b7fc7] mb-6 sm:mb-8 leading-snug">
+              <h2 className="text-xl sm:text-3xl lg:text-4xl font-mono uppercase tracking-tight  mb-6 sm:mb-8 leading-snug">
                 Before we go further —
-                <br className="hidden sm:block" /> what's your email?
+                <br className="hidden sm:block " /> what's your <span className="text-[#D9A08B]"> email?</span>
               </h2>
             </motion.div>
 
@@ -375,7 +424,7 @@ const CTA_Full = () => {
               viewport={{ once: true, amount: 0.5 }}
               variants={fadeUp}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center gap-3 border-b-2 border-[#5b7fc7] pb-3"
+              className="flex items-center gap-3 border-b-2 border-[#D9A08B] pb-3"
             >
               <Mail size={18} className="text-gray-400 shrink-0" />
               <input
@@ -384,7 +433,8 @@ const CTA_Full = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="you@example.com"
-                className="w-full bg-transparent text-sm sm:text-base lg:text-lg font-mono text-gray-900 placeholder-gray-400 outline-none"
+                className="w-full bg-transparent text-sm sm:text-base lg:text-lg font-mono text-gray-900 placeholder-gray-400
+                0 outline-none"
               />
             </motion.div>
             <p className="mt-4 text-xs text-gray-400">
@@ -400,7 +450,7 @@ const CTA_Full = () => {
             alt="Construction beginning on site"
             className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
           />
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/10
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#2E3133] via-black/10
            to-transparent pointer-events-none" />
 
           <motion.div
@@ -419,7 +469,7 @@ const CTA_Full = () => {
         </section>
 
         {/* ================= 08 — FULL FORM SECTION ================= */}
-        <section className="relative w-full border-t border-gray-100 px-4 sm:px-8 md:px-12 lg:px-24 py-12 sm:py-16 lg:py-24">
+        <section className="relative w-full border-t border-gray-200 px-4 sm:px-8 md:px-12 lg:px-24 py-12 sm:py-16 lg:py-24">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <motion.div
               initial="hidden"
@@ -448,7 +498,7 @@ const CTA_Full = () => {
                     onChange={handleChange}
                     required
                     placeholder="John Doe"
-                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7] transition-all"
+                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#D9A08B] focus:ring-1 focus:ring-[#D9A08B] transition-all"
                   />
                 </div>
 
@@ -463,7 +513,7 @@ const CTA_Full = () => {
                     onChange={handleChange}
                     required
                     placeholder="john@example.com"
-                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7] transition-all"
+                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#D9A08B] focus:ring-1 focus:ring-[#D9A08B] transition-all"
                   />
                 </div>
 
@@ -477,7 +527,7 @@ const CTA_Full = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+880 1XXX-XXX XXX"
-                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7] transition-all"
+                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#D9A08B] focus:ring-1 focus:ring-[#D9A08B] transition-all"
                   />
                 </div>
 
@@ -508,19 +558,30 @@ const CTA_Full = () => {
                     rows={5}
                     required
                     placeholder="Tell us about your project..."
-                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#5b7fc7] focus:ring-1 focus:ring-[#5b7fc7] transition-all resize-none"
+                    className="w-full border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-mono text-gray-900 placeholder-gray-400 outline-none focus:border-[#D9A08B] focus:ring-1 focus:ring-[#D9A08B] transition-all resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="group inline-flex items-center justify-center gap-3 text-xs sm:text-sm font-bold tracking-[0.15em] text-white uppercase bg-gray-900 px-8 py-4 transition-all duration-300 hover:bg-[#5b7fc7]"
+                  className="group relative overflow-hidden inline-flex items-center justify-center gap-2 text-xs
+                   sm:text-sm font-semibold tracking-wide px-3 py-4 rounded-md shadow-md hover:shadow-xl transition-all
+                    duration-500 cursor-pointer text-white bg-[#707070] hover:bg-black"
                 >
-                  Start The Story
-                  <Send
-                    size={16}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
+                  {/* Animated Expanding Circle from Bottom Center */}
+                  <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-26 h-16 bg-[#D9A08B] rounded-full 
+                  scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
+
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-white font-mono">
+                    Start The Story
+                  </span>
+
+                  <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
+                    <Send
+                      size={14}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </span>
                 </button>
               </form>
             </motion.div>
@@ -565,7 +626,7 @@ const CTA_Full = () => {
                       </span>
                       <a
                         href="tel:+8801711000000"
-                        className="text-xs sm:text-sm text-gray-700 hover:text-[#5b7fc7] transition-colors"
+                        className="text-xs sm:text-sm text-gray-700 hover:text-[#D9A08B] transition-colors"
                       >
                         +880 1711-000 000
                       </a>
@@ -582,7 +643,7 @@ const CTA_Full = () => {
                       </span>
                       <a
                         href="mailto:info@studiodna.com"
-                        className="text-xs sm:text-sm text-gray-700 hover:text-[#5b7fc7] transition-colors"
+                        className="text-xs sm:text-sm text-gray-700 hover:text-[#D9A08B] transition-colors"
                       >
                         info@studiodna.com
                       </a>
@@ -631,7 +692,7 @@ const CTA_Full = () => {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`group fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#5b7fc7] text-white shadow-md transition-all duration-300 hover:h-9 hover:w-9 hover:shadow-lg cursor-pointer ${showTopBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}`}
+        className={`group fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-[#D9A08B] text-white shadow-md transition-all duration-300 hover:h-9 hover:w-9 hover:shadow-lg cursor-pointer ${showTopBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}`}
       >
         <ArrowUp
           size={14}

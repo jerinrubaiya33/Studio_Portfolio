@@ -280,7 +280,7 @@ const Studio = () => {
                 <div className="flex items-baseline gap-3">
                   <span className="text-2xl md:text-4xl font-mono font-bold text-gray-900">10+</span>
                   <div className="text-right">
-                    <span className="block sm:text-xl text-md mr-25 font-mono font-bold uppercase tracking-wider text-[#5b7fc7]">Years</span>
+                    <span className="block sm:text-xl text-md mr-25 font-mono font-bold uppercase tracking-wider text-[#D9A08B]">Years</span>
                     <span className="sm:text-xl text-md mr-8 sm:mr-4 font-mono uppercase tracking-widest text-gray-500">Of Practice</span>
                   </div>
                 </div>
@@ -288,7 +288,7 @@ const Studio = () => {
                 <div className="flex items-baseline gap-3 -ml-8">
                   <span className="text-2xl md:text-4xl font-mono font-bold text-gray-900">30+</span>
                   <div className="text-right">
-                    <span className="block sm:text-xl text-md mr-18 font-mono font-bold uppercase tracking-wider text-[#5b7fc7]">Projects</span>
+                    <span className="block sm:text-xl text-md mr-18 font-mono font-bold uppercase tracking-wider text-[#D9A08B]">Projects</span>
                     <span className="sm:text-xl text-md mr-14 sm:mr-4 font-mono uppercase tracking-widest text-gray-500">Delivered</span>
                   </div>
                 </div>

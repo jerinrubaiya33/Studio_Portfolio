@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -169,7 +169,7 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
 
   return (
     <div className="relative font-mono" ref={dropdownRef}>
-      <label className="text-xs font-bold uppercase tracking-wider text-[#5b7fc7] block mb-1.5">
+      <label className="text-xs font-bold uppercase tracking-wider text-[#D9A08B] block mb-1.5">
         {label}
       </label>
 
@@ -177,12 +177,12 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between border-b pb-1.5 px-1 text-base cursor-pointer transition-all duration-300 ease-in-out focus:outline-none ${selectedValue !== "All" ? "fp-filter-active hover:border-[#5b7fc7]" : `bg-transparent border-neutral-300 hover:border-[#5b7fc7] ${isDark ? 'text-white' : 'text-neutral-900'}`}`}
+        className={`w-full flex items-center justify-between border-b pb-1.5 px-1 text-base cursor-pointer transition-all duration-300 ease-in-out focus:outline-none ${selectedValue !== "All" ? "fp-filter-active hover:border-[#D9A08B]" : `bg-transparent border-neutral-300 hover:border-[#D9A08B] ${isDark ? 'text-white' : 'text-neutral-900'}`}`}
       >
         <span className="truncate">
           {selectedValue === "All" ? `All ${label}` : selectedValue}
         </span>
-        <span className="text-xs ml-2 text-[#5b7fc7]">▼</span>
+        <span className="text-xs ml-2 text-[#D9A08B]">▼</span>
       </button>
 
       {/* Dropdown Options List */}
@@ -199,8 +199,8 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
                   onSelect(option.value);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 text-sm rounded-md font-mono transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#5b7fc7] hover:text-white ${isSelected
-                    ? "bg-[#5b7fc7] text-white font-semibold"
+                className={`w-full text-left px-3 py-2 text-sm rounded-md font-mono transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#D9A08B] hover:text-white ${isSelected
+                    ? "bg-[#D9A08B] text-white font-semibold"
                     : isDark ? 'text-white bg-transparent' : 'text-neutral-900 bg-transparent'
                   }`}
               >
@@ -220,7 +220,19 @@ function FullProject() {
   const isDark = theme === "dark";
   const [viewMode, setViewMode] = useState("grid"); // 'grid' | 'list'
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDiscipline, setSelectedDiscipline] = useState("All");
+  // Deep-link support: /projects?discipline=Exterior|Interior
+  const [searchParams] = useSearchParams();
+  const [selectedDiscipline, setSelectedDiscipline] = useState(() => {
+    const discipline = searchParams.get("discipline");
+    return discipline === "Exterior" || discipline === "Interior" ? discipline : "All";
+  });
+
+  useEffect(() => {
+    const discipline = searchParams.get("discipline");
+    setSelectedDiscipline(
+      discipline === "Exterior" || discipline === "Interior" ? discipline : "All"
+    );
+  }, [searchParams]);
   const [selectedTypology, setSelectedTypology] = useState("All");
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [selectedLocation, setSelectedLocation] = useState("All");
@@ -285,14 +297,15 @@ function FullProject() {
   }, [searchQuery, selectedDiscipline, selectedTypology, selectedStatus, selectedLocation]);
 
   return (
-    <div className="relative min-h-screen text-theme-primary font-sans selection:bg-[#5b7fc7] selection:text-white transition-colors duration-500 fp-text-soft">
+    <div className="relative min-h-screen sm:mt-10 mt-0 text-white font-sans selection:bg-[#D9A08B] selection:text-white 
+    transition-colors duration-500 fp-text-soft">
       {/* Background Image Wrapper */}
       <div
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         // style={{ backgroundImage: `url(${bgImage})` }}
       >
         {/* Soft overlay ensuring high text readability */}
-        <div className="absolute inset-0 bg-theme-primary/50 backdrop-blur-[1px] transition-colors duration-500" />
+        <div className="absolute inset-0 bg-[#2E3133] transition-colors duration-500" />
       </div>
 
       <main className="relative z-10 w-full min-h-screen pt-20 sm:pt-24 md:pt-28 pb-20">
@@ -300,7 +313,7 @@ function FullProject() {
         <div className="px-6 sm:px-12 md:px-16 lg:px-24 pt-4">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-neutral-600 hover:text-[#5b7fc7] transition-colors duration-200 text-sm font-semibold font-mono fp-back-light"
+            className="flex items-center gap-2 text-neutral-600 hover:text-[#D9A08B] transition-colors duration-200 text-sm font-semibold font-mono fp-back-light"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +336,7 @@ function FullProject() {
         {/* Editorial Title Block */}
         <header className="w-full max-w-5xl mb-8 pt-6 px-6 sm:px-12 md:px-16 lg:px-24">
           <h1 className={`text-2xl sm:text-3xl md:text-4xl font-light leading-snug tracking-tight ${isDark ? 'text-white' : 'text-neutral-900'}`}>
-            <span className="text-[#5b7fc7] font-normal mr-3 font-mono">Projects...</span>
+            <span className="text-[#D9A08B] font-normal mr-3 font-mono">Projects...</span>
             Every project begins with a question: how can this be better? Through design, we explore new possibilities
             and create spaces that respond to real people and real needs.
           </h1>
@@ -341,7 +354,7 @@ function FullProject() {
                   setExpandedId(null);
                 }}
                 className={`flex items-center gap-2 transition-all font-mono duration-200 pb-1 ${viewMode === "grid"
-                    ? "text-[#5b7fc7] font-bold border-b-2 border-[#5b7fc7]"
+                    ? "text-[#D9A08B] font-bold border-b-2 border-[#D9A08B]"
                     : "text-neutral-400 hover:text-neutral-800"
                   }`}
               >
@@ -354,7 +367,7 @@ function FullProject() {
                   setExpandedId(null);
                 }}
                 className={`flex items-center gap-2 transition-all font-mono duration-200 pb-1 ${viewMode === "list"
-                    ? "text-[#5b7fc7] font-bold border-b-2 border-[#5b7fc7]"
+                    ? "text-[#D9A08B] font-bold border-b-2 border-[#D9A08B]"
                     : "text-neutral-400 hover:text-neutral-800"
                   }`}
               >
@@ -363,7 +376,7 @@ function FullProject() {
             </div>
 
             {/* Search Input */}
-            <div className="relative font-mono w-full sm:w-72 flex items-center justify-between pb-1 border-b border-neutral-400 focus-within:border-[#5b7fc7] transition-colors">
+            <div className="relative font-mono w-full sm:w-72 flex items-center justify-between pb-1 border-b border-neutral-400 focus-within:border-[#D9A08B] transition-colors">
               <input
                 type="text"
                 placeholder="Search Projects..."
@@ -371,7 +384,7 @@ function FullProject() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`w-full bg-transparent text-sm placeholder-neutral-400 focus:outline-none font-normal ${isDark ? 'text-white' : 'text-neutral-900'}`}
               />
-              <span className="text-[#5b7fc7] text-base font-light ml-2">🔎︎</span>
+              <span className="text-[#D9A08B] text-base font-light ml-2">🔎︎</span>
             </div>
           </div>
 
@@ -468,7 +481,7 @@ function FullProject() {
                       <span className={`${isDark ? 'text-neutral-400' : 'text-neutral-600'} font-semibold fp-category-light`}>
                         {project.type}, {project.category}
                       </span>
-                      <span className="text-[#5b7fc7] font-semibold">
+                      <span className="text-[#D9A08B] font-semibold">
                         {project.year}
                       </span>
                     </div>
@@ -500,7 +513,7 @@ function FullProject() {
                       }
                     }}
                     className={`group relative border-b border-gray-300 w-full transition-all duration-300 ${isHovered
-                        ? "bg-[#5b7fc7] text-white"
+                        ? "bg-[#D9A08B] text-white"
                         : isDark ? "hover:bg-white/5 text-white" : "hover:bg-gray-200/40 text-gray-900"
                       }`}
                   >
@@ -574,7 +587,7 @@ function FullProject() {
                             <div className={`mt-3 pt-2 border-t border-gray-200 flex flex-col gap-0.5 text-[11px] ${isDark ? 'text-neutral-400' : 'text-gray-600'}`}>
                               <span>{project.type} • {project.category}</span>
                               <span className="truncate">{project.location}</span>
-                              <span className="text-[#5b7fc7] font-bold">{project.year}</span>
+                              <span className="text-[#D9A08B] font-bold">{project.year}</span>
                             </div>
                           </div>
                         </div>
@@ -585,7 +598,7 @@ function FullProject() {
                             e.stopPropagation();
                             navigate(`/projects/${project.id}`);
                           }}
-                          className="mt-4 w-full flex items-center justify-center gap-2 bg-[#5b7fc7] text-white font-mono text-sm font-semibold tracking-wide px-6 py-3 rounded-md transition-colors duration-300 hover:bg-[#4a6db5] cursor-pointer"
+                          className="mt-4 w-full flex items-center justify-center gap-2 bg-[#D9A08B] text-white font-mono text-sm font-semibold tracking-wide px-6 py-3 rounded-md transition-colors duration-300 hover:bg-[#4a6db5] cursor-pointer"
                         >
                           View More Details
                           <ArrowUpRight size={16} className="shrink-0" />
@@ -616,7 +629,7 @@ function FullProject() {
                           <div className={`mt-4 pt-3 border-t border-gray-200 flex flex-col gap-1 text-xs ${isDark ? 'text-neutral-400' : 'text-gray-600'}`}>
                             <span>{project.type} • {project.category}</span>
                             <span>{project.location}</span>
-                            <span className="text-[#5b7fc7] font-bold mt-1">{project.year}</span>
+                            <span className="text-[#D9A08B] font-bold mt-1">{project.year}</span>
                           </div>
                         </div>
                       </div>
