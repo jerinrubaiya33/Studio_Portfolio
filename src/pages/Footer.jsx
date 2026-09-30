@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Paragraph and Social Icons side-by-side on larger screens */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mt-3">
             <p
-              className="text-xs leading-relaxed text-gray-300 sm:text-lg max-w-3xl"
+              className="text-sm leading-relaxed text-gray-300 sm:text-lg max-w-3xl"
               style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
             >
               STUDIO DNA provides comprehensive services in architecture,
@@ -63,8 +63,8 @@ export default function Footer() {
             </p>
 
             {/* Social Icons positioned beside the paragraph */}
-            <div className="flex flex-col gap-2 shrink-0 mr-48">
-              <h3 className="text-xs sm:text-[16px] font-bold tracking-[0.15em] mb-2 text-white uppercase">
+            <div className="flex flex-col gap-2 shrink-0 mr-0 lg:mr-48">
+              <h3 className="text-sm sm:text-[16px] font-bold tracking-[0.15em] mb-2 text-white uppercase">
                 OUR SOCIALS
               </h3>
               <div className="flex flex-wrap items-center gap-2">
@@ -104,11 +104,11 @@ export default function Footer() {
 
           {/* Middle Left: Contact */}
           <div>
-            <h3 className="text-xs sm:text-[16px] font-bold tracking-[0.15em] text-white uppercase">
+            <h3 className="text-sm sm:text-[16px] font-bold tracking-[0.15em] text-white uppercase">
               CONTACT
             </h3>
 
-            <ul className="mt-3 space-y-2.5 font-mono text-xs sm:text-[18px] text-gray-200">
+            <ul className="mt-3 space-y-2.5 font-mono text-sm sm:text-[18px] text-gray-200">
               <li className="flex gap-2 items-start">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-gray-400" />
                 <span className="leading-snug">
@@ -144,7 +144,8 @@ export default function Footer() {
 
           {/* Middle Center: Google Map (beside Contact) */}
           <div>
-            <div className="overflow-hidden rounded-sm border border-gray-800 shadow-md w-full h-48 md:h-full min-h-[200px]">
+            <div className="overflow-hidden grayscale hover:grayscale-10 rounded-sm border border-gray-800 shadow-md 
+            w-full max-w-[280px] h-32 md:max-w-none md:h-full md:min-h-[200px]">
               <iframe
                 title="Studio DNA Location Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7300.5!2d90.4284213!3d23.6774307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9e29f1b1e33%3A0x30f3fb5d64facbf5!2sStudio%20DNA!5e0!3m2!1sen!2sbd!4v1759000000000!5m2!1sen!2sbd"
@@ -158,7 +159,7 @@ export default function Footer() {
               href="https://maps.app.goo.gl/bnV5cCQyhWhZDGNa6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 mt-2 text-[10px] sm:text-xs font-mono text-gray-400 hover:text-[#D9A08B] transition-colors duration-300"
+              className="inline-flex items-center gap-1.5 mt-2 text-xs sm:text-xs font-mono text-gray-400 hover:text-[#D9A08B] transition-colors duration-300"
             >
               Open in Google Maps
               <ArrowUpRight size={12} />
@@ -167,10 +168,10 @@ export default function Footer() {
 
           {/* Middle Right: Resources */}
           <div className="ml-0 sm:ml-20">
-            <h3 className="text-xs sm:text-[16px] font-bold tracking-[0.15em] text-white uppercase">
+            <h3 className="text-sm sm:text-[16px] font-bold tracking-[0.15em] text-white uppercase">
               RESOURCES
             </h3>
-            <ul className="mt-3 space-y-1.5 font-mono text-xs sm:text-[18px] text-gray-200">
+            <ul className="mt-3 space-y-1.5 font-mono text-sm sm:text-[18px] text-gray-200">
               <li><a href="#" className="transition-colors hover:text-[#D9A08B]">Home</a></li>
               <li><Link to="/services" className="transition-colors hover:text-[#D9A08B]">Our Services</Link></li>
               <li><Link to="/projects" className="transition-colors hover:text-[#D9A08B]">Portfolio</Link></li>
@@ -184,7 +185,7 @@ export default function Footer() {
         {/* ---------- Bottom Bar ---------- */}
         <div className="mt-6 flex flex-col items-start justify-between gap-2 border-t border-gray-800 pt-4 sm:flex-row sm:items-center">
           <p
-            className="max-w-2xl text-[10px] sm:text-[11px] leading-relaxed tracking-[0.08em] text-gray-300"
+            className="max-w-2xl text-xs sm:text-[11px] leading-relaxed tracking-[0.08em] text-gray-300"
             style={{ fontFamily: "'Manrope', sans-serif" }}
           >
             STUDIO DNA IS A DESIGN BRANCH OF OUTLINE ARCHITECTS, EXTENDING 30

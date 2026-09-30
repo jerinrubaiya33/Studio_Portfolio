@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
@@ -11,13 +11,8 @@ import InteriorLobby from "../assets/jb.png";
 import InteriorRestaurant from "../assets/sushi.png";
 import bashantaInte from "../assets/bashantaInte.png";
 import AKM from "../assets/akm.png";
-import Pavillion from "../assets/pavillion_20.png";
-import PavillionTop from "../assets/pavillion_top_right.png";
 import Shirin from "../assets/shirin.png";
-import Alibaba from "../assets/alibaba-day.jpg";
-import bgImage from "../assets/projectsbg.png";
 import Footer from "./Footer";
-import Meet from "./Meet";
 import CTASection from "./CTA";
 
 export const fullProjects = [
