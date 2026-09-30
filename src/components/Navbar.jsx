@@ -214,7 +214,6 @@
 
 
 
-
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, animate, AnimatePresence } from "framer-motion";
 import landscape1 from "../assets/bashanta-bilash-aerial-04.webp";
@@ -285,6 +284,19 @@ function HeroSlider() {
     return () => mq.removeEventListener("change", handleChange);
   }, []);
 
+  // Lock mobile height to prevent browser bar scroll jitter/shove
+  useEffect(() => {
+    const setVh = () => {
+      if (typeof window !== "undefined") {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      }
+    };
+    setVh();
+    window.addEventListener("resize", setVh);
+    return () => window.removeEventListener("resize", setVh);
+  }, []);
+
   const duplicatedProjects = [...projects, ...projects];
 
   useEffect(() => {
@@ -319,17 +331,18 @@ function HeroSlider() {
   }, [x, isDesktop]);
 
   return (
-    // Changed h-[100dvh] to h-screen md:h-[100dvh] so mobile uses a stable static height preventing address-bar resize jumps
-    <div className="relative z-0 h-screen md:h-[100dvh] w-full overflow-hidden bg-black">
+    <div 
+      style={{ height: isDesktop ? undefined : "calc(var(--vh, 1vh) * 100)" }}
+      className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black"
+    >
       {/* Top Gradient Overlay */}
       <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-transparent to-transparent sm:h-32 md:h-40" />
 
       {/* Panoramic Continuous Motion Track */}
       <motion.div
         ref={trackRef}
-        style={{ x }}
-        // Same here: h-screen for mobile, h-[100dvh] for desktop
-        className="flex h-screen md:h-[100dvh] w-max"
+        style={{ x, height: isDesktop ? undefined : "calc(var(--vh, 1vh) * 100)" }}
+        className="flex h-[100dvh] w-max"
       >
         {duplicatedProjects.map((project, index) => (
           <div
@@ -352,8 +365,8 @@ function HeroSlider() {
       {/* Bottom Gradient Overlay */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-[#2E3133] via-[#2E313339] to-transparent sm:h-1/2" />
 
-      {/* Description Overlay */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:p-10 md:p-16">
+      {/* Description Overlay - lifted higher up on mobile using bottom-12 */}
+      <div className="pointer-events-none absolute bottom-12 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:bottom-0 sm:p-10 md:p-16">
         <AnimatePresence mode="wait">
           {activeProject && (
             <motion.div
@@ -366,7 +379,7 @@ function HeroSlider() {
             >
               <motion.span
                 className="block font-mono text-xs font-extrabold uppercase tracking-widest text-gray-300 sm:text-sm"
-                initial={{ opacity: { opacity: 0, x: -20 } }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
