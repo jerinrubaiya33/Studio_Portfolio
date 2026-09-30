@@ -27,8 +27,8 @@ function CTASection() {
           </h2>
 
           {/* SUBTITLE */}
-          <p className="whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg font-normal font-mono leading-relaxed
-           text-white">
+          <p className="text-sm sm:text-sm md:text-base lg:text-lg font-normal font-mono leading-relaxed text-white max-w-xl
+          mx-auto md:max-w-none md:whitespace-nowrap">
             Connect design, construction, and supply through one integrated delivery team.
           </p>
 

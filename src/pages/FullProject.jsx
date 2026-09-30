@@ -384,7 +384,7 @@ function FullProject() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`w-full bg-transparent text-sm placeholder-neutral-400 focus:outline-none font-normal ${isDark ? 'text-white' : 'text-neutral-900'}`}
               />
-              <span className="text-[#D9A08B] text-base font-light ml-2">🔎︎</span>
+              <span className="text-[#D9A08B] text-base font-light ml-2">🔎︎︎</span>
             </div>
           </div>
 
@@ -444,9 +444,7 @@ function FullProject() {
         {/* Clean Architectural Grid / Interactive Mono List Views */}
         {viewMode === "grid" ? (
           <section className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16 sm:gap-y-36 items-start mt-12 sm:mt-28 px-6 sm:px-12 md:px-16 lg:px-20">
-            {filteredProjects.map((project, index) => {
-              const isSecondRowTall = index === 3;
-
+            {filteredProjects.map((project) => {
               return (
                 <Link
                   key={project.id}
@@ -455,10 +453,7 @@ function FullProject() {
                 >
                   {/* Image Container */}
                   <div
-                    className={`w-full overflow-hidden ${isDark ? 'bg-[#2a2a2a]' : 'bg-neutral-100'} ${isSecondRowTall
-                        ? "h-[380px] sm:h-[420px]"
-                        : "h-[280px] sm:h-[320px]"
-                      }`}
+                    className={`w-full overflow-hidden ${isDark ? 'bg-[#2a2a2a]' : 'bg-neutral-100'} h-[280px] sm:h-[320px]`}
                   >
                     <img
                       src={project.image}
@@ -466,7 +461,7 @@ function FullProject() {
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
-                  </div>                    {/* Grid Titles & Summaries */}
+                  </div>                 {/* Grid Titles & Summaries */}
                     <div className="flex flex-col gap-3.5 pt-1">
                       {/* Title and Summary Inline Flow */}
                       <div className={`text-lg sm:text-xl font-light leading-relaxed ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
@@ -521,7 +516,7 @@ function FullProject() {
                     <div className="flex items-center justify-between py-5 px-4 cursor-pointer w-full">
                       {/* Index & Title */}
                       <div className="flex items-center gap-6 md:gap-10 z-10">
-                        <span                              className={`text-base md:text-lg font-bold font-mono tracking-wider transition-colors duration-300 ${isHovered ? "text-white" : "text-gray-900"
+                        <span                           className={`text-base md:text-lg font-bold font-mono tracking-wider transition-colors duration-300 ${isHovered ? "text-white" : "text-gray-900"
                             }`}
                         >
                           {formattedNum}
