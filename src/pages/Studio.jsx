@@ -419,7 +419,7 @@ import Footer from "./Footer";
 import heroBg from "../assets/studio.webp";
 import TOvImg from "../assets/Team/TOv.jpeg";
 import SAnImg from "../assets/Team/SAn.jpeg";
-import RbaImg from "../assets/Team/Rba.jpeg";
+import RbaImg from "../assets/Team/RBa.jpeg";
 
 /* Categorized Team Data */
 const PARTNERS = [
