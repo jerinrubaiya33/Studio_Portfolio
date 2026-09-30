@@ -97,7 +97,6 @@ function ProjectDetails() {
       <main className="fixed inset-0 z-[999] overflow-y-auto flex flex-col items-center justify-center font-mono px-6">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none -z-20"
-        // style={{ backgroundImage: `url(${projectBg})` }}
         />
         <div className="absolute inset-0 bg-theme-primary/80 backdrop-blur-[52px] pointer-events-none -z-10 transition-colors duration-500" />
 
@@ -125,10 +124,7 @@ function ProjectDetails() {
       selection:bg-[#D9A08B] selection:text-white transition-colors duration-500"
     >
       {/* 1. Background Image Layer */}
-      <div
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none -z-20"
-      // style={{ backgroundImage: `url(${projectBg})` }}
-      >
+      <div className="fixed inset-0 bg-cover bg-center bg-no-repeat pointer-events-none -z-20">
         <div className="absolute inset-0 backdrop-blur-[1px] pointer-events-none transition-colors duration-500"
           style={{ backgroundColor: 'var(--bg-primary)' }} />
       </div>
@@ -163,16 +159,35 @@ function ProjectDetails() {
 
       {/* 1. HERO SECTION */}
       <section className="w-full flex flex-col lg:flex-row font-mono pt-16 sm:min-h-screen sm:mb-0 lg:pt-0">
-        {/* Left 35% */}
-        <div className="w-full lg:w-[38%] flex items-center justify-start px-6 sm:px-10 lg:px-14 py-8 lg:py-12 z-10 lg:min-h-screen">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-tight leading-tight break-words">
+        {/* Left Side Panel (Wider width to shift hero image right) */}
+        <div className="w-full lg:w-[44%] flex flex-col justify-start px-6 sm:px-10 lg:px-14 py-8 lg:py-12 z-10
+         lg:min-h-screen lg:pb-24">
+          <div className="flex mt-0 sm:mt-50 items-center gap-2 text-[11px] sm:text-base text-[#D9A08B] mb-3 sm:mb-4">
+            <Link to="/projects" className="underline hover:text-white">
+              Projects
+            </Link>
+            <span>→</span>
+            <span className="text-white font-medium truncate">
+              {project.title}
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-5xl font-normal text-white tracking-tight leading-tight break-words mb-3 sm:mb-4">
             {project.title}
           </h1>
+          <div className="text-lg sm:text-xl lg:text-2xl font-normal text-white leading-snug tracking-tight">
+            <p>{project.description || project.summary}</p>
+
+            {project.description && project.summary && (
+              <p className="mt-4 sm:mt-6 text-sm sm:text-base lg:text-lg text-white font-light leading-relaxed">
+                {project.summary}
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* Right 65% */}
-        <div className="w-full lg:w-[65%] sm:min-h-[500px] lg:min-h-screen overflow-hidden 
-        transition-colors duration-500">
+        {/* Right Side Image (Shifted further right) */}
+        <div className="w-full lg:w-[56%] h-[520px] sm:h-[620px] lg:h-[80vh] overflow-hidden transition-colors duration-500
+         lg:mt-0 lg:ml-2">
           {mainHeroImage && (
             <img
               src={mainHeroImage}
@@ -183,32 +198,12 @@ function ProjectDetails() {
         </div>
       </section>
 
-      {/* 2. PROJECT OVERVIEW & DESCRIPTION SECTION */}
-      <section className="w-full py-12 sm:py-16 lg:py-24 px-6 sm:px-10 lg:px-14 font-mono flex flex-col lg:flex-row">
-        <div className="hidden lg:block lg:w-[25%]" />
+      {/* 2. PROJECT OVERVIEW & DESCRIPTION SECTION (Meta grid shifted further right) */}
+      <section className="w-full py-12 sm:py-16 lg:py-20 px-6 sm:px-10 lg:px-14 font-mono flex flex-col lg:flex-row lg:-mt-52 
+      lg:relative lg:z-20">
+        <div className="hidden lg:block lg:w-[28%]" />
 
-        <div className="w-full lg:w-[75%] lg:pl-40">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-[11px] sm:text-lg sm:mt-0 text-[#D9A08B] mb-6 sm:mb-8">
-            <Link to="/projects" className="underline hover:text-white">
-              Projects
-            </Link>
-            <span>→</span>
-            <span className="text-white font-medium truncate">
-              {project.title}
-            </span>
-          </div>
-
-          <div className="text-lg sm:text-xl lg:text-2xl font-normal text-white leading-snug tracking-tight mb-10 sm:mb-12">
-            <p>{project.description || project.summary}</p>
-
-            {project.description && project.summary && (
-              <p className="mt-6 text-sm sm:text-base lg:text-lg text-white font-light leading-relaxed">
-                {project.summary}
-              </p>
-            )}
-          </div>
-
+        <div className="w-full lg:w-[72%] lg:pl-72">
           {/* Project Details Meta Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 pt-8 border-t border-theme">
             <div>                <span className="block text-[10px] sm:text-xs text-[#D9A08B] uppercase tracking-wider mb-1">
@@ -225,7 +220,7 @@ function ProjectDetails() {
               </span>
             </div>
 
-            <div className="sm:-ml-15 ml-0">                 <span className="block text-[10px] sm:text-xs text-[#D9A08B] uppercase tracking-wider mb-1">
+            <div className="sm:-ml-6  ml-0">                <span className="block text-[10px] sm:text-xs text-[#D9A08B] uppercase tracking-wider mb-1">
               Location
             </span>                <span className="text-xs sm:text-sm lg:text-base font-semibold text-white block">
                 {project.location || "Gulshan, Dhaka"}
@@ -264,8 +259,10 @@ function ProjectDetails() {
                   {row.map((img, imgIdx) => (
                     <div
                       key={imgIdx} className={`w-full overflow-hidden group rounded-sm transition-colors duration-500 ${rowIdx === 0
-                        ? "h-[320px] sm:h-[450px] lg:h-[450px]"
-                        : "aspect-[16/10] sm:aspect-[4/3]"
+                        ? "aspect-[2/1] sm:aspect-[16/8] lg:aspect-[16/8]"
+                        : rowIdx === 1
+                          ? "aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/10]"
+                          : "aspect-[16/7] sm:aspect-[16/7] lg:aspect-[16/7]"
                         }`}
                     >
                       <img
@@ -308,7 +305,7 @@ function ProjectDetails() {
                 to={`/projects/${item.id}`}
                 className="group flex flex-col gap-4"
               >
-                <div className="w-full h-[280px] sm:h-[340px] lg:h-[380px] overflow-hidden rounded-sm transition-colors duration-500">
+                <div className="w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/10] overflow-hidden rounded-sm transition-colors duration-500">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -344,7 +341,6 @@ function ProjectDetails() {
 
       {/* Footer Block */}
       <div className="w-full border-t border-theme pt-12 font-mono transition-colors duration-500">
-        {/* <Meet /> */}
         <CTASection />
         <Footer />
       </div>
