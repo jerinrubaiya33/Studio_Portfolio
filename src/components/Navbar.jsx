@@ -277,24 +277,16 @@ function HeroSlider() {
       : false
   );
 
+  // Capture mobile height ONCE on mount and NEVER update it on scroll/resize
+  const [mobileHeight, setMobileHeight] = useState(() =>
+    typeof window !== "undefined" ? window.innerHeight : 600
+  );
+
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const handleChange = (e) => setIsDesktop(e.matches);
     mq.addEventListener("change", handleChange);
     return () => mq.removeEventListener("change", handleChange);
-  }, []);
-
-  // Lock mobile height to prevent browser bar scroll jitter/shove
-  useEffect(() => {
-    const setVh = () => {
-      if (typeof window !== "undefined") {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty("--vh", `${vh}px`);
-      }
-    };
-    setVh();
-    window.addEventListener("resize", setVh);
-    return () => window.removeEventListener("resize", setVh);
   }, []);
 
   const duplicatedProjects = [...projects, ...projects];
@@ -332,8 +324,8 @@ function HeroSlider() {
 
   return (
     <div 
-      style={{ height: isDesktop ? undefined : "calc(var(--vh, 1vh) * 100)" }}
-      className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black"
+      style={{ height: isDesktop ? "100dvh" : `${mobileHeight}px` }}
+      className="relative z-0 w-full overflow-hidden bg-black"
     >
       {/* Top Gradient Overlay */}
       <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-transparent to-transparent sm:h-32 md:h-40" />
@@ -341,13 +333,14 @@ function HeroSlider() {
       {/* Panoramic Continuous Motion Track */}
       <motion.div
         ref={trackRef}
-        style={{ x, height: isDesktop ? undefined : "calc(var(--vh, 1vh) * 100)" }}
-        className="flex h-[100dvh] w-max"
+        style={{ x, height: isDesktop ? "100dvh" : `${mobileHeight}px` }}
+        className="flex w-max"
       >
         {duplicatedProjects.map((project, index) => (
           <div
             key={`${project.id}-${index}`}
-            className="relative flex h-full w-[max(125vw,125dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
+            style={{ height: isDesktop ? "100dvh" : `${mobileHeight}px` }}
+            className="relative flex w-[max(125vw,125dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
           >
             <img
               src={project.imgUrl}
@@ -365,7 +358,7 @@ function HeroSlider() {
       {/* Bottom Gradient Overlay */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-[#2E3133] via-[#2E313339] to-transparent sm:h-1/2" />
 
-      {/* Description Overlay - lifted higher up on mobile using bottom-12 */}
+      {/* Description Overlay */}
       <div className="pointer-events-none absolute bottom-12 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:bottom-0 sm:p-10 md:p-16">
         <AnimatePresence mode="wait">
           {activeProject && (
