@@ -56,13 +56,27 @@ function HeroSlider() {
 
   const [activeProject, setActiveProject] = useState(projects[0]);
 
+  // Slow the track down on desktop only; mobile speed stays untouched
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(min-width: 768px)").matches
+      : false
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handleChange = (e) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
+  }, []);
+
   const duplicatedProjects = [...projects, ...projects];
 
   useEffect(() => {
     if (!trackRef.current) return;
 
     const singleSetWidth = trackRef.current.scrollWidth / 2;
-    const duration = 45;
+    const duration = isDesktop ? 75 : 45; // slower on desktop, unchanged on mobile
 
     const controls = animate(x, -singleSetWidth, {
       ease: "linear",
@@ -87,7 +101,7 @@ function HeroSlider() {
     });
 
     return () => controls.stop();
-  }, [x]);
+  }, [x, isDesktop]);
 
   return (
     <div className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black">

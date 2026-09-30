@@ -445,7 +445,7 @@ const About = () => {
 
           {/* Services Title & Statement Block */}
           <div className="relative w-full mt-2 lg:mt-30 mb-6 lg:mb-8">
-            <h2 className="static lg:absolute top-2 lg:left-40 text-2xl sm:text-3xl font-light uppercase tracking-wider leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
+            <h2 className="static lg:absolute top-2 lg:left-40 text-3xl sm:text-4xl lg:text-4xl font-bold uppercase tracking-wider leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
               Our Services
             </h2>
             <div className="max-w-full lg:max-w-auto lg:ml-170 w-full lg:w-2/5">
@@ -464,23 +464,23 @@ const About = () => {
                 const isActive = activePillarIndex === idx;
                 return (
                   <React.Fragment key={pillar.title}>
-                    <div className="flex flex-col items-start w-full lg:flex-1 lg:max-w-[320px] text-left">
+                    <div className="flex flex-col items-start w-full lg:flex-1 lg:max-w-[360px] text-left">
                       <button
                         onClick={() => setActivePillarIndex(idx)}
                         onMouseEnter={() => setActivePillarIndex(idx)}
-                        className={`whitespace-nowrap text-3xl lg:-ml-7 sm:text-4xl lg:text-5xl font-base font-sans tracking-tight transition-colors duration-300 ${
+                        className={`whitespace-nowrap text-4xl lg:-ml-7 sm:text-5xl lg:text-5xl font-base font-sans tracking-tight transition-colors duration-300 ${
                           isActive ? "text-[#ffffff]" : "text-[#ffffff] hover:text-[#ffffff]"
                         }`}
                       >
                         <span className="text-[#A84E32] mr-3">|</span>{pillar.title}
                       </button>
-                      <p className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-lg font-serif leading-relaxed text-[#ffffff]/95">
+                      <p className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl font-serif leading-relaxed text-[#ffffff]/95">
                         {pillar.subtitle}
                       </p>
 
                       <div className="w-full h-[1px] bg-[#ffffff]/30 my-5" />
 
-                      <ul className="flex flex-col gap-3 items-start list-none text-base sm:text-lg lg:text-sm font-sans text-[#ffffff]/90 w-full pl-12 sm:pl-20 lg:pl-0">
+                      <ul className="flex flex-col gap-3 items-start list-none text-base sm:text-lg lg:text-lg font-sans text-[#ffffff]/90 w-full pl-12 sm:pl-20 lg:pl-0">
                         {pillar.points.map((point, i) => (
                           <li key={i} className="flex items-center gap-3">
                             <span className="w-2 h-2 rounded-full bg-[#A84E32] shrink-0" />
@@ -490,14 +490,14 @@ const About = () => {
                       </ul>
                       <Link
                         to={pillar.to}
-                        className="mt-6 inline-flex items-center gap-1.5 text-base sm:text-lg lg:text-sm font-semibold tracking-wide text-[#ffffff] border-b-2 border-[#A84E32] pb-0.5 hover:text-[#A84E32] transition-colors duration-300 font-sans"
+                        className="mt-6 inline-flex items-center gap-1.5 text-base sm:text-lg lg:text-lg font-semibold tracking-wide text-[#ffffff] border-b-2 border-[#A84E32] pb-0.5 hover:text-[#A84E32] transition-colors duration-300 font-sans"
                       >
                         {pillar.linkText}
                       </Link>
                     </div>
 
                     {idx < corePillars.length - 1 && (
-                      <div className="hidden lg:block w-[1px] self-stretch bg-[#ffffff]/15 my-2" />
+                      <div className="hidden lg:block w-[1px] self-stretch bg-[#ffffff]/5 my-2" />
                     )}
                   </React.Fragment>
                 );
@@ -531,12 +531,12 @@ const About = () => {
       </section>
 
       {/* ===== WAYS OF WORKING SECTION ===== */}
-      <section className="relative w-full bg-[#2E3133] text-[#ffffff] px-4 sm:px-8 lg:px-24 py-16 lg:py-24 font-sans border-t border-[#ffffff]/10">
+      <section className="relative w-full -mt-6 sm:mt-18 bg-[#2E3133] text-[#ffffff] px-4 sm:px-8 lg:px-24 py-16 lg:py-24 font-sans border-t border-[#ffffff]/10">
         <div className="max-w-auto mx-auto w-full lg:mt-15 flex flex-col justify-start">
           
           {/* Ways of Working Title & Statement Block (Matching "Our Services") */}
           <div className="relative w-full mt-2 lg:mt-10 mb-6 lg:mb-8">
-            <h2 className="static lg:absolute top-2 lg:left-35 text-2xl sm:text-3xl font-light uppercase tracking-wider leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
+            <h2 className="static lg:absolute top-2 lg:left-35 text-3xl sm:text-4xl lg:text-4xl font-bold uppercase tracking-wider leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
               Ways of Working
             </h2>
             <div className="max-w-full lg:max-w-auto lg:ml-170 w-full lg:w-2/5">
@@ -575,7 +575,7 @@ const About = () => {
       </section>
 
       {/* ===== PLATE / VIDEO SECTION ===== */}
-      <section
+      {/* <section
         ref={videoSectionRef}
         className="relative w-full bg-[#2E3133] pt-10 pb-20 sm:pt-20 sm:pb-48 font-sans transition-colors duration-500 about-page-section overflow-hidden"
       >
@@ -594,7 +594,6 @@ const About = () => {
                 className="w-full h-full object-cover filter brightness-90"
               />
 
-              {/* corner registration marks */}
               {[
                 "top-3 left-3 border-t border-l",
                 "top-3 right-3 border-t border-r",
@@ -609,7 +608,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Back to top */}
       <button

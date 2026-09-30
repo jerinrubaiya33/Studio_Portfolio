@@ -19,7 +19,7 @@ function CTASection() {
           <div className="w-8 h-0.5 rounded-full bg-[#ffffff]" />
 
           {/* MAIN HEADING */}
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-medium font-mono tracking-tight leading-[1.05] max-w-4xl text-white">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold font-mono tracking-tight leading-[1.05] max-w-5xl text-white">
             Ready To Build <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-300 to-[#D9A08B]">
               Something Amazing?
@@ -27,7 +27,8 @@ function CTASection() {
           </h2>
 
           {/* SUBTITLE */}
-          <p className="text-xs sm:text-sm md:text-base max-w-xl font-normal font-mono leading-relaxed text-neutral-300">
+          <p className="whitespace-nowrap text-xs sm:text-sm md:text-base lg:text-lg font-normal font-mono leading-relaxed
+           text-white">
             Connect design, construction, and supply through one integrated delivery team.
           </p>
 

@@ -90,7 +90,7 @@ const getLayoutClasses = (index) => {
   if (index === 1) {
     return {
       span: "col-span-1",
-      aspect: "aspect-[4/3] sm:aspect-[3/4]",
+      aspect: "aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/3]",
     };
   }
   return {

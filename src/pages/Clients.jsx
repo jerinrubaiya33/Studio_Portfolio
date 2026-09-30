@@ -75,6 +75,7 @@
 
 
 
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const fadeUp = {
@@ -83,12 +84,12 @@ const fadeUp = {
 };
 
 const clients = [
-  { name: "Bashanta Bilash", bg: "#373737", text: "text-white" },
-  { name: "Shirin Villa", bg: "#464646", text: "text-gray-900" },
-  { name: "Simin Residence", bg: "#373737", text: "text-white" },
-  { name: "Sushi Samurai", bg: "#464646", text: "text-white" },
-  { name: "Kindergarten Madrassa", bg: "#373737", text: "text-white" },
-  { name: "Bangladesh Eye Hospital", bg: "#464646", text: "text-gray-900" },
+  { name: "Bashanta Bilash", to: "/projects/bashanta-bilash", bg: "#373737", text: "text-white" },
+  { name: "Shirin Villa", to: "/projects/shirin-villa", bg: "#464646", text: "text-white" },
+  { name: "Simin Residence", to: "/projects/simin-complex", bg: "#373737", text: "text-white" },
+  { name: "Sushi Samurai", to: "/projects/sushi-samurai", bg: "#464646", text: "text-white" },
+  { name: "Kindergarten Madrassa", to: "/projects/kindergarten-madrassa", bg: "#373737", text: "text-white" },
+  { name: "Bangladesh Eye Hospital", to: "/projects/bangladesh-eye-hospital", bg: "#464646", text: "text-white" },
 ];
 
 const Clients = () => {
@@ -108,9 +109,8 @@ const Clients = () => {
           <span className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-[#E7E3DB]">
             Our Clients
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal uppercase tracking-tight text-gray-900 leading-tight">
-            The people
-            <br className="hidden sm:block" /> we build for
+          <h2 className="whitespace-nowrap text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+            The People We Build For
           </h2>
         </motion.div>
 
@@ -129,11 +129,16 @@ const Clients = () => {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
               style={{ backgroundColor: client.bg }}
-              className="group flex h-28 sm:h-32 items-center justify-center rounded-none shadow-sm hover:opacity-95 px-4 py-6 transition-opacity duration-300"
+              className="group rounded-none shadow-sm"
             >
-              <span className={`text-center text-sm sm:text-base font-bold uppercase tracking-wider ${client.text}`}>
-                {client.name}
-              </span>
+              <Link
+                to={client.to}
+                className="flex h-28 sm:h-32 items-center justify-center px-4 py-6 transition-colors duration-300 hover:bg-[#A84E32] cursor-pointer"
+              >
+                <span className={`text-center text-sm sm:text-base font-bold uppercase tracking-wider ${client.text} group-hover:text-white transition-colors duration-300`}>
+                  {client.name}
+                </span>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
