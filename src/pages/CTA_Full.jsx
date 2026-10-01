@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { Mail, Phone, MapPin, Send, Check, ArrowUp } from "lucide-react";
 import idea from "../assets/idea.jpg";
-import pencil from "../assets/sketch.jpg";
+import pencil from "../assets/sketch (2).jpg";
 import storyDrawingImage from "../assets/drawing.jpg";
 import storyBuildImage from "../assets/contruction.avif";
 import exterior from "../assets/exterior.jpg";
@@ -293,7 +293,7 @@ const CTA_Full = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeUp}
               transition={{ duration: 0.7 }}
-              className="relative w-full h-[220px] sm:h-[400px] lg:h-[500px] lg:ml-1 overflow-hidden"
+              className="relative w-full h-[220px] sm:h-[400px] lg:h-[550px] lg:ml-1 overflow-hidden"
             >
               <img
                 src={pencil}
