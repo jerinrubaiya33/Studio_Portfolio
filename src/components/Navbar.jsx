@@ -26,7 +26,6 @@ const projects = [
   {
     id: 3,
     title: "AKM Restaurant & Convention Center",
-    // category: "Residential Design",
     category: "Commercial Space",
     location: "Gulshan, Dhaka",
     year: "2022-23",
@@ -43,12 +42,12 @@ const projects = [
 ];
 
 const getSrcSet = (baseUrl) => {
-  if (!baseUrl.startsWith("http")) return undefined; // Skip local asset for external srcset generator
   const cleanUrl = baseUrl.split("?")[0];
   return [1200, 1920, 2560, 3840]
     .map((w) => `${cleanUrl}?auto=format&fit=crop&w=${w}&q=85 ${w}w`)
     .join(", ");
 };
+
 
 function HeroSlider() {
   const x = useMotionValue(0);
@@ -62,7 +61,7 @@ function HeroSlider() {
     if (!trackRef.current) return;
 
     const singleSetWidth = trackRef.current.scrollWidth / 2;
-    const duration = 45;
+    const duration = 70;
 
     const controls = animate(x, -singleSetWidth, {
       ease: "linear",
@@ -92,7 +91,7 @@ function HeroSlider() {
   return (
     <div className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black">
       {/* Top Gradient Overlay */}
-      <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-transparent to-transparent sm:h-32 md:h-40" />
+      <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-black/50 to-transparent sm:h-32 md:h-40" />
 
       {/* Panoramic Continuous Motion Track */}
       <motion.div
@@ -107,7 +106,7 @@ function HeroSlider() {
           >
             <img
               src={project.imgUrl}
-              srcSet={project.isLocal ? undefined : getSrcSet(project.imgUrl)}
+              srcSet={getSrcSet(project.imgUrl)}
               sizes="max(150vw, 150dvh)"
               alt={project.title}
               className="block h-full w-full object-cover object-center transform-gpu md:h-auto md:object-contain"
@@ -119,7 +118,7 @@ function HeroSlider() {
       </motion.div>
 
       {/* Bottom Gradient Overlay */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-[#2E3133] via-[#2E313339] to-transparent sm:h-1/2" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/3 bg-gradient-to-t from-black via-gray-950/60 to-transparent sm:h-1/2" />
 
       {/* Description Overlay */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 flex items-end justify-between p-6 text-white sm:p-10 md:p-16">
@@ -170,14 +169,7 @@ function HeroSlider() {
     </div>
   );
 }
-
 export default HeroSlider;
-
-
-
-
-
-
 
 
 
