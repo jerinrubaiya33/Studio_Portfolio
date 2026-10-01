@@ -599,7 +599,8 @@ const Studio = () => {
 
   return (
     <>
-      <main className="relative z-10 w-full min-h-screen bg-theme-primary text-theme-primary font-sans overflow-hidden transition-colors duration-500">
+      <main className="relative z-10 w-full min-h-screen bg-[#2E3133] text-white font-sans overflow-hidden
+       transition-colors duration-500">
 
         {/* ================= 1. STUDIO HERO IMAGE ================= */}
         <section className="relative w-full h-[65vh] md:h-[80vh] min-h-[450px] overflow-hidden flex items-end">
@@ -607,7 +608,7 @@ const Studio = () => {
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 animate-[slowZoom_24s_ease-in-out_infinite]"
             style={{ backgroundImage: `url(${heroBg})` }}
           />
-          <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#000000] via-[#1c1c1c]/30 to-black/30" />
+          <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#2E3133] via-[#2E3133]/10 to-[#2E3133]/30" />
 
           <div className="relative z-10 w-full px-6 sm:px-12 md:px-16 lg:px-24 pb-8 md:pb-12">
             <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-4xl font-mono font-bold text-white tracking-[0.1rem] uppercase drop-shadow-md">
@@ -617,7 +618,7 @@ const Studio = () => {
         </section>
 
         {/* ================= 2. DESCRIPTION & YEARS / PROJECTS ================= */}
-        <section className="relative w-full bg-theme-primary px-6 sm:px-12 md:px-16 lg:px-24 py-16 md:py-44 transition-colors duration-500">
+        <section className="relative w-full bg-[#2E3133] border-t border-white/10 px-6 nt sm:px-12 md:px-16 lg:px-24 py-16 md:py-44 transition-colors duration-500">
           <div className="max-w-[1000px] ml-auto text-right">
             <Reveal delay={120}>
               <div className="flex justify-end">

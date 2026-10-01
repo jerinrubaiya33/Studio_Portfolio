@@ -31,7 +31,13 @@ function HeaderNav() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      setIsScrolled(currentScrollY > 20);
+      // Hysteresis: only flip the scrolled state well past the threshold so
+      // mobile viewport changes (URL bar show/hide) can't make it flicker
+      if (currentScrollY > 20) {
+        setIsScrolled(true);
+      } else if (currentScrollY < 10) {
+        setIsScrolled(false);
+      }
 
       if (currentScrollY > lastScrollY.current) {
         upScrollAccumulator.current = 0;

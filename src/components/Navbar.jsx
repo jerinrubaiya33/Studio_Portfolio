@@ -89,7 +89,7 @@
 //   }, [x]);
 
 //   return (
-//     <div className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black">
+//     <div className="relative z-0 h-[100svh] w-full overflow-hidden bg-black">
 //       {/* Top Gradient Overlay */}
 //       <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-black/50 to-transparent sm:h-32 md:h-40" />
 
@@ -97,17 +97,17 @@
 //       <motion.div
 //         ref={trackRef}
 //         style={{ x }}
-//         className="flex h-[100dvh] w-max"
+//         className="flex h-[100svh] w-max"
 //       >
 //         {duplicatedProjects.map((project, index) => (
 //           <div
 //             key={`${project.id}-${index}`}
-//             className="relative flex h-full w-[max(125vw,125dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
+//             className="relative flex h-full w-[max(125vw,125svh)] flex-shrink-0 items-center justify-center overflow-hidden"
 //           >
 //             <img
 //               src={project.imgUrl}
 //               srcSet={getSrcSet(project.imgUrl)}
-//               sizes="max(150vw, 150dvh)"
+//               sizes="max(150vw, 150svh)"
 //               alt={project.title}
 //               className="block h-full w-full object-cover object-center transform-gpu md:h-auto md:object-contain"
 //               loading={index < 2 ? "eager" : "lazy"}
@@ -297,7 +297,7 @@ function HeroSlider() {
 
   return (
     <div 
-      className="relative z-0 h-[100dvh] w-full overflow-hidden bg-black"
+      className="relative z-0 h-[100svh] w-full overflow-hidden bg-black"
     >
       {/* Top Gradient Overlay */}
       <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 h-24 bg-gradient-to-b from-transparent to-transparent sm:h-32 md:h-40" />
@@ -306,17 +306,17 @@ function HeroSlider() {
       <motion.div
         ref={trackRef}
         style={{ x }}
-        className="flex h-[100dvh] w-max"
+        className="flex h-[100svh] w-max"
       >
         {duplicatedProjects.map((project, index) => (
           <div
             key={`${project.id}-${index}`}
-            className="relative flex h-full w-[max(125vw,125dvh)] flex-shrink-0 items-center justify-center overflow-hidden"
+            className="relative flex h-full w-[max(125vw,125svh)] flex-shrink-0 items-center justify-center overflow-hidden"
           >
             <img
               src={project.imgUrl}
               srcSet={project.isLocal ? undefined : getSrcSet(project.imgUrl)}
-              sizes="max(150vw, 150dvh)"
+              sizes="max(150vw, 150svh)"
               alt={project.title}
               className="block h-full w-full object-cover object-center transform-gpu md:h-auto md:object-contain"
               loading={index < 2 ? "eager" : "lazy"}
