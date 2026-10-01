@@ -3,14 +3,12 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { Mail, Phone, MapPin, Send, Check, ArrowUp } from "lucide-react";
-
-import storyHeroImage from "../assets/cta5.jpg";
 import idea from "../assets/idea.jpg";
-import pencil from "../assets/pencil3.jpg";
+import pencil from "../assets/sketch.jpg";
 import storyDrawingImage from "../assets/drawing.jpg";
 import storyBuildImage from "../assets/contruction.avif";
-import exterior from "../assets/ex.jpg";
-import interior from "../assets/interior.png";
+import exterior from "../assets/exterior.jpg";
+import interior from "../assets/interior.jpg";
 import Footer from "./Footer";
 
 const fadeUp = {
@@ -100,13 +98,12 @@ const CTA_Full = () => {
 
   return (
     <>
-      <main className="relative w-full bg-theme-primary text-theme-primary font-mono overflow-hidden pt-28 sm:pt-24 md:pt-32 transition-colors duration-500">
+      <main className="relative w-full bg-[#2E3133] text-white font-mono overflow-hidden pt-28 sm:pt-24 md:pt-32 transition-colors duration-500">
         {/* Back Button — right below the logo */}
         <div className="px-4 sm:px-8 md:px-20 lg:px-24">
           <button
             onClick={() => navigate(-1)}
             className="flex items-center gap-2 hover:text-[#D9A08B] transition-colors duration-200 text-sm font-semibold font-mono"
-            style={{ color: theme === 'dark' ? '#ffffff' : '#525252' }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +156,7 @@ const CTA_Full = () => {
                 />
               </div>
 
-              <p className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-lg lg:text-xl font-mono text-gray-500 leading-relaxed">
+              <p className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-lg lg:text-xl font-mono text-gray-300 leading-relaxed">
                 Good. That's all we ever start with. No plans, no drawings —
                 just a sense of what you want your space to become.
               </p>
@@ -231,15 +228,16 @@ const CTA_Full = () => {
                     key={item.id}
                     type="button"
                     onClick={() => setSelectedType(item.id)}
-                    className={`group relative h-[160px] sm:h-[320px] lg:h-[400px] w-full overflow-hidden text-left transition-all duration-300 ${
-                      isSelected ? "ring-2 sm:ring-4 ring-[#D9A08B] ring-offset-1 sm:ring-offset-2" : ""
-                    }`}
+                    className={`group relative h-[160px] sm:h-[320px] lg:h-[460px] w-full overflow-hidden text-left
+                       transition-all duration-300 ${isSelected ? "ring-2 sm:ring-4 ring-[#D9A08B] ring-offset-1 sm:ring-offset-2" : ""
+                      }`}
                   >
                     {/* Background Image */}
                     <img
                       src={item.image}
                       alt={item.label}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover grayscale transition-transform
+                       duration-500 group-hover:scale-105"
                     />
 
                     {/* Bottom Black Gradient Overlay */}
@@ -282,7 +280,7 @@ const CTA_Full = () => {
                 <br />
                 You approve it.
               </h2>
-              <p className="mt-4 sm:mt-6 max-w-md text-sm sm:text-base text-gray-500 leading-relaxed">
+              <p className="mt-4 sm:mt-6 max-w-md text-sm sm:text-lg text-gray-300 leading-relaxed">
                 Only once you say yes does it become anything more than an
                 idea — that's when we move it to drawing.
               </p>
@@ -295,12 +293,12 @@ const CTA_Full = () => {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeUp}
               transition={{ duration: 0.7 }}
-              className="relative w-full h-[280px] sm:h-[450px] lg:h-[680px] lg:ml-1 overflow-hidden"
+              className="relative w-full h-[220px] sm:h-[400px] lg:h-[500px] lg:ml-1 overflow-hidden"
             >
               <img
                 src={pencil}
                 alt="The approved design concept"
-                className="w-full h-full object-contain grayscale"
+                className="w-full h-full object-contain grayscale opacity-90"
               />
             </motion.div>
           </div>
@@ -322,7 +320,7 @@ const CTA_Full = () => {
               <img
                 src={storyDrawingImage}
                 alt="Architectural sketch and draft plans"
-                className="w-full h-full object-contain grayscale"
+                className="w-full h-full object-contain grayscale opacity-90"
               />
             </motion.div>
 
@@ -366,7 +364,7 @@ const CTA_Full = () => {
                 <br />
                 drawing sketches.
               </h2>
-              <p className="mt-4 sm:mt-6 max-w-md text-sm sm:text-base text-gray-500 leading-relaxed">
+              <p className="mt-4 sm:mt-6 max-w-md text-sm sm:text-lg text-gray-300 leading-relaxed">
                 Precision layouts, structural drafting, and refined details
                 come together into blueprints ready for build.
               </p>
@@ -381,7 +379,7 @@ const CTA_Full = () => {
                   </h3>
                 </div>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 mt-5">
                   <div className="flex items-center gap-3 border-b-2 border-[#D9A08B] pb-2">
                     <Phone size={16} className="text-gray-400 shrink-0" />
                     <input
@@ -393,7 +391,7 @@ const CTA_Full = () => {
                       className="w-full bg-transparent text-sm sm:text-base font-mono text-gray-900 placeholder-gray-400 outline-none"
                     />
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">
+                  <p className="text-md text-gray-500 leading-relaxed">
                     Direct line for a quick discovery call whenever you're ready.
                   </p>
                 </div>
@@ -444,13 +442,13 @@ const CTA_Full = () => {
         </section>
 
         {/* ================= 07 — CONSTRUCTION VISUAL (FULL IMAGE ON MOBILE) ================= */}
-        <section className="relative w-full h-[30vh] sm:h-[100vh] flex items-end overflow-hidden">
+        <section className="relative w-full h-[18vh] sm:h-[62vh] flex items-end overflow-hidden">
           <img
             src={storyBuildImage}
             alt="Construction beginning on site"
             className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
           />
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#2E3133] via-black/10
+          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#2E3133] via-[#2E313315]
            to-transparent pointer-events-none" />
 
           <motion.div
@@ -459,10 +457,10 @@ const CTA_Full = () => {
             viewport={{ once: true, amount: 0.5 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
-            className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-8 lg:px-12 pb-12 sm:pb-16 lg:pb-20 text-center"
+            className="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-16 lg:pb-16 text-center"
           >
             <h2 className="text-xl sm:text-3xl lg:text-4xl font-mono font-normal uppercase tracking-tight text-white 
-            leading-[1.1] sm:leading-[1.05] sm:-mb-9 -mb-2">
+            leading-[1.1] sm:leading-[1.05] sm:-mb-9 -mb-12">
               Then, we'll start construction.
             </h2>
           </motion.div>
@@ -536,11 +534,10 @@ const CTA_Full = () => {
                     Project Type
                   </label>
                   <div
-                    className={`w-full border px-4 py-3 text-sm font-mono transition-all ${
-                      selectedType
-                        ? "border-gray-200 bg-gray-50 text-gray-900"
-                        : "border-dashed border-gray-300 bg-white text-gray-400"
-                    }`}
+                    className={`w-full border px-4 py-3 text-sm font-mono transition-all ${selectedType
+                      ? "border-gray-200 bg-gray-50 text-gray-900"
+                      : "border-dashed border-gray-300 bg-white text-gray-400"
+                      }`}
                   >
                     {selectedType ||
                       "You haven't picked one yet — scroll back up"}
@@ -609,9 +606,13 @@ const CTA_Full = () => {
                         Visit Us
                       </span>
                       <span className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                        House 42, Road 11, Baridhara,
+                        Suite 5, Level 1, Mannan Plaza
                         <br />
-                        Dhaka 1212, Bangladesh
+                        Bashundhara River View R/A
+                        <br />
+                        Osudh Factory Mor, South Keraniganj
+                        <br />
+                        Dhaka 1311, Bangladesh
                       </span>
                     </div>
                   </div>
@@ -625,10 +626,10 @@ const CTA_Full = () => {
                         Call Us
                       </span>
                       <a
-                        href="tel:+8801711000000"
+                        href="tel:+8801313711661"
                         className="text-xs sm:text-sm text-gray-700 hover:text-[#D9A08B] transition-colors"
                       >
-                        +880 1711-000 000
+                        +880 1313-711 661
                       </a>
                     </div>
                   </div>
@@ -642,17 +643,17 @@ const CTA_Full = () => {
                         Email Us
                       </span>
                       <a
-                        href="mailto:info@studiodna.com"
+                        href="mailto:info@sdnabd.com"
                         className="text-xs sm:text-sm text-gray-700 hover:text-[#D9A08B] transition-colors"
                       >
-                        info@studiodna.com
+                        info@sdnabd.com
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="w-full h-[220px] sm:h-[280px] overflow-hidden rounded-md bg-gray-100">
+              {/* <div className="w-full h-[220px] sm:h-[280px] overflow-hidden rounded-md bg-gray-100">
                 <iframe
                   title="Studio DNA Location"
                   src="https://www.google.com/maps?q=Baridhara+Dhaka+Bangladesh&output=embed"
@@ -662,7 +663,7 @@ const CTA_Full = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-500"
                 />
-              </div>
+              </div> */}
 
               <div className="bg-gray-50 border border-gray-200 p-5 sm:p-6">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
@@ -670,15 +671,15 @@ const CTA_Full = () => {
                 </h4>
                 <div className="flex flex-col gap-1.5 text-xs sm:text-sm font-mono text-gray-700">
                   <div className="flex justify-between">
-                    <span>Monday — Friday</span>
+                    <span>Saturday — Wednesday</span>
                     <span className="font-bold">9:00 AM — 6:00 PM</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Saturday</span>
+                    <span>Thursday</span>
                     <span className="font-bold">10:00 AM — 4:00 PM</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Sunday</span>
+                    <span>Friday</span>
                     <span className="text-gray-400">Closed</span>
                   </div>
                 </div>

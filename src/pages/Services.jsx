@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowUp } from "lucide-react";
-import heroBg from "../assets/about.png";
 import designImg from "../assets/designImg.avif";
 import buildImg from "../assets/buildImg.png";
 import supplyImg from "../assets/supplyImg.avif";
+import CTASection from "./CTA";
+import Footer from "./Footer";
 
-/* Scroll Reveal */
 const Reveal = ({ children, delay = 0, className = "" }) => {
   const ref = useRef(null);
 
@@ -40,18 +40,15 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-[2000ms] ease-out ${
-        visible
+      className={`transition-all duration-[2000ms] ease-out ${visible
           ? "translate-y-0 opacity-100"
           : "translate-y-8 opacity-0"
-      } ${className}`}
+        } ${className}`}
     >
       {children}
     </div>
   );
 };
-
-/*  DESIGN • BUILD • SUPPLY  */
 
 const corePillars = [
   {
@@ -123,39 +120,31 @@ const Services = () => {
   }, []);
 
   return (
-    <main className="relative z-10 min-h-screen w-full overflow-hidden bg-[#2E3133] font-sans text-white transition-colors duration-500">
+    <main className="relative z-10 min-h-screen w-full overflow-hidden bg-[#2E3133] font-sans text-white transition-colors
+     duration-500">
 
-      {/*  THREE CORE SERVICES  */}
+      {/* Increased top padding further on desktop (md:pt-56 lg:pt-64) */}
+      <section className="relative w-full border-y border-gray-100 pt-16 sm:pt-16 md:pt-56 lg:pt-38 pb-4 sm:py-16 px-4
+       sm:px-6 md:px-14 lg:px-16">
 
-      <section className="relative w-full border-y border-gray-100 py-4 sm:py-16 md:py-24 lg:py-36  px-4 sm:px-6 md:px-14 lg:px-16">
+        <div className="absolute inset-0  z-0 bg-white/10" />
 
-        {/* Background */}
-        {/* <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        /> */}
-
-        <div className="absolute inset-0 z-0 bg-white/10" />
-
-        <div className="relative z-10 mx-auto max-w-[1800px] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28">
-
-          {/* Section Heading */}
+        <div className="relative z-10 mx-auto mb-10 max-w-[1800px] px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28">
 
           <Reveal>
-            <div className="mb-8 md:mb-16 lg:mb-24 px-0 md:px-8 lg:px-18">
+            <div className="mb-6 md:mb-8 lg:mb-10 px-0 md:px-8 lg:px-18">
 
               <div className="relative flex flex-col items-start justify-between gap-4 sm:gap-6 md:flex-row md:items-end">
 
-                {/* Back Button - Relative on mobile/tablet, absolutely positioned only on large screens */}
                 <button
                   onClick={() => navigate(-1)}
-                  className="group relative md:absolute mt-8 mb-4 sm:-mt-10 sm:mb-0  md:-left-32 lg:-left-37 md:top-1/2 z-20 flex md:-translate-y-1/2 
+                  className="group relative md:absolute mt-8 mb-4 sm:-mt-10 sm:mb-0 md:-left-32 lg:-left-37 md:top-1/2 z-20 flex md:-translate-y-1/2 
                   items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em]
                    text-gray-500 transition-all duration-300 hover:text-gray-900"
                 >
                   <span
                     className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center bg-[#2E3133] text-white transition-all
-                     duration-300 group-hover:border-gray-900 group-hover:bg-[#D9A08B]"
+                      duration-300 group-hover:border-gray-900 group-hover:bg-[#D9A08B]"
                   >
                     <ArrowLeft
                       size={14}
@@ -169,70 +158,54 @@ const Services = () => {
                   </span>
                 </button>
 
-                <h2 className="font-mono text-base sm:text-xl sm:mt-20 md:text-3xl lg:text-3xl xl:text-3xl font-extrabold leading-tight whitespace-nowrap
-                 text-[#D9A08B]">
+                <h2 className="font-mono text-2xl sm:text-xl sm:mt-20 md:text-3xl lg:text-3xl xl:text-3xl font-extrabold leading-tight whitespace-nowrap
+                   text-[#FFFFFF]">
                   Design · Build · Supply
                 </h2>
-                {/* 
-                <p className="max-w-md text-left font-mono -mb-3 text-xs sm:text-sm md:text-base leading-relaxed text-gray-700">
-                  From architecture and engineering to construction,
-                  fit-out and sourcing.
-                </p> */}
 
               </div>
 
             </div>
           </Reveal>
 
-          {/*  SERVICE ROWS  */}
-
           <div className="divide-y divide-gray-300/80 border-b border-t border-gray-300/80">
 
             {corePillars.map((item, idx) => (
               <Reveal key={item.title} delay={idx * 1200}>
 
-                <div className="grid grid-cols-1 items-start md:items-center gap-8 py-8 sm:py-12 md:py-16 lg:grid-cols-12 lg:gap-16 lg:py-28 px-0 sm:px-4 md:px-8 lg:px-20">
+                {/* Reduced vertical padding even more on desktop (md:py-6 lg:py-10) */}
+                <div className="grid grid-cols-1 items-center gap-8 py-8 sm:py-12 md:py-6 lg:py-10 lg:grid-cols-12 lg:gap-16 px-0 sm:px-4 md:px-8 lg:px-20">
 
-                  {/* Service Title */}
+                  <div className="flex flex-col justify-center text-left lg:col-span-6 pr-0 lg:pr-4">
 
-                  <div className="flex flex-col justify-center text-left lg:col-span-4 pr-0 lg:pr-4">
-
-                    <h3 className="font-sans text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#D9A08B] lg:text-5xl">
+                    <h3 className="font-sans text-4xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#D9A08B] lg:text-6xl">
                       {item.title}
                     </h3>
 
-                    <p className="mt-3 sm:mt-4 lg:mt-5 max-w-sm font-mono text-xs sm:text-sm md:text-base font-medium leading-relaxed text-gray-800">
+                    <p className="mt-3 sm:mt-4 lg:mt-5 max-w-lg font-mono text-xs sm:text-sm md:text-base font-medium leading-relaxed text-gray-900">
                       {item.subtitle}
                     </p>
 
-                  </div>
-
-                  {/* Image */}
-
-                  <div className="flex items-center justify-center lg:col-span-4 w-full">
-
-                    <div className="relative h-36 sm:h-56 md:h-64 lg:h-60 w-full max-w-md overflow-hidden border border-gray-200/80 bg-gray-100 shadow-sm">
-
-                      <img
-                        src={item.image}
-                        alt={`${item.title} service`}
-                        className="h-full w-full object-cover grayscale-[90%] transition-all duration-500 ease-out hover:grayscale-0"
-                      />
-
+                    <div className="mt-5 sm:mt-6 w-full max-w-[180px] sm:max-w-[320px]">
+                      <div className="relative h-28 sm:h-36 md:h-40 lg:h-44 w-full overflow-hidden border border-gray-200/80 bg-gray-100 shadow-sm">
+                        <img
+                          src={item.image}
+                          alt={`${item.title} service`}
+                          className="h-full w-full object-cover grayscale transition-all duration-500 ease-out hover:grayscale-90"
+                        />
+                      </div>
                     </div>
 
                   </div>
 
-                  {/* Service List */}
-
-                  <div className="w-full lg:col-span-4 pl-0 lg:pl-4">
+                  <div className="w-full lg:col-span-6 pl-0 lg:pl-4 pt-0 lg:pt-12">
 
                     <ul className="divide-y divide-gray-300/80 border-b border-t border-gray-300/80">
 
                       {item.items.map((service, serviceIndex) => (
                         <li
                           key={`${item.num}-${serviceIndex}`}
-                          className="py-2.5 sm:py-3 px-1 sm:px-2 font-mono text-[11px] sm:text-xs md:text-base font-semibold uppercase tracking-wide text-gray-900"
+                          className="py-2.5 sm:py-3 px-1 sm:px-2 font-mono text-[11px] sm:text-xs md:text-base font-semibold uppercase tracking-wide text-white"
                         >
                           {service}
                         </li>
@@ -252,7 +225,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Floating Back to Top */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
@@ -263,7 +235,8 @@ const Services = () => {
           className="opacity-100 scale-100 transition-all duration-300"
         />
       </button>
-
+      <CTASection />
+      <Footer />
     </main>
   );
 };

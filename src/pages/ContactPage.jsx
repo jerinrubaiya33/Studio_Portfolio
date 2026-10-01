@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import Footer from "./Footer";
 import CTASection from "./CTA";
-import Clients from "./Clients";
 
 /* Scroll-reveal Helper */
 const Reveal = ({ children, delay = 0, className = "" }) => {
@@ -52,20 +51,24 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
 const offices = [
   {
     name: "STUDIO DNA",
-    tag: "THE STUDIO / BARIDHARA",
+    tag: "THE STUDIO / KÉRANIGANJ",
     address: (
       <>
-        House 42, Road 11, Baridhara,
+        Suite 5, Level 1, Mannan Plaza
         <br />
-        Dhaka 1212, Bangladesh
+        Bashundhara River View R/A
+        <br />
+        Osudh Factory Mor, South Keraniganj
+        <br />
+        Dhaka 1311, Bangladesh
       </>
     ),
-    phone: "+880 1711-000 000",
-    phoneHref: "tel:+8801711000000",
-    email: "info@studiodna.com",
-    emailHref: "mailto:info@studiodna.com",
+    phone: "+880 1313-711 661",
+    phoneHref: "tel:+8801313711661",
+    email: "info@sdnabd.com",
+    emailHref: "mailto:info@sdnabd.com",
     mapSrc:
-      "https://www.google.com/maps?q=Baridhara+Dhaka+Bangladesh&output=embed",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7300.5!2d90.4284213!3d23.6774307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9e29f1b1e33%3A0x30f3fb5d64facbf5!2sStudio%20DNA!5e0!3m2!1sen!2sbd!4v1759000000000!5m2!1sen!2sbd",
     image:
       "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
   },
@@ -80,10 +83,10 @@ const StudioSection = ({ office, index }) => {
         {/* Studio Title & Media Switcher */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-gray-100 pb-2">
           <div>
-            <h3 className="text-xl sm:text-2xl font-sans font-extrabold mt-6 tracking-wider text-[#D9A08B] uppercase mb-0.5">
+            <h3 className="text-2xl sm:text-3xl font-sans font-extrabold mt-6 tracking-wider text-[#D9A08B] uppercase mb-0.5">
               {office.name}
             </h3>
-            <span className="text-[10px] font-mono tracking-widest text-gray-400 uppercase">
+            <span className="text-[12px] font-mono tracking-widest text-gray-200 uppercase">
               {office.tag}
             </span>
           </div>
@@ -94,8 +97,8 @@ const StudioSection = ({ office, index }) => {
               onClick={() => setActiveTab("map")}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm transition-all duration-300 ${
                 activeTab === "map"
-                  ? "bg-gray-900 text-white font-medium shadow-sm"
-                  : "bg-gray-100 text-gray-500 hover:text-gray-900 hover:bg-gray-200"
+                  ? "bg-gray-100 text-white font-medium shadow-sm"
+                  : "bg-gray-100 text-white hover:text-gray-900 hover:bg-gray-200"
               }`}
             >
               <Globe size={13} strokeWidth={1.5} />
@@ -106,7 +109,7 @@ const StudioSection = ({ office, index }) => {
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm transition-all duration-300 ${
                 activeTab === "image"
                   ? "bg-gray-900 text-white font-medium shadow-sm"
-                  : "bg-gray-100 text-gray-500 hover:text-gray-900 hover:bg-gray-200"
+                  : "bg-gray-100 text-white hover:text-gray-900 hover:bg-gray-200"
               }`}
             >
               <Camera size={13} strokeWidth={1.5} />
@@ -139,21 +142,21 @@ const StudioSection = ({ office, index }) => {
         {/* Details Section: Single Row per item with Full-width Underlines */}
         <div className="flex flex-col font-mono w-full pt-2">
           {/* 1. Location */}
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4 w-full border-b border-gray-200 py-4 px-4 sm:px-14">
-            <div className="flex items-center gap-2.5 text-gray-400 shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 w-full border-b border-gray-200 py-4 px-4 sm:px-14">
+            <div className="flex items-center gap-2.5 text-white shrink-0">
               <Building2 size={16} strokeWidth={1.5} className="text-[#D9A08B]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest">
                 Location
               </span>
             </div>
-            <address className="text-base sm:text-lg text-gray-800 not-italic font-medium sm:text-left leading-relaxed">
+            <address className="text-base sm:text-lg text-white not-italic font-medium sm:text-left leading-relaxed">
               {office.address}
             </address>
           </div>
 
           {/* 2. Phone */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 px-4 sm:px-14 w-full border-b border-gray-200 py-4">
-            <div className="flex items-center gap-2.5 text-gray-400 shrink-0">
+            <div className="flex items-center gap-2.5 text-white shrink-0">
               <PhoneCall size={16} strokeWidth={1.5} className="text-[#D9A08B]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest">
                 Phone
@@ -161,7 +164,7 @@ const StudioSection = ({ office, index }) => {
             </div>
             <a
               href={office.phoneHref}
-              className="text-base sm:text-lg text-gray-800 hover:text-[#D9A08B] transition-colors font-medium no-underline sm:text-left"
+              className="text-base sm:text-lg mr-0 sm:mr-40 text-white hover:text-[#D9A08B] transition-colors font-medium no-underline sm:text-left"
             >
               {office.phone}
             </a>
@@ -169,7 +172,7 @@ const StudioSection = ({ office, index }) => {
 
           {/* 3. Email */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 px-4 sm:px-14 w-full border-b border-gray-200 py-4">
-            <div className="flex items-center gap-2.5 text-gray-400 shrink-0">
+            <div className="flex items-center gap-2.5 text-white shrink-0">
               <Send size={16} strokeWidth={1.5} className="text-[#D9A08B]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest">
                 Email
@@ -177,7 +180,7 @@ const StudioSection = ({ office, index }) => {
             </div>
             <a
               href={office.emailHref}
-              className="text-base sm:text-lg text-gray-800 hover:text-[#D9A08B] transition-colors font-medium no-underline sm:text-left"
+              className="text-base sm:text-lg mr-0 sm:mr-39 text-white hover:text-[#D9A08B] transition-colors font-medium no-underline sm:text-left"
             >
               {office.email}
             </a>
@@ -193,13 +196,13 @@ const ContactPage = () => {
     <>
       <main className="relative z-10 w-full min-h-screen bg-white text-gray-900 font-mono overflow-hidden transition-colors duration-500">
         {/* ================= 1. HERO ================= */}
-        <section className="relative w-full min-h-[50vh] sm:min-h-[45vh] flex items-end overflow-hidden">
+        <section className="relative w-full min-h-[42vh] sm:min-h-[45vh] flex items-end overflow-hidden">
           <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 bg-[#315847]" />
           <div className="absolute inset-0 z-0" />
 
           <div className="relative z-10 w-full px-4 sm:px-8 md:px-12 lg:px-24 mt-16 sm:mt-36 py-12 md:py-16">
             <Reveal>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-mono font-bold text-white tracking-tight uppercase">
+              <h1 className="text-4xl sm:text-4xl md:text-7xl font-mono font-bold text-white tracking-tight uppercase">
                 Let's Build
                 <br />
                 Together.
@@ -207,7 +210,7 @@ const ContactPage = () => {
             </Reveal>
 
             <Reveal delay={150}>
-              <p className="mt-4 max-w-2xl text-xs sm:text-sm md:text-base font-mono text-gray-700 leading-relaxed tracking-normal">
+              <p className="mt-4 max-w-2xl text-md sm:text-sm md:text-xl font-mono text-gray-900 leading-relaxed tracking-normal">
                 Have an ambitious architectural vision, structural restoration, or commercial design project in mind? Reach out directly to either of our main studios. Our multidisciplinary design team is prepared to guide your project through every phase—from initial strategic concepts and spatial planning to technical engineering and final handover.
               </p>
             </Reveal>
@@ -219,7 +222,7 @@ const ContactPage = () => {
           <div className="w-full max-w-[1400px] mx-auto">
             <Reveal>
               <div className="mb-6 mt-15 sm:mt-30 text-center">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-mono font-bold text-gray-900 leading-tight">
+                <h2 className="text-3xl sm:text-3xl lg:text-4xl font-mono font-bold text-gray-900 leading-tight">
                   Talk To Our Studio
                 </h2>
               </div>
@@ -234,7 +237,6 @@ const ContactPage = () => {
         </section>
 
         <CTASection />
-        <Clients />
       </main>
 
       <div className="relative z-10 w-full border-t border-gray-200 bg-white/70 backdrop-blur-md transition-colors duration-500">

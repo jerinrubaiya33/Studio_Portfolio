@@ -402,6 +402,7 @@ import heroBg from "../assets/studio.webp";
 import TOvImg from "../assets/Team/TOv.jpeg";
 import SAnImg from "../assets/Team/SAn.jpeg";
 import RbaImg from "../assets/Team/RBa.jpeg";
+import CTASection from "./CTA";
 
 /* Categorized Team Data */
 const PARTNERS = [
@@ -758,6 +759,8 @@ const Studio = () => {
         }
       `}</style>
       </main>
+
+      <CTASection/>
 
       {/* Footer Block */}
       <div className="relative z-10 w-full border-t border-theme backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
