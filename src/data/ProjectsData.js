@@ -6,7 +6,7 @@ import BashantaBilash5 from "../assets/bashanta-bilash-aerial-01.jpg";
 import BashantaBilash6 from "../assets/bashanta-bilash-aerial-04.jpg";
 import bashantaInte from "../assets/bashantaInte.png";
 
-import Kindergarten from "../assets/kindergarten.png";
+import Kindergarten from "../assets/kindergarten.jpg";
 
 import Simin from "../assets/simin.png";
 import SiminDay from "../assets/simin_day.jpg";
@@ -17,9 +17,9 @@ import SiminDay3 from "../assets/simin_day3.jpg";
 
 import HospitalImg from "../assets/hospital (1).png";
 
-import InteriorLobby from "../assets/jb.png";
+import InteriorLobby from "../assets/jb.jpg";
 
-import InteriorRestaurant from "../assets/sushi.png";
+import InteriorRestaurant from "../assets/sushi.jpg";
 import Sushi1 from "../assets/sushi-samurai-seating-02.webp";
 import Sushi2 from "../assets/sushi-samurai-interior-01.webp";
 import Sushi3 from "../assets/sushi2.jpg";

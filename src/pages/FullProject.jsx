@@ -4,11 +4,11 @@ import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 
 import Bashanta from "../assets/bashanta.png";
-import Kindergarten from "../assets/kindergarten.png";
+import Kindergarten from "../assets/kindergarten.jpg";
 import Simin from "../assets/simin.png";
 import HospitalImg from "../assets/hospital (1).png";
-import InteriorLobby from "../assets/jb.png";
-import InteriorRestaurant from "../assets/sushi.png";
+import InteriorLobby from "../assets/jb.jpg";
+import InteriorRestaurant from "../assets/sushi.jpg";
 import bashantaInte from "../assets/bashantaInte.png";
 import AKM from "../assets/akm.jpg";
 import Shirin from "../assets/shirin.png";

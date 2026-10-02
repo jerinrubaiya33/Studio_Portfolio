@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, animate, AnimatePresence } from "framer-motion";
 import landscape1 from "../assets/bashanta-bilash-aerial-04.jpg";
-import landscape2 from "../assets/sushi.png";
+import landscape2 from "../assets/sushi.jpg";
 import landscape3 from "../assets/akm.jpg";
-import landscape4 from "../assets/jb.png";
+import landscape4 from "../assets/jb.jpg";
 
 const projects = [
   {
