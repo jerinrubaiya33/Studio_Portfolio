@@ -4,18 +4,18 @@ import BashantaBilash3 from "../assets/BashantaBilash3.jpg";
 import BashantaBilash4 from "../assets/BashantaBilash4.jpg";
 import BashantaBilash5 from "../assets/bashanta-bilash-aerial-01.jpg";
 import BashantaBilash6 from "../assets/bashanta-bilash-aerial-04.jpg";
-import bashantaInte from "../assets/bashantaInte.png";
+import bashantaInte from "../assets/bashantaInte.jpg";
 
 import Kindergarten from "../assets/kindergarten.jpg";
 
-import Simin from "../assets/simin.png";
+import Simin from "../assets/simin.jpg";
 import SiminDay from "../assets/simin_day.jpg";
 import SiminDay2 from "../assets/simin_day2.jpg";
 import SiminNight from "../assets/simin_night.jpg";
 import SiminNight2 from "../assets/simin_night2.jpg";
 import SiminDay3 from "../assets/simin_day3.jpg";
 
-import HospitalImg from "../assets/hospital (1).png";
+import HospitalImg from "../assets/hospital(1).jpg";
 
 import InteriorLobby from "../assets/jb.jpg";
 
@@ -28,7 +28,7 @@ import AKM from "../assets/akm.jpg";
 import Pavillion from "../assets/pavillion_20.png";
 import PavillionTop from "../assets/pavillion_top_right.png";
 
-import Shirin from "../assets/shirin.png";
+import Shirin from "../assets/shirin.jpg";
 import Shirin2 from "../assets/shirin-villa-night-render-03.webp";
 import Shirin3 from "../assets/shirin-villa-site-photo-04.webp";
 import Shirin4 from "../assets/shirin-villa-tower-render-02.webp";
