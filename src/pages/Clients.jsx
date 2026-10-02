@@ -109,7 +109,7 @@ const Clients = () => {
           <span className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-[#E7E3DB]">
             Our Clients
           </span>
-          <h2 className="whitespace-nowrap text-4xl sm:text-5xl md:text-5xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+          <h2 className="whitespace-nowrap text-3xl sm:text-5xl md:text-5xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
             The People We Build For
           </h2>
         </motion.div>
