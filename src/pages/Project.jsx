@@ -9,7 +9,7 @@ import HospitalImg from "../assets/hospital (1).png";
 import InteriorLobby from "../assets/jb.png";
 import InteriorRestaurant from "../assets/sushi.png";
 import bashantaInte from "../assets/bashantaInte.png";
-import AKM from "../assets/akm.png";
+import AKM from "../assets/akm.jpg";
 
 const allProjects = [
   {

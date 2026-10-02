@@ -197,7 +197,7 @@ export default function Footer() {
             Studio DNA works in association with Outline Architects, connecting architectural design with integrated build and supply services.
            
           </p>
-          <p> © {year} ALL RIGHTS RESERVED.</p>
+          <p className="mr-40"> © {year} ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

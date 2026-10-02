@@ -2,8 +2,8 @@ import Bashanta from "../assets/bashanta.png";
 import BashantaBilash1 from "../assets/BashantaBilash1.jpg";
 import BashantaBilash3 from "../assets/BashantaBilash3.jpg";
 import BashantaBilash4 from "../assets/BashantaBilash4.jpg";
-import BashantaBilash5 from "../assets/bashanta-bilash-aerial-01.webp";
-import BashantaBilash6 from "../assets/bashanta-bilash-aerial-04.webp";
+import BashantaBilash5 from "../assets/bashanta-bilash-aerial-01.jpg";
+import BashantaBilash6 from "../assets/bashanta-bilash-aerial-04.jpg";
 import bashantaInte from "../assets/bashantaInte.png";
 
 import Kindergarten from "../assets/kindergarten.png";
@@ -24,7 +24,7 @@ import Sushi1 from "../assets/sushi-samurai-seating-02.webp";
 import Sushi2 from "../assets/sushi-samurai-interior-01.webp";
 import Sushi3 from "../assets/sushi2.jpg";
 
-import AKM from "../assets/akm.png";
+import AKM from "../assets/akm.jpg";
 import Pavillion from "../assets/pavillion_20.png";
 import PavillionTop from "../assets/pavillion_top_right.png";
 

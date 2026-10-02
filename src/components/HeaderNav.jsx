@@ -160,6 +160,7 @@ function HeaderNav() {
             <img
               src={logoImage}
               alt="Studio DNA Logo"
+              loading="lazy"
               className={`w-auto object-contain relative transition-opacity duration-500 ease-in-out ${isScrolled
                   ? "h-16 sm:h-14 md:h-22"
                   : "h-18 sm:h-16 md:h-30"
