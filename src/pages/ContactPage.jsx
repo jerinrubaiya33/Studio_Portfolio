@@ -134,6 +134,7 @@ const StudioSection = ({ office, index }) => {
             <img
               src={office.image}
               alt={office.name}
+              loading="lazy"
               className="w-full h-full object-cover grayscale transition-all duration-700 hover:grayscale-0 hover:scale-105"
             />
           )}

@@ -143,6 +143,7 @@ function People() {
                 key={selected.id}
                 src={selected.largeImage}
                 alt={selected.name}
+                loading="lazy"
                 className="w-full h-100 object-cover transition-all duration-500"
               />
             </div>
@@ -197,6 +198,7 @@ function People() {
                       <img
                         src={person.thumbImage}
                         alt={person.name}
+                        loading="lazy"
                         className={`
                           w-full h-full object-cover transition-all duration-500
                           ${

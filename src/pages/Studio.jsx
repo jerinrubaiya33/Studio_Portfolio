@@ -701,6 +701,7 @@ const Studio = () => {
                           <img
                             src={member.image}
                             alt={member.name}
+                            loading="lazy"
                             className="w-full h-full object-cover object-top filter grayscale group-hover:scale-105 transition-all duration-500 ease-out"
                           />
                         </div>

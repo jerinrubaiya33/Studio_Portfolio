@@ -191,6 +191,7 @@ const Services = () => {
                         <img
                           src={item.image}
                           alt={`${item.title} service`}
+                          loading="lazy"
                           className="h-full w-full object-cover grayscale transition-all duration-500 ease-out hover:grayscale-90"
                         />
                       </div>

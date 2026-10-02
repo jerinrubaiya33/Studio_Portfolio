@@ -230,6 +230,7 @@ function HeaderNav() {
               <img
                 src={logoImage}
                 alt="Studio DNA Logo"
+                loading="lazy"
                 className="h-22 sm:h-16 md:h-32 -ml-6 md:-ml-12 w-auto object-contain"
               />
             </a>

@@ -43,6 +43,7 @@ export default function Footer() {
             <img
               src={logoWhite}
               alt="STUDIO DNA Logo"
+              loading="lazy"
               className="h-24 sm:h-28 lg:h-32 w-auto -ml-10 sm:-ml-14 shrink-0 object-contain grayscale brightness-200 opacity-95"
             />
           </div>

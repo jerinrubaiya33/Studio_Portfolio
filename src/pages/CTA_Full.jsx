@@ -151,6 +151,7 @@ const CTA_Full = () => {
               <div className="block lg:hidden my-6 relative w-full h-[150px] sm:h-[280px] overflow-hidden rounded-sm">
                 <img
                   src={processedIdea}
+                  loading="lazy"
                   alt="Idea visualization"
                   className="w-full h-full object-contain"
                 />
@@ -188,6 +189,7 @@ const CTA_Full = () => {
             >
               <img
                 src={processedIdea}
+                loading="lazy"
                 alt="Idea visualization"
                 className="w-full h-full object-contain"
               />
@@ -236,6 +238,7 @@ const CTA_Full = () => {
                     <img
                       src={item.image}
                       alt={item.label}
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover grayscale transition-transform
                        duration-500 group-hover:scale-105"
                     />
@@ -298,6 +301,7 @@ const CTA_Full = () => {
               <img
                 src={pencil}
                 alt="The approved design concept"
+                loading="lazy"
                 className="w-full h-full object-contain grayscale opacity-90"
               />
             </motion.div>
@@ -319,6 +323,7 @@ const CTA_Full = () => {
             >
               <img
                 src={storyDrawingImage}
+                loading="lazy"
                 alt="Architectural sketch and draft plans"
                 className="w-full h-full object-contain grayscale opacity-90"
               />

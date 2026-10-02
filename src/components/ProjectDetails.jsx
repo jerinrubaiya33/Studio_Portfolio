@@ -192,6 +192,7 @@ function ProjectDetails() {
             <img
               src={mainHeroImage}
               alt={project.title}
+              loading="lazy"
               className="w-full h-full object-cover rounded-none"
             />
           )}
