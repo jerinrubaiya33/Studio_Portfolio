@@ -69,8 +69,8 @@ jobs:
           set net:max-retries 2;
           set net:timeout 15;
           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          put deploy.zip;
-          put unzip.php;
+          put deploy.zip -o ./deploy.zip;
+          put unzip.php -o ./unzip.php;
           quit;
           "
 
