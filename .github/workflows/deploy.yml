@@ -36,9 +36,10 @@ jobs:
         run: |
           lftp -c "
           set ftp:ssl-allow no;
+          set ftp:use-site-chmod no;
           set net:max-retries 3;
           set net:timeout 30;
           open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          mirror --reverse --verbose --no-perms --no-chmod --exclude-glob .htaccess --exclude-glob .well-known/ --exclude-glob .ftpquota ./dist/ ./;
+          mirror --reverse --verbose --no-perms --ignore-time --exclude-glob .htaccess --exclude-glob .well-known/ --exclude-glob .ftpquota ./dist/ ./;
           quit;
           "
