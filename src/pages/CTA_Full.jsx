@@ -670,7 +670,7 @@ const CTA_Full = () => {
                 />
               </div> */}
 
-              <div className="bg-gray-50 border border-gray-200 p-5 sm:p-6">
+              <div className="bg-[#315847] border border-gray-200 p-5 sm:p-6">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
                   Office Hours
                 </h4>
