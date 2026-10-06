@@ -1,0 +1,15 @@
+name: Trigger cPanel Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger cPanel Git Pull & Deploy
+        run: |
+          curl -H "Authorization: cpanel sdna26bd:${{ secrets.CPANEL_API_TOKEN }}" \
+               "https://sdnabd.com:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fsdna26bd%2Frepositories%2FStudio_Portfolio&branch=main&deploy=1"
