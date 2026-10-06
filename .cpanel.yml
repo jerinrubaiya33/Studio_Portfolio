@@ -1,8 +1,5 @@
 ---
 deployment:
   tasks:
-    - export PATH=$PATH:/usr/local/bin:~/.nvm/versions/node/$(ls ~/.nvm/versions/node 2>/dev/null | tail -n 1)/bin
     - export DEPLOYPATH=/home/sdna26bd/public_html
-    - npm install
-    - npm run build
     - cp -a dist/. $DEPLOYPATH
