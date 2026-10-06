@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -25,11 +26,60 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      - name: Sync Files to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ./
+      - name: Package Build Files
+        run: |
+          cd dist
+          zip -r ../deploy.zip .
+          cd ..
+
+      - name: Create Unzip Helper Script
+        run: |
+          cat << 'EOF' > unzip.php
+          <?php
+          $zipFile = 'deploy.zip';
+          if (file_exists($zipFile)) {
+              $zip = new ZipArchive;
+              if ($zip->open($zipFile) === TRUE) {
+                  $zip->extractTo(__DIR__);
+                  $zip->close();
+                  @unlink($zipFile);
+                  @unlink(__FILE__);
+                  echo "SUCCESS";
+              } else {
+                  echo "EXTRACTION_FAILED";
+              }
+          } else {
+              echo "ZIP_NOT_FOUND";
+          }
+          ?>
+          EOF
+
+      - name: Install LFTP
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload Zip via LFTP
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+          set ftp:ssl-allow no;
+          set ftp:use-site-chmod no;
+          set net:max-retries 2;
+          set net:timeout 15;
+          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
+          put deploy.zip;
+          put unzip.php;
+          quit;
+          "
+
+      - name: Trigger Server Extraction
+        run: |
+          sleep 3
+          RESPONSE=$(curl -s -L http://sdnabd.com/unzip.php)
+          echo "Server response: $RESPONSE"
+          if [ "$RESPONSE" != "SUCCESS" ]; then
+            echo "Extraction failed on server!"
+            exit 1
+          fi
