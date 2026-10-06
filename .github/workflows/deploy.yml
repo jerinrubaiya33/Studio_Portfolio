@@ -1,4 +1,4 @@
-name: Deploy React App to cPanel
+# name: Deploy React App to cPanel
 
 on:
   push:
@@ -33,3 +33,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
+          state-name: .ftp-deploy-sync-state.json
+          timeout: 600000
