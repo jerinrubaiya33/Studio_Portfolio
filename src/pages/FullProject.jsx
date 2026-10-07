@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
+import { Helmet } from "react-helmet-async";
 
 import Bashanta from "../assets/bashanta.png";
 import Kindergarten from "../assets/kindergarten.jpg";
@@ -639,6 +640,23 @@ function FullProject() {
         <CTASection/>
         <Footer />
       </div>
+
+      {/* Rendered last so the page tags win over section-level ones */}
+      <Helmet>
+        <title>Projects — Architecture, Interior & Engineering Portfolio | Studio DNA</title>
+        <meta
+          name="description"
+          content="Browse completed and ongoing architecture, interior, landscape and engineering projects by Studio DNA — resorts, villas, hospitals, campuses and more across Bangladesh."
+        />
+        <link rel="canonical" href="https://sdnabd.com/projects" />
+        <meta property="og:title" content="Projects — Architecture, Interior & Engineering Portfolio | Studio DNA" />
+        <meta
+          property="og:description"
+          content="Browse completed and ongoing architecture, interior, landscape and engineering projects by Studio DNA — resorts, villas, hospitals, campuses and more across Bangladesh."
+        />
+        <meta property="og:url" content="https://sdnabd.com/projects" />
+        <meta property="og:type" content="website" />
+      </Helmet>
     </div>
   );
 }

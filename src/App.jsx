@@ -19,6 +19,7 @@ import CTASection from './pages/CTA';
 import CTA_Full from './pages/CTA_Full';
 import Clients from './pages/Clients';
 import Philosophy from './pages/Philoshopy';
+import { Helmet } from 'react-helmet-async';
 
 // Catches any runtime error in the app so the user never sees a blank page
 class ErrorBoundary extends Component {
@@ -95,12 +96,42 @@ function ScrollToTop() {
 
 const ExteriorPortfolio = () => (
   <div className="pt-32 text-center text-2xl">
+    <Helmet>
+      <title>Exterior Design Portfolio | Studio DNA</title>
+      <meta
+        name="description"
+        content="A curated portfolio of exterior design, landscape and architectural projects by Studio DNA across Bangladesh."
+      />
+      <link rel="canonical" href="https://sdnabd.com/exterior-portfolio" />
+      <meta property="og:title" content="Exterior Design Portfolio | Studio DNA" />
+      <meta
+        property="og:description"
+        content="A curated portfolio of exterior design, landscape and architectural projects by Studio DNA across Bangladesh."
+      />
+      <meta property="og:url" content="https://sdnabd.com/exterior-portfolio" />
+      <meta property="og:type" content="website" />
+    </Helmet>
     Exterior Portfolio Page Content Under Construction
   </div>
 );
 
 const InteriorPortfolio = () => (
   <div className="pt-32 text-center text-2xl">
+    <Helmet>
+      <title>Interior Design Portfolio | Studio DNA</title>
+      <meta
+        name="description"
+        content="A curated portfolio of interior design, fit-out and furnishing projects by Studio DNA across Bangladesh."
+      />
+      <link rel="canonical" href="https://sdnabd.com/interior-portfolio" />
+      <meta property="og:title" content="Interior Design Portfolio | Studio DNA" />
+      <meta
+        property="og:description"
+        content="A curated portfolio of interior design, fit-out and furnishing projects by Studio DNA across Bangladesh."
+      />
+      <meta property="og:url" content="https://sdnabd.com/interior-portfolio" />
+      <meta property="og:type" content="website" />
+    </Helmet>
     Interior Portfolio Page Content Under Construction
   </div>
 );
@@ -132,6 +163,22 @@ const MainLandingPage = () => (
     <div id="contact" className="scroll-mt-0">
       <Contact />
     </div>
+    {/* Rendered last so the home page's tags win over the section-level ones */}
+    <Helmet>
+      <title>Studio DNA — Architecture, Interior & Engineering Design Firm in Dhaka</title>
+      <meta
+        name="description"
+        content="Studio DNA is a premier architecture, planning, engineering, interior, and landscape design firm providing turnkey project solutions in Dhaka and across Bangladesh."
+      />
+      <link rel="canonical" href="https://sdnabd.com/" />
+      <meta property="og:title" content="Studio DNA — Architecture, Interior & Engineering Design" />
+      <meta
+        property="og:description"
+        content="Comprehensive services in architecture, planning, engineering, interior, and landscape design for public and private sectors."
+      />
+      <meta property="og:url" content="https://sdnabd.com/" />
+      <meta property="og:type" content="website" />
+    </Helmet>
   </>
 );
 

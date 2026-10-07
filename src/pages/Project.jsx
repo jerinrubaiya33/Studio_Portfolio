@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -220,6 +221,10 @@ function Project() {
           </button>
         </Link>
       </div>
+
+      <Helmet>
+        <title>Selected Projects — Studio DNA</title>
+      </Helmet>
     </section>
   );
 }

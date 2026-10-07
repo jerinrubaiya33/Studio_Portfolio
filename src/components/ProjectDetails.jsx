@@ -5,6 +5,7 @@ import Footer from "../pages/Footer";
 import { fullProjects } from "../pages/FullProject";
 import { useTheme } from "../contexts/ThemeContext";
 import CTASection from "../pages/CTA";
+import { Helmet } from "react-helmet-async";
 
 function StoryBlock({ title, text }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -112,6 +113,15 @@ function ProjectDetails() {
         >
           ← Return to Projects Index
         </Link>
+
+        <Helmet>
+          <title>Project Not Found | Studio DNA</title>
+          <meta
+            name="description"
+            content="The project you are looking for does not exist. Browse the full Studio DNA architecture and interior design portfolio."
+          />
+          <meta name="robots" content="noindex" />
+        </Helmet>
       </main>
     );
   }
@@ -345,6 +355,32 @@ function ProjectDetails() {
         <CTASection />
         <Footer />
       </div>
+
+      {/* Rendered last so the page tags win over section-level ones */}
+      <Helmet>
+        <title>{`${project.title} — ${project.category || project.type || "Project"} | Studio DNA`}</title>
+        <meta
+          name="description"
+          content={
+            project.summary ||
+            `${project.title} by Studio DNA — a ${project.category || project.type || "design"} project in ${project.location}.`
+          }
+        />
+        <link rel="canonical" href={`https://sdnabd.com/projects/${project.id}`} />
+        <meta
+          property="og:title"
+          content={`${project.title} — ${project.category || project.type || "Project"} | Studio DNA`}
+        />
+        <meta
+          property="og:description"
+          content={
+            project.summary ||
+            `${project.title} by Studio DNA — a ${project.category || project.type || "design"} project in ${project.location}.`
+          }
+        />
+        <meta property="og:url" content={`https://sdnabd.com/projects/${project.id}`} />
+        <meta property="og:type" content="article" />
+      </Helmet>
     </div>
   );
 }

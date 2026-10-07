@@ -77,6 +77,7 @@
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -143,6 +144,10 @@ const Clients = () => {
           ))}
         </motion.div>
       </div>
+
+      <Helmet>
+        <title>Our Clients — Studio DNA</title>
+      </Helmet>
     </section>
   );
 };

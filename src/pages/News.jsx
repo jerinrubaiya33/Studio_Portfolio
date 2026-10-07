@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight } from "lucide-react";
 import bgImage from "../assets/news.png";
 
@@ -89,6 +90,10 @@ export default function News() {
           ))}
         </div>
       </div>
+
+      <Helmet>
+        <title>Latest News — Studio DNA</title>
+      </Helmet>
     </section>
   );
 }

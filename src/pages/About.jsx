@@ -278,6 +278,7 @@
 
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowUp, ArrowRight } from "lucide-react";
 import archVideo from "../assets/arch.mp4";
@@ -620,6 +621,10 @@ const About = () => {
       >
         <ArrowUp size={16} />
       </button>
+
+      <Helmet>
+        <title>About Us — Studio DNA</title>
+      </Helmet>
     </>
   );
 };

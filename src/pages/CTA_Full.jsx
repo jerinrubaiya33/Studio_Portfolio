@@ -734,6 +734,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { Mail, Phone, MapPin, Send, Check, ArrowUp } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import idea from "../assets/idea.jpg";
 import pencil from "../assets/sketch (2).jpg";
 import storyDrawingImage from "../assets/drawing.jpg";
@@ -1345,6 +1346,23 @@ const CTA_Full = () => {
       <div className="relative z-10 w-full border-t border-theme backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
         <Footer />
       </div>
+
+      {/* Rendered last so the page tags win over section-level ones */}
+      <Helmet>
+        <title>Start Your Project — Request a Consultation | Studio DNA</title>
+        <meta
+          name="description"
+          content="Tell Studio DNA about your project and request a consultation for architecture, interior design, engineering or turnkey construction in Bangladesh."
+        />
+        <link rel="canonical" href="https://sdnabd.com/cta" />
+        <meta property="og:title" content="Start Your Project — Request a Consultation | Studio DNA" />
+        <meta
+          property="og:description"
+          content="Tell Studio DNA about your project and request a consultation for architecture, interior design, engineering or turnkey construction in Bangladesh."
+        />
+        <meta property="og:url" content="https://sdnabd.com/cta" />
+        <meta property="og:type" content="website" />
+      </Helmet>
     </>
   );
 };

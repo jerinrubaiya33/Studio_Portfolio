@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 function CTASection() {
@@ -55,6 +56,10 @@ function CTASection() {
           </div>
         </motion.div>
       </div>
+
+      <Helmet>
+        <title>Start a Conversation — Studio DNA</title>
+      </Helmet>
     </section>
   );
 }

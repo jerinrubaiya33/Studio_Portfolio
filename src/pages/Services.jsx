@@ -6,6 +6,7 @@ import buildImg from "../assets/buildImg.png";
 import supplyImg from "../assets/supplyImg.avif";
 import CTASection from "./CTA";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet-async";
 
 const Reveal = ({ children, delay = 0, className = "" }) => {
   const ref = useRef(null);
@@ -238,6 +239,23 @@ const Services = () => {
       </button>
       <CTASection />
       <Footer />
+
+      {/* Rendered last so the page tags win over section-level ones */}
+      <Helmet>
+        <title>Services — Design, Build & Supply | Studio DNA</title>
+        <meta
+          name="description"
+          content="Architecture, interior design, engineering, landscape, construction and supply — integrated services delivered by Studio DNA across Bangladesh."
+        />
+        <link rel="canonical" href="https://sdnabd.com/services" />
+        <meta property="og:title" content="Services — Design, Build & Supply | Studio DNA" />
+        <meta
+          property="og:description"
+          content="Architecture, interior design, engineering, landscape, construction and supply — integrated services delivered by Studio DNA across Bangladesh."
+        />
+        <meta property="og:url" content="https://sdnabd.com/services" />
+        <meta property="og:type" content="website" />
+      </Helmet>
     </main>
   );
 };

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const features = [
   {
@@ -138,6 +139,10 @@ export default function Choose() {
           </div>
         </div>
       </div>
+
+      <Helmet>
+        <title>Why Choose Studio DNA — No Walls, Just Spaces</title>
+      </Helmet>
     </section>
   );
 }

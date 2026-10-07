@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import archVideo from "/src/assets/arch.mp4"; 
 
 function Hero() {
@@ -141,6 +142,10 @@ function Hero() {
           </svg>
         </div>
       </div>
+
+      <Helmet>
+        <title>Home — Studio DNA</title>
+      </Helmet>
 
     </div>
   );

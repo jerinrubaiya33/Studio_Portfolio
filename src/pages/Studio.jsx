@@ -396,6 +396,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet-async";
 
 /* Original Local Image Imports */
 import heroBg from "../assets/studio.webp";
@@ -768,6 +769,23 @@ const Studio = () => {
       <div className="relative z-10 w-full border-t border-theme backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
         <Footer />
       </div>
+
+      {/* Rendered last so the page tags win over section-level ones */}
+      <Helmet>
+        <title>The Studio — Team, Philosophy & Process | Studio DNA</title>
+        <meta
+          name="description"
+          content="Meet the people, philosophy and working process behind Studio DNA — an architecture, interior design and engineering studio in Dhaka, Bangladesh."
+        />
+        <link rel="canonical" href="https://sdnabd.com/studio" />
+        <meta property="og:title" content="The Studio — Team, Philosophy & Process | Studio DNA" />
+        <meta
+          property="og:description"
+          content="Meet the people, philosophy and working process behind Studio DNA — an architecture, interior design and engineering studio in Dhaka, Bangladesh."
+        />
+        <meta property="og:url" content="https://sdnabd.com/studio" />
+        <meta property="og:type" content="website" />
+      </Helmet>
     </>
   );
 };

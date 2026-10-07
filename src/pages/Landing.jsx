@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Helmet } from "react-helmet-async";
 import remodelingImg from '../assets/remodeling.jpeg'; 
 
 const Landing = () => {
@@ -140,6 +141,10 @@ const Landing = () => {
           );
         })}
       </div>
+
+      <Helmet>
+        <title>Our Services — Studio DNA</title>
+      </Helmet>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoWhite from "/src/assets/studioDNA_logo.png";
+import { Helmet } from "react-helmet-async";
 
 const SocialIcon = ({ children, label, href, activeColor }) => (
   <a
@@ -201,6 +202,11 @@ export default function Footer() {
           <p className="mr-40"> © {year} ALL RIGHTS RESERVED.</p>
         </div>
       </div>
+
+      {/* Site-wide fallback title; each page's own <Helmet> overrides it */}
+      <Helmet>
+        <title>Studio DNA — Architecture, Interior & Engineering Design Firm in Dhaka</title>
+      </Helmet>
     </footer>
   );
 }

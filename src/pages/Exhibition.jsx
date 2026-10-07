@@ -443,6 +443,7 @@
 
 
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import AlibabaMainDay from "../assets/pavillion_top_right.png";
 import AlibabaMainNight from "../assets/pavillion_20.png";
 import AlibabaModel3D from "../assets/pavillion_top_left.png";
@@ -710,6 +711,10 @@ function Exhibition() {
           </div>
         </div>
       </div>
+
+      <Helmet>
+        <title>Exhibition Design — Studio DNA</title>
+      </Helmet>
     </section>
   );
 }

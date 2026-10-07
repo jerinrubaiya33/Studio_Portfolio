@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 
 const peopleData = [
   {
@@ -245,6 +246,10 @@ function People() {
           </div>
         </div>
       </div>
+
+      <Helmet>
+        <title>Our People & Partners — Studio DNA</title>
+      </Helmet>
     </section>
   );
 }

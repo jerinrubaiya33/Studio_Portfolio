@@ -1,5 +1,6 @@
 //35483f
 import React, { useState } from 'react';
+import { Helmet } from "react-helmet-async";
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -52,6 +53,10 @@ export default function Philosophy() {
         </div>
 
       </main>
+
+      <Helmet>
+        <title>Studio Philosophy — Decoding Nature &amp; Architecture | Studio DNA</title>
+      </Helmet>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import aboutBg from "../assets/meet.png";
@@ -816,6 +817,10 @@ const Meet = () => {
 
         </div>
       </div>
+
+      <Helmet>
+        <title>Meet the Team — Studio DNA</title>
+      </Helmet>
     </section>
   );
 };

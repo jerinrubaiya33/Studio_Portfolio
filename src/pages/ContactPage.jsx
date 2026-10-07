@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Footer from "./Footer";
 import CTASection from "./CTA";
+import { Helmet } from "react-helmet-async";
 
 /* Scroll-reveal Helper */
 const Reveal = ({ children, delay = 0, className = "" }) => {
@@ -243,6 +244,23 @@ const ContactPage = () => {
       <div className="relative z-10 w-full border-t border-gray-200 bg-white/70 backdrop-blur-md transition-colors duration-500">
         <Footer />
       </div>
+
+      {/* Rendered last so the page tags win over section-level ones */}
+      <Helmet>
+        <title>Contact Our Studios in Dhaka | Studio DNA</title>
+        <meta
+          name="description"
+          content="Talk to Studio DNA — visit our studios in Keraniganj and Dhaka, or call and email us to start your architecture, interior design or engineering project."
+        />
+        <link rel="canonical" href="https://sdnabd.com/contact" />
+        <meta property="og:title" content="Contact Our Studios in Dhaka | Studio DNA" />
+        <meta
+          property="og:description"
+          content="Talk to Studio DNA — visit our studios in Keraniganj and Dhaka, or call and email us to start your architecture, interior design or engineering project."
+        />
+        <meta property="og:url" content="https://sdnabd.com/contact" />
+        <meta property="og:type" content="website" />
+      </Helmet>
     </>
   );
 };
