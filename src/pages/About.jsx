@@ -160,7 +160,7 @@ const About = () => {
       {/* ===== TITLE BLOCK SECTION ===== */}
       <section
         ref={sectionRef}
-        className="relative w-full mt-15 sm:mt-0 min-h-auto lg:min-h-[90vh] lg:-ml-5 bg-[#8C777A7C6121] text-[#ffffff] font-sans px-4
+        className="relative w-full mt-15 sm:-mt-10 min-h-auto lg:min-h-[90vh] lg:-ml-5 bg-[#8C777A7C6121] text-[#ffffff] font-sans px-4
           sm:px-8 lg:px-24 py-10 lg:py-5 transition-colors duration-500 about-page-section"
       >
         <div className="max-w-auto mx-auto w-full lg:mt-15 flex flex-col h-auto lg:h-screen lg:sticky lg:top-0 justify-start">
@@ -180,7 +180,7 @@ const About = () => {
 
           {/* Row of three */}
           <div className="mt-6 sm:mt-10 lg:mt-14 flex flex-col lg:ml-15 justify-start">
-            <div className="border-t border-b border-[#ffffff]/25 py-8 sm:py-12 lg:py-12 flex flex-col lg:flex-row lg:flex-nowrap items-start justify-center gap-12 lg:gap-16">
+            <div className="border-t border-b border-[#ffffff]/25 py-8 sm:py-12 lg:py-10 flex flex-col lg:flex-row lg:flex-nowrap items-start justify-center gap-12 lg:gap-16">
 
               {corePillars.map((pillar, idx) => {
                 const isActive = activePillarIndex === idx;
@@ -195,13 +195,14 @@ const About = () => {
                       >
                         <span className="text-[#A84E32] mr-4">|</span>{pillar.title}
                       </button>
-                      <p className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl font-serif leading-relaxed text-[#ffffff]/95">
+                      <p className="mt-4 sm:mt-3 text-base sm:text-lg lg:text-xl font-serif leading-relaxed text-[#ffffff]/95">
                         {pillar.subtitle}
                       </p>
 
                       <div className="w-full h-[1px] bg-[#ffffff]/30 my-5" />
 
-                      <ul className="flex flex-col gap-3 items-start list-none text-base sm:text-lg lg:text-lg font-sans text-[#ffffff]/90 w-full pl-12 sm:pl-20 lg:pl-0">
+                      <ul className="flex flex-col gap-3 items-start list-none text-base sm:text-lg lg:text-lg font-sans text-[#ffffff]/90 w-full 
+                      pl-12 sm:pl-20 lg:pl-0">
                         {pillar.points.map((point, i) => (
                           <li key={i} className="flex items-center gap-3">
                             <span className="w-2 h-2 rounded-full bg-[#A84E32] shrink-0" />
@@ -267,12 +268,14 @@ const About = () => {
       </section>
 
       {/* ===== WAYS OF WORKING SECTION ===== */}
-      <section className="relative w-full -mt-6 sm:mt-18 bg-[#2E3133] text-[#ffffff] px-4 sm:px-8 lg:px-24 py-16 lg:py-24 font-sans border-t border-[#ffffff]/10">
+      <section className="relative w-full -mt-6 sm:mt-18 bg-[#2E3133] text-[#ffffff] px-4 sm:px-8 lg:px-24 py-16 
+      lg:py-14 font-sans border-t border-[#ffffff]/10">
         <div className="max-w-auto mx-auto w-full lg:mt-15 flex flex-col justify-start">
 
           {/* Ways of Working Title & Statement Block (Matching "Our Services") */}
           <div className="relative w-full mt-2 lg:mt-10 mb-6 lg:mb-8">
-            <h2 className="static lg:absolute top-2 lg:left-35 text-3xl sm:text-4xl lg:text-4xl font-bold uppercase tracking-wider leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
+            <h2 className="static lg:absolute top-2 lg:left-35 text-3xl sm:text-4xl lg:text-4xl font-bold uppercase tracking-wider
+             leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
               Ways of Working
             </h2>
             <div className="max-w-full lg:max-w-auto lg:ml-170 w-full lg:w-2/5">
@@ -288,7 +291,7 @@ const About = () => {
                 <Link
                   key={item.number}
                   to={item.to}
-                  className="group relative flex items-center justify-between py-6 sm:py-8 lg:py-8 border-b border-[#ffffff]/20 last:border-b-0 hover:border-[#ffffff] transition-colors duration-300"
+                  className="group relative flex items-center justify-between py-6 sm:py-8 lg:py-6 border-b border-[#ffffff]/20 last:border-b-0 hover:border-[#ffffff] transition-colors duration-300"
                 >
                   <div className="flex items-baseline gap-6 sm:gap-16 lg:ml-40">
                     <span className="text-xs sm:text-sm font-light text-[#ffffff]/50 font-mono">

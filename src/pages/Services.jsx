@@ -121,7 +121,8 @@ const Services = () => {
   }, []);
 
   return (
-    <main className="relative z-10 min-h-screen w-full overflow-hidden bg-[#2E3133] font-sans text-white transition-colors
+    <main className="relative z-10 min-h-screen w-full overflow-hidden bg-[#1c1c1c] font-sans text-white
+     transition-colors
      duration-500">
 
       {/* Increased top padding further on desktop (md:pt-56 lg:pt-64) */}

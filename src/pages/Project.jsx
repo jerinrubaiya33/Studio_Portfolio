@@ -132,14 +132,14 @@ function ProjectCard({ project, index }) {
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+            className="w-full h-full text-white object-cover group-hover:scale-105 transition-all duration-700 ease-out"
           />
         </div>
 
         {/* TITLE & YEAR */}
         <div className="relative z-10 pb-2 min-h-[28px] sm:min-h-[32px]">
           <div className="flex items-baseline justify-between gap-2">
-            <h3 className="text-sm sm:text-base md:text-lg font-mono font-normal group-hover:text-white transition-colors 
+            <h3 className="text-sm sm:text-base md:text-xl font-mono font-normal group-hover:text-white transition-colors 
             duration-700 leading-snug text-white">
               {project.title}
             </h3>

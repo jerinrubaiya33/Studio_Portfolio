@@ -260,14 +260,14 @@ export default function EventRegistration() {
                     name="phoneNumber"
                     required
                     pattern="[0-9]{10}"
-                    placeholder="1712345678"
+                    placeholder="1234567890"
                     value={formData.phoneNumber}
                     onChange={handleChange}
                     disabled={isSubmitting}
                     className="w-full bg-transparent px-4 sm:px-5 py-4 sm:py-5 text-base sm:text-lg text-[#FFFFFF] placeholder:text-[#A3A19B] focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
-                <p className="text-xs sm:text-sm text-[#A3A19B]">Enter 10-digit Bangladeshi mobile number (e.g. 1712345678).</p>
+                <p className="text-xs sm:text-sm text-[#A3A19B]">Enter 11-digit Bangladeshi mobile number (e.g. 01234567890).</p>
               </div>
 
               {/* 4. Hope to learn (Optional) */}
