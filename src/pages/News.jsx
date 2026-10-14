@@ -151,26 +151,23 @@ export default function EventRegistration() {
           </div>
         </div>
 
+
         {/* Keynote Speakers List */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Card 1: Saad Andalib */}
-          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-between space-y-4 border-t-2 border-[#D9A08B]">
-            <div className="space-y-1 mt-2 sm:mt-4">
-              <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Design & Planning</span>
-              <h3 className="text-2xl sm:text-3xl font-normal text-[#FFFFFF]">Saad Andalib</h3>
-              <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Architect, MIAB</p>
-            </div>
-            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase pt-2">Studio DNA</span>
+          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-center items-start space-y-2 border-t-2 border-[#D9A08B]">
+            <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Design & Planning</span>
+            <h3 className="text-2xl sm:text-3xl font-normal text-[#FFFFFF]">Saad Andalib</h3>
+            <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Architect, MIAB</p>
+            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase ">Studio DNA</span>
           </div>
 
           {/* Card 2: Md. Asaduzzaman */}
-          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-between space-y-4 border-t-2 border-[#D9A08B]">
-            <div className="space-y-1 mt-2 sm:mt-4">
-              <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Structural Design</span>
-              <h3 className="text-2xl sm:text-3xl font-normal text-[#FFFFFF]">Md. Asaduzzaman</h3>
-              <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Civil Engineer, MIEB</p>
-            </div>
-            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase pt-2">The Designers and Managers</span>
+          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-center items-start space-y-2 border-t-2 border-[#D9A08B]">
+            <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Structural Design</span>
+            <h3 className="text-2xl sm:text-3xl font-normal text-[#EFECE6]">Md. Asaduzzaman</h3>
+            <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Civil Engineer, MIEB</p>
+            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase">The Designers and Managers</span>
           </div>
 
           {/* Card 3: Mosharraf Hossain Sumon */}
@@ -180,7 +177,7 @@ export default function EventRegistration() {
               <h3 className="text-2xl sm:text-3xl font-normal text-[#EFECE6]">Mosharraf Hossain Sumon</h3>
               <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Civil Engineer, MIEB</p>
             </div>
-            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase pt-2">CEO, SR Development</span>
+            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase -mt-3">CEO, SR Development</span>
           </div>
         </div>
 

@@ -1,282 +1,3 @@
-// import React, { useEffect, useRef, useState, useCallback } from "react";
-// import { Link } from "react-router-dom";
-// import { ArrowUp, ArrowRight } from "lucide-react";
-// import archVideo from "../assets/arch.mp4";
-
-// const useIsMobile = () => {
-//   const [isMobile, setIsMobile] = useState(
-//     typeof window !== "undefined" ? window.innerWidth < 768 : false
-//   );
-//   useEffect(() => {
-//     const mq = window.matchMedia("(max-width: 767px)");
-//     const handler = (e) => setIsMobile(e.matches);
-//     mq.addEventListener("change", handler);
-//     setIsMobile(mq.matches);
-//     return () => mq.removeEventListener("change", handler);
-//   }, []);
-//   return isMobile;
-// };
-
-// const corePillars = [
-//   {
-//     title: "Design",
-//     subtitle:
-//       "Architecture and specialist design coordinated as one system.",
-//   },
-//   {
-//     title: "Build",
-//     subtitle:
-//       "Construction, fit-out & delivery across varied structural systems.",
-//   },
-//   {
-//     title: "Supply",
-//     subtitle:
-//       "Material and product sourcing connected to project delivery.",
-//   },
-// ];
-
-// const lerp = (a, b, t) => a + (b - a) * t;
-// const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
-
-// const About = () => {
-//   const sectionRef = useRef(null);
-//   const videoSectionRef = useRef(null);
-//   const isMobile = useIsMobile();
-
-//   const [activePillarIndex, setActivePillarIndex] = useState(2);
-//   const [scrollState, setScrollState] = useState({
-//     showTopBtn: false,
-//     overallProgress: 0,
-//     videoScale: 0.4,
-//   });
-
-//   const rafRef = useRef(null);
-
-//   const recompute = useCallback(() => {
-//     let overallProgress = 0;
-//     let videoScale = 0.4;
-//     let showTopBtn = false;
-
-//     const section = sectionRef.current;
-//     if (section) {
-//       const rect = section.getBoundingClientRect();
-//       const total = rect.height - window.innerHeight;
-//       const distanceScrolled = -rect.top;
-//       overallProgress = total > 0 ? clamp01(distanceScrolled / total) : 0;
-//     }
-
-//     const videoSec = videoSectionRef.current;
-//     if (videoSec) {
-//       const rect = videoSec.getBoundingClientRect();
-//       const winHeight = window.innerHeight;
-//       const maxDistance = isMobile ? winHeight * 0.35 : winHeight * 0.85;
-//       const initialScale = isMobile ? 0.25 : 0.15;
-//       const progress = clamp01((winHeight - rect.top) / maxDistance);
-//       videoScale = lerp(initialScale, 1.45, progress);
-//     }
-
-//     const scrolled = window.scrollY;
-//     const totalHeight =
-//       document.documentElement.scrollHeight - window.innerHeight;
-//     showTopBtn = totalHeight > 0 && scrolled > totalHeight * 0.3;
-
-//     setScrollState({ showTopBtn, overallProgress, videoScale });
-
-//     if (overallProgress < 0.42) {
-//       setActivePillarIndex(0);
-//     } else if (overallProgress < 0.75) {
-//       setActivePillarIndex(1);
-//     } else {
-//       setActivePillarIndex(2);
-//     }
-//   }, [isMobile]);
-
-//   useEffect(() => {
-//     const onScroll = () => {
-//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-//       rafRef.current = requestAnimationFrame(() => {
-//         recompute();
-//         rafRef.current = null;
-//       });
-//     };
-//     recompute();
-//     window.addEventListener("scroll", onScroll, { passive: true });
-//     window.addEventListener("resize", recompute);
-//     return () => {
-//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-//       window.removeEventListener("scroll", onScroll);
-//       window.removeEventListener("resize", recompute);
-//     };
-//   }, [recompute]);
-
-//   const { showTopBtn, videoScale } = scrollState;
-//   const active = corePillars[activePillarIndex];
-
-//   return (
-//     <>
-//       <style>{`
-//         html, body {
-//           scrollbar-width: none;
-//           -ms-overflow-style: none;
-//           background-color: #2E3133;
-//           color: #F7F7F4;
-//         }
-//         html::-webkit-scrollbar, body::-webkit-scrollbar {
-//           display: none;
-//         }
-//       `}</style>
-
-//       {/* ===== TITLE BLOCK SECTION ===== */}
-//       <section
-//         ref={sectionRef}
-//         className="relative w-full min-h-[70vh] sm:min-h-[90vh] bg-[#2E3133] text-[#F7F7F4] font-sans px-6 sm:px-12 lg:px-24 py-4 pb-1 sm:py-14 transition-colors duration-500 about-page-section"
-//       >
-//         <div className="max-w-auto mx-auto w-full mt-15 flex flex-col h-auto lg:h-screen lg:sticky lg:top-0 justify-start">
-
-//           {/* Services Title (Top Left) & Statement Block */}
-//           <div className="relative w-full mt-8 sm:mt-14 lg:mt-30 mb-6 lg:mb-8">
-//             <h2 className="static lg:absolute top-2 left-40 text-2xl sm:text-3xl font-light uppercase tracking-wider leading-snug mb-5 lg:mb-0 text-[#F7F7F4] font-sans">
-//               Our Services
-//             </h2>
-//             <div className="max-w-full lg:max-w-auto lg:ml-170 w-full lg:w-2/5">
-//               <p className="text-base sm:text-xl font-serif text-left lg:text-left leading-relaxed text-[#F7F7F4]/90">
-//                 One connected practice, coordinating ideas, engineering,
-//                 execution and sourcing.
-//               </p>
-//             </div>
-//           </div>
-
-//           {/* Row of three */}
-//           <div className="mt-10 sm:mt-14 lg:mt-14 flex flex-col justify-start">
-//             <div className="border-t border-b border-[#F7F7F4]/15 py-9 sm:py-14 lg:py-20 flex flex-nowrap items-center
-//              justify-center gap-3 sm:gap-8 lg:gap-10">
-//               {corePillars.map((pillar, idx) => {
-//                 const isActive = activePillarIndex === idx;
-//                 return (
-//                   <React.Fragment key={pillar.title}>
-//                     <button
-//                       onClick={() => setActivePillarIndex(idx)}
-//                       onMouseEnter={() => setActivePillarIndex(idx)}
-//                       className={`whitespace-nowrap text-2xl sm:text-4xl md:text-5xl font-bold font-sans tracking-tight transition-colors duration-300 ${
-//                         isActive
-//                           ? "text-[#A84E32]"
-//                           : "text-[#F7F7F4] hover:text-[#F7F7F4]/70"
-//                       }`}
-//                     >
-//                       {pillar.title}
-//                     </button>
-
-//                     {idx < corePillars.length - 1 && (
-//                       <span className="text-xl sm:text-5xl md:text-6xl text-[#A84E32]/60 font-light select-none">
-//                         +
-//                       </span>
-//                     )}
-//                   </React.Fragment>
-//                 );
-//               })}
-//             </div>
-
-// {/* Subtitle & Underlined CTA Row */}
-// <div className="mt-10 sm:mt-14 lg:mt-16 w-full lg:w-3/4 lg:ml-42 flex flex-col md:flex-row items-start md:items-center justify-between gap-7 pb-14 lg:pb-0">
-//   <p className="text-base sm:text-xl font-serif leading-relaxed text-left transition-opacity duration-300 max-w-xl text-[#F7F7F4]/80">
-//     {active.subtitle}
-//   </p>
-
-//   <Link
-//     to="/services"
-//     className="group relative shrink-0 inline-flex items-center justify-center lg:-mr-10 gap-2 text-xs sm:text-sm 
-//     font-semibold tracking-wide text-[#F7F7F4] bg-[#2E3133] border border-[#F7F7F4]/50 px-5 py-2.5 rounded-md shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer overflow-hidden font-sans"
-//   >
-//     <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#A84E32] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
-//     <span className="relative z-10 transition-colors duration-500 group-hover:text-[#F7F7F4]">
-//       See Full Services
-//     </span>
-//     <span className="relative z-10 transition-colors duration-500 group-hover:text-[#F7F7F4]">
-//       <ArrowRight
-//         size={14}
-//         className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-//       />
-//     </span>
-//   </Link>
-// </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* ===== PLATE / VIDEO SECTION ===== */}
-//       <section
-//         ref={videoSectionRef}
-//         className="relative w-full bg-[#2E3133] pt-0 pb-20 sm:pt-10 sm:pb-48 font-sans transition-colors duration-500 about-page-section"
-//       >
-//         <div className="mx-auto max-w-[1500px] px-5 sm:px-8 md:px-12 lg:px-20 xl:px-32">
-//           <div className="relative max-w-4xl mx-auto">
-//             <div
-//               className="relative w-full max-w-[280px] sm:max-w-lg md:max-w-4xl mx-auto aspect-video overflow-hidden rounded-2xl transition-transform duration-150 ease-out origin-center shadow-2xl border border-[#F7F7F4]/10"
-//               style={{ transform: `scale(${videoScale})`, willChange: "transform" }}
-//             >
-//               <video
-//                 src={archVideo}
-//                 loop
-//                 muted
-//                 playsInline
-//                 autoPlay
-//                 className="w-full h-full object-cover filter brightness-90"
-//               />
-
-//               {/* corner registration marks */}
-//               {[
-//                 "top-3 left-3 border-t border-l",
-//                 "top-3 right-3 border-t border-r",
-//                 "bottom-3 left-3 border-b border-l",
-//                 "bottom-3 right-3 border-b border-r",
-//               ].map((pos) => (
-//                 <span
-//                   key={pos}
-//                   className={`pointer-events-none absolute h-4 w-4 sm:h-5 sm:w-5 border-[#F7F7F4]/40 ${pos}`}
-//                 />
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Back to top */}
-//       <button
-//         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-//         aria-label="Back to top"
-//         className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-[#F7F7F4]/20 bg-[#2E3133] text-[#D9A08B] shadow-sm transition-opacity duration-300 font-sans ${
-//           showTopBtn ? "opacity-100" : "opacity-0 pointer-events-none"
-//         }`}
-//       >
-//         <ArrowUp size={16} />
-//       </button>
-//     </>
-//   );
-// };
-
-// export default About;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
@@ -440,7 +161,7 @@ const About = () => {
       <section
         ref={sectionRef}
         className="relative w-full mt-15 sm:mt-0 min-h-auto lg:min-h-[90vh] lg:-ml-5 bg-[#8C777A7C6121] text-[#ffffff] font-sans px-4
-          sm:px-8 lg:px-24 py-10 lg:py-14 transition-colors duration-500 about-page-section"
+          sm:px-8 lg:px-24 py-10 lg:py-5 transition-colors duration-500 about-page-section"
       >
         <div className="max-w-auto mx-auto w-full lg:mt-15 flex flex-col h-auto lg:h-screen lg:sticky lg:top-0 justify-start">
 
@@ -459,7 +180,7 @@ const About = () => {
 
           {/* Row of three */}
           <div className="mt-6 sm:mt-10 lg:mt-14 flex flex-col lg:ml-15 justify-start">
-            <div className="border-t border-b border-[#ffffff]/25 py-8 sm:py-12 lg:py-20 flex flex-col lg:flex-row lg:flex-nowrap items-start justify-center gap-12 lg:gap-16">
+            <div className="border-t border-b border-[#ffffff]/25 py-8 sm:py-12 lg:py-12 flex flex-col lg:flex-row lg:flex-nowrap items-start justify-center gap-12 lg:gap-16">
 
               {corePillars.map((pillar, idx) => {
                 const isActive = activePillarIndex === idx;
@@ -469,11 +190,10 @@ const About = () => {
                       <button
                         onClick={() => setActivePillarIndex(idx)}
                         onMouseEnter={() => setActivePillarIndex(idx)}
-                        className={`whitespace-nowrap text-4xl lg:-ml-7 sm:text-5xl lg:text-5xl font-base font-sans tracking-tight transition-colors duration-300 ${
-                          isActive ? "text-[#ffffff]" : "text-[#ffffff] hover:text-[#ffffff]"
-                        }`}
+                        className={`whitespace-nowrap text-4xl lg:-ml-7 sm:text-5xl lg:text-5xl font-base font-sans tracking-tight transition-colors duration-300 ${isActive ? "text-[#ffffff]" : "text-[#ffffff] hover:text-[#ffffff]"
+                          }`}
                       >
-                        <span className="text-[#A84E32] mr-3">|</span>{pillar.title}
+                        <span className="text-[#A84E32] mr-4">|</span>{pillar.title}
                       </button>
                       <p className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl font-serif leading-relaxed text-[#ffffff]/95">
                         {pillar.subtitle}
@@ -491,9 +211,24 @@ const About = () => {
                       </ul>
                       <Link
                         to={pillar.to}
-                        className="mt-6 inline-flex items-center gap-1.5 text-base sm:text-lg lg:text-lg font-semibold tracking-wide text-[#ffffff] border-b-2 border-[#A84E32] pb-0.5 hover:text-[#A84E32] transition-colors duration-300 font-sans"
+                        className="group mt-6 inline-flex items-center gap-1.5 text-base sm:text-lg lg:text-md font-base 
+                        tracking-wide text-[#F1F0F0] border-b-2 border-[#A84E32] pb-0.5 hover:text-[#D9A08B] transition-colors duration-300 font-sans"
                       >
-                        {pillar.linkText}
+                        <span>{pillar.linkText}</span>
+                        <svg
+                          className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 17L17 7M17 7H7M17 7V17"
+                          />
+                        </svg>
                       </Link>
                     </div>
 
@@ -510,7 +245,7 @@ const About = () => {
               <Link
                 to="/services"
                 className="group relative shrink-0 inline-flex items-center justify-center gap-2.5 text-base sm:text-md 
-                font-semibold tracking-wide text-[#ffffff] bg-[#2E3133] border border-[#ffffff]/70 px-8 py-3.5 rounded-md 
+                font-semibold tracking-wide text-[#ffffff] bg-[#2E3133] border border-[#ffffff]/70 px-7 py-3 rounded-md 
                 shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer overflow-hidden font-sans"
               >
                 <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#A84E32] rounded-full
@@ -534,7 +269,7 @@ const About = () => {
       {/* ===== WAYS OF WORKING SECTION ===== */}
       <section className="relative w-full -mt-6 sm:mt-18 bg-[#2E3133] text-[#ffffff] px-4 sm:px-8 lg:px-24 py-16 lg:py-24 font-sans border-t border-[#ffffff]/10">
         <div className="max-w-auto mx-auto w-full lg:mt-15 flex flex-col justify-start">
-          
+
           {/* Ways of Working Title & Statement Block (Matching "Our Services") */}
           <div className="relative w-full mt-2 lg:mt-10 mb-6 lg:mb-8">
             <h2 className="static lg:absolute top-2 lg:left-35 text-3xl sm:text-4xl lg:text-4xl font-bold uppercase tracking-wider leading-snug mb-3 lg:mb-0 text-[#ffffff] font-sans">
@@ -615,9 +350,9 @@ const About = () => {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
-        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-[#ffffff]/30 bg-[#2E3133] text-[#D9A08B] shadow-sm transition-opacity duration-300 font-sans ${
-          showTopBtn ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 flex h-10 w-10 items-center justify-center rounded-full
+        border border-[#ffffff]/30 bg-[#2E3133] text-[#D9A08B] shadow-sm transition-opacity duration-300 font-sans ${showTopBtn ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
       >
         <ArrowUp size={16} />
       </button>
