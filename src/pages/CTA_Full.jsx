@@ -28,49 +28,6 @@ const CTA_Full = () => {
     message: "",
   });
 
-  // Process idea image: white with yellow bulb in dark mode
-  useEffect(() => {
-    if (theme !== 'dark') {
-      setProcessedIdea(idea);
-      return;
-    }
-    const img = new Image();
-    img.src = idea;
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const d = imageData.data;
-      for (let i = 0; i < d.length; i += 4) {
-        const r = d[i] / 255, g = d[i + 1] / 255, b = d[i + 2] / 255;
-        const max = Math.max(r, g, b), min = Math.min(r, g, b);
-        const l = (max + min) / 2;
-        const delta = max - min;
-        let h = 0;
-        if (delta > 0.01) {
-          if (max === r) h = ((g - b) / delta + (g < b ? 6 : 0)) / 6;
-          else if (max === g) h = ((b - r) / delta + 2) / 6;
-          else h = ((r - g) / delta + 4) / 6;
-        }
-        h *= 360;
-        const s = l === 0 ? 0 : delta / (l > 0.5 ? 2 - max - min : max + min);
-        const isYellow = s > 0.15 && h >= 25 && h <= 75 && l > 0.25;
-        if (isYellow) {
-          d[i] = Math.min(255, d[i] * 1.3);
-          d[i + 1] = Math.min(255, d[i + 1] * 1.3);
-          d[i + 2] = Math.min(255, d[i + 2] * 0.7);
-        } else {
-          d[i] = 255; d[i + 1] = 255; d[i + 2] = 255;
-        }
-      }
-      ctx.putImageData(imageData, 0, 0);
-      setProcessedIdea(canvas.toDataURL());
-    };
-  }, [theme, idea]);
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

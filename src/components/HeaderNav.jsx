@@ -309,7 +309,7 @@ function HeaderNav() {
               © {new Date().getFullYear()} Studio DNA.
             </div>
 
-            <div className="flex flex-wrap gap-4 sm:gap-6">
+            {/* <div className="flex flex-wrap gap-4 sm:gap-6">
               <a
                 href="#"
                 className="transition-colors py-1 hover:text-white active:text-white"
@@ -330,7 +330,7 @@ function HeaderNav() {
               >
                 Journal
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

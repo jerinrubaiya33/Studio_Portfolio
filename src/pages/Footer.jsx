@@ -52,10 +52,10 @@ export default function Footer() {
           {/* Paragraph and Social Icons side-by-side on larger screens */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mt-6">
             <p
-              className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-200 max-w-4xl"
+              className="text-base sm:text-lg lg:text-xl leading-relaxed text-white max-w-4xl"
               style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
             >
-              STUDIO DNA provides comprehensive services in architecture,
+              <span className="text-[#D9A08B]">STUDIO DNA</span> provides comprehensive services in architecture,
               planning & engineering, interior & landscape design for both
               public and private sectors — covering residential, commercial,
               institutional & industrial projects, renovations, and landmark
@@ -65,7 +65,7 @@ export default function Footer() {
 
             {/* Social Icons positioned beside the paragraph */}
             <div className="flex flex-col gap-3 lg:mr-30 shrink-0">
-              <h3 className="text-sm sm:text-base font-bold tracking-[0.15em] text-gray-200 uppercase">
+              <h3 className="text-sm sm:text-base font-bold tracking-[0.15em] text-white uppercase">
                 OUR SOCIALS
               </h3>
               <div className="flex flex-wrap items-center gap-3">
@@ -112,13 +112,13 @@ export default function Footer() {
 
           {/* Middle Left: Contact */}
           <div>
-            <h3 className="text-sm sm:text-base font-bold tracking-[0.15em] text-gray-200 uppercase">
+            <h3 className="text-sm sm:text-base  font-bold tracking-[0.15em] text-white uppercase">
               CONTACT
             </h3>
 
-            <ul className="mt-5 space-y-4 text-base sm:text-lg text-gray-200">
+            <ul className="mt-5 space-y-4 text-base sm:text-lg text-white">
               <li className="flex gap-3 items-start">
-                <MapPin size={20} className="mt-1 shrink-0 text-gray-200" />
+                <MapPin size={20} className="mt-1 shrink-0 text-white" />
                 <span className="leading-snug">
                   Suite 5, Level 1, Mannan Plaza
                   <br />
@@ -131,7 +131,7 @@ export default function Footer() {
               </li>
 
               <li className="flex items-center gap-3">
-                <Phone size={20} className="shrink-0 text-gray-200" />
+                <Phone size={20} className="shrink-0 text-white" />
                 <a
                   href="tel:+8801313711661"
                   className="transition-colors hover:text-[#D9A08B]"
@@ -141,7 +141,7 @@ export default function Footer() {
               </li>
 
               <li className="flex items-center gap-3">
-                <Mail size={20} className="shrink-0 text-gray-200" />
+                <Mail size={20} className="shrink-0 text-white" />
                 <a
                   href="mailto:info@sdnabd.com"
                   className="transition-colors hover:text-[#D9A08B]"
@@ -168,7 +168,7 @@ export default function Footer() {
               href="https://maps.app.goo.gl/bnV5cCQyhWhZDGNa6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-gray-200 hover:text-[#D9A08B] transition-colors duration-300"
+              className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-white hover:text-[#D9A08B] transition-colors duration-300"
             >
               Open in Google Maps
               <ArrowUpRight size={14} />
@@ -177,14 +177,15 @@ export default function Footer() {
 
           {/* Middle Right: Resources */}
           <div className="ml-0 sm:ml-16">
-            <h3 className="text-sm sm:text-base font-bold tracking-[0.15em] text-gray-200 uppercase">
+            <h3 className="text-sm sm:text-base font-bold tracking-[0.15em] text-white uppercase">
               RESOURCES
             </h3>
-            <ul className="mt-5 space-y-3 text-base sm:text-lg text-gray-200">
+            <ul className="mt-5 space-y-2 text-base sm:text-lg text-white">
               <li><Link to="/" className="transition-colors hover:text-[#D9A08B]">Home</Link></li>
               <li><Link to="/services" className="transition-colors hover:text-[#D9A08B]">Our Services</Link></li>
               <li><Link to="/projects" className="transition-colors hover:text-[#D9A08B]">Portfolio</Link></li>
               <li><Link to="/studio" className="transition-colors hover:text-[#D9A08B]">Studio</Link></li>
+               <li><Link to="/news" className="transition-colors hover:text-[#D9A08B]">News & Events</Link></li>
               <li><Link to="/contact" className="transition-colors hover:text-[#D9A08B]">Contact</Link></li>
             </ul>
           </div>
@@ -194,12 +195,12 @@ export default function Footer() {
         {/* ---------- Bottom Bar ---------- */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-gray-800 pt-6 sm:flex-row sm:items-center">
           <p
-            className="text-sm max-w-3xl sm:text-base uppercase leading-relaxed tracking-[0.08em] text-gray-200 font-medium"
+            className="text-sm max-w-3xl sm:text-base uppercase leading-relaxed tracking-[0.08em] text-white font-medium"
           >
-            Studio DNA works in association with Outline Architects, connecting architectural design with integrated build and supply services.
+           <span className="text-[#D9A08B]">Studio DNA</span> works in association with <span className="text-[#D9A08B]">Outline Architects</span>, connecting architectural design with integrated build and supply services.
            
           </p>
-          <p className="mr-40"> © {year} ALL RIGHTS RESERVED.</p>
+          <p className="mr-40 "> © {year} ALL RIGHTS RESERVED.</p>
         </div>
       </div>
 
