@@ -72,7 +72,7 @@ function HeaderNav() {
     { label: "Projects", href: "/projects" },
     { label: "Studio", href: "/studio" },
     { label: "Services", href: "/services" },
-    { label: "News", href: "#news" },
+    { label: "News & Events", href: "/news" },
     { label: "Contact", href: "/contact" },
   ];
 

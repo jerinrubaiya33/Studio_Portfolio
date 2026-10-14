@@ -139,31 +139,18 @@ const InteriorPortfolio = () => (
 const MainLandingPage = () => (
   <>
     <div id="top" />
-    {/* <Hero /> */}
     <div id="about" className="scroll-mt-0">
       <About />
     </div>
-    {/* <div id="services" className="scroll-mt-0">
-      <Landing />
-    </div> */}
-    {/* <Features /> */}
     <div id="project" className="scroll-mt-0">
       <Project />
     </div>
-    <Philosophy/>
+    <Philosophy />
     <Clients />
-        <CTASection/>
-        {/* <Clients /> */}
-    {/* <News /> */}
-    {/* <Meet /> */}
-    {/* <Choose /> */}
-    {/* <div id="who-we-are" className="scroll-mt-0">
-      <People />
-    </div> */}
+    <CTASection />
     <div id="contact" className="scroll-mt-0">
       <Contact />
     </div>
-    {/* Rendered last so the home page's tags win over the section-level ones */}
     <Helmet>
       <title>Studio DNA — Architecture, Interior & Engineering Design Firm in Dhaka</title>
       <meta
@@ -188,6 +175,7 @@ function AppContent() {
   const isProjectDetailsPage = location.pathname.startsWith('/projects/');
   const isStudioPage = location.pathname === '/studio';
   const isServicesPage = location.pathname === '/services';
+  const isNewsPage = location.pathname === '/news';
   const isContactPage = location.pathname === '/contact';
   const isCTA_FullPage = location.pathname === '/cta';
 
@@ -195,9 +183,12 @@ function AppContent() {
     <ErrorBoundary>
       <ScrollToTop />
       {!isProjectDetailsPage && <HeaderNav />}
-      {!isFullProjectPage && !isStudioPage && !isServicesPage && !isContactPage && !isCTA_FullPage && (
-        <Navbar />
-      )}
+      {!isFullProjectPage &&
+        !isStudioPage &&
+        !isServicesPage &&
+        !isNewsPage &&
+        !isContactPage &&
+        !isCTA_FullPage && <Navbar />}
 
       <Routes>
         <Route path="/" element={<MainLandingPage />} />
@@ -205,6 +196,7 @@ function AppContent() {
         <Route path="/projects/:id" element={<ProjectDetails />} />
         <Route path="/studio" element={<Studio />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/news" element={<News />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/exterior-portfolio" element={<ExteriorPortfolio />} />
         <Route path="/interior-portfolio" element={<InteriorPortfolio />} />
