@@ -252,7 +252,7 @@ function ProjectDetails() {
       {restGalleryImages.length > 0 && (
         <section className="w-full py-12 sm:py-16 lg:py-20 px-6 sm:px-10 lg:px-14 font-mono border-t border-theme">
           <div className="w-full">
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold uppercase tracking-widest mb-8 text-white">
+            <h2 className="text-lg sm:text-xl lg:text-3xl font-bold uppercase tracking-widest mb-8 text-white">
               Gallery
             </h2>
 
@@ -270,7 +270,7 @@ function ProjectDetails() {
                   {row.map((img, imgIdx) => (
                     <div
                       key={imgIdx} className={`w-full overflow-hidden group rounded-sm transition-colors duration-500 ${rowIdx === 0
-                        ? "aspect-[2/1] sm:aspect-[16/8] lg:aspect-[16/8]"
+                        ? "aspect-[2/1] sm:aspect-[16/8] lg:aspect-[10/8]"
                         : rowIdx === 1
                           ? "aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/10]"
                           : "aspect-[16/7] sm:aspect-[16/7] lg:aspect-[16/7]"

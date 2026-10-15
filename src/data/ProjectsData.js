@@ -97,36 +97,36 @@ export const projects = [
     description:
       "Focusing on patient legibility, the hospital layout separates emergency access from routine outpatient clinics. High-efficiency daylighting strategies brighten waiting lounges while mitigating glare for sensitive visual recovery spaces.",
   },
-  {
-    id: "pavillion-retreat",
-    type: "Exterior",
-    category: "Resort",
-    title: "Pavillion Retreat",
-    location: "Kachpur, Narayangonj",
-    area: "8,500 Sqft",
-    year: "2024",
-    image: Pavillion,
-    images: [Pavillion, PavillionTop, Bashanta],
-    summary:
-      "A compact retreat project using light structures, layered roofs, and open-air gathering spaces.",
-    description:
-      "Designed as a low-impact structure, Pavillion Retreat maximizes natural cross-breezes and offers unobstructed views of surrounding greenery through deep roof overhangs and minimal vertical supports.",
-  },
-  {
-    id: "pavillion-view",
-    type: "Exterior",
-    category: "Resort",
-    title: "Pavillion View",
-    location: "Tarabo, Narayangonj",
-    area: "12,000 Sqft",
-    year: "2024",
-    image: PavillionTop,
-    images: [PavillionTop, Pavillion, bashantaInte],
-    summary:
-      "A landscape-focused pavilion study designed for event flow, shade, and seasonal flexibility.",
-    description:
-      "An architectural exercise in seasonal adaptability. The pavilion's footprint expands fluidly during fair weather into adjoining lawn decks, providing flexible configurations for dynamic outdoor events.",
-  },
+  // {
+  //   id: "pavillion-retreat",
+  //   type: "Exterior",
+  //   category: "Resort",
+  //   title: "Pavillion Retreat",
+  //   location: "Kachpur, Narayangonj",
+  //   area: "8,500 Sqft",
+  //   year: "2024",
+  //   image: Pavillion,
+  //   images: [Pavillion, PavillionTop, Bashanta],
+  //   summary:
+  //     "A compact retreat project using light structures, layered roofs, and open-air gathering spaces.",
+  //   description:
+  //     "Designed as a low-impact structure, Pavillion Retreat maximizes natural cross-breezes and offers unobstructed views of surrounding greenery through deep roof overhangs and minimal vertical supports.",
+  // },
+  // {
+  //   id: "pavillion-view",
+  //   type: "Exterior",
+  //   category: "Resort",
+  //   title: "Pavillion View",
+  //   location: "Tarabo, Narayangonj",
+  //   area: "12,000 Sqft",
+  //   year: "2024",
+  //   image: PavillionTop,
+  //   images: [PavillionTop, Pavillion, bashantaInte],
+  //   summary:
+  //     "A landscape-focused pavilion study designed for event flow, shade, and seasonal flexibility.",
+  //   description:
+  //     "An architectural exercise in seasonal adaptability. The pavilion's footprint expands fluidly during fair weather into adjoining lawn decks, providing flexible configurations for dynamic outdoor events.",
+  // },
   {
     id: "shirin-villa",
     type: "Exterior",
@@ -196,7 +196,7 @@ export const projects = [
     area: "12,000 Sqft",
     year: "2021-Present",
     image: bashantaInte,
-    images: [bashantaInte, Bashanta, InteriorLobby, Pavillion],
+    images: [bashantaInte, ],
     summary:
       "Interior suites and gathering spaces for the resort, developed with earthy finishes and relaxed detail.",
     description:
@@ -211,7 +211,7 @@ export const projects = [
     area: "4,500 Sqft",
     year: "2023",
     image: AKM,
-    images: [AKM, InteriorRestaurant, Alibaba],
+    images: [AKM,],
     summary:
       "A hospitality and event interior with flexible seating, ceremonial arrival, and a polished material palette.",
     description:

@@ -90,21 +90,27 @@ export default function EventRegistration() {
 
         {/* Hero Title & Intro Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+
           <div className="lg:col-span-8 space-y-4 sm:space-y-6">
+
             <div className="inline-flex items-center gap-3">
-              <span className="text-sm sm:text-base lg:text-xl tracking-widest uppercase ml-1 sm:ml-2 text-[#D9A08B]"> Seminar On </span>
+
+              <div className="text-sm sm:text-base lg:text-xl tracking-widest uppercase ml-1 sm:ml-2 text-[#D9A08B]"> Seminar On </div>
             </div>
+
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-light tracking-tight text-[#FFFFFF] uppercase leading-[1.05] sm:leading-[0.98] lg:leading-[0.92]">
               Before <br />
               <span className="italic font-normal text-[#D9A08B]">You Build</span>
             </h1>
           </div>
 
-          <div className="lg:col-span-4 pb-0 sm:pb-2">
+          <div className="lg:col-span-4 pb-0 sm:pb-2 space-y-3">
+            {/* Main Tagline Text */}
             <p className="text-sm sm:text-base lg:text-lg tracking-wider sm:tracking-widest text-[#FFFFFF] uppercase leading-relaxed">
-              Plan Smarter &bull; Build Better &bull; Eliminate Costly Blindspots
+              &bull; Plan Smarter &bull; Build Better <br /> &bull; Eliminate Costly Blindspots
             </p>
           </div>
+          
         </div>
 
         {/* Immersive Image & Metadata Split */}
@@ -152,35 +158,70 @@ export default function EventRegistration() {
         </div>
 
 
-        {/* Keynote Speakers List */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Card 1: Saad Andalib */}
-          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-center items-start space-y-2 border-t-2 border-[#D9A08B]">
-            <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Design & Planning</span>
-            <h3 className="text-2xl sm:text-3xl font-normal text-[#FFFFFF]">Saad Andalib</h3>
-            <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Architect, MIAB</p>
-            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase ">Studio DNA</span>
+        <section className="space-y-8">
+          {/* Section Header */}
+          <div className="text-center space-y-2">
+            {/* <p className="text-xs sm:text-sm tracking-[0.3em] text-[#D9A08B] uppercase font-medium">
+              Meet Our Speakers
+            </p> */}
+            <h2 className="text-3xl sm:text-3xl lg:text-5xl mt-40 font-light text-[#FFFFFF] uppercase tracking-wider">
+              Learn From Experts
+            </h2>
           </div>
 
-          {/* Card 2: Md. Asaduzzaman */}
-          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-center items-start space-y-2 border-t-2 border-[#D9A08B]">
-            <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Structural Design</span>
-            <h3 className="text-2xl sm:text-3xl font-normal text-[#EFECE6]">Md. Asaduzzaman</h3>
-            <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Civil Engineer, MIEB</p>
-            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase">The Designers and Managers</span>
-          </div>
-
-          {/* Card 3: Mosharraf Hossain Sumon */}
-          <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-between space-y-4 border-t-2 border-[#D9A08B]">
-            <div className="space-y-1 mt-2 sm:mt-4">
-              <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">Construction & Retrofitting</span>
-              <h3 className="text-2xl sm:text-3xl font-normal text-[#EFECE6]">Mosharraf Hossain Sumon</h3>
-              <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">Civil Engineer, MIEB</p>
+          {/* Keynote Speakers List */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {/* Card 1: Saad Andalib */}
+            <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-center items-start space-y-2 border-t-2 border-[#D9A08B]">
+              <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">
+                Design & Planning
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-normal text-[#FFFFFF]">
+                Saad Andalib
+              </h3>
+              <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">
+                Architect, MIAB
+              </p>
+              <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase">
+                Studio DNA
+              </span>
             </div>
-            <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase -mt-3">CEO, SR Development</span>
-          </div>
-        </div>
 
+            {/* Card 2: Md. Asaduzzaman */}
+            <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-center items-start space-y-2 border-t-2 border-[#D9A08B]">
+              <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">
+                Structural Design
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-normal text-[#EFECE6]">
+                Md. Asaduzzaman
+              </h3>
+              <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">
+                Civil Engineer, MIEB
+              </p>
+              <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase">
+                The Designers and Managers
+              </span>
+            </div>
+
+            {/* Card 3: Mosharraf Hossain Sumon */}
+            <div className="bg-[#22221F] px-6 py-6 sm:px-8 sm:py-8 lg:px-10 flex flex-col justify-between space-y-4 border-t-2 border-[#D9A08B]">
+              <div className="space-y-1 mt-2 sm:mt-4">
+                <span className="text-[11px] sm:text-[12px] tracking-[0.25em] text-[#FFFFFF] uppercase">
+                  Construction & Retrofitting
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-normal text-[#EFECE6]">
+                  Mosharraf Hossain Sumon
+                </h3>
+                <p className="text-xs sm:text-sm tracking-widest text-[#D9A08B] uppercase">
+                  Civil Engineer, MIEB
+                </p>
+              </div>
+              <span className="text-xs sm:text-sm tracking-widest text-[#EFECE6] uppercase -mt-3">
+                CEO, SR Development
+              </span>
+            </div>
+          </div>
+        </section>
         {/* Seminar Registration Form Section */}
         <div className="bg-[#22221F] p-6 sm:p-10 lg:p-14 border border-[#2C2C29]">
           <div className="mb-8 sm:mb-10 space-y-2 sm:space-y-3 border-b border-[#2C2C29] pb-6">
