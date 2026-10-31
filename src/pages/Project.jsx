@@ -91,11 +91,13 @@ const getLayoutClasses = (index) => {
   if (index === 1) {
     return {
       span: "col-span-1",
-      aspect: "aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/3]",
+      // Increased vertical height ratio
+      aspect: "aspect-[4/3] sm:aspect-[4/5] md:aspect-[4/3]",
     };
   }
   return {
     span: "col-span-1",
+    // Increased aspect ratio from 16/11 (~1.45) to 4/3 (~1.33) for taller/larger images
     aspect: "aspect-[4/3]",
   };
 };
@@ -123,42 +125,38 @@ function ProjectCard({ project, index }) {
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       variants={cardVariants}
-      className={`group mb-8 sm:mb-12 md:mb-16 select-none ${layout.span}`}
+      className={`group mb-6 sm:mb-8 md:mb-10 select-none ${layout.span}`}
     >
       <Link to={`/projects/${project.id}`} className="relative block z-10 cursor-pointer">
         {/* IMAGE CONTAINER */}
-        <div className={`w-full z-10 ${layout.aspect} overflow-hidden mb-3 sm:mb-4 relative`}>
+        <div className={`w-full z-10 ${layout.aspect} overflow-hidden mb-3 relative rounded-sm`}>
           <img
             src={project.image}
             alt={project.title}
             loading="lazy"
-            className="w-full h-full text-white object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+            className="w-full h-full text-white object-cover group-hover:scale-108 transition-all duration-700 ease-out"
           />
         </div>
 
         {/* TITLE & YEAR */}
-        <div className="relative z-10 pb-2 min-h-[28px] sm:min-h-[32px]">
+        <div className="relative z-10 pb-1.5 min-h-[24px] sm:min-h-[28px]">
           <div className="flex items-baseline justify-between gap-2">
-            <h3 className="text-sm sm:text-base md:text-xl font-mono font-normal group-hover:text-white transition-colors 
-            duration-700 leading-snug text-white">
+            <h3 className="text-sm sm:text-base md:text-xl font-mono font-normal group-hover:text-white transition-colors duration-700 leading-snug text-white">
               {project.title}
             </h3>
 
             {/* YEAR */}
-            <span className="text-xs sm:text-xs md:text-sm font-mono shrink-0 font-medium opacity-100 sm:opacity-0
-            sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-700 ease-out 
-            text-white/80">
+            <span className="text-xs sm:text-xs md:text-sm font-mono shrink-0 font-medium opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-x-4 sm:group-hover:translate-x-0 transition-all duration-700 ease-out text-white/80">
               {project.timeline}
             </span>
           </div>
 
           {/* UNDERLINE ANIMATION */}
-          <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-[1px] transition-all duration-700 ease-out 
-          bg-white/40" />
+          <div className="absolute bottom-0 left-0 w-0 group-hover:w-full h-[1px] transition-all duration-700 ease-out bg-white/40" />
         </div>
 
         {/* LOCATION & AREA */}
-        <div className="mt-1 flex flex-col xs:flex-row xs:items-center justify-between gap-1 font-mono opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-4 sm:group-hover:translate-y-0 transition-all duration-700 ease-out delay-100">
+        <div className="mt-1 flex flex-col xs:flex-row xs:items-center justify-between gap-1 font-mono opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:translate-y-3 sm:group-hover:translate-y-0 transition-all duration-700 ease-out delay-100">
           <p className="font-medium text-xs sm:text-sm md:text-sm line-clamp-1 text-white/90">{project.location}</p>
           <p className="text-xs sm:text-xs md:text-sm shrink-0 text-white/80">{project.area}</p>
         </div>
@@ -173,18 +171,17 @@ function Project() {
   return (
     <section
       id="projects"
-      className="relative z-0 w-full px-6 border-white/10 border-t sm:px-8 md:px-12 lg:px-24 xl:px-35 py-12 sm:py-16 md:py-20 bg-cover bg-center bg-no-repeat overflow-hidden
-       transition-colors duration-500 bg-[#2E3133]"
+      className="relative z-0 w-full px-4 border-white/10 border-t sm:px-6 md:px-10 lg:px-16 xl:px-24 py-10 sm:py-14 md:py-16 bg-cover bg-center bg-no-repeat overflow-hidden transition-colors duration-500 bg-[#2E3133]"
     >
       {/* HERO HEADER */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mb-16 sm:mb-24 md:mb-32 mt-0 sm:mt-28 md:mt-0 border-b pb-6 sm:pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-white/20"
+        className="mb-10 sm:mb-14 md:mb-16 mt-0 sm:mt-20 md:mt-0 border-b pb-5 sm:pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 border-white/20"
       >
         <div>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl mt-10 sm:mt-15 lg:text-5xl mb-2 sm:mb-4 font-normal font-mono tracking-tight sm:tracking-[0.1rem] leading-none uppercase transition-colors duration-500 text-white">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl mt-10 sm:mt-15 lg:text-5xl mb-2 sm:mb-3 font-normal font-mono tracking-tight sm:tracking-[0.1rem] leading-none uppercase transition-colors duration-500 text-white">
             Portfolio
           </h1>
         </div>
@@ -195,15 +192,14 @@ function Project() {
       </motion.div>
 
       {/* GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 sm:gap-x-8 md:gap-x-30 
-      gap-y-8 sm:gap-y-10 md:gap-y-12 items-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-5 sm:gap-x-6 md:gap-x-10 gap-y-6 sm:gap-y-8 md:gap-y-0 items-start">
         {displayedProjects.map((p, index) => (
           <ProjectCard key={p.id} project={p} index={index} />
         ))}
       </div>
 
       {/* SEE MORE WORK BUTTON */}
-      <div className="mt-8 sm:mt-16 md:mt-5 flex justify-center items-center">
+      <div className="mt-8 sm:mt-12 md:mt-12 flex justify-center items-center">
         <Link to="/projects" className="w-full sm:w-auto text-center border border-white/60 rounded-sm">
           <button className="group relative overflow-hidden w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold tracking-wide px-5 py-2.5 rounded-md shadow-md hover:shadow-xl transition-all duration-500 cursor-pointer text-white bg-white/10 hover:bg-white/20">
             <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-16 h-16 bg-[#A84E32] rounded-full scale-0 group-hover:scale-[8] transition-transform duration-700 ease-out pointer-events-none" />
