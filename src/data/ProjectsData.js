@@ -236,4 +236,24 @@ export const projects = [
     challenge:
       "The project has a compact work-hour timeframe.",
   },
+  {
+    id: "simin-group-head-office-office",
+    type: "Interior",
+    category: "Office",
+    title: "Simin Group Head Office",
+    location: "Mirpur 12",
+    status: "Ongoing",
+    year: "Ongoing",
+    area: "2,800 Sqft",
+    image: Simin,
+    images: [Simin, SiminDay, SiminDay2, SiminNight, SiminNight2, SiminDay3],
+    summary:
+      "An office interior designed for a bright, wider-feeling corporate work environment on a compact schedule.",
+    description:
+      "The office interior covers 2,800 sq ft in Mirpur 12 and is currently ongoing. Studio DNA’s scope includes interior design, construction, supervision and furniture supply. The brief called for a corporate office, with a design concept centered on a bright space that feels wider. A bright working environment is the key design aim; the database does not provide further details about the layout or specific design features.",
+    materials:
+      "Gypsum board, board finishes, HPL and glass are listed, and Meta Ceiling is included as a distinctive feature note; confirm this material term before publishing.",
+    challenge:
+      "The project has a compact work-hour timeframe.",
+  },
 ];
