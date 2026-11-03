@@ -215,6 +215,25 @@ export const projects = [
     summary:
       "A hospitality and event interior with flexible seating, ceremonial arrival, and a polished material palette.",
     description:
-      "Designed to transition smoothly between grand banquets and private dinners. Acoustic wall treatments and custom brass lighting fixtures establish a high-end atmosphere throughout.",
+      "Designed to transition smoothly between grand banquets and private dinners. Acoustic wall treatments and custom brass lighting fixtures establish a high-end atmosphere throughout.",  },
+  {
+    id: "simin-group-head-office",
+    type: "Interior",
+    category: "Office",
+    title: "Simin Group Head Office",
+    location: "Mirpur 12",
+    status: "Ongoing",
+    year: "Ongoing",
+    area: "2,800 Sqft",
+    image: Simin,
+    images: [Simin, SiminDay, SiminDay2, SiminNight, SiminNight2, SiminDay3],
+    summary:
+      "An interior fit-out for a corporate office with a bright, wider feel and efficient use of a compact work-hour schedule.",
+    description:
+      "The Simin Group Head Office interior in Mirpur 12 covers about 2,800 sqft and is currently ongoing. Studio DNA’s scope includes interior design, construction, supervision and furniture supply. The brief called for a corporate office with a bright working environment that feels wider and more open.",
+    materials:
+      "Gypsum board, board finishes, HPL, glass; feature note: Meta Ceiling — confirm this material term before publishing.",
+    challenge:
+      "The project has a compact work-hour timeframe.",
   },
 ];
