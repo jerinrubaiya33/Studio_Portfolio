@@ -286,7 +286,7 @@ function HeaderNav() {
                       e.preventDefault();
                       handleNavigate(item.href);
                     }}
-                    className={`text-3xl sm:text-5xl md:text-[3vw] font-bold leading-tight sm:leading-none uppercase inline-block
+                    className={`text-3xl sm:text-5xl  md:text-[3vw] font-bold leading-tight sm:leading-none uppercase inline-block
                     transition-all duration-500 ease-out hover:translate-x-2 sm:hover:translate-x-4 hover:opacity-75 active:translate-x-1
                     text-[#F7F7F4] ${isMenuOpen
                         ? "translate-y-0 opacity-100"

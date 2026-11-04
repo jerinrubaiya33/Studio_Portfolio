@@ -33,10 +33,136 @@ import Shirin2 from "../assets/shirin-villa-night-render-03.webp";
 import Shirin3 from "../assets/shirin-villa-site-photo-04.webp";
 import Shirin4 from "../assets/shirin-villa-tower-render-02.webp";
 
+import Tepantor from "../assets/tepantor.jpg";
+import TepantorExt from "../assets/tepantor_ext.jpeg";
+import TepantorInt from "../assets/tepantor_Int.jpeg";
+import TepantorInt2 from "../assets/tepantor_Int2.jpeg";
+import TepantorInt3 from "../assets/tepantor_Int3.jpeg";
+import TepantorInt4 from "../assets/tepanpor_Int4.jpeg";
+import TepantorInt5 from "../assets/tepantor_Int5.jpeg";
+import TepantorBalcony from "../assets/tepantor_balcony.jpeg";
+
+import IcchhedanaExt from "../assets/icchhedana.JPG";
+import IcchhedanaInt2 from "../assets/icchhedana2.JPG";
+import IcchhedanaInt3 from "../assets/icchhedana3.JPG";
+
+import DoobshatarExt from "../assets/doobshatar.JPG";
+import Doobshatar1 from "../assets/Doobshatar3.jpg";
+import Doobshatar2 from "../assets/Doobshatar4.jpg";
+import DoobshatarBlue from "../assets/Doobshatar_Blue.jpg";
+import Doobshatar5 from "../assets/doobshatar5.JPG";
+
+import SiminOfficeExt from "../assets/simin_office.jpg";
+import SiminOfficeInt2 from "../assets/simin_office1.jpg";
+import SiminOfficeInt3 from "../assets/simin_office2.jpg";
+import SiminOfficeInt4 from "../assets/simin_office3.jpg";
+
+import Salton from "../assets/salton.jpg";
+import Salton1 from "../assets/SP1.jpg";
+import Salton2 from "../assets/SP2.jpg";
+import Salton3 from "../assets/SP3.jpg";
+
+import Pebbles from "../assets/Pebbles Front Elv. 0.jpg";
+import Pebbles1 from "../assets/Pebbles 01.jpg";
+import Pebbles2 from "../assets/Pebbles 02.jpg";
+import Pebbles3 from "../assets/Pebbles 03.jpg";
+import Pebbles4 from "../assets/Pebbles 04.jpg";
+
 import Alibaba from "../assets/alibaba-day.jpg";
 
 
 export const projects = [
+  {
+  id: "pebbles-showroom",
+  type: "Interior & Exterior",
+  category: "Commercial",
+  title: "Pebbles Showroom",
+  location: "Gulshan 2, Dhaka",
+  area: "6,500 Sqft",
+  year: "Completed",
+  image: Pebbles,
+  images: [Pebbles, Pebbles1, Pebbles3,  Pebbles2, Pebbles4],
+  summary:
+    "A spacious clothing showroom featuring open interiors, large glazing, and distinctive exposed brick details.",
+  description:
+    "Designed for visibility and an open shopping experience, the showroom combines generous ceiling heights, extensive glazing, and exposed brick elements to create a distinctive retail space.",
+},
+ {
+  id: "simin-group-head-office",
+  type: "Interior",
+  category: "Office Interior",
+  title: "Simin Group Head Office",
+  location: "Mirpur 12",
+  area: "2,800 Sqft",
+  year: "Ongoing",
+  image: SiminOfficeExt,
+  images: [SiminOfficeExt, SiminOfficeInt2, SiminOfficeInt3, SiminOfficeInt4],
+  summary:
+    "A contemporary office interior designed to create a functional, comfortable, and professional working environment.",
+  description:
+    "The office is designed to provide an organized and functional workspace with a comfortable, professional atmosphere.",
+},
+{
+  id: "tepanter-dayout-cottage",
+  type: "Exterior",
+  category: "Resort",
+  title: "Tepantor Dayout Cottage",
+  location: "Mugrakul, Tarabo",
+  area: "10 Katha",
+  year: "Completed",
+  images: [Tepantor, TepantorExt, TepantorInt, TepantorInt2, TepantorInt3, TepantorInt4, TepantorInt5, TepantorBalcony],
+  summary:
+    "A countryside retreat blending vernacular architecture, exposed brick details, and a peaceful natural setting.",
+  description:
+    "Designed as an eco-inspired getaway, the cottage combines local materials, exposed brick fins, and large glazed openings to create a comfortable connection between indoor and outdoor spaces.",
+},
+  {
+    id: "icchhedana-resort-cottage",
+    type: "Exterior",
+    category: "Resort",
+    title: "Icchhedana",
+    location: "Mugrakul",
+    area: "12 Katha",
+    year: "Completed",
+    image: IcchhedanaExt,
+    images: [IcchhedanaExt, IcchhedanaInt2, IcchhedanaInt3,],
+    summary:
+      "An eco-inspired resort cottage featuring local materials, natural light, and sustainable design elements.",
+    description:
+      "A thoughtfully designed cottage that combines natural materials, large glazing, and extended roof features to create a comfortable retreat with plenty of daylight and natural ventilation.",
+  },
+  {
+    id: "doobshatar-pool-leisure",
+    type: "Exterior",
+    category: "resort",
+    title: "Doobshatar",
+    location: "Mugrakul",
+    area: "1,500 Sqft",
+    year: "Completed",
+    image: DoobshatarExt,
+    images: [Doobshatar2, Doobshatar5, Doobshatar1, DoobshatarBlue, DoobshatarExt],
+    summary:
+      "The project brings together an open geometric pool, preserved landscaping, and thoughtful architectural details to create a welcoming leisure environment. Brick jali work, exposed brick fins, and stamped concrete flooring add character to the space.",
+    description:
+      "A cosy pool and leisure space designed with open geometric forms, natural elements, and distinctive brick detailing.",
+  },
+
+  {
+    id: "salton-pharmaceuticals",
+    type: "Exterior & Interior",
+    category: "Industry ",
+    title: "Salton Pharmaceuticals Master Plan Design & Facilities Development",
+    location: "Bayek, Sachar, Kachua, Chandpur ",
+    area: "109,240  Sqft",
+    year: "Completed",
+    image: Salton,
+    images: [Salton, Salton1, Salton2, Salton3],
+    summary:
+      "A green industrial development designed to support efficient operations, sustainable landscaping, and modern pharmaceutical facilities.",
+    description:
+      "The project focuses on developing a functional and well-planned industrial site with efficient facilities, curated landscaping, and environmentally conscious design solutions.",
+  },
+
   {
     id: "bashanta-bilash",
     type: "Exterior",
@@ -46,7 +172,7 @@ export const projects = [
     area: "35 Bigha +",
     year: "2020-Present",
     image: Bashanta,
-    images: [Bashanta, bashantaInte, BashantaBilash1, BashantaBilash3, BashantaBilash4,BashantaBilash5, BashantaBilash6, ],
+    images: [Bashanta, bashantaInte, BashantaBilash1, BashantaBilash3, BashantaBilash4, BashantaBilash5, BashantaBilash6,],
     summary:
       "A resort landscape composed around water, pavilions, gardens, and long-view hospitality sequences.",
     description:
@@ -61,7 +187,7 @@ export const projects = [
     area: "22 Bigha",
     year: "2022-2024",
     image: Kindergarten,
-    images: [Kindergarten, ],
+    images: [Kindergarten,],
     summary:
       "A calm learning campus shaped with shaded courts, efficient circulation, and durable architectural language.",
     description:
@@ -91,42 +217,12 @@ export const projects = [
     area: "1.5 Acre",
     year: "2023",
     image: HospitalImg,
-    images: [HospitalImg, ],
+    images: [HospitalImg,],
     summary:
       "A healthcare environment planned for clarity, accessibility, patient comfort, and strong civic presence.",
     description:
       "Focusing on patient legibility, the hospital layout separates emergency access from routine outpatient clinics. High-efficiency daylighting strategies brighten waiting lounges while mitigating glare for sensitive visual recovery spaces.",
   },
-  // {
-  //   id: "pavillion-retreat",
-  //   type: "Exterior",
-  //   category: "Resort",
-  //   title: "Pavillion Retreat",
-  //   location: "Kachpur, Narayangonj",
-  //   area: "8,500 Sqft",
-  //   year: "2024",
-  //   image: Pavillion,
-  //   images: [Pavillion, PavillionTop, Bashanta],
-  //   summary:
-  //     "A compact retreat project using light structures, layered roofs, and open-air gathering spaces.",
-  //   description:
-  //     "Designed as a low-impact structure, Pavillion Retreat maximizes natural cross-breezes and offers unobstructed views of surrounding greenery through deep roof overhangs and minimal vertical supports.",
-  // },
-  // {
-  //   id: "pavillion-view",
-  //   type: "Exterior",
-  //   category: "Resort",
-  //   title: "Pavillion View",
-  //   location: "Tarabo, Narayangonj",
-  //   area: "12,000 Sqft",
-  //   year: "2024",
-  //   image: PavillionTop,
-  //   images: [PavillionTop, Pavillion, bashantaInte],
-  //   summary:
-  //     "A landscape-focused pavilion study designed for event flow, shade, and seasonal flexibility.",
-  //   description:
-  //     "An architectural exercise in seasonal adaptability. The pavilion's footprint expands fluidly during fair weather into adjoining lawn decks, providing flexible configurations for dynamic outdoor events.",
-  // },
   {
     id: "shirin-villa",
     type: "Exterior",
@@ -196,7 +292,7 @@ export const projects = [
     area: "12,000 Sqft",
     year: "2021-Present",
     image: bashantaInte,
-    images: [bashantaInte, ],
+    images: [bashantaInte,],
     summary:
       "Interior suites and gathering spaces for the resort, developed with earthy finishes and relaxed detail.",
     description:
@@ -215,45 +311,6 @@ export const projects = [
     summary:
       "A hospitality and event interior with flexible seating, ceremonial arrival, and a polished material palette.",
     description:
-      "Designed to transition smoothly between grand banquets and private dinners. Acoustic wall treatments and custom brass lighting fixtures establish a high-end atmosphere throughout.",  },
-  {
-    id: "simin-group-head-office",
-    type: "Interior",
-    category: "Office",
-    title: "Simin Group Head Office",
-    location: "Mirpur 12",
-    status: "Ongoing",
-    year: "Ongoing",
-    area: "2,800 Sqft",
-    image: Simin,
-    images: [Simin, SiminDay, SiminDay2, SiminNight, SiminNight2, SiminDay3],
-    summary:
-      "An interior fit-out for a corporate office with a bright, wider feel and efficient use of a compact work-hour schedule.",
-    description:
-      "The Simin Group Head Office interior in Mirpur 12 covers about 2,800 sqft and is currently ongoing. Studio DNA’s scope includes interior design, construction, supervision and furniture supply. The brief called for a corporate office with a bright working environment that feels wider and more open.",
-    materials:
-      "Gypsum board, board finishes, HPL, glass; feature note: Meta Ceiling — confirm this material term before publishing.",
-    challenge:
-      "The project has a compact work-hour timeframe.",
-  },
-  {
-    id: "simin-group-head-office-office",
-    type: "Interior",
-    category: "Office",
-    title: "Simin Group Head Office",
-    location: "Mirpur 12",
-    status: "Ongoing",
-    year: "Ongoing",
-    area: "2,800 Sqft",
-    image: Simin,
-    images: [Simin, SiminDay, SiminDay2, SiminNight, SiminNight2, SiminDay3],
-    summary:
-      "An office interior designed for a bright, wider-feeling corporate work environment on a compact schedule.",
-    description:
-      "The office interior covers 2,800 sq ft in Mirpur 12 and is currently ongoing. Studio DNA’s scope includes interior design, construction, supervision and furniture supply. The brief called for a corporate office, with a design concept centered on a bright space that feels wider. A bright working environment is the key design aim; the database does not provide further details about the layout or specific design features.",
-    materials:
-      "Gypsum board, board finishes, HPL and glass are listed, and Meta Ceiling is included as a distinctive feature note; confirm this material term before publishing.",
-    challenge:
-      "The project has a compact work-hour timeframe.",
+      "Designed to transition smoothly between grand banquets and private dinners. Acoustic wall treatments and custom brass lighting fixtures establish a high-end atmosphere throughout.",
   },
 ];

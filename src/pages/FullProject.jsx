@@ -13,10 +13,88 @@ import InteriorRestaurant from "../assets/sushi.jpg";
 import bashantaInte from "../assets/bashantaInte.jpg";
 import AKM from "../assets/akm.jpg";
 import Shirin from "../assets/shirin.jpg";
+import TepantorExtFull from "../assets/tepantor.jpg";
+import IcchhedanaExtFull from "../assets/icchhedana.JPG";
+import DoobshatarExtFull from "../assets/Doobshatar4.jpg";
+import SiminOfficeExtFull from "../assets/simin_office.jpg";
+import Pebbles from "../assets/Pebbles Front Elv. 0.jpg";
+import Salton from "../assets/salton.jpg";
 import Footer from "./Footer";
 import CTASection from "./CTA";
 
 export const fullProjects = [
+
+    {
+    id: "pebbles-showroom",
+    type: "Interior & Exterior",
+    category: "Commercial",
+    title: "Pebbles Showroom",
+    location: "Gulshan 2, Dhaka",
+    area: "6,500 Sqft",
+    year: "Completed",
+    image: Pebbles,
+    summary:
+      "A spacious clothing showroom featuring open interiors, large glazing, and distinctive exposed brick details.",
+    description:
+      "Designed for visibility and an open shopping experience, the showroom combines generous ceiling heights, extensive glazing, and exposed brick elements to create a distinctive retail space.",
+  },
+ {
+    id: "simin-group-head-office",
+    type: "Interior",
+    category: "Office Interior",
+    title: "Simin Group Head Office",
+    location: "Mirpur 12",
+    locationType: "Town",
+    status: "Ongoing",
+    area: "2,800 Sqft",
+    year: "Ongoing",
+    image: SiminOfficeExtFull,
+    summary:
+      "The brief called for a corporate office. The design concept was to create a bright space that feels wider.",
+  },
+
+  {
+    id: "tepanter-dayout-cottage",
+    type: "Exterior",
+    category: "Resort",
+    title: "Tepantor Dayout Cottage",
+    location: "Mugrakul, Tarabo",
+    locationType: "Countryside",
+    status: "Completed",
+    area: "2,000 Sqft",
+    year: "Completed",
+    image: TepantorExtFull,
+    summary:
+      "A countryside resort cottage featuring vernacular architecture, exposed brick details, and a connection to nature.",
+  },
+  {
+    id: "icchhedana-resort-cottage",
+    type: "Exterior",
+    category: "Resort",
+    title: "Icchhedana",
+    location: "Mugrakul",
+    locationType: "Countryside",
+    status: "Completed",
+    area: "1,250 Sqft",
+    year: "Completed",
+    image: IcchhedanaExtFull,
+    summary:
+      "A 1,250 sq ft eco-inspired resort cottage featuring two rooms and natural materials on a 12-katha site.",
+  },
+  {
+    id: "doobshatar-pool-leisure",
+    type: "Exterior",
+    category: "Swimming Pool",
+    title: "Doobshatar",
+    location: "Mugrakul",
+    locationType: "Countryside",
+    status: "Completed",
+    area: "1,500 Sqft",
+    year: "Completed",
+    image: DoobshatarExtFull,
+    summary:
+      "A thoughtfully designed pool and leisure space combining geometric forms, natural surroundings, and distinctive brickwork.",
+  },
   {
     id: "bashanta-bilash",
     type: "Exterior",
@@ -30,6 +108,19 @@ export const fullProjects = [
     image: Bashanta,
     summary:
       "A resort landscape composed around water, pavilions, gardens, and long-view hospitality sequences.",
+  },
+  {
+    id: "salton-pharmaceuticals",
+    type: "Exterior & Interior",
+    category: "Commercial",
+    title: "Salton Pharmaceuticals Master Plan Design and Facilities Development",
+    location: "Bayek, Sachar, Kachua, Chandpur",
+    status: "Completed",
+    area: "109,240 Sqft",
+    year: "Completed",
+    image: Salton,
+    summary:
+      "The project focuses on creating a well-organized and functional space suited to the company's day-to-day operations and future needs.",
   },
   {
     id: "kindergarten-madrassa",
@@ -196,8 +287,8 @@ function CustomFilterDropdown({ label, options, selectedValue, onSelect }) {
                   setIsOpen(false);
                 }}
                 className={`w-full text-left px-3 py-2 text-sm rounded-md font-mono transition-all duration-200 ease-in-out cursor-pointer hover:bg-[#D9A08B] hover:text-white ${isSelected
-                    ? "bg-[#D9A08B] text-white font-semibold"
-                    : isDark ? 'text-white bg-transparent' : 'text-neutral-900 bg-transparent'
+                  ? "bg-[#D9A08B] text-white font-semibold"
+                  : isDark ? 'text-white bg-transparent' : 'text-neutral-900 bg-transparent'
                   }`}
               >
                 {option.label}
@@ -298,7 +389,7 @@ function FullProject() {
       {/* Background Image Wrapper */}
       <div
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        // style={{ backgroundImage: `url(${bgImage})` }}
+      // style={{ backgroundImage: `url(${bgImage})` }}
       >
         {/* Soft overlay ensuring high text readability */}
         <div className="absolute inset-0 bg-[#2E3133] transition-colors duration-500" />
@@ -350,8 +441,8 @@ function FullProject() {
                   setExpandedId(null);
                 }}
                 className={`flex items-center gap-2 transition-all font-mono duration-200 pb-1 ${viewMode === "grid"
-                    ? "text-[#D9A08B] font-bold border-b-2 border-[#D9A08B]"
-                    : "text-neutral-400 hover:text-neutral-800"
+                  ? "text-[#D9A08B] font-bold border-b-2 border-[#D9A08B]"
+                  : "text-neutral-400 hover:text-neutral-800"
                   }`}
               >
                 <span className="text-base leading-none">⊞</span> Grid
@@ -363,8 +454,8 @@ function FullProject() {
                   setExpandedId(null);
                 }}
                 className={`flex items-center gap-2 transition-all font-mono duration-200 pb-1 ${viewMode === "list"
-                    ? "text-[#D9A08B] font-bold border-b-2 border-[#D9A08B]"
-                    : "text-neutral-400 hover:text-neutral-800"
+                  ? "text-[#D9A08B] font-bold border-b-2 border-[#D9A08B]"
+                  : "text-neutral-400 hover:text-neutral-800"
                   }`}
               >
                 <span className="text-base leading-none">⫶☰</span> List
@@ -458,14 +549,14 @@ function FullProject() {
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
                   </div>                 {/* Grid Titles & Summaries */}
-                    <div className="flex flex-col gap-3.5 pt-1">
-                      {/* Title and Summary Inline Flow */}
-                      <div className={`text-lg sm:text-xl font-light leading-relaxed ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
-                        <span className={`font-semibold font-mono text-xl sm:text-xl font-mono tracking-wide mr-2.5 inline ${isDark ? 'text-white' : 'text-neutral-900'}`}>
-                          {project.title}
-                        </span>
-                        <span className="inline text-xl sm:text-xl fp-summary-light">{project.summary}</span>
-                      </div>
+                  <div className="flex flex-col gap-3.5 pt-1">
+                    {/* Title and Summary Inline Flow */}
+                    <div className={`text-lg sm:text-xl font-light leading-relaxed ${isDark ? 'text-neutral-300' : 'text-neutral-600'}`}>
+                      <span className={`font-semibold font-mono text-xl sm:text-xl font-mono tracking-wide mr-2.5 inline ${isDark ? 'text-white' : 'text-neutral-900'}`}>
+                        {project.title}
+                      </span>
+                      <span className="inline text-xl sm:text-xl fp-summary-light">{project.summary}</span>
+                    </div>
 
                     {/* Category & Year Metadata */}
                     <div className="flex items-center justify-between text-sm sm:text-base font-mono pt-1">
@@ -504,23 +595,23 @@ function FullProject() {
                       }
                     }}
                     className={`group relative border-b border-gray-300 w-full transition-all duration-300 ${isHovered
-                        ? "bg-[#D9A08B] text-white"
-                        : isDark ? "hover:bg-white/5 text-white" : "hover:bg-gray-200/40 text-gray-900"
+                      ? "bg-[#D9A08B] text-white"
+                      : isDark ? "hover:bg-white/5 text-white" : "hover:bg-gray-200/40 text-gray-900"
                       }`}
                   >
                     {/* Row Header */}
                     <div className="flex items-center justify-between py-5 px-4 cursor-pointer w-full">
                       {/* Index & Title */}
                       <div className="flex items-center gap-6 md:gap-10 z-10">
-                        <span                           className={`text-base md:text-lg font-bold font-mono tracking-wider transition-colors duration-300 ${isHovered ? "text-white" : "text-gray-900"
-                            }`}
+                        <span className={`text-base md:text-lg font-bold font-mono tracking-wider transition-colors duration-300 ${isHovered ? "text-white" : "text-gray-900"
+                          }`}
                         >
                           {formattedNum}
                         </span>
                         <h3
                           className={`text-xl sm:text-2xl md:text-3xl font-mono font-medium transition-transform duration-300 ease-out ${isHovered
-                              ? "translate-x-3 text-white font-semibold"
-                              : "text-gray-900"
+                            ? "translate-x-3 text-white font-semibold"
+                            : "text-gray-900"
                             }`}
                         >
                           {project.title}
@@ -544,13 +635,12 @@ function FullProject() {
                             setExpandedId(isExpanded ? null : project.id);
                           }
                         }}
-                        className={`z-10 flex items-center justify-center transition-all duration-300 ${
-                          isHovered
+                        className={`z-10 flex items-center justify-center transition-all duration-300 ${isHovered
                             ? "rotate-45 text-white scale-110"
                             : isMobile
                               ? `text-gray-400 ${isExpanded ? "rotate-90" : ""}`
                               : "text-gray-400 opacity-0 group-hover:opacity-100"
-                        }`}
+                          }`}
                       >
                         <ArrowUpRight size={16} />
                       </button>
@@ -637,7 +727,7 @@ function FullProject() {
       {/* Footer Block */}
       <div className="relative z-10 w-screen border-t border-theme pt-12 backdrop-blur-md transition-colors duration-500" style={{ backgroundColor: 'color-mix(in srgb, var(--bg-primary) 70%, transparent)' }}>
         {/* <Meet /> */}
-        <CTASection/>
+        <CTASection />
         <Footer />
       </div>
 

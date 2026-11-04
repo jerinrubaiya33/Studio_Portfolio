@@ -1,0 +1,1 @@
+I tried to keep the project list unchanged after the accidental duplicate, but the current file is not matching the exact content I expected. Please paste the exact current contents of src/data/ProjectsData.js so I can remove only the duplicate Simin Group Head Office entry and leave everything else untouched.
