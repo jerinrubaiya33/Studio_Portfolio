@@ -51,13 +51,13 @@ const Reveal = ({ children, delay = 0, className = "" }) => {
 /* Office locations dataset */
 const offices = [
   {
-    name: "STUDIO DNA",
-    tag: "THE STUDIO / KÉRANIGANJ",
+    name: "Studio DNA",
+    tag: "THE STUDIO / KERANIGANJ",
     address: (
       <>
         Suite 5, Level 1, Mannan Plaza
         <br />
-        Bashundhara River View R/A
+        Bashundhara River View
         <br />
         Osudh Factory Mor, South Keraniganj
         <br />
@@ -84,7 +84,7 @@ const StudioSection = ({ office, index }) => {
         {/* Studio Title & Media Switcher */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-gray-100 pb-2">
           <div>
-            <h3 className="text-2xl sm:text-3xl font-sans font-extrabold mt-6 tracking-wider text-[#D9A08B] uppercase mb-0.5">
+            <h3 className="text-2xl sm:text-3xl font-sans font-extrabold mt-6  text-[#D9A08B]  mb-0.5">
               {office.name}
             </h3>
             <span className="text-[12px] font-mono tracking-widest text-gray-200 uppercase">
@@ -146,7 +146,7 @@ const StudioSection = ({ office, index }) => {
           {/* 1. Location */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 w-full border-b border-gray-200 py-4 px-4 sm:px-14">
             <div className="flex items-center gap-2.5 text-white shrink-0">
-              <Building2 size={16} strokeWidth={1.5} className="text-[#D9A08B]" />
+              <Building2 size={16} strokeWidth={1.5} className="text-[#FFFFFF]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest">
                 Location
               </span>
@@ -159,7 +159,7 @@ const StudioSection = ({ office, index }) => {
           {/* 2. Phone */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 px-4 sm:px-14 w-full border-b border-gray-200 py-4">
             <div className="flex items-center gap-2.5 text-white shrink-0">
-              <PhoneCall size={16} strokeWidth={1.5} className="text-[#D9A08B]" />
+              <PhoneCall size={16} strokeWidth={1.5} className="text-[#FFFFFF]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest">
                 Phone
               </span>
@@ -175,7 +175,7 @@ const StudioSection = ({ office, index }) => {
           {/* 3. Email */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 px-4 sm:px-14 w-full border-b border-gray-200 py-4">
             <div className="flex items-center gap-2.5 text-white shrink-0">
-              <Send size={16} strokeWidth={1.5} className="text-[#D9A08B]" />
+              <Send size={16} strokeWidth={1.5} className="text-[#FFFFFF]" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-widest">
                 Email
               </span>

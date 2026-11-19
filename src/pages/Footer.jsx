@@ -52,10 +52,10 @@ export default function Footer() {
           {/* Paragraph and Social Icons side-by-side on larger screens */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-18 mt-6">
             <p
-              className="text-base sm:text-lg lg:text-xl leading-relaxed text-white max-w-4xl"
-              style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
+              className="text-base sm:text-lg lg:text-lg leading-relaxed tracking-wide text-white max-w-4xl"
+              // style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
             >
-              <span className="text-[#D9A08B]">STUDIO DNA</span> provides comprehensive services in architecture,
+              <span className="text-[#D9A08B]">Studio DNA</span> provides comprehensive services in architecture,
               planning & engineering, interior & landscape design for both
               public and private sectors — covering residential, commercial,
               institutional & industrial projects, renovations, and landmark
@@ -67,12 +67,12 @@ export default function Footer() {
             <div className="flex flex-col gap-3 lg:mr-30 shrink-0">
               <h3 className="text-sm sm:text-base font-bold tracking-[0.15em] text-white uppercase">
                 OUR SOCIALS
-              </h3> 
+              </h3>
               <div className="flex flex-wrap items-center gap-3">
                 {/* Real WhatsApp Logo SVG */}
                 <SocialIcon label="WhatsApp" href="https://wa.me/8801313711661" activeColor="#25D366">
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                   </svg>
                 </SocialIcon>
 
@@ -122,7 +122,7 @@ export default function Footer() {
                 <span className="leading-snug">
                   Suite 5, Level 1, Mannan Plaza,
                   <br />
-                  Bashundhara River View R/A,
+                  Bashundhara River View,
                   <br />
                   Osudh Factory Mor, South Keraniganj,
                   <br />
@@ -146,7 +146,7 @@ export default function Footer() {
                   href="mailto:info@sdnabd.com"
                   className="transition-colors hover:text-[#D9A08B]"
                 >
-                   info@sdnabd.com
+                  info@sdnabd.com
                 </a>
               </li>
             </ul>
@@ -185,7 +185,7 @@ export default function Footer() {
               <li><Link to="/services" className="transition-colors hover:text-[#D9A08B]">Our Services</Link></li>
               <li><Link to="/projects" className="transition-colors hover:text-[#D9A08B]">Portfolio</Link></li>
               <li><Link to="/studio" className="transition-colors hover:text-[#D9A08B]">Studio</Link></li>
-               <li><Link to="/news" className="transition-colors hover:text-[#D9A08B]">News & Events</Link></li>
+              <li><Link to="/news" className="transition-colors hover:text-[#D9A08B]">News & Events</Link></li>
               <li><Link to="/contact" className="transition-colors hover:text-[#D9A08B]">Contact</Link></li>
             </ul>
           </div>
@@ -193,14 +193,24 @@ export default function Footer() {
         </div>
 
         {/* ---------- Bottom Bar ---------- */}
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-gray-800 pt-6 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between tracking-wide gap-4 border-t border-gray-800 pt-6 sm:flex-row sm:items-center">
           <p
-            className="text-sm max-w-3xl sm:text-base uppercase leading-relaxed tracking-[0.08em] text-white font-medium"
+            className="max-w-2xl text-base sm:text-lg leading-relaxed text-white"
+            // style={{ fontFamily: "'Source Serif 4', Georgia, serif" }}
           >
-           <span className="text-[#D9A08B]">Studio DNA</span> works in association with <span className="text-[#D9A08B]">Outline Architects</span>, connecting architectural design with integrated build and supply services.
-           
+            <span className="text-[#D9A08B]">
+              Studio DNA
+            </span>{" "}
+            works in association with{" "}
+            <span className="text-[#D9A08B]">
+              Outline Architects
+            </span>
+            , connecting architectural design with integrated build and supply services.
           </p>
-          <p className="mr-40 "> © {year} ALL RIGHTS RESERVED.</p>
+
+          <p className="shrink-0 text-sm tracking-wide text-white sm:mr-44">
+            © {year} ALL RIGHTS RESERVED.
+          </p>
         </div>
       </div>
 
